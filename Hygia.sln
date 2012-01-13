@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hygia.LaunchPad", "src\Hygia.LaunchPad\Hygia.LaunchPad.csproj", "{3AECB1E9-D566-4224-BBFB-E2AA66F77681}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hygia.LaunchPad.Specs", "tests\Hygia.LaunchPad.Specs\Hygia.LaunchPad.Specs.csproj", "{B9B7DE61-AAC7-4C09-B652-E0F4B2E73A3C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3AECB1E9-D566-4224-BBFB-E2AA66F77681}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3AECB1E9-D566-4224-BBFB-E2AA66F77681}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3AECB1E9-D566-4224-BBFB-E2AA66F77681}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3AECB1E9-D566-4224-BBFB-E2AA66F77681}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9B7DE61-AAC7-4C09-B652-E0F4B2E73A3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9B7DE61-AAC7-4C09-B652-E0F4B2E73A3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9B7DE61-AAC7-4C09-B652-E0F4B2E73A3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9B7DE61-AAC7-4C09-B652-E0F4B2E73A3C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
