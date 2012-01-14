@@ -1,6 +1,5 @@
 ﻿namespace Hygia.LaunchPad.LogicalMonitoring.Handlers
 {
-    using System;
     using System.Collections.Generic;
     using Commands;
     using Inspectors;
@@ -9,46 +8,42 @@
 
     public class RegisterMessageTypeHandler : IHandleMessages<RegisterMessageType>
     {
-        readonly IDocumentStore store;
+        readonly IDocumentSession session;
 
-        public RegisterMessageTypeHandler(IDocumentStore store)
+        public RegisterMessageTypeHandler(IDocumentSession session)
         {
-            this.store = store;
+            this.session = session;
         }
+
 
         public void Handle(RegisterMessageType message)
         {
             var messageTypeId = message.MessageTypeId.ToString();
 
-            using(var session = store.OpenSession())
-            {
-                var existingType = session.Load<MessageType>(messageTypeId);
-                if (existingType == null)
-                    existingType = new MessageType
-                                       {
-                                           Id = message.MessageTypeId.ToString(),
-                                           Type = message.MessageType,
-                                           Intent = message.MessageIntent
-                                       };
+            var existingType = session.Load<MessageType>(messageTypeId);
+            if (existingType == null)
+                existingType = new MessageType
+                                   {
+                                       Id = message.MessageTypeId.ToString(),
+                                       Type = message.MessageType,
+                                       Intent = message.MessageIntent
+                                   };
 
-                //todo - current version, version updated event
-                if(!existingType.Versions.Contains(message.MessageVersion))
-                    existingType.Versions.Add(message.MessageVersion);
+            //todo - current version, version updated event
+            if (!existingType.Versions.Contains(message.MessageVersion))
+                existingType.Versions.Add(message.MessageVersion);
 
-                session.Store(existingType);     
+            session.Store(existingType);
 
-                session.SaveChanges();
-            }
+            session.SaveChanges();
 
-
-           
         }
     }
 
     public class MessageType
     {
         ICollection<string> versions;
-       
+
         public string Id { get; set; }
 
         public string Type { get; set; }
@@ -57,10 +52,12 @@
 
         public ICollection<string> Versions
         {
-            get {
+            get
+            {
                 return versions ?? new List<string>();
             }
-            set {
+            set
+            {
                 versions = value;
             }
         }

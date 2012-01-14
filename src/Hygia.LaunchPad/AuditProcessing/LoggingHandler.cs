@@ -1,4 +1,4 @@
-﻿namespace Hygia.LaunchPad
+﻿namespace Hygia.LaunchPad.AuditProcessing
 {
     using System;
     using NServiceBus;
