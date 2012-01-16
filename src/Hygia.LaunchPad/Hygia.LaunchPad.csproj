@@ -91,6 +91,10 @@
     <Compile Include="Core\IInspectEnvelopes.cs" />
     <Compile Include="LogicalMonitoring\Handlers\MessageType.cs" />
     <Compile Include="LogicalMonitoring\Handlers\RegisterMessageTypeHandler.cs" />
+    <Compile Include="LogicalMonitoring\Commands\RegisterLogicalService.cs" />
+    <Compile Include="LogicalMonitoring\Commands\RegisterBusinessComponent.cs" />
+    <Compile Include="LogicalMonitoring\Commands\RegisterMessageOwner.cs" />
+    <Compile Include="LogicalMonitoring\Inspectors\ServiceStructureInspector.cs" />
     <Compile Include="PhysicalMonitoring\Commands\RegisterEnvelope.cs" />
     <Compile Include="PhysicalMonitoring\Inspectors\RegisterEnvelopeInspector.cs" />
     <Compile Include="LogicalMonitoring\Inspectors\MessageTypesInspector.cs" />

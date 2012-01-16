@@ -1,10 +1,10 @@
-﻿using System.Linq;
-
-namespace Hygia.LaunchPad.Specs
+﻿namespace Hygia.LaunchPad.Specs.LogicalMonitoring
 {
+    using System.Linq;
     using System.Collections.Generic;
-    using LogicalMonitoring.Commands;
-    using LogicalMonitoring.Inspectors;
+    using Contexts;
+    using Hygia.LaunchPad.LogicalMonitoring.Commands;
+    using Hygia.LaunchPad.LogicalMonitoring.Inspectors;
     using Machine.Specifications;
     using NServiceBus.Unicast.Monitoring;
     using NServiceBus.Unicast.Subscriptions;

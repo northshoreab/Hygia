@@ -1,10 +1,9 @@
-namespace Hygia.LaunchPad.Specs
+namespace Hygia.LaunchPad.Specs.Contexts
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using Core;
-    using Inspectors;
+    using Hygia.LaunchPad.Core;
     using Machine.Specifications;
     using NServiceBus.Unicast.Transport;
 
