@@ -3,12 +3,10 @@
 namespace Hygia.LaunchPad.Specs
 {
     using System.Collections.Generic;
-    using Commands;
-    using Inspectors;
     using LogicalMonitoring.Commands;
     using LogicalMonitoring.Inspectors;
     using Machine.Specifications;
-    using NServiceBus.Unicast;
+    using NServiceBus.Unicast.Monitoring;
     using NServiceBus.Unicast.Subscriptions;
     using NServiceBus.Unicast.Transport;
 
@@ -22,7 +20,7 @@ namespace Hygia.LaunchPad.Specs
                                   {
                                       Headers=new Dictionary<string, string>()
                                   };
-                                      envelopeToInspect.Headers[EnclosedMessageTypesMutator.EnclosedMessageTypes] =
+                                      envelopeToInspect.Headers[Headers.EnclosedMessageTypes] =
                                           typeof (TestMessage).AssemblyQualifiedName + ";" +
                                           typeof (TestMessage).AssemblyQualifiedName;
         };

@@ -7,7 +7,7 @@ namespace Hygia.LaunchPad.PhysicalMonitoring.Inspectors
     using Hygia.LaunchPad.Core;
     using NServiceBus;
     using NServiceBus.Unicast.Transport;
-    using Headers = NServiceBus.Unicast.Timing.Headers;
+    using Headers = NServiceBus.Unicast.Monitoring.Headers;
 
     public class RegisterEnvelopeInspector : IInspectEnvelopes
     {

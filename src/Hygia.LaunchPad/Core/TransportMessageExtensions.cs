@@ -3,7 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using NServiceBus.Unicast;
+    using NServiceBus.Unicast.Monitoring;
     using NServiceBus.Unicast.Subscriptions;
     using NServiceBus.Unicast.Transport;
 
@@ -28,10 +28,10 @@
         {
             var result = new List<MessageType>();
 
-            if (!transportMessage.HasHeader(EnclosedMessageTypesMutator.EnclosedMessageTypes))
+            if (!transportMessage.HasHeader(Headers.EnclosedMessageTypes))
                 return result;
 
-            return transportMessage.Headers[EnclosedMessageTypesMutator.EnclosedMessageTypes].Split(';').ToList()
+            return transportMessage.Headers[Headers.EnclosedMessageTypes].Split(';').ToList()
                 .Select(s => new MessageType(s));
 
         }

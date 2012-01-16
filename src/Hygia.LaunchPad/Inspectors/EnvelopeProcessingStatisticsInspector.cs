@@ -5,22 +5,22 @@
     using Core;
     using NServiceBus;
     using NServiceBus.Unicast.Transport;
-    using Timing = NServiceBus.Unicast.Timing;
+    using Monitoring = NServiceBus.Unicast.Monitoring;
 
     public class EnvelopeProcessingStatisticsInspector:IInspectEnvelopes
     {
         public IEnumerable<object> Inspect(TransportMessage transportMessage)
         {
-            if (!transportMessage.HasHeader(Timing.Headers.TimeSent)||
-                !transportMessage.HasHeader(Timing.Headers.ProcessingStarted) ||
-                !transportMessage.HasHeader(Timing.Headers.ProcessingEnded))
+            if (!transportMessage.HasHeader(Monitoring.Headers.TimeSent)||
+                !transportMessage.HasHeader(Monitoring.Headers.ProcessingStarted) ||
+                !transportMessage.HasHeader(Monitoring.Headers.ProcessingEnded))
                 yield break;
 
-            var sent = transportMessage.Headers[Timing.Headers.TimeSent].ToUtcDateTime();
+            var sent = transportMessage.Headers[Monitoring.Headers.TimeSent].ToUtcDateTime();
 
-            var begin = transportMessage.Headers[Timing.Headers.ProcessingStarted].ToUtcDateTime();
+            var begin = transportMessage.Headers[Monitoring.Headers.ProcessingStarted].ToUtcDateTime();
 
-            var end = transportMessage.Headers[Timing.Headers.ProcessingEnded].ToUtcDateTime();
+            var end = transportMessage.Headers[Monitoring.Headers.ProcessingEnded].ToUtcDateTime();
 
             yield return new RegisterEnvelopeProcessingStatistics
                              {
