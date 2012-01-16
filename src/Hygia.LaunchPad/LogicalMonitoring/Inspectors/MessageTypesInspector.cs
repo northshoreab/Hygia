@@ -1,12 +1,9 @@
 ﻿namespace Hygia.LaunchPad.LogicalMonitoring.Inspectors
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using Commands;
     using Core;
-    using Hygia.LaunchPad.Inspectors;
-    using NServiceBus.Unicast;
     using NServiceBus.Unicast.Subscriptions;
     using NServiceBus.Unicast.Transport;
 
@@ -21,8 +18,7 @@
 
             foreach (var messageType in messageTypes)
             {
-                //todo - need to add a send side enricher to capture the intent
-                var messageIntent = MessageIntent.Unknown;
+                var messageIntent = DetectIntent(transportMessage, messageType);
                 
                 yield return new RegisterMessageType
                                  {
@@ -34,6 +30,37 @@
             }
                 
         }
+
+        MessageIntent DetectIntent(TransportMessage transportMessage, MessageType messageType)
+        {
+            switch(transportMessage.MessageIntent)
+            {
+                case MessageIntentEnum.Publish:
+                    return MessageIntent.Event;
+                case MessageIntentEnum.Unsubscribe:
+                    return MessageIntent.Unsubscribe;
+                case MessageIntentEnum.Subscribe:
+                    return MessageIntent.Subscribe;
+            }
+
+            if(transportMessage.IsControlMessage())
+                return MessageIntent.Control;
+
+            if(transportMessage.CorrelationId != null)
+                return MessageIntent.Response;
+
+            if(IsCommand(messageType))
+                return MessageIntent.Command;
+
+
+            return MessageIntent.Request;
+        }
+
+        bool IsCommand(MessageType messageType)
+        {
+            //improve to detect first tense
+            return messageType.TypeName.Contains("Command");
+        }
     }
 
     public enum MessageIntent
@@ -42,6 +69,9 @@
         Response,
         Command,
         Event,
+        Subscribe,
+        Unsubscribe,
+        Control,
         Unknown
     }
 }
