@@ -1,52 +1,58 @@
 ﻿namespace Hygia.LaunchPad.LogicalMonitoring.Inspectors
 {
-    using System.Collections.Generic;
     using System.Linq;
+    using AuditProcessing.Messages;
     using Commands;
-    using Core;
+    using NServiceBus;
     using NServiceBus.Unicast.Subscriptions;
-    using NServiceBus.Unicast.Transport;
 
-    public class MessageTypesInspector : IInspectEnvelopes
+    public class MessageTypesInspector : IHandleMessages<AuditMessageProcessed>
     {
-        public IEnumerable<object> Inspect(TransportMessage transportMessage)
+        readonly IBus bus;
+
+        public MessageTypesInspector(IBus bus)
         {
-            var messageTypes = transportMessage.MessageTypes().ToList();
+            this.bus = bus;
+        }
+
+        public void Handle(AuditMessageProcessed messageProcessed)
+        {
+            var messageTypes = messageProcessed.MessageTypes().ToList();
 
             if (!messageTypes.Any())
-                yield break;
+                return;
 
             foreach (var messageType in messageTypes)
             {
-                var messageIntent = DetectIntent(transportMessage, messageType);
+                var messageIntent = DetectIntent(messageProcessed, messageType);
                 
-                yield return new RegisterMessageType
+                bus.Send(new RegisterMessageType
                                  {
                                      MessageTypeId = messageType.TypeName.ToGuid(),
                                      MessageType = messageType.TypeName, 
                                      MessageVersion = messageType.Version.ToString(),
                                      MessageIntent = messageIntent
-                                 };
+                                 });
             }
                 
         }
 
-        MessageIntent DetectIntent(TransportMessage transportMessage, MessageType messageType)
+        MessageIntent DetectIntent(AuditMessageProcessed envelope, MessageType messageType)
         {
-            switch(transportMessage.MessageIntent)
+            switch(envelope.AdditionalInformation["MessageIntent"])
             {
-                case MessageIntentEnum.Publish:
+                case "Publish":
                     return MessageIntent.Event;
-                case MessageIntentEnum.Unsubscribe:
+                case "Unsubscribe":
                     return MessageIntent.Unsubscribe;
-                case MessageIntentEnum.Subscribe:
+                case "Subscribe":
                     return MessageIntent.Subscribe;
             }
 
-            if(transportMessage.IsControlMessage())
+            if(envelope.IsControlMessage())
                 return MessageIntent.Control;
 
-            if(transportMessage.CorrelationId != null)
+            if(envelope.CorrelationId() != null)
                 return MessageIntent.Response;
 
             if(IsCommand(messageType))
@@ -61,6 +67,7 @@
             //improve to detect first tense
             return messageType.TypeName.Contains("Command");
         }
+
     }
 
     public enum MessageIntent

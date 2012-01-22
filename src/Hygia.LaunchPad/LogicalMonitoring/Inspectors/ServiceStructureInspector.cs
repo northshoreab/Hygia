@@ -3,31 +3,38 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using AuditProcessing.Messages;
     using Commands;
     using Core;
+    using NServiceBus;
     using NServiceBus.Unicast.Subscriptions;
     using NServiceBus.Unicast.Transport;
 
-    public class ServiceStructureInspector : IInspectEnvelopes
+    public class ServiceStructureInspector : IHandleMessages<AuditMessageProcessed>
     {
-        //for now we can only look at the message types since we don't know which handlers have fired for this message
-        // to do this we need to add a client side inspection (message mutator) that finds all the handlers for this message
-        public IEnumerable<object> Inspect(TransportMessage transportMessage)
+        IBus bus;
+
+        public ServiceStructureInspector(IBus bus)
+        {
+            this.bus = bus;
+        }
+
+        public void Handle(AuditMessageProcessed transportMessage)
         {
             var messageTypes = transportMessage.MessageTypes().ToList();
 
             if (!messageTypes.Any())
-                yield break;
+                return;
 
             foreach (var messageType in messageTypes)
             {
                 var serviceName = DetermineServiveName(messageType);
                 var serviceId = serviceName.ToGuid();
-                yield return new RegisterLogicalService
+                bus.Send(new RegisterLogicalService
                 {
                     ServiceId = serviceId,
                     ServiceName = serviceName,
-                };
+                });
 
                 var bcName = DetermineBC(messageType);
                 Guid bcId = Guid.Empty;
@@ -36,21 +43,21 @@
                 {
                     bcId = bcName.ToGuid();
 
-                    yield return new RegisterBusinessComponent
+                    bus.Send(new RegisterBusinessComponent
                     {
                         BusinessComponentId = bcId,
                         BusinessComponentName = bcName,
                         OwnedByService = serviceId,
-                    };
+                    });
                 }
                     
 
-                yield return new RegisterMessageOwner
+                bus.Send(new RegisterMessageOwner
                 {
                     OwnedByService = serviceId,
                     OwnedByComponent = bcId,
                     MessageTypeId = messageType.TypeName.ToGuid()
-                };
+                });
 
             }
         }
