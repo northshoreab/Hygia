@@ -1,33 +1,42 @@
 ﻿namespace Hygia.LaunchPad.Inspectors
 {
     using System.Collections.Generic;
+    using AuditProcessing.Messages;
     using Commands;
     using Core;
     using NServiceBus;
     using NServiceBus.Unicast.Transport;
     using Monitoring = NServiceBus.Unicast.Monitoring;
 
-    public class EnvelopeProcessingStatisticsInspector:IInspectEnvelopes
+    public class EnvelopeProcessingStatisticsInspector : IHandleMessages<AuditMessageProcessed>
     {
-        public IEnumerable<object> Inspect(TransportMessage transportMessage)
+        IBus bus;
+
+        public EnvelopeProcessingStatisticsInspector(IBus bus)
         {
-            if (!transportMessage.HasHeader(Monitoring.Headers.TimeSent)||
-                !transportMessage.HasHeader(Monitoring.Headers.ProcessingStarted) ||
-                !transportMessage.HasHeader(Monitoring.Headers.ProcessingEnded))
-                yield break;
+            this.bus = bus;
+        }
 
-            var sent = transportMessage.Headers[Monitoring.Headers.TimeSent].ToUtcDateTime();
+        public void Handle(AuditMessageProcessed messageProcessed)
+        {
+            if (!messageProcessed.HasHeader(Monitoring.Headers.TimeSent) ||
+                !messageProcessed.HasHeader(Monitoring.Headers.ProcessingStarted) ||
+                !messageProcessed.HasHeader(Monitoring.Headers.ProcessingEnded))
+                return;
 
-            var begin = transportMessage.Headers[Monitoring.Headers.ProcessingStarted].ToUtcDateTime();
+            var sent = messageProcessed.Headers[Monitoring.Headers.TimeSent].ToUtcDateTime();
 
-            var end = transportMessage.Headers[Monitoring.Headers.ProcessingEnded].ToUtcDateTime();
+            var begin = messageProcessed.Headers[Monitoring.Headers.ProcessingStarted].ToUtcDateTime();
 
-            yield return new RegisterEnvelopeProcessingStatistics
+            var end = messageProcessed.Headers[Monitoring.Headers.ProcessingEnded].ToUtcDateTime();
+
+            bus.Send(new RegisterEnvelopeProcessingStatistics
                              {
-                                 EnvelopeId = transportMessage.EnvelopeId(),
+                                 EnvelopeId = messageProcessed.EnvelopeId(),
                                  CriticalTime = (end-sent).TotalSeconds,
                                  ProcessingTime = (end - begin).TotalSeconds
-                             };
+                             });
         }
+
     }
 }

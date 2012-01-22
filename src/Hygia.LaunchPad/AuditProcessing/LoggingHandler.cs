@@ -1,7 +1,7 @@
 ﻿namespace Hygia.LaunchPad.AuditProcessing
 {
     using System;
-    using NServiceBus;
+    using global::NServiceBus;
 
     public class LoggingHandler:IHandleMessages<object>
     {

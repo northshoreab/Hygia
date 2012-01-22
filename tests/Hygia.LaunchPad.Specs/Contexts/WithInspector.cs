@@ -5,15 +5,16 @@ namespace Hygia.LaunchPad.Specs.Contexts
     using System.Linq;
     using Hygia.LaunchPad.Core;
     using Machine.Specifications;
+    using NServiceBus;
     using NServiceBus.Unicast.Transport;
 
-    public class WithInspector<T> where T : IInspectEnvelopes, new()
+    public class WithInspector<T>
     {
-        protected static IInspectEnvelopes Inspector;
+        protected static dynamic Inspector;
         protected static IEnumerable<object> Results;
 
         Establish context = () => {
-                                      Inspector = new T();
+                                      Inspector = Activator.CreateInstance<T>();
         };
 
         
