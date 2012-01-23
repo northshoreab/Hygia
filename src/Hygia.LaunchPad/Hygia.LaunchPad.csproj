@@ -95,10 +95,13 @@
     <Compile Include="EndpointConfig.cs" />
     <Compile Include="Inspectors\EnvelopeProcessingStatisticsInspector.cs" />
     <Compile Include="LogicalMonitoring\Handlers\MessageType.cs" />
+    <Compile Include="LogicalMonitoring\Handlers\RegisterAutonomousComponentHandler.cs" />
+    <Compile Include="LogicalMonitoring\Handlers\RegisterLogicalServiceHandler.cs" />
     <Compile Include="LogicalMonitoring\Handlers\RegisterMessageTypeHandler.cs" />
     <Compile Include="LogicalMonitoring\Commands\RegisterLogicalService.cs" />
     <Compile Include="LogicalMonitoring\Commands\RegisterBusinessComponent.cs" />
     <Compile Include="LogicalMonitoring\Commands\RegisterMessageOwner.cs" />
+    <Compile Include="LogicalMonitoring\Handlers\ServiceStructure.cs" />
     <Compile Include="LogicalMonitoring\Inspectors\AutonomousComponentsInspector.cs" />
     <Compile Include="LogicalMonitoring\Commands\RegisterAutonomousComponent.cs" />
     <Compile Include="LogicalMonitoring\Commands\RegisterMessageConsumers.cs" />
