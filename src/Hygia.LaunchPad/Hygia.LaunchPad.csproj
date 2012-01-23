@@ -83,12 +83,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AuditProcessing\NServiceBus\AuditProcessor.cs" />
-    <Compile Include="AuditProcessing\LoggingHandler.cs" />
-    <Compile Include="AuditProcessing\Messages\AuditMessageProcessed.cs" />
+    <Compile Include="AuditFeed\Commands\ProcessAuditMessage.cs" />
+    <Compile Include="AuditFeed\NServiceBus\AuditProcessor.cs" />
+    <Compile Include="AuditProcessing\ProcessAuditMessageHandler.cs" />
+    <Compile Include="Core\LoggingHandler.cs" />
+    <Compile Include="AuditProcessing\Events\AuditMessageReceived.cs" />
     <Compile Include="Core\DeterministicGuids.cs" />
     <Compile Include="Core\RavenUnitOfWork.cs" />
     <Compile Include="Core\ProcessAuditMessageExtensions.cs" />
+    <Compile Include="Core\TennantIdPropagatingMutator.cs" />
     <Compile Include="EndpointConfig.cs" />
     <Compile Include="Inspectors\EnvelopeProcessingStatisticsInspector.cs" />
     <Compile Include="LogicalMonitoring\Handlers\MessageType.cs" />

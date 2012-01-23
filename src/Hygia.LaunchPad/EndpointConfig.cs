@@ -1,5 +1,7 @@
 ﻿namespace Hygia.LaunchPad
 {
+    using System;
+    using System.Collections.Generic;
     using Core;
     using NServiceBus;
     using NServiceBus.UnitOfWork;
@@ -24,6 +26,7 @@
     {
         public void Init()
         {
+            tennantIdToDatabaseLookup.Add(Guid.Parse("327951bf-bae4-46a4-93a0-71f61dfbe801"),"Hygia.Acme");
             var store = new DocumentStore
                             {
                                 Url = "http://localhost:8080",
@@ -38,11 +41,29 @@
                                             c.ForSingletonOf<IDocumentStore>()
                                                 .Use(store);
                                             c.For<IDocumentSession>()
-                                                .Use(ctx => ctx.GetInstance<IDocumentStore>().OpenSession());
+                                                .Use(ctx =>
+                                                         {
+                                                             var bus = ctx.GetInstance<IBus>();
+                                                             string database = null;
+
+                                                             if(bus.CurrentMessageContext != null && bus.CurrentMessageContext.Headers.ContainsKey("TennantId"))
+                                                                 database =
+                                                                     tennantIdToDatabaseLookup[
+                                                                         Guid.Parse(
+                                                                             bus.CurrentMessageContext.Headers[
+                                                                                 "TennantId"])];
+                                                             var s = ctx.GetInstance<IDocumentStore>();
+
+                                                             if (string.IsNullOrEmpty(database))
+                                                                 return s.OpenSession();
+                                                             
+                                                             return s.OpenSession(database);
+                                                         });
                                             c.For<IManageUnitsOfWork>()
                                                 .Use<RavenUnitOfWork>();
 
                                         });
         }
+        static IDictionary<Guid,string> tennantIdToDatabaseLookup = new Dictionary<Guid, string>();
     }
 }

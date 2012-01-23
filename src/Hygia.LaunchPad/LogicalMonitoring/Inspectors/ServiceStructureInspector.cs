@@ -3,14 +3,14 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using AuditProcessing.Messages;
+    using AuditProcessing.Events;
     using Commands;
     using Core;
     using NServiceBus;
     using NServiceBus.Unicast.Subscriptions;
     using NServiceBus.Unicast.Transport;
 
-    public class ServiceStructureInspector : IHandleMessages<AuditMessageProcessed>
+    public class ServiceStructureInspector : IHandleMessages<AuditMessageReceived>
     {
         IBus bus;
 
@@ -19,7 +19,7 @@
             this.bus = bus;
         }
 
-        public void Handle(AuditMessageProcessed transportMessage)
+        public void Handle(AuditMessageReceived transportMessage)
         {
             var messageTypes = transportMessage.MessageTypes().ToList();
 

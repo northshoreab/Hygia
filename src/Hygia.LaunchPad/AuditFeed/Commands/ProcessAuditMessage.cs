@@ -1,9 +1,9 @@
-namespace Hygia.LaunchPad.AuditProcessing.Messages
+namespace Hygia.LaunchPad.AuditFeed.Commands
 {
     using System;
     using System.Collections.Generic;
 
-    public class AuditMessageProcessed
+    public class ProcessAuditMessage
     {
         public string MessageId { get; set; }
 
