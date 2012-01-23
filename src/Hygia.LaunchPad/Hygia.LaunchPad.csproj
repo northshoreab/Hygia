@@ -94,6 +94,7 @@
     <Compile Include="Core\TennantIdPropagatingMutator.cs" />
     <Compile Include="EndpointConfig.cs" />
     <Compile Include="Inspectors\EnvelopeProcessingStatisticsInspector.cs" />
+    <Compile Include="LogicalMonitoring\Handlers\RegisterMessageConsumersHandler.cs" />
     <Compile Include="LogicalMonitoring\Handlers\MessageType.cs" />
     <Compile Include="LogicalMonitoring\Handlers\RegisterAutonomousComponentHandler.cs" />
     <Compile Include="LogicalMonitoring\Handlers\RegisterLogicalServiceHandler.cs" />
