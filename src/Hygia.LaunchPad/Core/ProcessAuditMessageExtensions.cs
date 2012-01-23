@@ -44,9 +44,22 @@
             if (!transportMessageReceived.HasHeader(Headers.EnclosedMessageTypes))
                 return result;
 
-            return transportMessageReceived.Headers[Headers.EnclosedMessageTypes].Split(';').ToList()
+            return transportMessageReceived.Headers[Headers.EnclosedMessageTypes].Split(new [] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList()
                 .Select(s => new MessageType(s));
 
         }
+
+        public static IEnumerable<string> GetPipelineInfoFor(this AuditMessageReceived envelope,MessageType messageType)
+        {
+            var key = "NServiceBus.PipelineInfo." + messageType.TypeName;
+            var result = new List<string>();
+
+            if(!envelope.HasHeader(key))
+                return result;
+
+            return envelope.Headers[key].Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+
+        }
+        
     }
 }
