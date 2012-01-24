@@ -10,6 +10,8 @@ namespace Hygia.LaunchPad.LogicalMonitoring.Commands
 
         public string AutonomousComponentName { get; set; }
 
+        public string Version { get; set; }
+
 
         public override string ToString()
         {

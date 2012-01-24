@@ -25,13 +25,18 @@
             {
                 var autonomousComponentsThatHandledThisMessage = auditMessage.GetPipelineInfoFor(messageType).ToList();
 
+
+
                 foreach (var autonomousComponent in autonomousComponentsThatHandledThisMessage)
                 {
-                   bus.Send(new RegisterAutonomousComponent
+                    var typeName = autonomousComponent.Split(',').First();
+                    var version = autonomousComponent.Split(',').Single(s => s.StartsWith(" Version")).Split('=').Last();
+                    bus.Send(new RegisterAutonomousComponent
                                  {
-                                     AutonomousComponentId = ServiceStructureConventions.AutonomousComponentId(autonomousComponent),
-                                     ServiceId = ServiceStructureConventions.ServiceId(autonomousComponent),
-                                     AutonomousComponentName = ServiceStructureConventions.AutonomousComponentName(autonomousComponent),
+                                     AutonomousComponentId = ServiceStructureConventions.AutonomousComponentId(typeName),
+                                     ServiceId = ServiceStructureConventions.ServiceId(typeName),
+                                     AutonomousComponentName = ServiceStructureConventions.AutonomousComponentName(typeName),
+                                     Version = version
                                  });
                 }
 

@@ -1,6 +1,7 @@
 namespace Hygia.LaunchPad.LogicalMonitoring.Handlers
 {
     using System.Collections.Generic;
+    using System.Linq;
     using Commands;
     using NServiceBus;
     using Raven.Client;
@@ -24,17 +25,25 @@ namespace Hygia.LaunchPad.LogicalMonitoring.Handlers
             if(service.AutonomousComponents == null)
                 service.AutonomousComponents = new List<AutonomousComponent>();
 
-            var ac = new AutonomousComponent
+            
+            var existingAc = service.AutonomousComponents.SingleOrDefault(ac => ac.Id == message.AutonomousComponentId);
+            if(existingAc == null)
+            {
+              service.AutonomousComponents.Add(new AutonomousComponent
                          {
                              Id = message.AutonomousComponentId,
-                             Name = message.AutonomousComponentName
-                         };
+                             Name = message.AutonomousComponentName,
+                             Versions = new List<string>{message.Version}
+                         });
+            }
+            else
+            {
+                if(existingAc.Versions == null)
+                    existingAc.Versions = new List<string>();
 
-            if (service.AutonomousComponents.Contains(ac))
-                service.AutonomousComponents.Remove(ac);
-
-            service.AutonomousComponents.Add(ac);
-
+                if(!existingAc.Versions.Contains(message.Version))
+                    existingAc.Versions.Add(message.Version);
+            }
             session.Store(service);
         }
     }

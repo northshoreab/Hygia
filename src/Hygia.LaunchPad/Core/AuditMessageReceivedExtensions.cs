@@ -8,30 +8,30 @@
     using NServiceBus.Unicast.Subscriptions;
     using NServiceBus.Unicast.Transport;
 
-    public static class ProcessAuditMessageExtensions
+    public static class AuditMessageReceivedExtensions
     {
-        public static bool HasHeader(this AuditMessageReceived transportMessageReceived, string header)
+        public static bool HasHeader(this AuditMessageReceived envelope, string header)
         {
-            if (transportMessageReceived.Headers == null)
+            if (envelope.Headers == null)
                 return false;
 
-            return transportMessageReceived.Headers.ContainsKey(header);
+            return envelope.Headers.ContainsKey(header);
         }
 
 
-        public static Guid EnvelopeId(this AuditMessageReceived transportMessageReceived)
+        public static Guid EnvelopeId(this AuditMessageReceived envelope)
         {
-            return transportMessageReceived.MessageId.ToGuid();
+            return envelope.MessageId.ToGuid();
         }
         public static bool IsControlMessage(this AuditMessageReceived transportMessageReceived)
         {
             return transportMessageReceived.Headers.ContainsKey(ControlMessage.ControlMessageHeader);
         }
 
-        public static string CorrelationId(this AuditMessageReceived transportMessageReceived)
+        public static string CorrelationId(this AuditMessageReceived envelope)
         {
-            if (transportMessageReceived.AdditionalInformation.ContainsKey("CorrelationId"))
-                return transportMessageReceived.AdditionalInformation["CorrelationId"];
+            if (envelope.AdditionalInformation.ContainsKey("CorrelationId"))
+                return envelope.AdditionalInformation["CorrelationId"];
             return null;
         }
 

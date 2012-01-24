@@ -90,7 +90,7 @@
     <Compile Include="AuditProcessing\Events\AuditMessageReceived.cs" />
     <Compile Include="Core\DeterministicGuids.cs" />
     <Compile Include="Core\RavenUnitOfWork.cs" />
-    <Compile Include="Core\ProcessAuditMessageExtensions.cs" />
+    <Compile Include="Core\AuditMessageReceivedExtensions.cs" />
     <Compile Include="Core\TennantIdPropagatingMutator.cs" />
     <Compile Include="EndpointConfig.cs" />
     <Compile Include="Inspectors\EnvelopeProcessingStatisticsInspector.cs" />

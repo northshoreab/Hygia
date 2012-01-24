@@ -14,6 +14,7 @@ namespace Hygia.LaunchPad.LogicalMonitoring.Handlers
 
     public class AutonomousComponent
     {
+        public ICollection<string> Versions { get; set; }
         public Guid Id { get; set; }
 
         public string Name { get; set; }
