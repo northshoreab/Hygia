@@ -28,16 +28,18 @@
 
                 messageType = new MessageType
                 {
-                    Id = messageTypeId,
-                    Type = message.MessageType,
-                    Versions = new List<string> { message.MessageVersion }
+                    Id = messageTypeId
                 };
 
             }
+            messageType.Type = message.MessageType;
 
             messageType.Intent = message.MessageIntent;
 
             var version = message.MessageVersion;
+
+            if(messageType.Versions == null)
+                messageType.Versions = new List<string>();
 
             //improve - current version, version updated event
             if (!messageType.Versions.Contains(version))

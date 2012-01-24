@@ -23,10 +23,10 @@
 
             var messageType = session.Load<MessageType>(messageTypeId) ?? new MessageType{ Id = messageTypeId,};
 
-            if (messageType.ConsumedBy == null)
-                messageType.ConsumedBy = new List<Guid>();
+            if (messageType.ConsumedByACs == null)
+                messageType.ConsumedByACs = new List<Guid>();
 
-            messageType.ConsumedBy = messageType.ConsumedBy.Union(message.ConsumedBy).ToList();
+            messageType.ConsumedByACs = messageType.ConsumedByACs.Union(message.ConsumedBy).ToList();
 
             session.Store(messageType);
         }

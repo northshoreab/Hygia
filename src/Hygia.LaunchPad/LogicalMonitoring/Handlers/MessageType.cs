@@ -14,6 +14,10 @@ namespace Hygia.LaunchPad.LogicalMonitoring.Handlers
 
         public ICollection<string> Versions { get; set; }
 
-        public List<Guid> ConsumedBy { get; set; }
+        public ICollection<Guid> ConsumedByACs { get; set; }
+
+        public ICollection<Guid> ProducedByACs { get; set; }
+
+        public ICollection<Guid> PreceedingMessageTypes{ get; set; }
     }
 }
