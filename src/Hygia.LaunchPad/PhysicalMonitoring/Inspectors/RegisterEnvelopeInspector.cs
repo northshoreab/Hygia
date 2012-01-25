@@ -1,13 +1,11 @@
 namespace Hygia.LaunchPad.PhysicalMonitoring.Inspectors
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using AuditProcessing.Events;
     using Commands;
-    using Hygia.LaunchPad.Core;
+    using Domain;
     using NServiceBus;
-    using NServiceBus.Unicast.Transport;
     using Headers = NServiceBus.Unicast.Monitoring.Headers;
 
     public class RegisterEnvelopeInspector : IHandleMessages<AuditMessageReceived>

@@ -35,6 +35,12 @@
             return null;
         }
 
+        public static Guid PreviousEnvelopeId(this AuditMessageReceived envelope)
+        {
+            if (envelope.Headers.ContainsKey("NServiceBus.RelatedTo"))
+                return envelope.Headers["NServiceBus.RelatedTo"].ToGuid();
+            return Guid.Empty;
+        }
 
 
         public static IEnumerable<MessageType> MessageTypes(this AuditMessageReceived transportMessageReceived)

@@ -2,6 +2,7 @@ namespace Hygia.LaunchPad.PhysicalMonitoring.Commands
 {
     using System;
     using System.Collections.Generic;
+    using Domain;
 
     public class RegisterEnvelope
     {
@@ -20,11 +21,5 @@ namespace Hygia.LaunchPad.PhysicalMonitoring.Commands
             }
             set { messages = value; }
         }
-    }
-
-    public class PhysicalMessage
-    {
-        public Guid MessageId { get; set; }
-        public Guid MessageTypeId { get; set; }
     }
 }

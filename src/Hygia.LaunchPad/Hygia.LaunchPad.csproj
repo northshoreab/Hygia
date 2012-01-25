@@ -108,11 +108,19 @@
     <Compile Include="LogicalMonitoring\Commands\RegisterMessageConsumers.cs" />
     <Compile Include="LogicalMonitoring\Inspectors\ServiceStructureConventions.cs" />
     <Compile Include="LogicalMonitoring\Inspectors\ServiceStructureInspector.cs" />
+    <Compile Include="PhysicalMonitoring\Domain\PhysicalMessage.cs" />
     <Compile Include="PhysicalMonitoring\Commands\RegisterEnvelope.cs" />
+    <Compile Include="PhysicalMonitoring\Commands\AppendMessageToChain.cs" />
+    <Compile Include="PhysicalMonitoring\Domain\MessageChain.cs" />
+    <Compile Include="PhysicalMonitoring\Domain\Envelope.cs" />
+    <Compile Include="PhysicalMonitoring\Handlers\RegisterEnvelopeHandler.cs" />
+    <Compile Include="PhysicalMonitoring\Handlers\StartMessageChainHandler.cs" />
+    <Compile Include="PhysicalMonitoring\Inspectors\MessageChainInspector.cs" />
     <Compile Include="PhysicalMonitoring\Inspectors\RegisterEnvelopeInspector.cs" />
     <Compile Include="LogicalMonitoring\Inspectors\MessageTypesInspector.cs" />
     <Compile Include="LogicalMonitoring\Commands\RegisterMessageType.cs" />
     <Compile Include="Commands\RegisterEnvelopeProcessingStatistics.cs" />
+    <Compile Include="PhysicalMonitoring\Commands\StartMessageChain.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

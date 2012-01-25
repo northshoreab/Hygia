@@ -8,6 +8,7 @@
     using Raven.Client;
     using Raven.Client.Document;
     using StructureMap;
+    using StructureMap.Graph;
 
     public class EndpointConfig : IConfigureThisEndpoint, AsA_Publisher, IWantCustomInitialization
     {
@@ -59,6 +60,9 @@
                                                              
                                                              return s.OpenSession(database);
                                                          });
+
+                                            PluginCache.AddFilledType(typeof(IDocumentSession));
+
                                             c.For<IManageUnitsOfWork>()
                                                 .Use<RavenUnitOfWork>();
 
