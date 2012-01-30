@@ -1,5 +1,6 @@
 namespace Hygia.LaunchPad.LogicalMonitoring.Handlers
 {
+    using System;
     using System.Collections.Generic;
     using Inspectors;
 
@@ -12,5 +13,7 @@ namespace Hygia.LaunchPad.LogicalMonitoring.Handlers
         public MessageIntent Intent { get; set; }
 
         public ICollection<string> Versions { get; set; }
+
+        public List<Guid> ConsumedBy { get; set; }
     }
 }

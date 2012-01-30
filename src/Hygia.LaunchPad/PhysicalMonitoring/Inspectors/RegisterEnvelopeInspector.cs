@@ -3,14 +3,14 @@ namespace Hygia.LaunchPad.PhysicalMonitoring.Inspectors
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using AuditProcessing.Messages;
+    using AuditProcessing.Events;
     using Commands;
     using Hygia.LaunchPad.Core;
     using NServiceBus;
     using NServiceBus.Unicast.Transport;
     using Headers = NServiceBus.Unicast.Monitoring.Headers;
 
-    public class RegisterEnvelopeInspector : IHandleMessages<AuditMessageProcessed>
+    public class RegisterEnvelopeInspector : IHandleMessages<AuditMessageReceived>
     {
         IBus bus;
 
@@ -19,7 +19,7 @@ namespace Hygia.LaunchPad.PhysicalMonitoring.Inspectors
             this.bus = bus;
         }
 
-        public void Handle(AuditMessageProcessed transportMessage)
+        public void Handle(AuditMessageReceived transportMessage)
         {
             var sent = transportMessage.Headers[Headers.TimeSent].ToUtcDateTime();
 

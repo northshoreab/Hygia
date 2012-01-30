@@ -1,12 +1,12 @@
 ﻿namespace Hygia.LaunchPad.LogicalMonitoring.Inspectors
 {
     using System.Linq;
-    using AuditProcessing.Messages;
+    using AuditProcessing.Events;
     using Commands;
     using NServiceBus;
     using NServiceBus.Unicast.Subscriptions;
 
-    public class MessageTypesInspector : IHandleMessages<AuditMessageProcessed>
+    public class MessageTypesInspector : IHandleMessages<AuditMessageReceived>
     {
         readonly IBus bus;
 
@@ -15,16 +15,16 @@
             this.bus = bus;
         }
 
-        public void Handle(AuditMessageProcessed messageProcessed)
+        public void Handle(AuditMessageReceived messageReceived)
         {
-            var messageTypes = messageProcessed.MessageTypes().ToList();
+            var messageTypes = messageReceived.MessageTypes().ToList();
 
             if (!messageTypes.Any())
                 return;
 
             foreach (var messageType in messageTypes)
             {
-                var messageIntent = DetectIntent(messageProcessed, messageType);
+                var messageIntent = DetectIntent(messageReceived, messageType);
                 
                 bus.Send(new RegisterMessageType
                                  {
@@ -37,7 +37,7 @@
                 
         }
 
-        MessageIntent DetectIntent(AuditMessageProcessed envelope, MessageType messageType)
+        MessageIntent DetectIntent(AuditMessageReceived envelope, MessageType messageType)
         {
             switch(envelope.AdditionalInformation["MessageIntent"])
             {

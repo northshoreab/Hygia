@@ -83,19 +83,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AuditProcessing\NServiceBus\AuditProcessor.cs" />
-    <Compile Include="AuditProcessing\LoggingHandler.cs" />
-    <Compile Include="AuditProcessing\Messages\AuditMessageProcessed.cs" />
+    <Compile Include="AuditFeed\Commands\ProcessAuditMessage.cs" />
+    <Compile Include="AuditFeed\NServiceBus\AuditProcessor.cs" />
+    <Compile Include="AuditProcessing\ProcessAuditMessageHandler.cs" />
+    <Compile Include="Core\LoggingHandler.cs" />
+    <Compile Include="AuditProcessing\Events\AuditMessageReceived.cs" />
     <Compile Include="Core\DeterministicGuids.cs" />
     <Compile Include="Core\RavenUnitOfWork.cs" />
     <Compile Include="Core\ProcessAuditMessageExtensions.cs" />
+    <Compile Include="Core\TennantIdPropagatingMutator.cs" />
     <Compile Include="EndpointConfig.cs" />
     <Compile Include="Inspectors\EnvelopeProcessingStatisticsInspector.cs" />
+    <Compile Include="LogicalMonitoring\Handlers\RegisterMessageConsumersHandler.cs" />
     <Compile Include="LogicalMonitoring\Handlers\MessageType.cs" />
+    <Compile Include="LogicalMonitoring\Handlers\RegisterAutonomousComponentHandler.cs" />
+    <Compile Include="LogicalMonitoring\Handlers\RegisterLogicalServiceHandler.cs" />
     <Compile Include="LogicalMonitoring\Handlers\RegisterMessageTypeHandler.cs" />
     <Compile Include="LogicalMonitoring\Commands\RegisterLogicalService.cs" />
     <Compile Include="LogicalMonitoring\Commands\RegisterBusinessComponent.cs" />
     <Compile Include="LogicalMonitoring\Commands\RegisterMessageOwner.cs" />
+    <Compile Include="LogicalMonitoring\Handlers\ServiceStructure.cs" />
+    <Compile Include="LogicalMonitoring\Inspectors\AutonomousComponentsInspector.cs" />
+    <Compile Include="LogicalMonitoring\Commands\RegisterAutonomousComponent.cs" />
+    <Compile Include="LogicalMonitoring\Commands\RegisterMessageConsumers.cs" />
+    <Compile Include="LogicalMonitoring\Inspectors\ServiceStructureConventions.cs" />
     <Compile Include="LogicalMonitoring\Inspectors\ServiceStructureInspector.cs" />
     <Compile Include="PhysicalMonitoring\Commands\RegisterEnvelope.cs" />
     <Compile Include="PhysicalMonitoring\Inspectors\RegisterEnvelopeInspector.cs" />

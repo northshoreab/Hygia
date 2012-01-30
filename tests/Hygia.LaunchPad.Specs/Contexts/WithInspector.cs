@@ -12,15 +12,16 @@ namespace Hygia.LaunchPad.Specs.Contexts
     {
         protected static dynamic Inspector;
         protected static IEnumerable<object> Results;
+        static IBus mockBus;
 
         Establish context = () => {
-                                      Inspector = Activator.CreateInstance<T>();
+                                      Inspector = Activator.CreateInstance(typeof(T),new[]{mockBus});
         };
 
         
         protected static void MessageInspection(TransportMessage transportMessage)
         {
-            Results = Inspector.Inspect(transportMessage);
+            Results = Inspector.Handle(transportMessage);
         }
 
 

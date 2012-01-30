@@ -3,50 +3,63 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using LaunchPad.AuditProcessing.Messages;
+    using LaunchPad.AuditProcessing.Events;
     using NServiceBus.Unicast.Monitoring;
     using NServiceBus.Unicast.Subscriptions;
     using NServiceBus.Unicast.Transport;
 
     public static class ProcessAuditMessageExtensions
     {
-        public static bool HasHeader(this AuditMessageProcessed transportMessageProcessed, string header)
+        public static bool HasHeader(this AuditMessageReceived transportMessageReceived, string header)
         {
-            if (transportMessageProcessed.Headers == null)
+            if (transportMessageReceived.Headers == null)
                 return false;
 
-            return transportMessageProcessed.Headers.ContainsKey(header);
+            return transportMessageReceived.Headers.ContainsKey(header);
         }
 
 
-        public static Guid EnvelopeId(this AuditMessageProcessed transportMessageProcessed)
+        public static Guid EnvelopeId(this AuditMessageReceived transportMessageReceived)
         {
-            return transportMessageProcessed.MessageId.ToGuid();
+            return transportMessageReceived.MessageId.ToGuid();
         }
-        public static bool IsControlMessage(this AuditMessageProcessed transportMessageProcessed)
+        public static bool IsControlMessage(this AuditMessageReceived transportMessageReceived)
         {
-            return transportMessageProcessed.Headers.ContainsKey(ControlMessage.ControlMessageHeader);
+            return transportMessageReceived.Headers.ContainsKey(ControlMessage.ControlMessageHeader);
         }
 
-        public static string CorrelationId(this AuditMessageProcessed transportMessageProcessed)
+        public static string CorrelationId(this AuditMessageReceived transportMessageReceived)
         {
-            if (transportMessageProcessed.AdditionalInformation.ContainsKey("CorrelationId"))
-                return transportMessageProcessed.AdditionalInformation["CorrelationId"];
+            if (transportMessageReceived.AdditionalInformation.ContainsKey("CorrelationId"))
+                return transportMessageReceived.AdditionalInformation["CorrelationId"];
             return null;
         }
 
 
 
-        public static IEnumerable<MessageType> MessageTypes(this AuditMessageProcessed transportMessageProcessed)
+        public static IEnumerable<MessageType> MessageTypes(this AuditMessageReceived transportMessageReceived)
         {
             var result = new List<MessageType>();
 
-            if (!transportMessageProcessed.HasHeader(Headers.EnclosedMessageTypes))
+            if (!transportMessageReceived.HasHeader(Headers.EnclosedMessageTypes))
                 return result;
 
-            return transportMessageProcessed.Headers[Headers.EnclosedMessageTypes].Split(';').ToList()
+            return transportMessageReceived.Headers[Headers.EnclosedMessageTypes].Split(new [] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList()
                 .Select(s => new MessageType(s));
 
         }
+
+        public static IEnumerable<string> GetPipelineInfoFor(this AuditMessageReceived envelope,MessageType messageType)
+        {
+            var key = "NServiceBus.PipelineInfo." + messageType.TypeName;
+            var result = new List<string>();
+
+            if(!envelope.HasHeader(key))
+                return result;
+
+            return envelope.Headers[key].Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+
+        }
+        
     }
 }

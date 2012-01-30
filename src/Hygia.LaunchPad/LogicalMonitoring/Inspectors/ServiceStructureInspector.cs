@@ -1,25 +1,21 @@
 ﻿namespace Hygia.LaunchPad.LogicalMonitoring.Inspectors
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
-    using AuditProcessing.Messages;
+    using AuditProcessing.Events;
     using Commands;
-    using Core;
     using NServiceBus;
-    using NServiceBus.Unicast.Subscriptions;
-    using NServiceBus.Unicast.Transport;
 
-    public class ServiceStructureInspector : IHandleMessages<AuditMessageProcessed>
+    public class ServiceStructureInspector : IHandleMessages<AuditMessageReceived>
     {
-        IBus bus;
+        readonly IBus bus;
 
         public ServiceStructureInspector(IBus bus)
         {
             this.bus = bus;
         }
 
-        public void Handle(AuditMessageProcessed transportMessage)
+        public void Handle(AuditMessageReceived transportMessage)
         {
             var messageTypes = transportMessage.MessageTypes().ToList();
 
@@ -28,15 +24,16 @@
 
             foreach (var messageType in messageTypes)
             {
-                var serviceName = DetermineServiveName(messageType);
-                var serviceId = serviceName.ToGuid();
+                var serviceName = ServiceStructureConventions.ServiceName(messageType.TypeName);
+                var serviceId = ServiceStructureConventions.ServiceId(messageType.TypeName);
+
                 bus.Send(new RegisterLogicalService
                 {
                     ServiceId = serviceId,
                     ServiceName = serviceName,
                 });
 
-                var bcName = DetermineBC(messageType);
+                var bcName = ServiceStructureConventions.BusinessComponentName(messageType.TypeName);
                 Guid bcId = Guid.Empty;
 
                 if (!string.IsNullOrEmpty(bcName))
@@ -62,17 +59,5 @@
             }
         }
 
-        string DetermineBC(MessageType messageType)
-        {
-            if (messageType.TypeName.Split('.').Count() > 2)
-                return messageType.TypeName.Split('.').ElementAt(1);
-
-            return null;
-        }
-
-        string DetermineServiveName(MessageType messageType)
-        {
-            return messageType.TypeName.Split('.').First();
-        }
     }
 }

@@ -44,9 +44,6 @@
                 messageType.Versions.Add(version);
 
             session.Store(messageType);
-
-            session.SaveChanges();
-
         }
     }
 }
