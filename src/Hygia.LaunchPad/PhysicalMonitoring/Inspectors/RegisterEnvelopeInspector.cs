@@ -10,33 +10,37 @@ namespace Hygia.LaunchPad.PhysicalMonitoring.Inspectors
 
     public class RegisterEnvelopeInspector : IHandleMessages<AuditMessageReceived>
     {
-        IBus bus;
+        public IBus Bus { get; set; }
 
-        public RegisterEnvelopeInspector(IBus bus)
+        public void Handle(AuditMessageReceived auditMessage)
         {
-            this.bus = bus;
-        }
-
-        public void Handle(AuditMessageReceived transportMessage)
-        {
-            var sent = transportMessage.Headers[Headers.TimeSent].ToUtcDateTime();
-
-            var messages = transportMessage.MessageTypes()
+            var messages = auditMessage.MessageTypes()
                 .Select((messageType,ordinal) =>new PhysicalMessage
                             {
-                                MessageId = (transportMessage.MessageId + ordinal.ToString()).ToGuid(),
+                                MessageId = (auditMessage.MessageId + ordinal.ToString()).ToGuid(),
                                 MessageTypeId = messageType.TypeName.ToGuid()
                             }).ToList();
 
-           
 
-            bus.Send(new RegisterEnvelope
-                             {
-                                 EnvelopeId = transportMessage.EnvelopeId(),
-                                 TimeSent = sent,
-                                 CorrelatedEnvelopeId = transportMessage.CorrelationId() != null ? transportMessage.CorrelationId().ToGuid():Guid.Empty,
-                                 Messages = messages
-                             });
+        
+            var command = new RegisterEnvelope
+                              {
+                                  EnvelopeId = auditMessage.EnvelopeId(),
+                                  CorrelatedEnvelopeId = auditMessage.CorrelationId(),
+                                  ParentEnvelopeId = auditMessage.PreviousEnvelopeId(),
+                                  Messages = messages
+                              };
+            
+            if(auditMessage.Headers.ContainsKey(Headers.TimeSent))
+                command.TimeSent = auditMessage.Headers[Headers.TimeSent].ToUtcDateTime();
+
+            if (auditMessage.Headers.ContainsKey(Headers.ProcessingStarted))
+                command.ProcessingStarted = auditMessage.Headers[Headers.ProcessingStarted].ToUtcDateTime();
+
+            if (auditMessage.Headers.ContainsKey(Headers.ProcessingEnded))
+                command.ProcessingEnded = auditMessage.Headers[Headers.ProcessingEnded].ToUtcDateTime();
+           
+            Bus.Send(command);
         }
 
     }

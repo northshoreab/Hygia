@@ -28,11 +28,17 @@
             return transportMessageReceived.Headers.ContainsKey(ControlMessage.ControlMessageHeader);
         }
 
-        public static string CorrelationId(this AuditMessageReceived envelope)
+        public static Guid CorrelationId(this AuditMessageReceived envelope)
         {
             if (envelope.AdditionalInformation.ContainsKey("CorrelationId"))
-                return envelope.AdditionalInformation["CorrelationId"];
-            return null;
+            {
+                var id = envelope.AdditionalInformation["CorrelationId"];
+
+                if(!string.IsNullOrEmpty(id))
+                    return id.ToGuid();
+            }
+
+            return Guid.Empty;
         }
 
         public static Guid PreviousEnvelopeId(this AuditMessageReceived envelope)

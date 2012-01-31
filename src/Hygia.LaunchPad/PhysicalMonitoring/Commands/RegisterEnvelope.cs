@@ -8,7 +8,7 @@ namespace Hygia.LaunchPad.PhysicalMonitoring.Commands
     {
         public Guid EnvelopeId { get; set; }
 
-        public DateTime TimeSent { get; set; }
+        public DateTime? TimeSent { get; set; }
 
         public Guid CorrelatedEnvelopeId { get; set; }
 
@@ -21,5 +21,11 @@ namespace Hygia.LaunchPad.PhysicalMonitoring.Commands
             }
             set { messages = value; }
         }
+
+        public DateTime? ProcessingStarted { get; set; }
+
+        public DateTime? ProcessingEnded { get; set; }
+
+        public Guid ParentEnvelopeId { get; set; }
     }
 }
