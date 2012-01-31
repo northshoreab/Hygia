@@ -4,18 +4,18 @@ namespace Hygia.Backend.Widgets
 {
     public class PieChartItem
     {
-        public string Label { get; set; }
-        public string Value { get; set; }
-        public string Colour { get; set; }
+        public string label { get; set; }
+        public string value { get; set; }
+        public string colour { get; set; }
     }
 
     public class PieChart
     {
         public PieChart()
         {
-            Item = new List<PieChartItem>();
+            item = new List<PieChartItem>();
         }
 
-        public IList<PieChartItem> Item { get; set; }
+        public IList<PieChartItem> item { get; set; }
     }
 }

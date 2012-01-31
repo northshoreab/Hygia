@@ -29,24 +29,24 @@ namespace Hygia.Backend.Testdata
 
         public static Funnel GetFunnel()
         {
-            var funnel = new Funnel {Percentage = FunnelPercentage.Show, Type = FunnelType.Reverse};
+            var funnel = new Funnel {percentage = FunnelPercentage.Show, type = FunnelType.Reverse};
 
-            funnel.Item.Add(new FunnelItem
+            funnel.item.Add(new FunnelItem
                                 {
-                                    Label = "Order placed",
-                                    Value = "500"
+                                    label = "Order placed",
+                                    value = "500"
                                 });
 
-            funnel.Item.Add(new FunnelItem
+            funnel.item.Add(new FunnelItem
                                 {
-                                    Label = "Order paid",
-                                    Value = "300"
+                                    label = "Order paid",
+                                    value = "300"
                                 });
 
-            funnel.Item.Add(new FunnelItem
+            funnel.item.Add(new FunnelItem
                                 {
-                                    Label = "Order delivered",
-                                    Value = "200"
+                                    label = "Order delivered",
+                                    value = "200"
                                 });
 
             return funnel;
@@ -56,24 +56,24 @@ namespace Hygia.Backend.Testdata
         {
             var pieChart = new PieChart();
 
-            pieChart.Item.Add(new PieChartItem
+            pieChart.item.Add(new PieChartItem
                                   {
-                                      Colour = ColorToHexString(Color.Blue),
-                                      Label = "Order placed",
-                                      Value = "500"
+                                      colour = ColorToHexString(Color.Blue),
+                                      label = "Order placed",
+                                      value = "500"
                                   });
 
-            pieChart.Item.Add(new PieChartItem
+            pieChart.item.Add(new PieChartItem
                                   {
-                                      Colour = ColorToHexString(Color.Green),
-                                      Label = "Order paid",
-                                      Value = "300"
+                                      colour = ColorToHexString(Color.Green),
+                                      label = "Order paid",
+                                      value = "300"
                                   });
-            pieChart.Item.Add(new PieChartItem
+            pieChart.item.Add(new PieChartItem
                                   {
-                                      Colour = ColorToHexString(Color.Yellow),
-                                      Label = "Order delivered",
-                                      Value = "200"
+                                      colour = ColorToHexString(Color.Yellow),
+                                      label = "Order delivered",
+                                      value = "200"
                                   });
 
             return pieChart;
@@ -83,14 +83,14 @@ namespace Hygia.Backend.Testdata
         {
             var lineChart = new LineChart();
 
-            lineChart.Item.Add("500");
-            lineChart.Item.Add("600");
-            lineChart.Item.Add("531");
-            lineChart.Settings = new LineChartSettings
+            lineChart.item.Add("500");
+            lineChart.item.Add("600");
+            lineChart.item.Add("531");
+            lineChart.settings = new LineChartSettings
                                      {
-                                         AxisX = new List<string>{ "Jun", "Jul", "Aug" },
-                                         AxisY = new List<string>{ "Min", "Max" },
-                                         Colour = ColorToHexString(Color.Yellow)
+                                         axisx = new List<string>{ "Jun", "Jul", "Aug" },
+                                         axisy = new List<string>{ "Min", "Max" },
+                                         colour = ColorToHexString(Color.Yellow)
                                      };
 
             return lineChart;
