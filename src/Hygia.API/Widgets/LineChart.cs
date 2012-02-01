@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Hygia.Backend.Widgets
+namespace Hygia.API.Widgets
 {
     public class LineChartSettings
     {

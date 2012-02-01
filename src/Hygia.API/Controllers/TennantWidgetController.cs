@@ -1,8 +1,8 @@
-﻿using Hygia.Backend.Models;
-using Hygia.Backend.Testdata;
+﻿using Hygia.API.Models;
+using Hygia.API.Testdata;
 using Newtonsoft.Json;
 
-namespace Hygia.Backend.Controllers
+namespace Hygia.API.Controllers
 {
     public class TennantWidgetController
     {

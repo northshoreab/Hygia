@@ -1,4 +1,4 @@
-namespace Hygia.Backend.Models
+namespace Hygia.API.Models
 {
     public class TennantWidgetModel
     {

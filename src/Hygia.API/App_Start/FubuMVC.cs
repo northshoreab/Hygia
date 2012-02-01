@@ -1,13 +1,13 @@
-using System.Web.Routing;
 using Bottles;
 using FubuMVC.Core;
 using FubuMVC.StructureMap;
+using Hygia.API.App_Start;
 using StructureMap;
 
 // You can remove the reference to WebActivator by calling the Start() method from your Global.asax Application_Start
-[assembly: WebActivator.PreApplicationStartMethod(typeof(Hygia.Backend.App_Start.AppStartFubuMVC), "Start", callAfterGlobalAppStart: true)]
+[assembly: WebActivator.PreApplicationStartMethod(typeof(AppStartFubuMVC), "Start", callAfterGlobalAppStart: true)]
 
-namespace Hygia.Backend.App_Start
+namespace Hygia.API.App_Start
 {
     public static class AppStartFubuMVC
     {

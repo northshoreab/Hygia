@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
-using Hygia.Backend.Widgets;
+using Hygia.API.Widgets;
 
-namespace Hygia.Backend.Testdata
+namespace Hygia.API.Testdata
 {
     public static class TestdataHelper
     {

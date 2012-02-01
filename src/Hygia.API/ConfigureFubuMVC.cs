@@ -1,6 +1,6 @@
 using FubuMVC.Core;
 
-namespace Hygia.Backend
+namespace Hygia.API
 {
     public class ConfigureFubuMVC : FubuRegistry
     {
