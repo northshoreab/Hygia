@@ -29,24 +29,24 @@ namespace Hygia.API.Testdata
 
         public static Funnel GetFunnel()
         {
-            var funnel = new Funnel {percentage = FunnelPercentage.Show, type = FunnelType.Reverse};
+            var funnel = new Funnel {Percentage = FunnelPercentage.Show, Type = FunnelType.Reverse};
 
-            funnel.item.Add(new FunnelItem
+            funnel.Item.Add(new FunnelItem
                                 {
-                                    label = "Order placed",
-                                    value = "500"
+                                    Label = "Order placed",
+                                    Value = "500"
                                 });
 
-            funnel.item.Add(new FunnelItem
+            funnel.Item.Add(new FunnelItem
                                 {
-                                    label = "Order paid",
-                                    value = "300"
+                                    Label = "Order paid",
+                                    Value = "300"
                                 });
 
-            funnel.item.Add(new FunnelItem
+            funnel.Item.Add(new FunnelItem
                                 {
-                                    label = "Order delivered",
-                                    value = "200"
+                                    Label = "Order delivered",
+                                    Value = "200"
                                 });
 
             return funnel;
@@ -56,41 +56,100 @@ namespace Hygia.API.Testdata
         {
             var pieChart = new PieChart();
 
-            pieChart.item.Add(new PieChartItem
+            pieChart.Item.Add(new PieChartItem
                                   {
-                                      colour = ColorToHexString(Color.Blue),
-                                      label = "Order placed",
-                                      value = "500"
+                                      Colour = ColorToHexString(Color.Blue),
+                                      Label = "Order placed",
+                                      Value = "500"
                                   });
 
-            pieChart.item.Add(new PieChartItem
+            pieChart.Item.Add(new PieChartItem
                                   {
-                                      colour = ColorToHexString(Color.Green),
-                                      label = "Order paid",
-                                      value = "300"
+                                      Colour = ColorToHexString(Color.Green),
+                                      Label = "Order paid",
+                                      Value = "300"
                                   });
-            pieChart.item.Add(new PieChartItem
+            pieChart.Item.Add(new PieChartItem
                                   {
-                                      colour = ColorToHexString(Color.Yellow),
-                                      label = "Order delivered",
-                                      value = "200"
+                                      Colour = ColorToHexString(Color.Yellow),
+                                      Label = "Order delivered",
+                                      Value = "200"
                                   });
 
             return pieChart;
+        }
+
+        public static HighChartsConfig GetHighChart()
+        {
+            return new HighChartsConfig
+                       {
+                           DefaultSeriesType = HighChartsSeriesTypes.Line,
+                           Legend = new HighChartsLegend
+                                        {
+                                            Align = HighChartsAlign.Right,
+                                            BorderWidth = 0,
+                                            X = -10,
+                                            Y = 100,
+                                            Layout = HighChartsLayout.Vertical,
+                                            VerticalAlign = HighChartsAlign.Top
+                                        },
+                           MarginBottom = 25,
+                           MarginRight = 130,
+                           RenderTo = HighChartsRenderTo.Container,
+                           Series =
+                               new List<HighChartsData>
+                                   {
+                                       new HighChartsData
+                                           {
+                                               Name = "This year",
+                                               Data = new List<double> {200, 300, 320, 250, 600}
+                                           },
+                                       new HighChartsData
+                                           {
+                                               Name = "Last year",
+                                               Data = new List<double> {420, 323, 320, 276, 541}
+                                           }
+
+                                   },
+                           SeriesType = HighChartsSeriesTypes.Line,
+                           SubTitle = new HighChartsTitle{ Text = "This year compared to last year", xPos = -20},
+                           Title = new HighChartsTitle
+                                       {
+                                           Text = "Order history",
+                                           xPos = -20
+                                       },
+                           xAxis = new HighChartsXAxis
+                                       {
+                                           Categories = new List<string> {"Jan", "Feb", "Mar", "Apr", "May"}
+                                       },
+                           yAxis = new HighChartsYAxis
+                                       {
+                                           Title = new HighChartsTitle {Text = "Orders"},
+                                           PlotLines = new List<HighChartsPlotLine>
+                                                           {
+                                                               new HighChartsPlotLine
+                                                                   {
+                                                                       Color = "#808080",
+                                                                       Value = 0,
+                                                                       Width = 1
+                                                                   }
+                                                           }
+                                       }
+                       };
         }
 
         public static LineChart GetLineChart()
         {
             var lineChart = new LineChart();
 
-            lineChart.item.Add("500");
-            lineChart.item.Add("600");
-            lineChart.item.Add("531");
-            lineChart.settings = new LineChartSettings
+            lineChart.Item.Add("500");
+            lineChart.Item.Add("600");
+            lineChart.Item.Add("531");
+            lineChart.Settings = new LineChartSettings
                                      {
-                                         axisx = new List<string>{ "Jun", "Jul", "Aug" },
-                                         axisy = new List<string>{ "Min", "Max" },
-                                         colour = ColorToHexString(Color.Yellow)
+                                         Axisx = new List<string>{ "Jun", "Jul", "Aug" },
+                                         Axisy = new List<string>{ "Min", "Max" },
+                                         Colour = ColorToHexString(Color.Yellow)
                                      };
 
             return lineChart;

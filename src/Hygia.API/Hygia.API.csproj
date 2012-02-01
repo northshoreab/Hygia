@@ -105,6 +105,7 @@
     <Compile Include="Models\TennantWidgetModel.cs" />
     <Compile Include="Testdata\TestdataHelper.cs" />
     <Compile Include="Widgets\Funnel.cs" />
+    <Compile Include="Widgets\HighChartsLineChart.cs" />
     <Compile Include="Widgets\LineChart.cs" />
     <Compile Include="Widgets\PieChart.cs" />
   </ItemGroup>

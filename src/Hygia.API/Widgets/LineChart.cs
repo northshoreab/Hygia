@@ -6,23 +6,23 @@ namespace Hygia.API.Widgets
     {
         public LineChartSettings()
         {
-            axisx = new List<string>();
-            axisy = new List<string>();
+            Axisx = new List<string>();
+            Axisy = new List<string>();
         }
 
-        public IList<string> axisx { get; set; }
-        public IList<string> axisy { get; set; }
-        public string colour { get; set; }
+        public IList<string> Axisx { get; set; }
+        public IList<string> Axisy { get; set; }
+        public string Colour { get; set; }
     }
 
     public class LineChart
     {
         public LineChart()
         {
-            item = new List<string>();
+            Item = new List<string>();
         }
 
-        public IList<string> item { get; set; }
-        public LineChartSettings settings { get; set; }
+        public IList<string> Item { get; set; }
+        public LineChartSettings Settings { get; set; }
     }
 }

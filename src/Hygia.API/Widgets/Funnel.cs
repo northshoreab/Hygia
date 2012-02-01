@@ -16,19 +16,19 @@ namespace Hygia.API.Widgets
 
     public class FunnelItem
     {
-        public string label { get; set; }
-        public string value { get; set; }
+        public string Label { get; set; }
+        public string Value { get; set; }
     }
 
     public class Funnel
     {
         public Funnel()
         {
-            item = new List<FunnelItem>();
+            Item = new List<FunnelItem>();
         }
 
-        public string type { get; set; }
-        public string percentage { get; set; }
-        public IList<FunnelItem> item { get; set; }
+        public string Type { get; set; }
+        public string Percentage { get; set; }
+        public IList<FunnelItem> Item { get; set; }
     }
 }
