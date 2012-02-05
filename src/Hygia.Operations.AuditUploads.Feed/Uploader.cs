@@ -13,10 +13,9 @@ namespace Hygia.Operations.AuditUploads.Feed
     public class Uploader : IWantCustomInitialization, IWantToRunAtStartup
     {
         static ITransport inputTransport;
-        bool includeMessageBody;
-        Guid apiKey;
-
-        static Address auditQueueAddress;
+        static bool includeMessageBody;
+        static Guid apiKey;
+        static  Address auditQueueAddress;
 
 
         public void Init()
