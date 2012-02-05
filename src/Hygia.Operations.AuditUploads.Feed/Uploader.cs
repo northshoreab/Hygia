@@ -2,7 +2,8 @@ namespace Hygia.Operations.AuditUploads.Feed
 {
     using System;
     using System.Collections.Generic;
-    using Hygia.Operations.AuditUploads.Messages;
+    using System.Configuration;
+    using Messages;
     using NServiceBus;
     using NServiceBus.Faults.InMemory;
     using NServiceBus.Unicast.Queuing.Msmq;
@@ -13,10 +14,26 @@ namespace Hygia.Operations.AuditUploads.Feed
     {
         static ITransport inputTransport;
         bool includeMessageBody;
-        Guid tennantId;
+        Guid apiKey;
+
+        static Address auditQueueAddress;
+
+
         public void Init()
         {
-            tennantId = Guid.Parse("327951bf-bae4-46a4-93a0-71f61dfbe801");//todo - read from config
+            var key = ConfigurationManager.AppSettings["hygia.apikey"];
+            if (string.IsNullOrEmpty(key))
+                throw new ConfigurationErrorsException("hygia.api is required to start the launchpad");
+
+
+            var audit = ConfigurationManager.AppSettings["hygia.input"];
+            if (string.IsNullOrEmpty(audit))
+                throw new ConfigurationErrorsException("hygia.input is required to start the launchpad");
+
+            auditQueueAddress = Address.Parse(audit);
+
+            apiKey = Guid.Parse(key);
+
             includeMessageBody = false;
             inputTransport = new TransactionalTransport
                                  {
@@ -32,7 +49,7 @@ namespace Hygia.Operations.AuditUploads.Feed
 
         public void Run()
         {
-            inputTransport.Start(Address.Parse("audit"));
+            inputTransport.Start(auditQueueAddress);
         }
 
         public void Stop()
@@ -44,7 +61,7 @@ namespace Hygia.Operations.AuditUploads.Feed
             var transportMessage = e.Message;
             var message = new ProcessAuditMessage
                               {
-                                  TennantId = tennantId,
+                                  ApiKey = apiKey,
                                   MessageId = transportMessage.IdForCorrelation,
                                   Headers = transportMessage.Headers,
                                   AdditionalInformation = new Dictionary<string, string>()
@@ -58,7 +75,7 @@ namespace Hygia.Operations.AuditUploads.Feed
 
             Configure.Instance.Builder.Build<IBus>()
                 .Send(message);//todo - vary this for on premise mode/cloud mode
-            
+
         }
     }
 }
