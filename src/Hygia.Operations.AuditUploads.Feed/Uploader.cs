@@ -1,15 +1,15 @@
-namespace Hygia.Operations.AuditUploads.AuditFeed.NServiceBus
+namespace Hygia.Operations.AuditUploads.Feed
 {
     using System;
     using System.Collections.Generic;
-    using Commands;
-    using global::NServiceBus;
-    using global::NServiceBus.Faults.InMemory;
-    using global::NServiceBus.Unicast.Queuing.Msmq;
-    using global::NServiceBus.Unicast.Transport;
-    using global::NServiceBus.Unicast.Transport.Transactional;
+    using Hygia.Operations.AuditUploads.Messages;
+    using NServiceBus;
+    using NServiceBus.Faults.InMemory;
+    using NServiceBus.Unicast.Queuing.Msmq;
+    using NServiceBus.Unicast.Transport;
+    using NServiceBus.Unicast.Transport.Transactional;
 
-    public class AuditProcessor : IWantCustomInitialization, IWantToRunAtStartup
+    public class Uploader : IWantCustomInitialization, IWantToRunAtStartup
     {
         static ITransport inputTransport;
         bool includeMessageBody;
@@ -57,7 +57,7 @@ namespace Hygia.Operations.AuditUploads.AuditFeed.NServiceBus
                 message.Body = transportMessage.Body;
 
             Configure.Instance.Builder.Build<IBus>()
-                .SendLocal(message);//todo - vary this for on premise mode/cloud mode
+                .Send(message);//todo - vary this for on premise mode/cloud mode
             
         }
     }

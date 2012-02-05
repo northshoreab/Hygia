@@ -86,13 +86,36 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Hygia.Core\Hygia.Core.csproj">
+      <Project>{C4F880A3-653F-4CC9-9333-DBE2CB4EFEF9}</Project>
+      <Name>Hygia.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hygia.LogicalMonitoring\Hygia.LogicalMonitoring.csproj">
+      <Project>{ACD5D3D1-675A-49EF-8CF4-7E27528CFAC1}</Project>
+      <Name>Hygia.LogicalMonitoring</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hygia.Operations.AuditUploads.Messages\Hygia.Operations.AuditUploads.Messages.csproj">
+      <Project>{E62BCFF0-B9A6-4E53-BE25-CE9706490B29}</Project>
+      <Name>Hygia.Operations.AuditUploads.Messages</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hygia.Operations.AuditUploads\Hygia.Operations.AuditUploads.csproj">
+      <Project>{0913F8B5-DA27-4B5C-9E13-682A8555BCE3}</Project>
+      <Name>Hygia.Operations.AuditUploads</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hygia.Operations\Hygia.Operations.csproj">
+      <Project>{5C10F8AE-3AFE-4B51-B6A3-79AEE26A166F}</Project>
+      <Name>Hygia.Operations</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hygia.PhysicalMonitoring\Hygia.PhysicalMonitoring.csproj">
+      <Project>{A69B2E6E-9E40-40B4-BFD8-3164DF393744}</Project>
+      <Name>Hygia.PhysicalMonitoring</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <StartAction>Program</StartAction>
+    <StartProgram>$(ProjectDir)$(OutputPath)NServiceBus.Host.exe</StartProgram>
+  </PropertyGroup>
 </Project>

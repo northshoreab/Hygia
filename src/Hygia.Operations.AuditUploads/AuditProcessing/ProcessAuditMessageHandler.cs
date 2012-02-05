@@ -1,7 +1,7 @@
 ﻿namespace Hygia.Operations.AuditUploads.AuditProcessing
 {
-    using AuditFeed.Commands;
     using Events;
+    using Messages;
     using NServiceBus;
 
     public class ProcessAuditMessageHandler : IHandleMessages<ProcessAuditMessage>

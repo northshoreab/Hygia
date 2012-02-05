@@ -1,4 +1,4 @@
-namespace Hygia.Operations.AuditUploads.AuditFeed.Commands
+namespace Hygia.Operations.AuditUploads.Messages
 {
     using System;
     using System.Collections.Generic;

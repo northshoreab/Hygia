@@ -3,8 +3,8 @@
     using System;
     using System.Collections.Generic;
     using NServiceBus;
-    using NServiceBus.Persistence.Raven;
     using NServiceBus.UnitOfWork;
+    using Operations;
     using Raven.Client;
     using Raven.Client.Document;
     using StructureMap;
@@ -15,9 +15,7 @@
         public void Init()
         {
             Configure.With()
-                .DefiningMessagesAs(t => t.Namespace != null && t.Namespace.EndsWith(".Messages"))
-                .DefiningCommandsAs(t => t.Namespace != null && t.Namespace.EndsWith(".Commands"))
-                .DefiningEventsAs(t => t.Namespace != null && t.Namespace.EndsWith(".Events"))
+                .HygiaMessageConventions()
                 .StructureMapBuilder()
                 .XmlSerializer();
         }
