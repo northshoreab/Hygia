@@ -4,7 +4,6 @@
     using System.Linq;
     using System.Collections.Generic;
     using Contexts;
-    using Hygia.LaunchPad.LogicalMonitoring.Inspectors;
     using Machine.Specifications;
     using NServiceBus.Unicast.Monitoring;
     using NServiceBus.Unicast.Transport;

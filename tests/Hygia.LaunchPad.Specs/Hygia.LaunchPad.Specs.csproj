@@ -111,9 +111,25 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Hygia.Core\Hygia.Core.csproj">
+      <Project>{C4F880A3-653F-4CC9-9333-DBE2CB4EFEF9}</Project>
+      <Name>Hygia.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\Hygia.LaunchPad\Hygia.LaunchPad.csproj">
       <Project>{3AECB1E9-D566-4224-BBFB-E2AA66F77681}</Project>
       <Name>Hygia.LaunchPad</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Hygia.LogicalMonitoring\Hygia.LogicalMonitoring.csproj">
+      <Project>{ACD5D3D1-675A-49EF-8CF4-7E27528CFAC1}</Project>
+      <Name>Hygia.LogicalMonitoring</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Hygia.Operations.AuditUploads\Hygia.Operations.AuditUploads.csproj">
+      <Project>{0913F8B5-DA27-4B5C-9E13-682A8555BCE3}</Project>
+      <Name>Hygia.Operations.AuditUploads</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Hygia.PhysicalMonitoring\Hygia.PhysicalMonitoring.csproj">
+      <Project>{A69B2E6E-9E40-40B4-BFD8-3164DF393744}</Project>
+      <Name>Hygia.PhysicalMonitoring</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

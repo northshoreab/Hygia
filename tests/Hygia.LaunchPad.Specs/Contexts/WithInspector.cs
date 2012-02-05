@@ -3,7 +3,6 @@ namespace Hygia.LaunchPad.Specs.Contexts
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using Hygia.LaunchPad.Core;
     using Machine.Specifications;
     using NServiceBus;
     using NServiceBus.Unicast.Transport;
