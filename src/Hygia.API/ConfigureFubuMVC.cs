@@ -9,9 +9,15 @@ namespace Hygia.API
             // This line turns on the basic diagnostics and request tracing
             IncludeDiagnostics(true);
 
+            Applies
+                .ToThisAssembly()
+                .ToAssembly("Hygia.Operations.AuditUploads.Api"); //todo- Better way?
+
             // All public methods from concrete classes ending in "Controller"
             // in this assembly are assumed to be action methods
             Actions.IncludeClassesSuffixedWithController();
+
+           
 
             // Policies
             Routes
