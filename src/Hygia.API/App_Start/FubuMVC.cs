@@ -5,7 +5,7 @@ using Hygia.API.App_Start;
 using StructureMap;
 
 // You can remove the reference to WebActivator by calling the Start() method from your Global.asax Application_Start
-[assembly: WebActivator.PreApplicationStartMethod(typeof(AppStartFubuMVC), "Start", callAfterGlobalAppStart: true)]
+[assembly: WebActivator.PreApplicationStartMethod(typeof(AppStartFubuMVC), "Start")]
 
 namespace Hygia.API.App_Start
 {
