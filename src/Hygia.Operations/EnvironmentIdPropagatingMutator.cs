@@ -5,7 +5,7 @@
     using NServiceBus.MessageMutator;
     using NServiceBus.Unicast.Transport;
 
-    public class TennantIdPropagatingMutator:IMutateOutgoingTransportMessages,INeedInitialization
+    public class EnvironmentIdPropagatingMutator:IMutateOutgoingTransportMessages,INeedInitialization
     {
         public IBus Bus { get; set; }
 
@@ -13,16 +13,16 @@
         {
             if (Bus.CurrentMessageContext == null)
                 return;
-            if (!Bus.CurrentMessageContext.Headers.ContainsKey("TennantId"))
+            if (!Bus.CurrentMessageContext.Headers.ContainsKey("EnvironmentId"))
                 return;
 
-            transportMessage.Headers["TennantId"] = Bus.CurrentMessageContext.Headers["TennantId"];
+            transportMessage.Headers["EnvironmentId"] = Bus.CurrentMessageContext.Headers["EnvironmentId"];
         }
 
         public void Init()
         {
 
-            Configure.Instance.Configurer.ConfigureComponent<TennantIdPropagatingMutator>(
+            Configure.Instance.Configurer.ConfigureComponent<EnvironmentIdPropagatingMutator>(
                 DependencyLifecycle.InstancePerCall);
         }
     }
