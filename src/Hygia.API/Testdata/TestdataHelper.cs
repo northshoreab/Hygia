@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
+using Hygia.API.SystemNotifications;
 using Hygia.API.Widgets;
 
 namespace Hygia.API.Testdata
@@ -26,6 +28,42 @@ namespace Hygia.API.Testdata
 
             return new string(chars);
         }
+
+        public static IList<Notification> Notifications { get; set; }
+
+        static TestdataHelper()
+        {
+            Notifications = new List<Notification>
+                                {
+                                    new Notification
+                                        {
+                                            Author = new Author
+                                                         {
+                                                             Name = "Daniel Kjellqvist",
+                                                             Email = "daniel@test.se"
+                                                         },
+                                            Description = "The message took 2 seconds to process.",
+                                            Id = Guid.NewGuid(),
+                                            Title = "Order paid critical time warning!",
+                                            NotificationDate = DateTime.Now,
+                                            Summary = "Order paid message passed warning level for critical time"
+                                        },
+                                    new Notification
+                                        {
+                                            Author = new Author
+                                                         {
+                                                             Name = "Sales department",
+                                                             Email = "sales@test.se"
+                                                         },
+                                            Description = "The Dublin coffe house sets new record for moccas sold!",
+                                            Id = Guid.NewGuid(),
+                                            Title = "New record for Moccas sold",
+                                            NotificationDate = DateTime.Now.AddDays(-1).AddHours(-3),
+                                            Summary = "The Dublin coffe house sets new record for moccas sold"
+                                        }
+                                };
+        }
+
 
         public static Funnel GetFunnel()
         {

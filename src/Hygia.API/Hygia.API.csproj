@@ -69,6 +69,7 @@
     <Reference Include="StructureMap">
       <HintPath>..\..\packages\structuremap.2.6.3\lib\StructureMap.dll</HintPath>
     </Reference>
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -100,9 +101,13 @@
   <ItemGroup>
     <Compile Include="App_Start\FubuMVC.cs" />
     <Compile Include="ConfigureFubuMVC.cs" />
-    <Compile Include="Controllers\TennantWidgetController.cs" />
+    <Compile Include="Controllers\DashboardWidgetController.cs" />
+    <Compile Include="Models\SystemNotificationModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Models\TennantWidgetModel.cs" />
+    <Compile Include="Models\DashboardWidgetModel.cs" />
+    <Compile Include="SystemNotifications\Author.cs" />
+    <Compile Include="SystemNotifications\Notification.cs" />
+    <Compile Include="SystemNotifications\NotificationExtensions.cs" />
     <Compile Include="Testdata\TestdataHelper.cs" />
     <Compile Include="Widgets\Funnel.cs" />
     <Compile Include="Widgets\HighChartsLineChart.cs" />
