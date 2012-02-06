@@ -21,7 +21,8 @@
 
             bus.Publish<AuditMessageReceived>(e =>
                                                   {
-                                                      e.SetHeader("TennantId", message.TennantId.ToString());
+                                                      //todo - this should be the environment id instead
+                                                      e.SetHeader("TennantId", message.ApiKey.ToString());
 
                                                       e.MessageId = message.MessageId;
                                                       e.Headers = message.Headers;
