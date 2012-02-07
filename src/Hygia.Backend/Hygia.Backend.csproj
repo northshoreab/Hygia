@@ -86,6 +86,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Hygia.Backend.nuspec">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -120,4 +123,5 @@
     <StartAction>Program</StartAction>
     <StartProgram>$(ProjectDir)$(OutputPath)NServiceBus.Host.exe</StartProgram>
   </PropertyGroup>
+  <Import Project="..\..\packages\OctoPack.1.0.82\targets\OctoPack.targets" />
 </Project>
