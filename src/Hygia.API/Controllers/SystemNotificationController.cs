@@ -11,9 +11,9 @@ namespace Hygia.API.Controllers
 {
     public class SystemNotificationController
     {
-        public string get_Tennant_systemnotifications(SystemNotificationModel model)
+        public string get_Environment_systemnotifications(SystemNotificationModel model)
         {
-            var feed = new SyndicationFeed("System notification", "Publishes system notifications for tennant: " + model.Tennant,new Uri("http://localhost"));
+            var feed = new SyndicationFeed("System notification", "Publishes system notifications for environment: " + model.Environment,new Uri("http://localhost"));
             feed.Authors.Add(new SyndicationPerson("test@test.com","Testor Testorsson", "http://localhost"));
             feed.Links.Add(SyndicationLink.CreateSelfLink(new Uri(HttpContext.Current.Request.Url.AbsoluteUri), "application/atom+xml"));
 
