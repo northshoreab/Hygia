@@ -4,6 +4,13 @@ namespace Hygia.API.SystemNotifications
 {
     public class Notification
     {
+        public Notification()
+        {
+            Author = new Author { Name = "System" };
+            NotificationDate = DateTime.Now;
+            Id = Guid.NewGuid();
+        }
+
         public Guid Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }

@@ -35,19 +35,7 @@ namespace Hygia.API.Testdata
         {
             Notifications = new List<Notification>
                                 {
-                                    new Notification
-                                        {
-                                            Author = new Author
-                                                         {
-                                                             Name = "Daniel Kjellqvist",
-                                                             Email = "daniel@test.se"
-                                                         },
-                                            Description = "The message took 2 seconds to process.",
-                                            Id = Guid.NewGuid(),
-                                            Title = "Order paid critical time warning!",
-                                            NotificationDate = DateTime.Now,
-                                            Summary = "Order paid message passed warning level for critical time"
-                                        },
+                                    new CriticalTimeWarning("OrderPaid", new TimeSpan(0,0,0,2,123), new TimeSpan(0,0,0,2,0)),
                                     new Notification
                                         {
                                             Author = new Author
@@ -56,11 +44,11 @@ namespace Hygia.API.Testdata
                                                              Email = "sales@test.se"
                                                          },
                                             Description = "The Dublin coffe house sets new record for moccas sold!",
-                                            Id = Guid.NewGuid(),
                                             Title = "New record for Moccas sold",
                                             NotificationDate = DateTime.Now.AddDays(-1).AddHours(-3),
                                             Summary = "The Dublin coffe house sets new record for moccas sold"
-                                        }
+                                        },
+                                    new BusinessProcessCompletionTime("Order paid", "Order delivered", "Coffee delivery process", new TimeSpan(0,10,0))
                                 };
         }
 
