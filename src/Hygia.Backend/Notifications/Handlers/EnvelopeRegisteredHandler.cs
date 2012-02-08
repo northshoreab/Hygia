@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Hygia.Backend.Notifications.Domain;
+using Hygia.Backend.Notifications.Extension;
 using Hygia.Backend.Notifications.Index;
 using Hygia.PhysicalMonitoring.Commands;
 using NServiceBus;
@@ -22,7 +23,7 @@ namespace Hygia.Backend.Notifications.Handlers
         {
             var notificationConfigurations = Session.Query<NotificationConfiguration, All_NotificationConfiguration>().ToList();
 
-            IEnumerable<IMessage> notifications = notificationConfigurations.SelectMany(x => x.EnvelopeNotifications(message.RegisteredEnvelope));
+            IEnumerable<IMessage> notifications = notificationConfigurations.SelectMany(x => x.GetNotificationMessagesFor(message.RegisteredEnvelope));
 
             _bus.Publish(notifications);
         }

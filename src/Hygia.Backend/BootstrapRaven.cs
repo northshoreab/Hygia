@@ -27,7 +27,7 @@ namespace Hygia.Backend
 
             store.Initialize();
 
-            IndexCreation.CreateIndexes(typeof(All_NotificationConfigurations).Assembly, store);
+            IndexCreation.CreateIndexes(typeof(All_NotificationConfiguration).Assembly, store);
 
             ObjectFactory.Configure(c =>
                                         {
@@ -40,7 +40,6 @@ namespace Hygia.Backend
 
                                             c.For<IManageUnitsOfWork>()
                                                 .Use<RavenUnitOfWork>();
-
                                         });
         }
 

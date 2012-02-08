@@ -14,7 +14,7 @@ namespace Hygia.Backend.Notifications.Domain
         public TimeSpan AlertLevel { get; set; }
         public IEnumerable<NotificationTypes> NotificationTypes { get; set; }
 
-        public override IEnumerable<IMessage> EnvelopeNotifications(Envelope envelope)
+        public override IEnumerable<IMessage> GetNotificationMessagesForEnvelope(Envelope envelope)
         {
             if(envelope.CriticalTime > AlertLevel)
             {

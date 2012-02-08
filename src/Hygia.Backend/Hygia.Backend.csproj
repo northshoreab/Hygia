@@ -84,6 +84,7 @@
     <Compile Include="Notifications\Domain\BusinessProcessCompletionTimeRssNotification.cs" />
     <Compile Include="Notifications\Domain\CriticalTimeRssNotification.cs" />
     <Compile Include="Notifications\Domain\Notification.cs" />
+    <Compile Include="Notifications\Extension\NotificationConfigurationExtensions.cs" />
     <Compile Include="Notifications\Handlers\EnvelopeRegisteredHandler.cs" />
     <Compile Include="Notifications\Handlers\RegisterCriticalTimeRssNotificationHandler.cs" />
     <Compile Include="BootstrapRaven.cs" />
@@ -95,7 +96,7 @@
     <Compile Include="Notifications\Domain\CriticalTimeNotificationConfiguration.cs" />
     <Compile Include="EndpointConfig.cs" />
     <Compile Include="Notifications\Handlers\SendCriticalTimeEmailNotificationHandler.cs" />
-    <Compile Include="Notifications\Index\All_NotificationConfigurations.cs" />
+    <Compile Include="Notifications\Index\All_NotificationConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

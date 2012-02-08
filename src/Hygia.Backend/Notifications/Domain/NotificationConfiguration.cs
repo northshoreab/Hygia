@@ -6,6 +6,6 @@ namespace Hygia.Backend.Notifications.Domain
 {
     public abstract class NotificationConfiguration
     {
-        public abstract IEnumerable<IMessage> EnvelopeNotifications(Envelope envelope);
+        public abstract IEnumerable<IMessage> GetNotificationMessagesForEnvelope(Envelope envelope);
     }
 }

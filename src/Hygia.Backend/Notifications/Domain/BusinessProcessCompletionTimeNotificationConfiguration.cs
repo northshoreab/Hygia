@@ -13,7 +13,7 @@ namespace Hygia.Backend.Notifications.Domain
         public MessageType EndMessageType { get; set; }
         public TimeSpan AlertLevel { get; set; }
 
-        public override IEnumerable<IMessage> EnvelopeNotifications(Envelope envelope)
+        public override IEnumerable<IMessage> GetNotificationMessagesForEnvelope(Envelope envelope)
         {
             throw new NotImplementedException();
         }
