@@ -20,7 +20,7 @@ namespace Hygia.Backend.Notifications.Handlers
 
         public void Handle(EnvelopeRegistered message)
         {
-            var notificationConfigurations = Session.Query<NotificationConfiguration, All_NotificationConfigurations>().ToList();
+            var notificationConfigurations = Session.Query<NotificationConfiguration, All_NotificationConfiguration>().ToList();
 
             IEnumerable<IMessage> notifications = notificationConfigurations.SelectMany(x => x.EnvelopeNotifications(message.RegisteredEnvelope));
 

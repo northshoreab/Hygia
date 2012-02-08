@@ -4,9 +4,9 @@ using Raven.Client.Indexes;
 
 namespace Hygia.Backend.Notifications.Index
 {
-    public class All_NotificationConfigurations : AbstractMultiMapIndexCreationTask
+    public class All_NotificationConfiguration : AbstractMultiMapIndexCreationTask
     {
-        public All_NotificationConfigurations()
+        public All_NotificationConfiguration()
         {
             AddMap<CriticalTimeNotificationConfiguration>(criticalTimeAlerts => criticalTimeAlerts.Select(x => new 
                                                                                                             {

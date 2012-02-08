@@ -12,17 +12,17 @@ namespace Hygia.Backend.Notifications.Domain
         public string Id { get; set; }
         public MessageType MessageType { get; set; }
         public TimeSpan AlertLevel { get; set; }
-        public IEnumerable<NotificationTypes> AlertTypes { get; set; }
+        public IEnumerable<NotificationTypes> NotificationTypes { get; set; }
 
         public override IEnumerable<IMessage> EnvelopeNotifications(Envelope envelope)
         {
             if(envelope.CriticalTime > AlertLevel)
             {
-                foreach (var alertTypes in AlertTypes)
+                foreach (var alertTypes in NotificationTypes)
                 {
                     switch (alertTypes)
                     {
-                        case NotificationTypes.Rss:
+                        case Domain.NotificationTypes.Rss:
                             yield return new RegisterCriticalTimeRssNotification
                                              {
                                                  AlertLevel = AlertLevel,
@@ -30,7 +30,7 @@ namespace Hygia.Backend.Notifications.Domain
                                                  MessageCriticalTime = envelope.CriticalTime.Value
                                              };
                             break;
-                        case NotificationTypes.Email:
+                        case Domain.NotificationTypes.Email:
                             yield return new SendCriticalTimeEmailNotification();
                             break;
                     }
