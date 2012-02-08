@@ -7,7 +7,13 @@
 
     public class RegisterEnvelopeHandler:IHandleMessages<RegisterEnvelope>
     {
+        private readonly IBus _bus;
         public IDocumentSession Session { get; set; }
+
+        public RegisterEnvelopeHandler(IBus bus)
+        {
+            _bus = bus;
+        }
 
         public void Handle(RegisterEnvelope message)
         {
@@ -29,6 +35,8 @@
                 envelope.ProcessingTime = envelope.ProcessingEnded - envelope.ProcessingStarted;
 
             Session.Store(envelope);
+
+            _bus.Publish<EnvelopeRegistered>(e => { e.RegisteredEnvelope = envelope; });
         }
     }
 }
