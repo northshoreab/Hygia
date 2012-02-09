@@ -1,9 +1,13 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.ServiceModel.Syndication;
 using System.Web;
+using System.Xml;
 using HtmlTags;
+using Hygia.API.Controllers;
+using Hygia.API.Testdata;
 
 namespace Hygia.API.SystemNotifications
 {
@@ -52,6 +56,34 @@ namespace Hygia.API.SystemNotifications
             item.Links.Add(SyndicationLink.CreateAlternateLink(uri, "application/atom+xml"));
 
             return item;
+        }
+
+        public static string GetSyndicationFeed(this IEnumerable<Notification> notifications, string contentType, string environment)
+        {
+            var feed = new SyndicationFeed("System notification", "Publishes system notifications for environment: " + environment, new Uri("http://localhost"));
+            feed.Authors.Add(new SyndicationPerson("test@test.com", "Testor Testorsson", "http://localhost"));
+            feed.Links.Add(SyndicationLink.CreateSelfLink(new Uri(HttpContext.Current.Request.Url.AbsoluteUri), "application/atom+xml"));
+
+            feed.Items = notifications.ASyndicationItems(feed);
+
+            var stringWriter = new StringWriter();
+
+            XmlWriter feedWriter = XmlWriter.Create(stringWriter, new XmlWriterSettings
+            {
+                OmitXmlDeclaration = true
+            });
+
+            feed.Copyright = SyndicationContent.CreatePlaintextContent("Copyright hygia");
+            feed.Language = "en-us";
+
+            if (contentType == ContentTypes.Atom)
+                feed.SaveAsAtom10(feedWriter);
+            else
+                feed.SaveAsRss20(feedWriter);
+
+            feedWriter.Close();
+
+            return stringWriter.ToString(); 
         }
     }
 }
