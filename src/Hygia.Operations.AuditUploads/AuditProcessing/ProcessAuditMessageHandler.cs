@@ -15,8 +15,6 @@
 
         public void Handle(ProcessAuditMessage message)
         {
-            //todo - check tennant id, enfore message limits etc
-
             //todo - de duplicate
 
             bus.Publish<AuditMessageReceived>(e =>
