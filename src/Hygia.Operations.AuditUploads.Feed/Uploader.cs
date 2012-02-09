@@ -3,24 +3,27 @@ namespace Hygia.Operations.AuditUploads.Feed
     using System;
     using System.Collections.Generic;
     using System.Configuration;
+    using System.Net;
     using Messages;
     using NServiceBus;
     using NServiceBus.Faults.InMemory;
     using NServiceBus.Unicast.Queuing.Msmq;
     using NServiceBus.Unicast.Transport;
     using NServiceBus.Unicast.Transport.Transactional;
+    using RestSharp;
 
     public class Uploader : IWantCustomInitialization, IWantToRunAtStartup
     {
         static ITransport inputTransport;
         static bool includeMessageBody;
         static Guid apiKey;
-        static  Address auditQueueAddress;
-
+        static Address auditQueueAddress;
+        static string apiUrl;
 
         public void Init()
         {
             var key = ConfigurationManager.AppSettings["hygia.apikey"];
+         
             if (string.IsNullOrEmpty(key))
                 throw new ConfigurationErrorsException("hygia.api is required to start the launchpad");
 
@@ -28,6 +31,19 @@ namespace Hygia.Operations.AuditUploads.Feed
             var audit = ConfigurationManager.AppSettings["hygia.input"];
             if (string.IsNullOrEmpty(audit))
                 throw new ConfigurationErrorsException("hygia.input is required to start the launchpad");
+
+            apiUrl = ConfigurationManager.AppSettings["hygia.apiurl"];
+
+            if (string.IsNullOrEmpty(apiUrl))
+            {
+                uploadAction = UploadToOnPremiseBackend;
+            }
+            else
+            {
+                uploadAction = UploadToApi;
+            }
+                
+         
 
             auditQueueAddress = Address.Parse(audit);
 
@@ -72,9 +88,33 @@ namespace Hygia.Operations.AuditUploads.Feed
             if (includeMessageBody)
                 message.Body = transportMessage.Body;
 
-            Configure.Instance.Builder.Build<IBus>()
-                .Send(message);//todo - vary this for on premise mode/cloud mode
+            uploadAction(message);
 
+            
+
+        }
+
+        Action<ProcessAuditMessage> uploadAction;
+
+
+        void UploadToOnPremiseBackend(ProcessAuditMessage message)
+        {
+            Configure.Instance.Builder.Build<IBus>()
+                .Send(message);
+        }
+
+        void UploadToApi(ProcessAuditMessage message)
+        {
+            var client = new RestClient(apiUrl);
+
+            var request = new RestRequest("upload", Method.POST) { RequestFormat = DataFormat.Json };
+
+            request.AddBody(message);
+
+            var response = client.Execute(request);
+
+            if(response.StatusCode != HttpStatusCode.OK)
+                throw new Exception("Failed to upload message: " +  response.StatusDescription);
         }
     }
 }
