@@ -2,11 +2,11 @@ using System;
 
 namespace Hygia.Backend.Notifications.Domain
 {
-    public class CriticalTimeRssNotification : Notification
+    public class CriticalTimeNotification : Notification
     {
-        public CriticalTimeRssNotification(string messageType, TimeSpan messageCriticalTime, TimeSpan warningLevel)
+        public CriticalTimeNotification(string messageType, TimeSpan messageCriticalTime, TimeSpan warningLevel, NotificationTypes notificationType)
         {
-            Title = "Critical Time Warning!";
+            Title = "Critical Time " + Enum.GetName(typeof(NotificationTypes), notificationType) + "!";
             Description = "Critical time for messagetype: " + messageType + "\n\nCritical time for message is: " +
                           messageCriticalTime + "\n\nWarning level is: " + warningLevel;
 

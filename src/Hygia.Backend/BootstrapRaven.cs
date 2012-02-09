@@ -1,6 +1,3 @@
-using Hygia.Backend.Notifications.Index;
-using Raven.Client.Indexes;
-
 namespace Hygia.Backend
 {
     using System;
@@ -26,8 +23,6 @@ namespace Hygia.Backend
                             };
 
             store.Initialize();
-
-            IndexCreation.CreateIndexes(typeof(All_NotificationConfiguration).Assembly, store);
 
             ObjectFactory.Configure(c =>
                                         {
