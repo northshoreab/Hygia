@@ -1,17 +1,14 @@
 ﻿namespace Hygia.Operations.AuditUploads.Api
 {
+    using FubuMVC.Core;
+    using Messages;
+
     public class UploadController
     {
-        public string get_upload_ApiKey(UploadModel input)
+        [JsonEndpoint]
+        public string post_upload(ProcessAuditMessage input)
         {
-
-            return "No widget found";
+            return input.ApiKey.ToString();
         }
-    }
-
-    public class UploadModel
-    {
-        public string ApiKey { get; set; }
-
     }
 }
