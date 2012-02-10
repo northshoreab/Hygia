@@ -1,4 +1,3 @@
-using System.Web;
 using Hygia.API.Models;
 using Hygia.API.SystemNotifications;
 using Hygia.API.Testdata;
@@ -18,12 +17,11 @@ namespace Hygia.API.Controllers
     {
         public string get_Environment_systemnotifications(SystemNotificationModel model)
         {
-            string contentType = HttpContext.Current.Request.ContentType;
-            switch (contentType)
+            switch (model.ContentType)
             {
                 case ContentTypes.Atom:
                 case ContentTypes.Rss:
-                    return TestdataHelper.Notifications.GetSyndicationFeed(contentType, model.Environment);
+                    return TestdataHelper.Notifications.GetSyndicationFeed(model.ContentType, model.Environment);
                 case ContentTypes.Json:
                     return JsonConvert.SerializeObject(TestdataHelper.Notifications, Formatting.Indented, new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() });
                 default:

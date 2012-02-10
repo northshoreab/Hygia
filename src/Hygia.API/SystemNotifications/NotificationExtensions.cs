@@ -7,7 +7,6 @@ using System.Web;
 using System.Xml;
 using HtmlTags;
 using Hygia.API.Controllers;
-using Hygia.API.Testdata;
 
 namespace Hygia.API.SystemNotifications
 {
@@ -43,7 +42,8 @@ namespace Hygia.API.SystemNotifications
                                Title = SyndicationContent.CreatePlaintextContent(notification.Title),
                                Summary = SyndicationContent.CreatePlaintextContent(notification.Summary),
                                PublishDate = notification.NotificationDate,
-                               Content = SyndicationContent.CreatePlaintextContent(notification.Description),                               
+                               Content = SyndicationContent.CreatePlaintextContent(notification.Description),
+                               LastUpdatedTime = notification.NotificationDate
                            };
 
             item.Authors.Add(new SyndicationPerson
@@ -63,7 +63,6 @@ namespace Hygia.API.SystemNotifications
             var feed = new SyndicationFeed("System notification", "Publishes system notifications for environment: " + environment, new Uri("http://localhost"));
             feed.Authors.Add(new SyndicationPerson("test@test.com", "Testor Testorsson", "http://localhost"));
             feed.Links.Add(SyndicationLink.CreateSelfLink(new Uri(HttpContext.Current.Request.Url.AbsoluteUri), "application/atom+xml"));
-
             feed.Items = notifications.ASyndicationItems(feed);
 
             var stringWriter = new StringWriter();

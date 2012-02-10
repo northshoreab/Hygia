@@ -1,8 +1,7 @@
 namespace Hygia.API.Models
 {
-    public class SystemNotificationItemModel
+    public class SystemNotificationItemModel : ModelBase
     {
-        public string Environment { get; set; }
         public string ItemId { get; set; }
     }
 }
