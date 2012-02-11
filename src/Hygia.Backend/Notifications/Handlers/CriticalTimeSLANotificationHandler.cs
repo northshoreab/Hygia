@@ -20,8 +20,6 @@ namespace Hygia.Backend.Notifications.Handlers
 
         public void Handle(CriticalTimeSLAViolated message)
         {
-            Session.Store(message);
-
             if(_notificationSettings.Any(x => x.SLAId == message.SLAId))
             {
                 var sla = Session.Load<CriticalTimeSLA>(message.SLAId);
@@ -31,8 +29,6 @@ namespace Hygia.Backend.Notifications.Handlers
 
         public void Handle(CriticalTimeSLAWarning message)
         {
-            Session.Store(message);
-
             if (_notificationSettings.Any(x => x.SLAId == message.SLAId))
             {
                 var sla = Session.Load<CriticalTimeSLA>(message.SLAId);
