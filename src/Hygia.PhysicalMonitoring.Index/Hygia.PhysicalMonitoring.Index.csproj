@@ -47,7 +47,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\src\Hygia.PhysicalMonitoring\Hygia.PhysicalMonitoring.csproj">
+    <ProjectReference Include="..\Hygia.PhysicalMonitoring\Hygia.PhysicalMonitoring.csproj">
       <Project>{A69B2E6E-9E40-40B4-BFD8-3164DF393744}</Project>
       <Name>Hygia.PhysicalMonitoring</Name>
     </ProjectReference>

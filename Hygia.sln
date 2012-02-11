@@ -51,7 +51,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Integration", "Integration"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hygia.IntegrationTests", "tests\Hygia.IntegrationTests\Hygia.IntegrationTests.csproj", "{09DE4E5E-4672-4FEF-AB52-11B65536819A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hygia.PhysicalMonitoring.Index", "Hygia.PhysicalMonitoring.Index\Hygia.PhysicalMonitoring.Index.csproj", "{B1589498-379C-47EC-A20C-4460894A3497}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hygia.PhysicalMonitoring.Index", "src\Hygia.PhysicalMonitoring.Index\Hygia.PhysicalMonitoring.Index.csproj", "{B1589498-379C-47EC-A20C-4460894A3497}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
