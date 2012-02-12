@@ -133,6 +133,12 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <StartAction>Program</StartAction>
     <StartProgram>$(ProjectDir)$(OutputPath)NServiceBus.Host.exe</StartProgram>
+    <StartArguments>NServiceBus.Integration</StartArguments>
+	<OctopusTemporaryDirectory>$(ProjectDir)\bin\nuget-temp</OctopusTemporaryDirectory>
   </PropertyGroup>
   <Import Project="..\..\packages\OctoPack.1.0.82\targets\OctoPack.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
 </Project>
