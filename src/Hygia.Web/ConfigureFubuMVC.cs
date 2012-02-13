@@ -1,4 +1,10 @@
+using System;
 using FubuMVC.Core;
+using FubuMVC.Core.Runtime;
+using Raven.Client;
+using Raven.Client.Document;
+using StructureMap;
+using StructureMap.Graph;
 
 namespace Hygia.Web
 {
@@ -6,6 +12,8 @@ namespace Hygia.Web
     {
         public ConfigureFubuMVC()
         {
+            new BootstrapRavenDb().Init();
+
             // This line turns on the basic diagnostics and request tracing
             IncludeDiagnostics(true);
 
@@ -22,6 +30,56 @@ namespace Hygia.Web
             // Match views to action methods by matching
             // on model type, view name, and namespace
             Views.TryToAttachWithDefaultConventions();
+        }
+    }
+
+    public class BootstrapRavenDb
+    {
+        public void Init()
+        {
+            var store = new DocumentStore
+            {
+                Url = "http://localhost:8080",
+                DefaultDatabase = "Hygia.Backend"
+            };
+
+            store.Initialize();
+
+            ObjectFactory.Configure(x =>
+            {
+
+                x.For<IDocumentStore>().Use(store);
+                x.For<IDocumentSession>()
+                 .HybridHttpOrThreadLocalScoped()
+                 .Use(OpenSession);
+
+                PluginCache.AddFilledType(typeof(IDocumentSession));
+            });
+        }
+
+        private static IDocumentSession OpenSession(IContext ctx)
+        {            
+            var request = ctx.GetInstance<IFubuRequest>();
+            string environmentId = request.Get<ContextInputModel>().EnvironmentId;
+
+            string database = environmentId == "327951bf-bae4-46a4-93a0-71f61dfbe801" ? "Hygia.Acme" : string.Empty;
+
+            var store = ctx.GetInstance<IDocumentStore>();
+
+            return string.IsNullOrEmpty(database) ? store.OpenSession() : store.OpenSession(database);
+        }
+    }
+    
+    public class ContextInputModel
+    {
+        public System.Web.HttpCookieCollection Cookies { get; set; }
+        public System.Collections.Specialized.NameValueCollection Headers { get; set; }
+        public Uri Url { get; set; }
+
+        public string EnvironmentId
+        {
+            // ta fram key på nått bra sätt...
+            get { return "327951bf-bae4-46a4-93a0-71f61dfbe801"; }            
         }
     }
 }
