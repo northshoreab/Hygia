@@ -3,7 +3,7 @@
     using System.Linq;
     using Commands;
     using NServiceBus;
-    using Operations.AuditUploads.AuditProcessing.Events;
+    using Operations.Events;
 
     public class AutonomousComponentsInspector : IHandleMessages<AuditMessageReceived>
     {

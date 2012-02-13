@@ -4,8 +4,7 @@
     using System.Linq;
     using Commands;
     using NServiceBus;
-    using Operations.AuditUploads;
-    using Operations.AuditUploads.AuditProcessing.Events;
+    using Operations.Events;
 
     public class ServiceStructureInspector : IHandleMessages<AuditMessageReceived>
     {

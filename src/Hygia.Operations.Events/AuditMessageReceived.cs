@@ -1,4 +1,4 @@
-namespace Hygia.Operations.AuditUploads.AuditProcessing.Events
+namespace Hygia.Operations.Events
 {
     using System.Collections.Generic;
 

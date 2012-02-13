@@ -78,9 +78,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Hygia.Operations.AuditUploads.Messages\Hygia.Operations.AuditUploads.Messages.csproj">
-      <Project>{E62BCFF0-B9A6-4E53-BE25-CE9706490B29}</Project>
-      <Name>Hygia.Operations.AuditUploads.Messages</Name>
+    <ProjectReference Include="..\Hygia.Operations.AuditUploads.Commands\Hygia.Operations.AuditUploads.Commands.csproj">
+      <Project>{F69BC5DB-C4E2-4AA0-A622-AA0C20CB2E3F}</Project>
+      <Name>Hygia.Operations.AuditUploads.Commands</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

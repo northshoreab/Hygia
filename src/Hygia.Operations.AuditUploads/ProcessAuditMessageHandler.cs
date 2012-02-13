@@ -1,4 +1,4 @@
-﻿namespace Hygia.Operations.AuditUploads.AuditProcessing
+﻿namespace Hygia.Operations.AuditUploads
 {
     using Events;
     using Messages;

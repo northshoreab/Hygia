@@ -55,9 +55,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AuditMessageReceivedExtensions.cs" />
-    <Compile Include="AuditProcessing\Events\AuditMessageReceived.cs" />
-    <Compile Include="AuditProcessing\ProcessAuditMessageHandler.cs" />
+    <Compile Include="ProcessAuditMessageHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -68,9 +66,13 @@
       <Project>{C4F880A3-653F-4CC9-9333-DBE2CB4EFEF9}</Project>
       <Name>Hygia.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Hygia.Operations.AuditUploads.Messages\Hygia.Operations.AuditUploads.Messages.csproj">
-      <Project>{E62BCFF0-B9A6-4E53-BE25-CE9706490B29}</Project>
-      <Name>Hygia.Operations.AuditUploads.Messages</Name>
+    <ProjectReference Include="..\Hygia.Operations.AuditUploads.Commands\Hygia.Operations.AuditUploads.Commands.csproj">
+      <Project>{F69BC5DB-C4E2-4AA0-A622-AA0C20CB2E3F}</Project>
+      <Name>Hygia.Operations.AuditUploads.Commands</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hygia.Operations.Events\Hygia.Operations.Events.csproj">
+      <Project>{A1BD8BAC-28CC-4169-B73E-B13C22132DFB}</Project>
+      <Name>Hygia.Operations.Events</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

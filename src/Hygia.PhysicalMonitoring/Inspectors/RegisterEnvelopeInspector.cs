@@ -4,7 +4,7 @@ namespace Hygia.PhysicalMonitoring.Inspectors
     using Commands;
     using Domain;
     using NServiceBus;
-    using Operations.AuditUploads.AuditProcessing.Events;
+    using Operations.Events;
     using Headers = NServiceBus.Unicast.Monitoring.Headers;
 
     public class RegisterEnvelopeInspector : IHandleMessages<AuditMessageReceived>

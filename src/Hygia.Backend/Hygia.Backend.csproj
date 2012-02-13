@@ -117,10 +117,6 @@
       <Project>{ACD5D3D1-675A-49EF-8CF4-7E27528CFAC1}</Project>
       <Name>Hygia.LogicalMonitoring</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Hygia.Operations.AuditUploads.Messages\Hygia.Operations.AuditUploads.Messages.csproj">
-      <Project>{E62BCFF0-B9A6-4E53-BE25-CE9706490B29}</Project>
-      <Name>Hygia.Operations.AuditUploads.Messages</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Hygia.Operations.AuditUploads\Hygia.Operations.AuditUploads.csproj">
       <Project>{0913F8B5-DA27-4B5C-9E13-682A8555BCE3}</Project>
       <Name>Hygia.Operations.AuditUploads</Name>

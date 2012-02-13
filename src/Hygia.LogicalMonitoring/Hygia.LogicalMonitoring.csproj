@@ -82,6 +82,7 @@
     <Compile Include="Handlers\RegisterMessageConsumersHandler.cs" />
     <Compile Include="Handlers\RegisterMessageTypeHandler.cs" />
     <Compile Include="Handlers\ServiceStructure.cs" />
+    <Compile Include="Inspectors\AuditMessageReceivedExtensions.cs" />
     <Compile Include="Inspectors\AutonomousComponentsInspector.cs" />
     <Compile Include="Inspectors\MessageTypesInspector.cs" />
     <Compile Include="Inspectors\ServiceStructureConventions.cs" />
@@ -99,6 +100,10 @@
     <ProjectReference Include="..\Hygia.Operations.AuditUploads\Hygia.Operations.AuditUploads.csproj">
       <Project>{0913F8B5-DA27-4B5C-9E13-682A8555BCE3}</Project>
       <Name>Hygia.Operations.AuditUploads</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hygia.Operations.Events\Hygia.Operations.Events.csproj">
+      <Project>{A1BD8BAC-28CC-4169-B73E-B13C22132DFB}</Project>
+      <Name>Hygia.Operations.Events</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

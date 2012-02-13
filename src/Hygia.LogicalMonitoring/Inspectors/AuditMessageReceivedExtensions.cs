@@ -6,7 +6,7 @@
     using NServiceBus.Unicast.Monitoring;
     using NServiceBus.Unicast.Subscriptions;
     using NServiceBus.Unicast.Transport;
-    using Operations.AuditUploads.AuditProcessing.Events;
+    using Operations.Events;
 
     public static class AuditMessageReceivedExtensions
     {

@@ -56,7 +56,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="Operations\AuditUploads\When_a_audit_message_is_uploaded_through_the_api.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

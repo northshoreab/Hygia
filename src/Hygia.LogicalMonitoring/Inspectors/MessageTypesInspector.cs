@@ -4,8 +4,7 @@
     using Commands;
     using NServiceBus;
     using NServiceBus.Unicast.Subscriptions;
-    using Operations.AuditUploads;
-    using Operations.AuditUploads.AuditProcessing.Events;
+    using Operations.Events;
 
     public class MessageTypesInspector : IHandleMessages<AuditMessageReceived>
     {
