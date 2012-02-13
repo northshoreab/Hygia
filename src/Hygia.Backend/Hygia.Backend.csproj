@@ -80,18 +80,20 @@
     <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Notifications\Handlers\CriticalTimeSLAHandler.cs" />
+    <Compile Include="SLA\Domain\CriticalTimeRule.cs" />
+    <Compile Include="SLA\Domain\Rule.cs" />
+    <Compile Include="SLA\Domain\SLAViolation.cs" />
+    <Compile Include="SLA\Domain\SLA.cs" />
+    <Compile Include="SLA\Events\SLAViolated.cs" />
+    <Compile Include="SLA\Handlers\SLAHandler.cs" />
     <Compile Include="Notifications\Domain\Author.cs" />
     <Compile Include="Notifications\Domain\CriticalTimeNotification.cs" />
-    <Compile Include="Notifications\Domain\CriticalTimeSLA.cs" />
+    <Compile Include="SLA\Domain\IRule.cs" />
     <Compile Include="Notifications\Domain\Notification.cs" />
     <Compile Include="Notifications\Domain\NotificationSetting.cs" />
-    <Compile Include="Notifications\Events\CriticalTimeSLAViolated.cs" />
-    <Compile Include="Notifications\Events\CriticalTimeSLAWarning.cs" />
     <Compile Include="BootstrapRaven.cs" />
-    <Compile Include="Notifications\Domain\NotificationTypes.cs" />
     <Compile Include="EndpointConfig.cs" />
-    <Compile Include="Notifications\Handlers\CriticalTimeSLANotificationHandler.cs" />
+    <Compile Include="Notifications\Handlers\SLANotificationHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

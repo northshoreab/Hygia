@@ -13,7 +13,7 @@ namespace Hygia.API.Controllers
         public const string LineChart = "LINECHART";
         public const string HighChartsLineChart = "HIGHCHARTSLINECHART";
 
-        public string get_Environment_dashboard_Widget(DashboardWidgetModel input)
+        public string get_environment_dashboard_Widget(DashboardWidgetModel input)
         {
             switch (input.Widget.ToUpper())
             {
