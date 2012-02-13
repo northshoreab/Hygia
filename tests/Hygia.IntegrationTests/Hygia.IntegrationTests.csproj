@@ -56,12 +56,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApiContext.cs" />
+    <Compile Include="Operations\Provisioning\When_provisioning_a_new_tennant.cs" />
+    <Compile Include="RestSharpContext.cs" />
+    <Compile Include="WebContext.cs" />
     <Compile Include="Operations\AuditUploads\When_a_audit_message_is_uploaded_through_the_api.cs" />
+    <Compile Include="Operations\Provisioning\When_provisioning_a_new_environment_for_a_non_existing_tennant.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

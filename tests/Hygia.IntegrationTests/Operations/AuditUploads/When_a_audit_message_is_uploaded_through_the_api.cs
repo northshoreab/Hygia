@@ -7,16 +7,11 @@
     using RestSharp;
 
     [Subject("Api")]
-    public class When_a_audit_message_is_uploaded_through_the_api_with_a_valid_apikey
+    public class When_a_audit_message_is_uploaded_through_the_api_with_a_valid_apikey : ApiContext
     {
-        static RestResponse response;
-        static RestClient client;
-        static RestRequest request;
-
-
+      
         Establish context = () =>
         {
-            client = new RestClient("http://localhost:43852/");
             request = new RestRequest("upload", Method.POST) {RequestFormat = DataFormat.Json};
 
             request.AddBody(new
@@ -37,10 +32,7 @@
                          };
 
 
-        It should_send_a_command_for_backend_processing = () =>
-                                                           {
-                                                               response.StatusCode.ShouldEqual(HttpStatusCode.OK);
-                                                           };    
+        It should_send_a_command_for_backend_processing = () => response.StatusCode.ShouldEqual(HttpStatusCode.OK);    
     }
 }
 

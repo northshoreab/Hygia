@@ -79,7 +79,7 @@ namespace Hygia.Web
         public string EnvironmentId
         {
             // ta fram key på nått bra sätt...
-            get { return "327951bf-bae4-46a4-93a0-71f61dfbe801"; }            
+            get { return string.Empty; }            
         }
     }
 }

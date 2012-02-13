@@ -116,6 +116,9 @@
     <Compile Include="Behaviors\PersistenceBehavior.cs" />
     <Compile Include="ConfigureFubuMVC.cs" />
     <Compile Include="Controllers\VersionController.cs" />
+    <Compile Include="Operations\Provisioning\EnvironmentsController.cs" />
+    <Compile Include="Operations\Provisioning\Tennant.cs" />
+    <Compile Include="Operations\Provisioning\TennantsController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
