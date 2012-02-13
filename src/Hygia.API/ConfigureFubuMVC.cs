@@ -11,11 +11,23 @@ using StructureMap.Graph;
 
 namespace Hygia.API
 {
+    using StructureMap;
+
     public class ConfigureFubuMVC : FubuRegistry
     {
         public ConfigureFubuMVC()
         {
-            // This line turns on the basic diagnostics and request tracing
+            NServiceBus.Configure
+               .WithWeb()
+               .HygiaMessageConventions()
+               .DefineEndpointName("Hygia.API")
+               .StructureMapBuilder(ObjectFactory.Container)
+               .XmlSerializer()
+               .MsmqTransport()
+               .DontUseTransactions()
+               .UnicastBus()
+               .SendOnly();  // This line turns on the basic diagnostics and request tracing
+            
             IncludeDiagnostics(true);
 
             Applies
@@ -37,6 +49,9 @@ namespace Hygia.API
             // Match views to action methods by matching
             // on model type, view name, and namespace
             Views.TryToAttachWithDefaultConventions();
+
+          
+         
         }
     }
 

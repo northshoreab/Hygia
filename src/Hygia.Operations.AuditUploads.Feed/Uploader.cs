@@ -76,7 +76,6 @@ namespace Hygia.Operations.AuditUploads.Feed
             var transportMessage = e.Message;
             var message = new ProcessAuditMessage
                               {
-                                  ApiKey = apiKey,
                                   MessageId = transportMessage.IdForCorrelation,
                                   Headers = transportMessage.Headers,
                                   AdditionalInformation = new Dictionary<string, string>()
@@ -99,6 +98,9 @@ namespace Hygia.Operations.AuditUploads.Feed
 
         void UploadToOnPremiseBackend(ProcessAuditMessage message)
         {
+            //todo- shoudl we use a more explicit environmentid from app.config instead?
+            message.SetHeader("EnvironmentId", apiKey.ToString());
+
             Configure.Instance.Builder.Build<IBus>()
                 .Send(message);
         }
@@ -109,7 +111,14 @@ namespace Hygia.Operations.AuditUploads.Feed
 
             var request = new RestRequest("upload", Method.POST) { RequestFormat = DataFormat.Json };
 
-            request.AddBody(message);
+            request.AddBody(new
+                                {
+                                    message.MessageId,
+                                    ApiKey = apiKey,
+                                    message.Headers,
+                                    message.AdditionalInformation,
+                                    message.Body
+                                });
 
             var response = client.Execute(request);
 
