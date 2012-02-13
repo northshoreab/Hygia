@@ -205,6 +205,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FubuMVC.cs" />
+    <Compile Include="BootstrapRaven.cs" />
     <Compile Include="ConfigureFubuMVC.cs" />
     <Compile Include="Controllers\DashboardWidgetController.cs" />
     <Compile Include="Controllers\SystemNotificationController.cs" />
@@ -213,6 +214,8 @@
     <Compile Include="Models\ModelBase.cs" />
     <Compile Include="Models\SystemNotificationItemModel.cs" />
     <Compile Include="Models\SystemNotificationModel.cs" />
+    <Compile Include="Behaviors\PersistenceBehavior.cs" />
+    <Compile Include="Conventions\PersistenceConvention.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\DashboardWidgetModel.cs" />
     <Compile Include="SystemNotifications\Author.cs" />
