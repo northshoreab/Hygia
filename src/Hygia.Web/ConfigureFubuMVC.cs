@@ -37,12 +37,14 @@ namespace Hygia.Web
     public class RavenDbRegistry : Registry
     {
         public RavenDbRegistry()
-        { 
+        {
+
             var store = new DocumentStore
             {
-                Url = "http://localhost:8080",
-                DefaultDatabase = "Hygia.Backend"
+                ConnectionStringName = "RavenDB"
             };
+
+            store.Initialize();
 
             store.Initialize();
 

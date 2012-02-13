@@ -14,11 +14,9 @@ namespace Hygia.API
     {
         public void Init()
         {
-            environmentIdToDatabaseLookup.Add(Guid.Parse("327951bf-bae4-46a4-93a0-71f61dfbe801"), "Hygia.Acme");
             var store = new DocumentStore
                             {
-                                Url = "http://localhost:8080",
-                                DefaultDatabase = Configure.EndpointName
+                                ConnectionStringName = "RavenDB"
                             };
 
             store.Initialize();
@@ -37,32 +35,30 @@ namespace Hygia.API
 
         static IDocumentSession OpenSession(IContext ctx)
         {
-            var fubuRequest = ctx.GetInstance<IFubuRequest>();
+            var request = ctx.GetInstance<IFubuRequest>();
 
-            string database = null;
+            string environmentId = request.Get<ContextInputModel>().EnvironmentId;
+            string database = environmentId == "327951bf-bae4-46a4-93a0-71f61dfbe801" ? "Hygia.Acme" : string.Empty;
 
-            var modelBase = fubuRequest.Get<ModelBase>();
-
-            if (modelBase != null)
-            {
-                try
-                {
-                    database = environmentIdToDatabaseLookup[Guid.Parse(modelBase.Environment)];
-                }
-                catch (Exception)
-                {
-                    throw new Exception("No environment exists for:" + modelBase.Environment);
-                }                
-            }
-
-            var s = ctx.GetInstance<IDocumentStore>();
-
-            if (string.IsNullOrEmpty(database))
-                return s.OpenSession();
-
-            return s.OpenSession(database);
+            var currentStore = ctx.GetInstance<IDocumentStore>();
+            return string.IsNullOrEmpty(database) ? currentStore.OpenSession() : currentStore.OpenSession(database);                      
         }
 
-        static readonly IDictionary<Guid, string> environmentIdToDatabaseLookup = new Dictionary<Guid, string>();
+    }
+
+    public class ContextInputModel
+    {
+        public System.Web.HttpCookieCollection Cookies { get; set; }
+        public System.Collections.Specialized.NameValueCollection Headers { get; set; }
+        public Uri Url { get; set; }
+
+        public string EnvironmentId
+        {
+            // ta fram key på nått bra sätt...
+            get
+            {
+                return string.Empty;
+            }
+        }
     }
 }

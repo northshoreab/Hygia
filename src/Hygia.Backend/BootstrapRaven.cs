@@ -15,12 +15,11 @@ namespace Hygia.Backend
         public void Init()
         {
             environmentIdToDatabaseLookup.Add(Guid.Parse("327951bf-bae4-46a4-93a0-71f61dfbe801"),"Hygia.Acme");
-            var store = new DocumentStore
-                            {
-                                Url = "http://localhost:8080",
-                                DefaultDatabase = Configure.EndpointName
 
-                            };
+            var store = new DocumentStore
+            {
+                ConnectionStringName = "RavenDB"
+            };
 
             store.Initialize();
 
