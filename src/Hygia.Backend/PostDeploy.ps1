@@ -3,5 +3,5 @@
 $service = Get-Service $ServiceName -ErrorAction SilentlyContinue
 if ($service)
 {
-    Start-Service $ServiceName -Force
+    Start-Service $ServiceName
 }
