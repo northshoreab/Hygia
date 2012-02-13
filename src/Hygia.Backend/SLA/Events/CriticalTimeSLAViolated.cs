@@ -1,11 +1,12 @@
+using Hygia.Backend.SLA.Domain;
 using Hygia.PhysicalMonitoring.Domain;
 using NServiceBus;
 
 namespace Hygia.Backend.SLA.Events
 {
-    public class SLAViolated : IMessage
+    public class CriticalTimeSLAViolated : IMessage
     {
-        public Domain.SLA SLA { get; set; }
+        public CriticalTimeSLA SLA { get; set; }
         public Envelope Envelope { get; set; }
     }
 }
