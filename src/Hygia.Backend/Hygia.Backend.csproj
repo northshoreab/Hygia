@@ -96,6 +96,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="PostDeploy.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="PreDeploy.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Deploy.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Hygia.Backend.nuspec">
       <SubType>Designer</SubType>
     </None>
@@ -134,7 +143,7 @@
     <StartAction>Program</StartAction>
     <StartProgram>$(ProjectDir)$(OutputPath)NServiceBus.Host.exe</StartProgram>
     <StartArguments>NServiceBus.Integration</StartArguments>
-	<OctopusTemporaryDirectory>$(ProjectDir)\bin\nuget-temp</OctopusTemporaryDirectory>
+    <OctopusTemporaryDirectory>$(ProjectDir)\bin\nuget-temp</OctopusTemporaryDirectory>
   </PropertyGroup>
   <Import Project="..\..\packages\OctoPack.1.0.82\targets\OctoPack.targets" />
   <PropertyGroup>
