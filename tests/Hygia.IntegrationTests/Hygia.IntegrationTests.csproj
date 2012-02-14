@@ -57,11 +57,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiContext.cs" />
-    <Compile Include="Operations\Provisioning\When_provisioning_a_new_tennant.cs" />
+    <Compile Include="Operations\Provisioning\When_creating_a_new_account_with_valid_information.cs" />
     <Compile Include="RestSharpContext.cs" />
     <Compile Include="WebContext.cs" />
     <Compile Include="Operations\AuditUploads\When_a_audit_message_is_uploaded_through_the_api.cs" />
-    <Compile Include="Operations\Provisioning\When_provisioning_a_new_environment_for_a_non_existing_tennant.cs" />
+    <Compile Include="Operations\Provisioning\When_provisioning_a_new_environment_for_a_account.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

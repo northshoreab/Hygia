@@ -10,5 +10,8 @@ namespace Hygia.IntegrationTests
                                 {
                                     client = new RestClient("http://localhost:43852/");
                                 };
+
+
+
     }
 }

@@ -1,11 +1,11 @@
-namespace Hygia.Web.Operations.Provisioning
+namespace Hygia.Web.Controllers.Operations.Accounts
 {
     using System;
     using System.Collections.Generic;
 
-    public class Tennant
+    public class Account
     {
-        public string Id { get; set; }
+        public Guid Id { get; set; }
 
         public string Name { get; set; }
 

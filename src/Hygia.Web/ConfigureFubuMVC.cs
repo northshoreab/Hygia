@@ -9,10 +9,26 @@ using StructureMap.Configuration.DSL;
 
 namespace Hygia.Web
 {
+    using NServiceBus;
+
     public class ConfigureFubuMVC : FubuRegistry
     {
         public ConfigureFubuMVC()
         {
+
+            NServiceBus.Configure
+                .WithWeb()
+                .HygiaMessageConventions()
+                .DefineEndpointName("Hygia.Web")
+                .StructureMapBuilder(ObjectFactory.Container)
+                .XmlSerializer()
+                .MsmqTransport()
+                .RavenSubscriptionStorage()
+                .UnicastBus()
+                .CreateBus()
+                .Start(() => NServiceBus.Configure.Instance.ForInstallationOn<NServiceBus.Installation.Environments.Windows>().Install());
+       
+
             // This line turns on the basic diagnostics and request tracing
             IncludeDiagnostics(true);
 
@@ -46,15 +62,15 @@ namespace Hygia.Web
 
             store.Initialize();
 
-            store.Initialize();
-
             For<IDocumentStore>()
                 .Singleton()
                 .Use(store);
 
             For<IDocumentSession>()
                 .HybridHttpOrThreadLocalScoped()
-                .Use(OpenSession);        
+                .Use(OpenSession);
+
+            PluginCache.AddFilledType(typeof(IDocumentSession));
         }
 
         static IDocumentSession OpenSession(IContext ctx)

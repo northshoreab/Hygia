@@ -26,10 +26,6 @@
 
         };
 
-        Because of = () =>
-                         {
-                             response = client.Execute(request);
-                         };
 
 
         It should_send_a_command_for_backend_processing = () => response.StatusCode.ShouldEqual(HttpStatusCode.OK);    
