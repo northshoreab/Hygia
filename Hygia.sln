@@ -60,7 +60,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hygia.Operations.Events", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hygia.Operations.AuditUploads.Commands", "src\Hygia.Operations.AuditUploads.Commands\Hygia.Operations.AuditUploads.Commands.csproj", "{F69BC5DB-C4E2-4AA0-A622-AA0C20CB2E3F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hygia.Widgets", "src\Hygia.Dashboard\Hygia.Widgets.csproj", "{EF761318-5D7E-4774-BDE8-9F554786F3A1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hygia.Widgets", "src\Hygia.Widgets\Hygia.Widgets.csproj", "{EF761318-5D7E-4774-BDE8-9F554786F3A1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
