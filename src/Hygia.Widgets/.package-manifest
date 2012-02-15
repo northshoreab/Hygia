@@ -8,6 +8,8 @@
   <assembly>FubuCore</assembly>
   <assembly>FubuLocalization</assembly>
   <assembly>FubuMVC.Core</assembly>
+  <assembly>FubuMVC.Spark</assembly>
+  <assembly>Spark</assembly>
   <assembly>FubuMVC.StructureMap</assembly>
   <assembly>HtmlTags</assembly>
   <assembly>log4net</assembly>
