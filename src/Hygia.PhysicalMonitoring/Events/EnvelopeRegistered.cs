@@ -1,7 +1,7 @@
-using Hygia.PhysicalMonitoring.Domain;
-
-namespace Hygia.PhysicalMonitoring.Commands
+namespace Hygia.PhysicalMonitoring.Events
 {
+    using Domain;
+
     public class EnvelopeRegistered
     {
         public Envelope RegisteredEnvelope { get; set; }

@@ -8,7 +8,7 @@ namespace Hygia.IntegrationTests
       
         Establish context = () =>
                                 {
-                                    client = new RestClient("http://localhost:43852/");
+                                    client = new RestClient("http://localhost:23456/");
                                 };
 
 

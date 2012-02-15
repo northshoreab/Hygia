@@ -78,7 +78,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\AppendMessageToChain.cs" />
-    <Compile Include="Commands\EnvelopeRegistered.cs" />
+    <Compile Include="Events\EnvelopeRegistered.cs" />
     <Compile Include="Commands\RegisterEnvelope.cs" />
     <Compile Include="Commands\StartMessageChain.cs" />
     <Compile Include="Domain\Envelope.cs" />

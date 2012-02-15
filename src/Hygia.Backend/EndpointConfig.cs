@@ -9,7 +9,8 @@
             Configure.With()
                 .HygiaMessageConventions()
                 .StructureMapBuilder()
-                .XmlSerializer();
+                .XmlSerializer()
+                .RavenSubscriptionStorage();
         }
     }
 }

@@ -7,6 +7,8 @@ using Raven.Client;
 
 namespace Hygia.Backend.SLA.Handlers
 {
+    using PhysicalMonitoring.Events;
+
     public class CriticalTimeSLAHandler : IHandleMessages<EnvelopeRegistered>
     {
         private readonly IBus _bus;

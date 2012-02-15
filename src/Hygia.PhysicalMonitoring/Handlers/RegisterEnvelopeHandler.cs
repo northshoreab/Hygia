@@ -2,6 +2,7 @@
 {
     using Commands;
     using Domain;
+    using Events;
     using NServiceBus;
     using Raven.Client;
 
