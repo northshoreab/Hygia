@@ -1,0 +1,15 @@
+﻿<viewdata model="Hygia.Widgets.Models.HomeViewModel" />
+<html>
+<head>
+    <title>Hygia.Widgets</title>
+</head>
+<body>
+  <h1>Welcome to Hygia.Widgets!</h1>
+  <p>
+    The API for Hygia.Wdigets looks like follow:
+  </p>
+  <p>
+    ~/widgets/[widgetid]
+  </p>
+</body>
+</html>

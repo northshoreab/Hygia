@@ -2,7 +2,6 @@ namespace Hygia.API
 {
     using StructureMap;
     using FubuMVC.Core;
-    using Conventions;
     using NServiceBus;
 
     public class ConfigureFubuMVC : FubuRegistry
@@ -20,7 +19,7 @@ namespace Hygia.API
                .UnicastBus()
                .SendOnly();  // This line turns on the basic diagnostics and request tracing                        
 
-            new BootstrapRaven().Init();
+            //new BootstrapRaven().Init();
 
             IncludeDiagnostics(true);
 
@@ -31,8 +30,6 @@ namespace Hygia.API
             // All public methods from concrete classes ending in "Controller"
             // in this assembly are assumed to be action methods
             Actions.IncludeClassesSuffixedWithController();
-
-            ApplyConvention<PersistenceConvention>();
 
             // Policies
             Routes

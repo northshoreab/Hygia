@@ -36,9 +36,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AsyncCtpLibrary">
-      <HintPath>..\..\packages\RavenDB.1.0.616\lib\net40\AsyncCtpLibrary.dll</HintPath>
-    </Reference>
     <Reference Include="Bottles, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Bottles.0.9.1.186\lib\Bottles.dll</HintPath>
     </Reference>
@@ -79,18 +76,6 @@
     </Reference>
     <Reference Include="NServiceBus.ObjectBuilder.StructureMap, Version=3.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <HintPath>..\..\packages\NServiceBus.StructureMap-CI.3.0.2028\lib\net40\NServiceBus.ObjectBuilder.StructureMap.dll</HintPath>
-    </Reference>
-    <Reference Include="Raven.Abstractions">
-      <HintPath>..\..\packages\RavenDB.1.0.616\lib\net40\Raven.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="Raven.Client.Debug">
-      <HintPath>..\..\packages\RavenDB.1.0.616\lib\net40\Raven.Client.Debug.dll</HintPath>
-    </Reference>
-    <Reference Include="Raven.Client.Lightweight">
-      <HintPath>..\..\packages\RavenDB.1.0.616\lib\net40\Raven.Client.Lightweight.dll</HintPath>
-    </Reference>
-    <Reference Include="Raven.Client.MvcIntegration">
-      <HintPath>..\..\packages\RavenDB.1.0.616\lib\net40\Raven.Client.MvcIntegration.dll</HintPath>
     </Reference>
     <Reference Include="StructureMap">
       <HintPath>..\..\packages\structuremap.2.6.3\lib\StructureMap.dll</HintPath>
@@ -205,29 +190,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FubuMVC.cs" />
-    <Compile Include="BootstrapRaven.cs" />
     <Compile Include="ConfigureFubuMVC.cs" />
-    <Compile Include="Controllers\DashboardWidgetController.cs" />
-    <Compile Include="Controllers\SystemNotificationController.cs" />
-    <Compile Include="Controllers\SystemNotificationItemController.cs" />
-    <Compile Include="Controllers\VersionController.cs" />
-    <Compile Include="Models\ModelBase.cs" />
-    <Compile Include="Models\SystemNotificationItemModel.cs" />
-    <Compile Include="Models\SystemNotificationModel.cs" />
-    <Compile Include="Behaviors\PersistenceBehavior.cs" />
-    <Compile Include="Conventions\PersistenceConvention.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Models\DashboardWidgetModel.cs" />
-    <Compile Include="SystemNotifications\Author.cs" />
-    <Compile Include="SystemNotifications\BusinessProcessCompletionTime.cs" />
-    <Compile Include="SystemNotifications\CriticalTimeWarning.cs" />
-    <Compile Include="SystemNotifications\Notification.cs" />
-    <Compile Include="SystemNotifications\NotificationExtensions.cs" />
-    <Compile Include="Testdata\TestdataHelper.cs" />
-    <Compile Include="Widgets\Funnel.cs" />
-    <Compile Include="Widgets\HighChartsLineChart.cs" />
-    <Compile Include="Widgets\LineChart.cs" />
-    <Compile Include="Widgets\PieChart.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">
@@ -297,6 +261,9 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <ProjectExtensions>
@@ -304,10 +271,10 @@
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
-          <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>43852</DevelopmentServerPort>
+          <AutoAssignPort>False</AutoAssignPort>
+          <DevelopmentServerPort>61000</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:43852/</IISUrl>
+          <IISUrl>http://localhost:23456</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
@@ -319,6 +286,13 @@
   </ProjectExtensions>
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <Import Project="..\..\packages\OctoPack.1.0.82\targets\OctoPack.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>xcopy /y $(SolutionDir)modules\hygia-widgets.zip $(ProjectDir)fubu-content\</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
