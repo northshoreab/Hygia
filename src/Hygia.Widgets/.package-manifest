@@ -17,9 +17,7 @@
   <assembly>structuremap</assembly>
   <assembly>WebActivator</assembly>
   <assembly>Raven.Abstractions</assembly>
-  <assembly>Raven.Client.Debug</assembly>
   <assembly>Raven.Client.Lightweight</assembly>
-  <assembly>Raven.Client.MvcIntegration</assembly>
   <assembly>AsyncCtpLibrary</assembly>  
   <DataFileSet Include="*.*">
     <DeepSearch>true</DeepSearch>
