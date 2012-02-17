@@ -1,4 +1,4 @@
 namespace Hygia.ServiceLevelAgreements.Events
 {
-    public interface ISLAMessage { }
+    public interface SLAMessage { }
 }

@@ -6,9 +6,10 @@ using System.ServiceModel.Syndication;
 using System.Web;
 using System.Xml;
 using HtmlTags;
+using Hygia.Notifications.Domain;
 using Hygia.Widgets.Features.SystemNotification.Controllers;
 
-namespace Hygia.Widgets.Features.SystemNotification.Domain
+namespace Hygia.Widgets.Features.SystemNotification
 {
     public static class NotificationExtensions
     {

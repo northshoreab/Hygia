@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using Hygia.Widgets.Features.SystemNotification.Domain;
+using Hygia.Notifications.Domain;
 
 namespace Hygia.Widgets.Features.Tests.Testdata
 {
@@ -34,7 +34,7 @@ namespace Hygia.Widgets.Features.Tests.Testdata
         {
             Notifications = new List<Notification>
                                 {
-                                    new CriticalTimeWarning("OrderPaid", new TimeSpan(0,0,0,2,123), new TimeSpan(0,0,0,2,0)),
+                                    new CriticalTimeNotification("OrderPaid", new TimeSpan(0,0,0,2,123), new TimeSpan(0,0,0,2,0), "OrderPaid"),
                                     new Notification
                                         {
                                             Author = new Author
@@ -47,7 +47,7 @@ namespace Hygia.Widgets.Features.Tests.Testdata
                                             NotificationDate = DateTime.Now.AddDays(-1).AddHours(-3),
                                             Summary = "The Dublin coffe house sets new record for moccas sold"
                                         },
-                                    new BusinessProcessCompletionTime("Order paid", "Order delivered", "Coffee delivery process", new TimeSpan(0,10,0))
+                                    //new BusinessProcessCompletionTime("Order paid", "Order delivered", "Coffee delivery process", new TimeSpan(0,10,0))
                                 };
         }
 

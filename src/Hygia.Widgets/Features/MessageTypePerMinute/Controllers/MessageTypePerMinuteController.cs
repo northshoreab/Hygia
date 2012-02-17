@@ -33,7 +33,7 @@ namespace Hygia.Widgets.Features.MessageTypePerMinute.Controllers
 
             //TODO: Change so that we call the raven index
             //var messageTypePerMinuteIndexData =
-            //    _session.Query<MessageTypePerMinuteIndexData, MessageTypePerMinuteIndex>().Where(
+            //    _session.Query<MessageTypePerMinuteIndexData, PhysicalMonitoring.Index.MessageTypePerMinute>().Where(
             //        x => x.MessageTypeId == widgetSetting.MessageTypeId && x.Minute >= from).ToList();
 
             var messageTypePerMinuteIndexData = new List<MessageTypePerMinuteIndexData>
