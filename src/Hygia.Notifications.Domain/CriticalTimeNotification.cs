@@ -1,6 +1,6 @@
 using System;
 
-namespace Hygia.Backend.Notifications.Domain
+namespace Hygia.Notifications.Domain
 {
     public class CriticalTimeNotification : Notification
     {

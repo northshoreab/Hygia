@@ -1,6 +1,6 @@
 using System;
 
-namespace Hygia.Backend.SLA.Domain
+namespace Hygia.ServiceLevelAgreements.Domain
 {
     public class CriticalTimeSLA
     {
