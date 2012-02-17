@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Hygia.Widgets.Domain;
 
 namespace Hygia.Widgets.Widgets
 {

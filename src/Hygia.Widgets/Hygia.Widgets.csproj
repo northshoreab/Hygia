@@ -111,82 +111,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Images\block.png" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Images\console-line.png" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Images\down-arrow.png" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Images\filter_wrap_left.gif" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Images\filter_wrap_right.gif" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Images\fubumvc.png" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Images\logo.png" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Images\pre_code_bg_blk.gif" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Scripts\authorization.js" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Scripts\bootstrap-alerts.js" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Scripts\bootstrap-tabs.js" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Scripts\chains\view.js" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Scripts\core.js" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Scripts\html\selector.js" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Scripts\jquery\i18n\grid.locale-bg.js" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Scripts\jquery\i18n\grid.locale-bg1251.js" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Scripts\jquery\i18n\grid.locale-cat.js" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Scripts\jquery\i18n\grid.locale-cn.js" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Scripts\jquery\i18n\grid.locale-cs.js" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Scripts\jquery\i18n\grid.locale-da.js" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Scripts\jquery\i18n\grid.locale-de.js" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Scripts\jquery\i18n\grid.locale-el.js" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Scripts\jquery\i18n\grid.locale-en.js" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Scripts\jquery\i18n\grid.locale-es.js" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Scripts\jquery\i18n\grid.locale-fa.js" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Scripts\jquery\i18n\grid.locale-fi.js" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Scripts\jquery\i18n\grid.locale-fr.js" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Scripts\jquery\i18n\grid.locale-gl.js" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Scripts\jquery\i18n\grid.locale-he.js" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Scripts\jquery\i18n\grid.locale-hu.js" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Scripts\jquery\i18n\grid.locale-is.js" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Scripts\jquery\i18n\grid.locale-it.js" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Scripts\jquery\i18n\grid.locale-ja.js" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Scripts\jquery\i18n\grid.locale-nl.js" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Scripts\jquery\i18n\grid.locale-no.js" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Scripts\jquery\i18n\grid.locale-pl.js" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Scripts\jquery\i18n\grid.locale-pt-br.js" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Scripts\jquery\i18n\grid.locale-pt.js" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Scripts\jquery\i18n\grid.locale-ro.js" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Scripts\jquery\i18n\grid.locale-ru.js" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Scripts\jquery\i18n\grid.locale-sk.js" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Scripts\jquery\i18n\grid.locale-sr.js" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Scripts\jquery\i18n\grid.locale-sv.js" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Scripts\jquery\i18n\grid.locale-tr.js" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Scripts\jquery\i18n\grid.locale-ua.js" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Scripts\jquery\jquery-ui-1.8.10.custom.min.js" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Scripts\jquery\jquery.hotkeys.js" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Scripts\jquery\jquery.jqGrid.min.js" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Scripts\jquery\jquery.metadata.js" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Scripts\jquery\jquery.min.js" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Scripts\jquery\jquery.tmpl.js" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Scripts\jquery\jquery.treeview.js" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Scripts\json2.js" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Scripts\knockout-1.1.2.js" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Scripts\prettyprint.js" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Scripts\requests.js" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Scripts\requests\view.js" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Scripts\routes.js" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Styles\bootstrap.min.css" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Styles\bootstrap.overrides.css" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Styles\chains\view.css" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Styles\default.css" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Styles\html\preview.css" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Styles\html\selector.css" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Styles\jquery\images\bg_fallback.png" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Styles\jquery\images\icon_sprite.png" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Styles\jquery\images\progress_bar.gif" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Styles\jquery\images\slider_handles.png" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Styles\jquery\images\ui-icons_222222_256x240.png" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Styles\jquery\images\ui-icons_454545_256x240.png" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Styles\jquery\jquery-ui-1.8.7.custom.css" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Styles\jquery\ui.jqgrid.css" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Styles\jquery\ui.jqgrid.overrides.css" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Styles\master.css" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Styles\requests\view.css" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Shared\bindings.xml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -200,6 +124,7 @@
     <Compile Include="BootstrapRaven.cs" />
     <Compile Include="ConfigureFubuMVC.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Domain\MessageTypePerMinuteSetting.cs" />
     <Compile Include="Models\HomeViewModel.cs" />
     <Compile Include="Controllers\WidgetController.cs" />
     <Compile Include="Controllers\SystemNotificationController.cs" />
@@ -228,55 +153,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="fubu-content\fubumvc-diagnostics.zip" />
     <None Include=".package-manifest" />
-    <None Include="fubu-content\fubumvc-diagnostics\.package-manifest" />
-    <None Include="fubu-content\fubumvc-diagnostics\.version" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\diagnostics.script.config" />
-    <None Include="fubu-content\fubumvc-diagnostics\WebContent\Features\Chains\View\View.spark" />
-    <None Include="fubu-content\fubumvc-diagnostics\WebContent\Features\Dashboard\Dashboard.spark" />
-    <None Include="fubu-content\fubumvc-diagnostics\WebContent\Features\Html\Html.spark" />
-    <None Include="fubu-content\fubumvc-diagnostics\WebContent\Features\Html\Preview\Preview.spark" />
-    <None Include="fubu-content\fubumvc-diagnostics\WebContent\Features\Packaging\Packaging.spark" />
-    <None Include="fubu-content\fubumvc-diagnostics\WebContent\Features\Requests\Requests.spark" />
-    <None Include="fubu-content\fubumvc-diagnostics\WebContent\Features\Requests\View\View.spark" />
-    <None Include="fubu-content\fubumvc-diagnostics\WebContent\Features\Routes\Routes.spark" />
-    <None Include="fubu-content\fubumvc-diagnostics\WebContent\Notifications\NoOutputs.spark" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\packages.config" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\repositories.config" />
-    <None Include="fubu-content\fubumvc-diagnostics\WebContent\Shared\Application.spark" />
-    <None Include="fubu-content\fubumvc-diagnostics\WebContent\Shared\AuthorizationReport.spark" />
-    <None Include="fubu-content\fubumvc-diagnostics\WebContent\Shared\BehaviorDetails.spark" />
-    <None Include="fubu-content\fubumvc-diagnostics\WebContent\Shared\BehaviorFinish.spark" />
-    <None Include="fubu-content\fubumvc-diagnostics\WebContent\Shared\BehaviorStart.spark" />
-    <None Include="fubu-content\fubumvc-diagnostics\WebContent\Shared\ExceptionReport.spark" />
-    <None Include="fubu-content\fubumvc-diagnostics\WebContent\Shared\FieldAccessReport.spark" />
-    <None Include="fubu-content\fubumvc-diagnostics\WebContent\Shared\FileOutputReport.spark" />
-    <None Include="fubu-content\fubumvc-diagnostics\WebContent\Shared\Fluid.spark" />
-    <None Include="fubu-content\fubumvc-diagnostics\WebContent\Shared\Html.spark" />
-    <None Include="fubu-content\fubumvc-diagnostics\WebContent\Shared\HttpStatusReport.spark" />
-    <None Include="fubu-content\fubumvc-diagnostics\WebContent\Shared\ModelBinderSelection.spark" />
-    <None Include="fubu-content\fubumvc-diagnostics\WebContent\Shared\ModelBindingException.spark" />
-    <None Include="fubu-content\fubumvc-diagnostics\WebContent\Shared\ModelBindingKey.spark" />
-    <None Include="fubu-content\fubumvc-diagnostics\WebContent\Shared\ModelBindingReport.spark" />
-    <None Include="fubu-content\fubumvc-diagnostics\WebContent\Shared\NavigationMenu.spark" />
-    <None Include="fubu-content\fubumvc-diagnostics\WebContent\Shared\OutputReport.spark" />
-    <None Include="fubu-content\fubumvc-diagnostics\WebContent\Shared\PropertyBinderSelection.spark" />
-    <None Include="fubu-content\fubumvc-diagnostics\WebContent\Shared\RedirectReport.spark" />
-    <None Include="fubu-content\fubumvc-diagnostics\WebContent\Shared\RequestLogEntry.spark" />
-    <None Include="fubu-content\fubumvc-diagnostics\WebContent\Shared\Route.spark" />
-    <None Include="fubu-content\fubumvc-diagnostics\WebContent\Shared\SetValueReport.spark" />
-    <None Include="fubu-content\fubumvc-diagnostics\WebContent\Shared\TwoColumn.spark" />
-    <None Include="fubu-content\fubumvc-diagnostics\WebContent\Shared\ValueConverterSelection.spark" />
-    <None Include="fubu-content\fubumvc-diagnostics\WebContent\Shared\_global.spark" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\web.config" />
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\web.Debug.config">
-      <DependentUpon>web.config</DependentUpon>
-    </Content>
-    <Content Include="fubu-content\fubumvc-diagnostics\WebContent\web.Release.config">
-      <DependentUpon>web.config</DependentUpon>
-    </Content>
-    <None Include="Hygia.Dashboard.nuspec" />
+    <None Include="Hygia.Widgets.nuspec">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="View\home.spark" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

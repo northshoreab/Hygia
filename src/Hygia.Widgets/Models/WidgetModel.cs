@@ -2,6 +2,6 @@ namespace Hygia.Widgets.Models
 {
     public class WidgetModel
     {
-        public string WidgetId { get; set; }
+        public string WidgetSettingId { get; set; }
     }
 }
