@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{09DE4E5E-4672-4FEF-AB52-11B65536819A}</ProjectGuid>
+    <ProjectGuid>{0336B64B-3535-4D62-A70A-ED6284945BAC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Hygia.IntegrationTests</RootNamespace>
-    <AssemblyName>Hygia.IntegrationTests</AssemblyName>
+    <RootNamespace>Hygia.Drivers.NServiceBus</RootNamespace>
+    <AssemblyName>Hygia.Drivers.NServiceBus</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\hygia\</SolutionDir>
@@ -33,22 +33,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AsyncCtpLibrary">
-      <HintPath>..\..\packages\RavenDB.1.0.616\lib\net40\AsyncCtpLibrary.dll</HintPath>
-    </Reference>
-    <Reference Include="Machine.Specifications">
-      <HintPath>..\..\packages\Machine.Specifications.0.5.3.0\lib\Machine.Specifications.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=4.0.5.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Newtonsoft.Json.4.0.5\lib\net40\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="RestSharp">
-      <HintPath>..\..\packages\RestSharp.102.6\lib\net35\RestSharp.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Messaging" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -56,24 +44,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApiContext.cs" />
-    <Compile Include="Operations\Simulations\Order_placed_simulation.cs" />
-    <Compile Include="Operations\Simulations\When_a_audit_message_is_uploaded_via_the_launch.cs" />
-    <Compile Include="Operations\Provisioning\When_creating_a_new_account_with_valid_information.cs" />
-    <Compile Include="RestSharpContext.cs" />
-    <Compile Include="WebContext.cs" />
-    <Compile Include="Operations\AuditUploads\When_a_audit_message_is_uploaded_through_the_api.cs" />
-    <Compile Include="Operations\Provisioning\When_provisioning_a_new_environment_for_a_account.cs" />
+    <Compile Include="Injector.cs" />
+    <Compile Include="NServiceBusMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Hygia.Drivers.NServiceBus\Hygia.Drivers.NServiceBus.csproj">
-      <Project>{0336B64B-3535-4D62-A70A-ED6284945BAC}</Project>
-      <Name>Hygia.Drivers.NServiceBus</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
