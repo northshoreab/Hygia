@@ -22,7 +22,7 @@ namespace Hygia.ServiceLevelAgreements
             var slas =
                 Session.Load<CriticalTimeSLA>().Where(
                     x =>
-                    message.RegisteredEnvelope.ContainedMessages.Select(e => e.MessageTypeId.ToString()).Contains(
+                    message.RegisteredEnvelope.ContainedMessages.Select(e => e.MessageTypeId).Contains(
                         x.MessageTypeId));
 
             foreach (var criticalTimeSLA in slas)

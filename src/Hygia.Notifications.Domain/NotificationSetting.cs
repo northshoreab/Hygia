@@ -1,3 +1,5 @@
+using System;
+
 namespace Hygia.Notifications.Domain
 {
     public class NoticiationTypes
@@ -7,7 +9,7 @@ namespace Hygia.Notifications.Domain
 
     public class NotificationSetting
     {
-        public string SLAId { get; set; }
+        public Guid SLAId { get; set; }
         public string NotificationType { get; set; }
     }
 }
