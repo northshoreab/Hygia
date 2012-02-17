@@ -1,9 +1,8 @@
 ﻿using System;
-using Hygia.Widgets.Widgets;
 using Raven.Abstractions.Indexing;
 using Raven.Client.Indexes;
 
-namespace Hygia.Widgets.Domain
+namespace Hygia.Widgets.Features.MessageTypePerMinute.Domain
 {
     public class MessageTypePerMinuteIndex : AbstractIndexCreationTask
     {

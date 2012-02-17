@@ -1,11 +1,11 @@
 using System;
 using System.Linq;
 using HtmlTags;
-using Hygia.Widgets.Models;
-using Hygia.Widgets.SystemNotifications;
-using Hygia.Widgets.Testdata;
+using Hygia.Widgets.Features.SystemNotification.Domain;
+using Hygia.Widgets.Features.SystemNotification.Models;
+using Hygia.Widgets.Features.Tests.Testdata;
 
-namespace Hygia.Widgets.Controllers
+namespace Hygia.Widgets.Features.SystemNotification.Controllers
 {
     public class SystemNotificationItemController
     {

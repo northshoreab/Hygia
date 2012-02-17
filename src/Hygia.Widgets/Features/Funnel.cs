@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Hygia.Widgets.Widgets
+namespace Hygia.Widgets.Features
 {
     public static class FunnelType
     {

@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using Hygia.Widgets.SystemNotifications;
-using Hygia.Widgets.Widgets;
+using Hygia.Widgets.Features.SystemNotification.Domain;
 
-namespace Hygia.Widgets.Testdata
+namespace Hygia.Widgets.Features.Tests.Testdata
 {
     public static class TestdataHelper
     {

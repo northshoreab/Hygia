@@ -124,28 +124,30 @@
     <Compile Include="BootstrapRaven.cs" />
     <Compile Include="ConfigureFubuMVC.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Domain\MessageTypePerMinuteSetting.cs" />
+    <Compile Include="Features\MessageTypePerMinute\Controllers\MessageTypePerMinuteController.cs" />
+    <Compile Include="Features\MessageTypePerMinute\Domain\MessageTypePerMinuteSetting.cs" />
     <Compile Include="Models\HomeViewModel.cs" />
-    <Compile Include="Controllers\WidgetController.cs" />
-    <Compile Include="Controllers\SystemNotificationController.cs" />
-    <Compile Include="Controllers\SystemNotificationItemController.cs" />
+    <Compile Include="Features\Tests\Controllers\WidgetController.cs" />
+    <Compile Include="Features\SystemNotification\Controllers\SystemNotificationController.cs" />
+    <Compile Include="Features\SystemNotification\Controllers\SystemNotificationItemController.cs" />
     <Compile Include="Controllers\VersionController.cs" />
-    <Compile Include="Models\SystemNotificationItemModel.cs" />
-    <Compile Include="Models\SystemNotificationModel.cs" />
+    <Compile Include="Features\SystemNotification\Models\SystemNotificationItemModel.cs" />
+    <Compile Include="Features\SystemNotification\Models\SystemNotificationModel.cs" />
     <Compile Include="Behaviors\PersistenceBehavior.cs" />
     <Compile Include="Conventions\PersistenceConvention.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Models\WidgetModel.cs" />
-    <Compile Include="SystemNotifications\Author.cs" />
-    <Compile Include="SystemNotifications\BusinessProcessCompletionTime.cs" />
-    <Compile Include="SystemNotifications\CriticalTimeWarning.cs" />
-    <Compile Include="SystemNotifications\Notification.cs" />
-    <Compile Include="SystemNotifications\NotificationExtensions.cs" />
-    <Compile Include="Testdata\TestdataHelper.cs" />
-    <Compile Include="Widgets\Funnel.cs" />
-    <Compile Include="Widgets\HighChartsLineChart.cs" />
-    <Compile Include="Widgets\LineChart.cs" />
-    <Compile Include="Widgets\PieChart.cs" />
+    <Compile Include="Features\Tests\Models\TestWidgetModel.cs" />
+    <Compile Include="Features\SystemNotification\Domain\Author.cs" />
+    <Compile Include="Features\SystemNotification\Domain\BusinessProcessCompletionTime.cs" />
+    <Compile Include="Features\SystemNotification\Domain\CriticalTimeWarning.cs" />
+    <Compile Include="Features\SystemNotification\Domain\Notification.cs" />
+    <Compile Include="Features\SystemNotification\Domain\NotificationExtensions.cs" />
+    <Compile Include="Features\Tests\Testdata\TestdataHelper.cs" />
+    <Compile Include="Features\Funnel.cs" />
+    <Compile Include="Features\HighChartsLineChart.cs" />
+    <Compile Include="Features\LineChart.cs" />
+    <Compile Include="Features\MessageTypePerMinute\Models\MessageTypePerMinuteModel.cs" />
+    <Compile Include="Features\PieChart.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">
@@ -159,6 +161,7 @@
     </None>
     <None Include="View\home.spark" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <ProjectExtensions>

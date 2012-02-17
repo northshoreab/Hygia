@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Hygia.Widgets.SystemNotifications
+namespace Hygia.Widgets.Features.SystemNotification.Domain
 {
     public class Notification
     {

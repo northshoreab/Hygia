@@ -4,7 +4,8 @@ using NServiceBus;
 
 namespace Hygia.Backend.SLA.Events
 {
-    public class CriticalTimeSLAViolated : IMessage
+    public interface ISLAMessage : IMessage { }
+    public class CriticalTimeSLAViolated : ISLAMessage
     {
         public CriticalTimeSLA SLA { get; set; }
         public Envelope Envelope { get; set; }

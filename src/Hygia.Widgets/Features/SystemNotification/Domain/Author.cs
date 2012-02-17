@@ -1,4 +1,4 @@
-namespace Hygia.Widgets.SystemNotifications
+namespace Hygia.Widgets.Features.SystemNotification.Domain
 {
     public class Author
     {

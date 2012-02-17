@@ -1,4 +1,4 @@
-namespace Hygia.Widgets.Models
+namespace Hygia.Widgets.Features.SystemNotification.Models
 {
     public class SystemNotificationModel
     {

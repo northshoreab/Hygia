@@ -1,36 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Hygia.Widgets.Domain;
-using Hygia.Widgets.Models;
-using Hygia.Widgets.Testdata;
-using Hygia.Widgets.Widgets;
+using Hygia.Widgets.Features.MessageTypePerMinute.Domain;
+using Hygia.Widgets.Features.MessageTypePerMinute.Models;
+using Hygia.Widgets.Features.Tests.Testdata;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 using Raven.Client;
-using Raven.Client.Linq;
 
-namespace Hygia.Widgets.Controllers
+namespace Hygia.Widgets.Features.MessageTypePerMinute.Controllers
 {
-    public class WidgetController
+    public class MessageTypePerMinuteController
     {
         private readonly IDocumentSession _session;
-        public const string OrderFunnel = "ORDERFUNNEL";
-        public const string PieChart = "PIECHART";
-        public const string LineChart = "LINECHART";
-        public const string HighChartsLineChart = "HIGHCHARTSLINECHART";
 
-        public WidgetController(IDocumentSession session)
+        public MessageTypePerMinuteController(IDocumentSession session)
         {
             _session = session;
         }
 
-        public string get_widgets_messagetypeperminute_WidgetSettingId(WidgetModel input)
+        public string get_widgets_messagetypeperminute_WidgetSettingId(MessageTypePerMinuteModel input)
         {
             //TODO: Change so that we get the settings from raven
             //var widgetSetting = _session.Load<MessageTypePerMinute>(input.WidgetSettingId);
 
-            var widgetSetting = new MessageTypePerMinute
+            var widgetSetting = new Domain.MessageTypePerMinute
                                     {
                                         HighChartsConfig = TestdataHelper.GetHighChart(),
                                         ForMinutesInThePast = 10
@@ -73,24 +66,6 @@ namespace Hygia.Widgets.Controllers
                 messageTypePerMinuteIndexData.Select(x => x.Minute.ToShortTimeString()).ToList();
 
             return JsonConvert.SerializeObject(widgetSetting.HighChartsConfig);
-        }
-
-        public string get_widgets_test_WidgetSettingId(WidgetModel input)
-        {
-            switch (input.WidgetSettingId.ToUpper())
-            {
-
-                case OrderFunnel:
-                    return JsonConvert.SerializeObject(TestdataHelper.GetFunnel(),Formatting.Indented, new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver()});
-                case PieChart:
-                    return JsonConvert.SerializeObject(TestdataHelper.GetPieChart(), Formatting.Indented, new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() });
-                case LineChart:
-                    return JsonConvert.SerializeObject(TestdataHelper.GetLineChart(), Formatting.Indented, new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() });
-                case HighChartsLineChart:
-                    return TestdataHelper.GetHighChart().ToString();
-            }
-
-            return "No widget found";
         }
     }
 }
