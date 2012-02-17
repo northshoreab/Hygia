@@ -125,7 +125,10 @@
     <Compile Include="ConfigureFubuMVC.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Features\MessageTypePerMinute\Controllers\MessageTypePerMinuteController.cs" />
+    <Compile Include="Features\MessageTypePerMinute\Controllers\MessageTypePerMinuteTypeCompareController.cs" />
     <Compile Include="Features\MessageTypePerMinute\Domain\MessageTypePerMinuteSetting.cs" />
+    <Compile Include="Features\MessageTypePerMinute\Domain\MessageTypePerMinuteTypeCompare.cs" />
+    <Compile Include="Features\MessageTypePerMinute\Models\MessageTypePerMinuteTypeCompareModel.cs" />
     <Compile Include="Models\HomeViewModel.cs" />
     <Compile Include="Features\Tests\Controllers\WidgetController.cs" />
     <Compile Include="Features\SystemNotification\Controllers\SystemNotificationController.cs" />

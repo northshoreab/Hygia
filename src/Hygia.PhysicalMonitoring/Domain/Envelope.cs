@@ -5,7 +5,7 @@ namespace Hygia.PhysicalMonitoring.Domain
 
     public class Envelope
     {
-        public string Id { get; set; }
+        public Guid Id { get; set; }
 
         public DateTime? TimeSent { get; set; }
 

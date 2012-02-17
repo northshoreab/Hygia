@@ -14,15 +14,15 @@ namespace Hygia.Widgets.Features.MessageTypePerMinute.Domain
 
     public class MessageTypePerMinuteIndexData
     {
-        public string MessageTypeId { get; set; }
+        public Guid MessageTypeId { get; set; }
         public long Count { get; set; }
         public DateTime Minute { get; set; }
     }
 
     public class MessageTypePerMinute
     {
-        public string Id { get; set; }
-        public string MessageTypeId { get; set; }
+        public Guid Id { get; set; }
+        public Guid MessageTypeId { get; set; }
         public long ForMinutesInThePast { get; set; }
         public HighChartsConfig HighChartsConfig { get; set; }   
     }

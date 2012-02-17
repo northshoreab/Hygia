@@ -20,7 +20,7 @@
         {
             var envelope = new Envelope
                             {
-                                Id = message.EnvelopeId.ToString(),
+                                Id = message.EnvelopeId,
                                 TimeSent = message.TimeSent,
                                 ProcessingStarted = message.ProcessingStarted,
                                 ProcessingEnded = message.ProcessingEnded,
