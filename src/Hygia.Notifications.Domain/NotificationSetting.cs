@@ -2,8 +2,7 @@ namespace Hygia.Notifications.Domain
 {
     public class NoticiationTypes
     {
-        public const string Alarm = "ALARM";
-        public const string Warning = "WARNING";
+        public const string RSS = "RSS";
     }
 
     public class NotificationSetting

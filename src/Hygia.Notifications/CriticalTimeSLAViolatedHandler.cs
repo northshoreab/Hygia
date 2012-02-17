@@ -21,7 +21,8 @@ namespace Hygia.Notifications
 
             foreach (var notificationSetting in notifications)
             {
-                _session.Store(new CriticalTimeNotification(message.MessageTypeId, message.MessageCriticalTime, message.CriticalTimeSetting, notificationSetting.NotificationType));
+                if(notificationSetting.NotificationType == NoticiationTypes.RSS)
+                    _session.Store(new CriticalTimeNotification(message.MessageTypeId, message.MessageCriticalTime, message.CriticalTimeSetting, notificationSetting.NotificationType));
             }
         }
     }
