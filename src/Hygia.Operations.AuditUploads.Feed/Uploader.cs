@@ -11,6 +11,7 @@ namespace Hygia.Operations.AuditUploads.Feed
     using NServiceBus.Unicast.Transport;
     using NServiceBus.Unicast.Transport.Transactional;
     using RestSharp;
+    using log4net;
 
     public class Uploader : IWantCustomInitialization, IWantToRunAtStartup
     {
@@ -19,18 +20,23 @@ namespace Hygia.Operations.AuditUploads.Feed
         static Guid apiKey;
         static Address auditQueueAddress;
         static string apiUrl;
+        static ILog logger = LogManager.GetLogger("Audit");
 
         public void Init()
         {
+
+            var audit = ConfigurationManager.AppSettings["hygia.audit.input"];
+            if (string.IsNullOrEmpty(audit))
+            {
+                logger.Warn("No audit input queue defined, audit feed won't start");
+                return;
+            }
+
             var key = ConfigurationManager.AppSettings["hygia.apikey"];
          
             if (string.IsNullOrEmpty(key))
-                throw new ConfigurationErrorsException("hygia.api is required to start the launchpad");
+                throw new ConfigurationErrorsException("hygia.apikey is required to start the launchpad");
 
-
-            var audit = ConfigurationManager.AppSettings["hygia.input"];
-            if (string.IsNullOrEmpty(audit))
-                throw new ConfigurationErrorsException("hygia.input is required to start the launchpad");
 
             apiUrl = ConfigurationManager.AppSettings["hygia.apiurl"];
 
