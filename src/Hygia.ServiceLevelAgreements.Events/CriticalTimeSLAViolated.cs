@@ -2,7 +2,7 @@ using System;
 
 namespace Hygia.ServiceLevelAgreements.Events
 {
-    public class CriticalTimeSLAViolated : SLAMessage
+    public class CriticalTimeSLAViolated : SLABreachMessage
     {
         public Guid SLAId { get; set; }
         public Guid MessageTypeId { get; set; }
