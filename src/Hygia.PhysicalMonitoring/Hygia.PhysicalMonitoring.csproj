@@ -72,12 +72,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\AppendMessageToChain.cs" />
+    <Compile Include="Domain\MessgeTypeInstance.cs" />
     <Compile Include="Events\EnvelopeRegistered.cs" />
     <Compile Include="Commands\RegisterEnvelope.cs" />
     <Compile Include="Commands\StartMessageChain.cs" />
     <Compile Include="Domain\Envelope.cs" />
     <Compile Include="Domain\MessageChain.cs" />
     <Compile Include="Domain\PhysicalMessage.cs" />
+    <Compile Include="Handlers\MessageTypeInstanceHandler.cs" />
     <Compile Include="Handlers\RegisterEnvelopeHandler.cs" />
     <Compile Include="Handlers\StartMessageChainHandler.cs" />
     <Compile Include="Inspectors\RegisterEnvelopeInspector.cs" />
