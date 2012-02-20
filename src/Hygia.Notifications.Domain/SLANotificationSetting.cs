@@ -2,12 +2,7 @@ using System;
 
 namespace Hygia.Notifications.Domain
 {
-    public class NoticiationTypes
-    {
-        public const string RSS = "RSS";
-    }
-
-    public class NotificationSetting
+    public class SLANotificationSetting
     {
         public Guid SLAId { get; set; }
         public string NotificationType { get; set; }

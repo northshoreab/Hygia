@@ -17,7 +17,7 @@ namespace Hygia.Notifications
 
         public void Handle(CriticalTimeSLAViolated message)
         {
-            var notifications = _session.Load<NotificationSetting>().Where(x => x.SLAId == message.SLAId);
+            var notifications = _session.Load<SLANotificationSetting>().Where(x => x.SLAId == message.SLAId);
 
             foreach (var notificationSetting in notifications)
             {

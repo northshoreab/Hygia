@@ -44,8 +44,10 @@
   <ItemGroup>
     <Compile Include="Author.cs" />
     <Compile Include="CriticalTimeNotification.cs" />
+    <Compile Include="ErrorMessageNotification.cs" />
+    <Compile Include="NoticiationTypes.cs" />
     <Compile Include="Notification.cs" />
-    <Compile Include="NotificationSetting.cs" />
+    <Compile Include="SLANotificationSetting.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
