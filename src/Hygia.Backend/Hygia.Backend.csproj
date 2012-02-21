@@ -99,6 +99,10 @@
       <Project>{C4F880A3-653F-4CC9-9333-DBE2CB4EFEF9}</Project>
       <Name>Hygia.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Hygia.FaultManagement\Hygia.FaultManagement.csproj">
+      <Project>{5F6C6873-E9F1-451E-8E1A-BDF906BC61F5}</Project>
+      <Name>Hygia.FaultManagement</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Hygia.LogicalMonitoring\Hygia.LogicalMonitoring.csproj">
       <Project>{ACD5D3D1-675A-49EF-8CF4-7E27528CFAC1}</Project>
       <Name>Hygia.LogicalMonitoring</Name>
@@ -114,6 +118,10 @@
     <ProjectReference Include="..\Hygia.Operations.Email\Hygia.Operations.Email.csproj">
       <Project>{5A0A1032-8728-4351-8550-E9891112C078}</Project>
       <Name>Hygia.Operations.Email</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hygia.Operations.Faults\Hygia.Operations.Faults.csproj">
+      <Project>{391F6B9B-9CE9-4168-B033-AB1CA2D9FC23}</Project>
+      <Name>Hygia.Operations.Faults</Name>
     </ProjectReference>
     <ProjectReference Include="..\Hygia.ServiceLevelAgreements\Hygia.ServiceLevelAgreements.csproj">
       <Project>{361D2CDE-D2B2-4841-901A-7D9E2D3BE29D}</Project>
