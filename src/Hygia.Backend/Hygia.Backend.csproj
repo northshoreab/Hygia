@@ -111,6 +111,10 @@
       <Project>{EF6577D8-FDF8-478E-9C5A-621CD4504ECE}</Project>
       <Name>Hygia.Notifications</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Hygia.Operations.Email\Hygia.Operations.Email.csproj">
+      <Project>{5A0A1032-8728-4351-8550-E9891112C078}</Project>
+      <Name>Hygia.Operations.Email</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Hygia.ServiceLevelAgreements\Hygia.ServiceLevelAgreements.csproj">
       <Project>{361D2CDE-D2B2-4841-901A-7D9E2D3BE29D}</Project>
       <Name>Hygia.ServiceLevelAgreements</Name>

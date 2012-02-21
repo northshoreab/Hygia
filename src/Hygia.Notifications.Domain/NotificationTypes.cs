@@ -1,7 +1,8 @@
 namespace Hygia.Notifications.Domain
 {
-    public class NoticiationTypes
+    public class NotificationTypes
     {
         public const string RSS = "RSS";
+        public const string Email = "Email";
     }
 }

@@ -64,6 +64,10 @@
       <Project>{90281B60-6D3F-479D-8449-1F25E81B4991}</Project>
       <Name>Hygia.Notifications.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Hygia.Operations.Email.Commands\Hygia.Operations.Email.Commands.csproj">
+      <Project>{8C8975BF-302A-4462-9EDF-1CBA03270C57}</Project>
+      <Name>Hygia.Operations.Email.Commands</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Hygia.ServiceLevelAgreements.Events\Hygia.ServiceLevelAgreements.Events.csproj">
       <Project>{A60EE78F-91F9-4843-9560-C9EBAC9EDF52}</Project>
       <Name>Hygia.ServiceLevelAgreements.Events</Name>
