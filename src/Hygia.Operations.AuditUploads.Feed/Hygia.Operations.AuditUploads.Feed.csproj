@@ -73,6 +73,10 @@
       <Project>{F69BC5DB-C4E2-4AA0-A622-AA0C20CB2E3F}</Project>
       <Name>Hygia.Operations.AuditUploads.Commands</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Hygia.Operations.Communications\Hygia.Operations.Communications.csproj">
+      <Project>{17F39146-3378-4E7D-A99E-3FBC738F4842}</Project>
+      <Name>Hygia.Operations.Communications</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />

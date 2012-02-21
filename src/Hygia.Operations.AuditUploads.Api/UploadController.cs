@@ -8,15 +8,10 @@
 
     public class UploadController
     {
-        readonly IBus bus;
-
-        public UploadController(IBus bus)
-        {
-            this.bus = bus;
-        }
+        public IBus Bus { get; set; }
 
         [JsonEndpoint]
-        public string post_upload(UploadInputModel input)
+        public string post_upload_processauditmessage(UploadInputModel input)
         {
             //todo - check apikey, enfore message limits etc
 
@@ -33,7 +28,7 @@
 
             command.SetHeader("EnvironmentId", environmentId.ToString());
                                    
-            bus.Send(command);
+            Bus.Send(command);
             return "ok";
         }
     }
