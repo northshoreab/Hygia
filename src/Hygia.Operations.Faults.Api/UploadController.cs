@@ -21,7 +21,7 @@
 
             var command = new ProcessFaultMessage
                               {
-                                  MessageId =input.MessageId,
+                                  FaultEnvelopeId =input.MessageId,
                                   Headers = input.Headers,
                                   Body = input.Body
                               };

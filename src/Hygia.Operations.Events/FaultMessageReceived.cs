@@ -4,7 +4,7 @@ namespace Hygia.Operations.Events
 
     public class FaultMessageReceived
     {
-        public string FaultMessageId { get; set; }
+        public string FaultEnvelopeId { get; set; }
 
         public Dictionary<string, string> Headers { get; set; }
 

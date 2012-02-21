@@ -14,7 +14,7 @@
 
             Bus.Publish<FaultMessageReceived>(e =>
                                                   {
-                                                      e.FaultMessageId = message.MessageId;
+                                                      e.FaultEnvelopeId = message.FaultEnvelopeId;
                                                       e.Headers = message.Headers;
                                                       e.Body = message.Body;
                                                   });

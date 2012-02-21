@@ -63,7 +63,7 @@ namespace Hygia.Operations.Faults.Feed
             var transportMessage = e.Message;
             var message = new ProcessFaultMessage
                               {
-                                  MessageId = transportMessage.IdForCorrelation,
+                                  FaultEnvelopeId = transportMessage.IdForCorrelation,
                                   Headers = transportMessage.Headers,
                                   Body = Encoding.UTF8.GetString(transportMessage.Body)//wil only work for text serialization
                               };

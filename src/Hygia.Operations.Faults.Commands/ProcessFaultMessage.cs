@@ -4,7 +4,7 @@ namespace Hygia.Operations.Faults.Commands
 
     public class ProcessFaultMessage
     {
-        public string MessageId { get; set; }
+        public string FaultEnvelopeId { get; set; }
 
         public Dictionary<string, string> Headers { get; set; }
 

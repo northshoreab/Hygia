@@ -16,11 +16,17 @@ namespace Hygia.FaultManagement
         {
             var messageId = message.Headers["NServiceBus.OriginalId"].ToGuid();
 
+            var timeOfFailure = message.Headers["NServiceBus.TimeSent"].ToUtcDateTime();
+
+            if (message.Headers.ContainsKey("NServiceBus.TimeOfFailure"))
+                timeOfFailure = message.Headers["NServiceBus.TimeOfFailure"].ToUtcDateTime();
+
             Session.Store(new Fault
                               {
                                   Id = messageId,
-                                  FaultMessageId = message.FaultMessageId.ToGuid(),
+                                  FaultEnvelopeId = message.FaultEnvelopeId.ToGuid(),
                                   Body= message.Body,
+                                  TimeOfFailure =timeOfFailure,
                                   Exception = new ExceptionInfo
                                                   {
                                                       Message = message.Headers["NServiceBus.ExceptionInfo.Message"],
@@ -54,7 +60,7 @@ namespace Hygia.FaultManagement
         public ExceptionInfo Exception{ get; set; }
         public Guid Id { get; set; }
 
-        public Guid FaultMessageId { get; set; }
+        public Guid FaultEnvelopeId { get; set; }
 
         public string Body { get; set; }
 
@@ -63,5 +69,7 @@ namespace Hygia.FaultManagement
         public Guid EndpointId { get; set; }
 
         public Dictionary<string, string> Headers { get; set; }
+
+        public DateTime TimeOfFailure { get; set; }
     }
 }
