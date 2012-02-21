@@ -12,6 +12,7 @@ namespace Hygia.Operations.AuditUploads.Feed
     using NServiceBus.Unicast.Transport.Transactional;
     using RestSharp;
     using log4net;
+    using FaultManager = NServiceBus.Faults.Forwarder.FaultManager;
 
     public class Uploader : IWantCustomInitialization, IWantToRunAtStartup
     {
@@ -62,7 +63,10 @@ namespace Hygia.Operations.AuditUploads.Feed
                                      IsTransactional = true,
                                      NumberOfWorkerThreads = 1,
                                      MaxRetries = 5,
-                                     FailureManager = new FaultManager()
+                                     FailureManager = new FaultManager
+                                     {
+                                         ErrorQueue = Address.Parse("LaunchPad.Error")
+                                     }
                                  };
 
             inputTransport.TransportMessageReceived += OnTransportMessageReceived;

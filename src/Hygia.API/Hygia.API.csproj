@@ -203,6 +203,10 @@
       <Project>{9414D4D0-DB3C-4C4D-BA66-7AC97288F923}</Project>
       <Name>Hygia.Operations.AuditUploads.Api</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Hygia.Operations.Faults.Api\Hygia.Operations.Faults.Api.csproj">
+      <Project>{B9B2A6E8-24D7-42B9-BFCE-6EF7578069EC}</Project>
+      <Name>Hygia.Operations.Faults.Api</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Hygia.Operations\Hygia.Operations.csproj">
       <Project>{5C10F8AE-3AFE-4B51-B6A3-79AEE26A166F}</Project>
       <Name>Hygia.Operations</Name>
