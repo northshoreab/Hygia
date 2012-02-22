@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using Hygia.ServiceLevelAgreements.Domain;
 using Hygia.ServiceLevelAgreements.Events;
@@ -34,7 +35,8 @@ namespace Hygia.ServiceLevelAgreements
                                          SLAId = criticalTimeSLA.Id,
                                          MessageTypeId = criticalTimeSLA.MessageTypeId,
                                          CriticalTimeSetting = criticalTimeSLA.CriticalTime,
-                                         MessageCriticalTime = message.RegisteredEnvelope.CriticalTime.Value
+                                         MessageCriticalTime = message.RegisteredEnvelope.CriticalTime.Value,
+                                         TimeOfSLABreach = message.RegisteredEnvelope.ProcessingEnded.HasValue ? message.RegisteredEnvelope.ProcessingEnded.Value : DateTime.MinValue
                                      });
                 }
             }

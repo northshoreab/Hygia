@@ -51,15 +51,16 @@
   <ItemGroup>
     <Compile Include="CriticalTimeSLAViolatedHandler.cs" />
     <Compile Include="FaultAlarmHandler.cs" />
-    <Compile Include="Summary\AlertCommandHandlers.cs" />
-    <Compile Include="Summary\AlerterSummarySagaData.cs" />
-    <Compile Include="Summary\AlertTooManyErrorsInQueue.cs" />
-    <Compile Include="Summary\FaultAlertInfo.cs" />
-    <Compile Include="Summary\FaultEventHandlers.cs" />
-    <Compile Include="Summary\AlerterSummarySaga.cs" />
+    <Compile Include="Summary\Commands\ProcessSLABreachMessageReceived.cs" />
+    <Compile Include="Summary\Handlers\AlertCommandHandlers.cs" />
+    <Compile Include="Summary\Saga\Data\AlerterSummarySagaData.cs" />
+    <Compile Include="Summary\Commands\AlertTooManyAlertsInQueue.cs" />
+    <Compile Include="Summary\Domain\AlertInfo.cs" />
+    <Compile Include="Summary\Handlers\AlertEventHandlers.cs" />
+    <Compile Include="Summary\Saga\AlerterSummarySaga.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Summary\ProcessFaultMessageReceived.cs" />
-    <Compile Include="Summary\SendFaultAlert.cs" />
+    <Compile Include="Summary\Commands\ProcessFaultMessageReceived.cs" />
+    <Compile Include="Summary\Commands\SendAlert.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
