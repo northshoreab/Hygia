@@ -14,19 +14,15 @@ namespace Hygia.FaultManagement
     using Operations.Events;
     using Raven.Client;
 
-    public class FaultHistoryHandler:IHandleMessages<FaultMessageReceived>
+    public class FaultHistoryHandler : IHandleMessages<FaultMessageReceived>
     {
-        private readonly IBus _bus;
         public IDocumentSession Session { get; set; }
 
-        public FaultHistoryHandler(IBus bus)
-        {
-            _bus = bus;
-        }
-
+        public IBus Bus { get; set; }
+    
         public void Handle(FaultMessageReceived message)
         {
-            var messageId = message.Headers["NServiceBus.OriginalId"].ToGuid();
+            var envelopeId = message.Headers["NServiceBus.OriginalId"].ToGuid();
 
             var timeOfFailure = message.Headers["NServiceBus.TimeSent"].ToUtcDateTime();
 
@@ -35,13 +31,13 @@ namespace Hygia.FaultManagement
 
             var messageTypes = message.MessageTypes().Select((messageType, ordinal) => new PhysicalMessage
                                                                                            {
-                                                                                               MessageId = (messageId + ordinal.ToString()).ToGuid(),
+                                                                                               MessageId = (envelopeId + ordinal.ToString()).ToGuid(),
                                                                                                MessageTypeId = messageType.TypeName.ToGuid()
                                                                                            }).ToList();
 
             var fault = new Fault
                             {
-                                Id = messageId,
+                                Id = envelopeId,
                                 FaultEnvelopeId = message.FaultEnvelopeId.ToGuid(),
                                 Body = message.Body,
                                 TimeOfFailure = timeOfFailure,
@@ -58,13 +54,15 @@ namespace Hygia.FaultManagement
                                 EndpointId = message.Headers["NServiceBus.FailedQ"].ToGuid(),
                                 Headers = message.Headers,
                                 ContainedMessages = messageTypes
-                                    
+
                             };
             Session.Store(fault);
 
-            _bus.Publish(new FaultRegistered
+            Bus.Publish(new FaultRegistered
                              {
-                                 Fault = fault
+                                 FaultEnvelopeId = fault.FaultEnvelopeId,
+                                 EnvelopeId = fault.Id,
+                                 MessageTypes = messageTypes.Select(t => t.MessageTypeId).ToList()
                              });
         }
     }

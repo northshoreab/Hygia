@@ -70,9 +70,21 @@
       <Project>{8637EBD3-514D-4071-8A90-D727CA7095F4}</Project>
       <Name>Hygia.Alarms.Events</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Hygia.Core\Hygia.Core.csproj">
+      <Project>{C4F880A3-653F-4CC9-9333-DBE2CB4EFEF9}</Project>
+      <Name>Hygia.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hygia.FaultManagement.Events\Hygia.FaultManagement.Events.csproj">
+      <Project>{102954BE-D780-46FD-AEC6-A7E58B9DD79D}</Project>
+      <Name>Hygia.FaultManagement.Events</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Hygia.Notifications.Domain\Hygia.Notifications.Domain.csproj">
       <Project>{90281B60-6D3F-479D-8449-1F25E81B4991}</Project>
       <Name>Hygia.Notifications.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hygia.Notifications.Provide\Hygia.Notifications.Provide.csproj">
+      <Project>{6AEE8B0C-ED5D-4B25-B863-FB4A47B507CC}</Project>
+      <Name>Hygia.Notifications.Provide</Name>
     </ProjectReference>
     <ProjectReference Include="..\Hygia.Operations.Email.Commands\Hygia.Operations.Email.Commands.csproj">
       <Project>{8C8975BF-302A-4462-9EDF-1CBA03270C57}</Project>

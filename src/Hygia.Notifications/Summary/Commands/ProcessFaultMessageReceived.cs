@@ -1,12 +1,10 @@
 using System;
-using Hygia.Alarms.Events;
-using NServiceBus;
 
 namespace Hygia.Notifications.Summary.Commands
 {
-    public class ProcessFaultMessageReceived : ICommand
+    public class ProcessFaultMessageReceived
     {
         public Guid AlerterInstanceId { get; set; }
-        public FaultAlarm MessageDetails { get; set; }
+        public Guid FaultId { get; set; }
     }
 }

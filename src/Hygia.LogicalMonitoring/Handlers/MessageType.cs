@@ -18,6 +18,6 @@ namespace Hygia.LogicalMonitoring.Handlers
 
         public ICollection<Guid> ProducedByACs { get; set; }
 
-        public ICollection<Guid> PreceedingMessageTypes{ get; set; }
+        public ICollection<Guid> PreceedingMessageTypes { get; set; }
     }
 }

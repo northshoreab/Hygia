@@ -74,6 +74,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FaultHistoryHandler.cs" />
+    <Compile Include="FaultInfoProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -91,6 +92,10 @@
     <ProjectReference Include="..\Hygia.FaultManagement.Events\Hygia.FaultManagement.Events.csproj">
       <Project>{102954BE-D780-46FD-AEC6-A7E58B9DD79D}</Project>
       <Name>Hygia.FaultManagement.Events</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hygia.Notifications.Provide\Hygia.Notifications.Provide.csproj">
+      <Project>{6AEE8B0C-ED5D-4B25-B863-FB4A47B507CC}</Project>
+      <Name>Hygia.Notifications.Provide</Name>
     </ProjectReference>
     <ProjectReference Include="..\Hygia.Operations.Events\Hygia.Operations.Events.csproj">
       <Project>{A1BD8BAC-28CC-4169-B73E-B13C22132DFB}</Project>

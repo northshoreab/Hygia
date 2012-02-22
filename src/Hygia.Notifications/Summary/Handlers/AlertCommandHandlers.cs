@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Hygia.Alarms.Events;
 using Hygia.Notifications.Domain;
 using Hygia.Notifications.Summary.Commands;
 using Hygia.Notifications.Summary.Domain;
@@ -27,7 +26,7 @@ namespace Hygia.Notifications.Summary.Handlers
         {
             foreach (var alertSummarySetting in _session.Query<AlertSummarySetting>())
             {
-                _bus.Publish(new SendEmailCommand
+                _bus.Publish(new SendEmailRequest
                                  {
                                      Body = CreateAlertSummary(message.AlertList),
                                      Subject = "Alert summary - " + DateTime.Now,
@@ -40,7 +39,7 @@ namespace Hygia.Notifications.Summary.Handlers
         {
             foreach (var alertSummarySetting in _session.Query<AlertSummarySetting>())
             {
-                _bus.Publish(new SendEmailCommand
+                _bus.Publish(new SendEmailRequest
                                  {
                                      Body = "Too many alerts in queue!!",
                                      Subject = "Too many alerts in queue!\n\nFirst alert id: " + message.FirstAlert.Id,
@@ -53,13 +52,13 @@ namespace Hygia.Notifications.Summary.Handlers
         {
             string summary = "";
 
-            foreach (var alert in alerts.Where(x => x.AlertMessage.GetType() == typeof(FaultAlarm)).OrderBy(x => x.TimeOfAlert))
-            {
-                var message = (FaultAlarm) alert.AlertMessage;
-                summary += "Time: " + alert.TimeOfAlert + " MessageTypeId: " + message.MessageTypeId +
-                           " Reason: " + message.ExceptionReason + "\n";
+            //foreach (var alert in alerts.Where(x => x.AlertMessage.GetType() == typeof(FaultAlarm)).OrderBy(x => x.TimeOfAlert))
+            //{
+            //    var message = (FaultAlarm) alert.AlertMessage;
+            //    summary += "Time: " + alert.TimeOfAlert + " MessageTypeId: " + message.MessageTypeId +
+            //               " Reason: " + message.ExceptionReason + "\n";
 
-            }
+            //}
 
             foreach (var alert in alerts.Where(x => x.AlertMessage.GetType() == typeof(SLABreachMessage)).OrderBy(x => x.TimeOfAlert))
             {

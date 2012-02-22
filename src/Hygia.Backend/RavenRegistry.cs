@@ -8,11 +8,12 @@ namespace Hygia.Backend
     using Raven.Client;
     using Raven.Client.Document;
     using StructureMap;
+    using StructureMap.Configuration.DSL;
     using StructureMap.Graph;
 
-    class BootstrapRaven : IWantCustomInitialization
+    public class RavenRegistry : Registry
     {
-        public void Init()
+        public  RavenRegistry()
         {
             environmentIdToDatabaseLookup.Add(Guid.Parse("327951bf-bae4-46a4-93a0-71f61dfbe801"),"Hygia.Acme");
 

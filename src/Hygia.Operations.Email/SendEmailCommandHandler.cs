@@ -6,7 +6,7 @@ using NServiceBus;
 
 namespace Hygia.Operations.Email
 {
-    public class SendEmailCommandHandler : IHandleMessages<SendEmailCommand>
+    public class SendEmailCommandHandler : IHandleMessages<SendEmailRequest>
     {
         private readonly string _smtpServer;
         private readonly int _smtpPort;
@@ -23,7 +23,7 @@ namespace Hygia.Operations.Email
             int.TryParse(ConfigurationManager.AppSettings["SmtpPort"], out _smtpPort);
         }
 
-        public void Handle(SendEmailCommand message)
+        public void Handle(SendEmailRequest message)
         {
             string from = string.IsNullOrEmpty(message.From) ? _defaultFromEmail : message.From;
 
