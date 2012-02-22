@@ -25,7 +25,8 @@ namespace Hygia.Alarms
                               ExceptionStackTrace = message.Fault.Exception.StackTrace,
                               ExceptionType = message.Fault.Exception.ExceptionType,
                               MessageBody = message.Fault.Body,
-                              TimeOfFailure = message.Fault.TimeOfFailure
+                              TimeOfFailure = message.Fault.TimeOfFailure,
+                              MessageId = message.Fault.Id
                           });
         }
     }

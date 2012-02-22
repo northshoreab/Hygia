@@ -46,6 +46,7 @@
     <Compile Include="CriticalTimeNotification.cs" />
     <Compile Include="FaultNotification.cs" />
     <Compile Include="FaultNotificationSetting.cs" />
+    <Compile Include="FaultSummarySetting.cs" />
     <Compile Include="NotificationTypes.cs" />
     <Compile Include="Notification.cs" />
     <Compile Include="SLANotificationSetting.cs" />

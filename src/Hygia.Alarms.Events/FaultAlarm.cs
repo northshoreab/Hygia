@@ -6,6 +6,7 @@ namespace Hygia.Alarms.Events
     public class FaultAlarm : AlarmMessage
     {
         public IEnumerable<Guid> MessageTypeId { get; set; }
+        public Guid MessageId { get; set; }
         public string MessageBody { get; set; }
 
         public string ExceptionMessage { get; set; }
