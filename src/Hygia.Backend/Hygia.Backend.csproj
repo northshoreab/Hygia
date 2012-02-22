@@ -122,6 +122,10 @@
       <Project>{5A0A1032-8728-4351-8550-E9891112C078}</Project>
       <Name>Hygia.Operations.Email</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Hygia.Operations.Faults.Commands\Hygia.Operations.Faults.Commands.csproj">
+      <Project>{C3E15AE4-E527-48FB-B653-EA403FF01F25}</Project>
+      <Name>Hygia.Operations.Faults.Commands</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Hygia.Operations.Faults\Hygia.Operations.Faults.csproj">
       <Project>{391F6B9B-9CE9-4168-B033-AB1CA2D9FC23}</Project>
       <Name>Hygia.Operations.Faults</Name>
