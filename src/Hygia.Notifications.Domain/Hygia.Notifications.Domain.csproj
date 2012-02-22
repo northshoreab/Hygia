@@ -44,8 +44,8 @@
   <ItemGroup>
     <Compile Include="Author.cs" />
     <Compile Include="CriticalTimeNotification.cs" />
-    <Compile Include="ErrorMessageNotification.cs" />
-    <Compile Include="ErrorNotificationSetting.cs" />
+    <Compile Include="FaultNotification.cs" />
+    <Compile Include="FaultNotificationSetting.cs" />
     <Compile Include="NotificationTypes.cs" />
     <Compile Include="Notification.cs" />
     <Compile Include="SLANotificationSetting.cs" />

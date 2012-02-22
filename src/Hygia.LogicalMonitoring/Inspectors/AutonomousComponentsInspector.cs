@@ -1,4 +1,6 @@
-﻿namespace Hygia.LogicalMonitoring.Inspectors
+﻿using Hygia.Core;
+
+namespace Hygia.LogicalMonitoring.Inspectors
 {
     using System.Linq;
     using Commands;

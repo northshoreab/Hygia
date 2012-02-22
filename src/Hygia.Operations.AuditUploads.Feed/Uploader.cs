@@ -1,3 +1,5 @@
+using Hygia.Operations.AuditUploads.Commands;
+
 namespace Hygia.Operations.AuditUploads.Feed
 {
     using System;
@@ -5,7 +7,6 @@ namespace Hygia.Operations.AuditUploads.Feed
     using System.Configuration;
     using System.Net;
     using Communications;
-    using Messages;
     using NServiceBus;
     using NServiceBus.ObjectBuilder;
     using NServiceBus.Unicast.Queuing.Msmq;

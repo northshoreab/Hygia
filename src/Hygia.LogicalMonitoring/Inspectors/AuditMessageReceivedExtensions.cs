@@ -1,4 +1,6 @@
-﻿namespace Hygia
+﻿using Hygia.Core;
+
+namespace Hygia
 {
     using System;
     using System.Collections.Generic;
@@ -58,7 +60,6 @@
 
             return transportMessageReceived.Headers[Headers.EnclosedMessageTypes].Split(new [] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList()
                 .Select(s => new MessageType(s));
-
         }
 
         public static IEnumerable<string> GetPipelineInfoFor(this AuditMessageReceived envelope,MessageType messageType)

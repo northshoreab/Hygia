@@ -1,17 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using Hygia.Core;
+using Hygia.FaultManagement.Domain;
+using Hygia.FaultManagement.Events;
+using NServiceBus;
+using NServiceBus.Unicast.Subscriptions;
+using Headers = NServiceBus.Unicast.Monitoring.Headers;
 
 namespace Hygia.FaultManagement
 {
-    using NServiceBus;
+    //using NServiceBus;
     using Operations.Events;
     using Raven.Client;
 
     public class FaultHistoryHandler:IHandleMessages<FaultMessageReceived>
     {
+        private readonly IBus _bus;
         public IDocumentSession Session { get; set; }
+
+        public FaultHistoryHandler(IBus bus)
+        {
+            _bus = bus;
+        }
+
         public void Handle(FaultMessageReceived message)
         {
             var messageId = message.Headers["NServiceBus.OriginalId"].ToGuid();
@@ -21,55 +33,60 @@ namespace Hygia.FaultManagement
             if (message.Headers.ContainsKey("NServiceBus.TimeOfFailure"))
                 timeOfFailure = message.Headers["NServiceBus.TimeOfFailure"].ToUtcDateTime();
 
-            Session.Store(new Fault
-                              {
-                                  Id = messageId,
-                                  FaultEnvelopeId = message.FaultEnvelopeId.ToGuid(),
-                                  Body= message.Body,
-                                  TimeOfFailure =timeOfFailure,
-                                  Exception = new ExceptionInfo
-                                                  {
-                                                      Message = message.Headers["NServiceBus.ExceptionInfo.Message"],
-                                                      Reason = message.Headers["NServiceBus.ExceptionInfo.Reason"],
-                                                      ExceptionType = message.Headers["NServiceBus.ExceptionInfo.ExceptionType"],
-                                                      Source = message.Headers["NServiceBus.ExceptionInfo.Source"],
-                                                      StackTrace = message.Headers["NServiceBus.ExceptionInfo.StackTrace"],
-                                                  },
-                                 Endpoint = message.Headers["NServiceBus.FailedQ"],
-                                 EndpointId =message.Headers["NServiceBus.FailedQ"].ToGuid(),
-                                 Headers = message.Headers
-                              });
+            var messageTypes = message.MessageTypes().Select((messageType, ordinal) => new PhysicalMessage
+                                                                                           {
+                                                                                               MessageId = (messageId + ordinal.ToString()).ToGuid(),
+                                                                                               MessageTypeId = messageType.TypeName.ToGuid()
+                                                                                           }).ToList();
+
+            var fault = new Fault
+                            {
+                                Id = messageId,
+                                FaultEnvelopeId = message.FaultEnvelopeId.ToGuid(),
+                                Body = message.Body,
+                                TimeOfFailure = timeOfFailure,
+                                Exception = new ExceptionInfo
+                                                {
+                                                    Message = message.Headers["NServiceBus.ExceptionInfo.Message"],
+                                                    Reason = message.Headers["NServiceBus.ExceptionInfo.Reason"],
+                                                    ExceptionType =
+                                                        message.Headers["NServiceBus.ExceptionInfo.ExceptionType"],
+                                                    Source = message.Headers["NServiceBus.ExceptionInfo.Source"],
+                                                    StackTrace = message.Headers["NServiceBus.ExceptionInfo.StackTrace"],
+                                                },
+                                Endpoint = message.Headers["NServiceBus.FailedQ"],
+                                EndpointId = message.Headers["NServiceBus.FailedQ"].ToGuid(),
+                                Headers = message.Headers,
+                                ContainedMessages = messageTypes
+                                    
+                            };
+            Session.Store(fault);
+
+            _bus.Publish(new FaultRegistered
+                             {
+                                 Fault = fault
+                             });
         }
     }
-
-    public class ExceptionInfo
+    public static class FaultMessageReceivedExtensions
     {
-        public string Message { get; set; }
+        public static bool HasHeader(this FaultMessageReceived envelope, string header)
+        {
+            if (envelope.Headers == null)
+                return false;
 
-        public string Reason { get; set; }
+            return envelope.Headers.ContainsKey(header);
+        }
 
-        public string ExceptionType { get; set; }
+        public static IEnumerable<MessageType> MessageTypes(this FaultMessageReceived transportMessageReceived)
+        {
+            var result = new List<MessageType>();
 
-        public string Source { get; set; }
+            if (!transportMessageReceived.HasHeader(Headers.EnclosedMessageTypes))
+                return result;
 
-        public string StackTrace { get; set; }
-    }
-
-    public class Fault
-    {
-        public ExceptionInfo Exception{ get; set; }
-        public Guid Id { get; set; }
-
-        public Guid FaultEnvelopeId { get; set; }
-
-        public string Body { get; set; }
-
-        public string Endpoint { get; set; }
-
-        public Guid EndpointId { get; set; }
-
-        public Dictionary<string, string> Headers { get; set; }
-
-        public DateTime TimeOfFailure { get; set; }
+            return transportMessageReceived.Headers[Headers.EnclosedMessageTypes].Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList()
+                .Select(s => new MessageType(s));
+        }
     }
 }

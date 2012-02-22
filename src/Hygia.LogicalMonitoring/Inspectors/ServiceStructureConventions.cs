@@ -1,3 +1,5 @@
+using Hygia.Core;
+
 namespace Hygia.LogicalMonitoring.Inspectors
 {
     using System;

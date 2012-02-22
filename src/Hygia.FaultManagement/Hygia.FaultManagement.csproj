@@ -84,6 +84,14 @@
       <Project>{C4F880A3-653F-4CC9-9333-DBE2CB4EFEF9}</Project>
       <Name>Hygia.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Hygia.FaultManagement.Domain\Hygia.FaultManagement.Domain.csproj">
+      <Project>{FE5A6411-D13A-4252-9E95-BE775D172560}</Project>
+      <Name>Hygia.FaultManagement.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hygia.FaultManagement.Events\Hygia.FaultManagement.Events.csproj">
+      <Project>{102954BE-D780-46FD-AEC6-A7E58B9DD79D}</Project>
+      <Name>Hygia.FaultManagement.Events</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Hygia.Operations.Events\Hygia.Operations.Events.csproj">
       <Project>{A1BD8BAC-28CC-4169-B73E-B13C22132DFB}</Project>
       <Name>Hygia.Operations.Events</Name>

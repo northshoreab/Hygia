@@ -1,3 +1,5 @@
+using Hygia.Core;
+
 namespace Hygia.PhysicalMonitoring.Inspectors
 {
     using System.Linq;

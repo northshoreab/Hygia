@@ -1,4 +1,6 @@
-﻿namespace Hygia.LaunchPad.Specs.LogicalMonitoring
+﻿using Hygia.Core;
+
+namespace Hygia.LaunchPad.Specs.LogicalMonitoring
 {
     using System.Linq;
     using System.Collections.Generic;

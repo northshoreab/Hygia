@@ -1,10 +1,10 @@
-﻿namespace Hygia
-{
-    using System;
-    using System.Diagnostics;
-    using System.Security.Cryptography;
-    using System.Text;
+﻿using System;
+using System.Diagnostics;
+using System.Security.Cryptography;
+using System.Text;
 
+namespace Hygia.Core
+{
     public static class DeterministicGuids
     {
         [DebuggerNonUserCode]

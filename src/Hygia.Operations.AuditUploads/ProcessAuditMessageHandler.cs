@@ -1,7 +1,8 @@
-﻿namespace Hygia.Operations.AuditUploads
+﻿using Hygia.Operations.AuditUploads.Commands;
+
+namespace Hygia.Operations.AuditUploads
 {
     using Events;
-    using Messages;
     using NServiceBus;
 
     public class ProcessAuditMessageHandler : IHandleMessages<ProcessAuditMessage>

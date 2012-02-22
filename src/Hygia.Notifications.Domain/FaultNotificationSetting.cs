@@ -2,7 +2,7 @@ using System;
 
 namespace Hygia.Notifications.Domain
 {
-    public class ErrorNotificationSetting
+    public class FaultNotificationSetting
     {
         public Guid Id { get; set; }
         public Guid MessageTypeId { get; set; }

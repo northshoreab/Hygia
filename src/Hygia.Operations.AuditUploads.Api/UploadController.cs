@@ -1,9 +1,10 @@
-﻿namespace Hygia.Operations.AuditUploads.Api
+﻿using Hygia.Operations.AuditUploads.Commands;
+
+namespace Hygia.Operations.AuditUploads.Api
 {
     using System;
     using System.Collections.Generic;
     using FubuMVC.Core;
-    using Messages;
     using NServiceBus;
 
     public class UploadController

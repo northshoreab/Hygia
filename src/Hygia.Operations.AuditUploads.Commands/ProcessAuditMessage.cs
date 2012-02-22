@@ -1,8 +1,7 @@
-namespace Hygia.Operations.AuditUploads.Messages
-{
-    using System;
-    using System.Collections.Generic;
+using System.Collections.Generic;
 
+namespace Hygia.Operations.AuditUploads.Commands
+{
     public class ProcessAuditMessage
     {
         public string MessageId { get; set; }
