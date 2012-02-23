@@ -1,0 +1,30 @@
+﻿<html>
+  <viewdata model="Hygia.Widgets.Models.AlertListViewModel" />
+
+  <head>
+    <link rel="stylesheet" type="text/css" href="/Content/css/bootstrap.min.css" />
+	<script src="/Scripts/jquery-1.7.1.min.js" type="text/javascript"></script>
+    <script src="/Scripts/bootstrap.js" type="text/javascript"></script>
+    <script src="/Scripts/bootstrap-alert.js" type="text/javascript"></script>
+	<script src="/Scripts/bootstrap-collapse.js" type="text/javascript"></script>
+  </head>
+  <body>
+    <ul class="unstyled">
+      <for each="var alert in Model.Alerts">
+        <li>
+          <div class="alert alert-error">
+            <a class="close" data-dismiss="alert" href="#">&times;</a>
+            <h4 class="alert-heading">${alert.NotificationDate} - ${alert.Title}</h4>
+			<p>
+				${alert.Summary}
+			</p>       
+			<a class=".btn" target="_blank" href="http://localhost:43852/widgets/systemnotificationitem/${alert.Id.ToString()}" >Alert details</a>
+          </div>
+        </li>
+      </for>
+    </ul>
+  </body>
+  
+
+  
+</html>

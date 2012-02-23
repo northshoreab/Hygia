@@ -111,6 +111,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\css\bootstrap-responsive.css" />
+    <Content Include="Content\css\bootstrap-responsive.min.css" />
+    <Content Include="Content\css\bootstrap.css" />
+    <Content Include="Content\css\bootstrap.min.css" />
+    <Content Include="Content\img\glyphicons-halflings-white.png" />
+    <Content Include="Content\img\glyphicons-halflings.png" />
+    <Content Include="Scripts\bootstrap-alert.js" />
+    <Content Include="Scripts\bootstrap-collapse.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\jquery-1.7.1-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.7.1.js" />
+    <Content Include="Scripts\jquery-1.7.1.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -123,12 +136,14 @@
     <Compile Include="App_Start\FubuMVC.cs" />
     <Compile Include="BootstrapRaven.cs" />
     <Compile Include="ConfigureFubuMVC.cs" />
+    <Compile Include="Controllers\AlertListController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Features\MessageTypePerMinute\Controllers\MessageTypePerMinuteController.cs" />
     <Compile Include="Features\MessageTypePerMinute\Controllers\MessageTypePerMinuteTypeCompareController.cs" />
     <Compile Include="Features\MessageTypePerMinute\Domain\MessageTypePerMinuteSetting.cs" />
     <Compile Include="Features\MessageTypePerMinute\Domain\MessageTypePerMinuteTypeCompare.cs" />
     <Compile Include="Features\MessageTypePerMinute\Models\MessageTypePerMinuteTypeCompareModel.cs" />
+    <Compile Include="Models\AlertListViewModel.cs" />
     <Compile Include="Models\HomeViewModel.cs" />
     <Compile Include="Features\Tests\Controllers\WidgetController.cs" />
     <Compile Include="Features\SystemNotification\Controllers\SystemNotificationController.cs" />
@@ -158,6 +173,7 @@
     <None Include="Hygia.Widgets.nuspec">
       <SubType>Designer</SubType>
     </None>
+    <None Include="View\alertlist.spark" />
     <None Include="View\home.spark" />
   </ItemGroup>
   <ItemGroup>
