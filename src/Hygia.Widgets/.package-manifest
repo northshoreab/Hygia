@@ -22,7 +22,7 @@
   <DataFileSet Include="*.*">
     <DeepSearch>true</DeepSearch>
   </DataFileSet>
-  <ContentFileSet Include="*.config;View/*.spark">
+  <ContentFileSet Include="*.config;View/*.spark;Scripts/*.*;Content/*.*">
     <DeepSearch>true</DeepSearch>
   </ContentFileSet>
 </package>
