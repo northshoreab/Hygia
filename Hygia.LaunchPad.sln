@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hygia.LaunchPad", "src\Hygia.LaunchPad\Hygia.LaunchPad.csproj", "{3AECB1E9-D566-4224-BBFB-E2AA66F77681}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hygia.Operations", "src\Hygia.Operations\Hygia.Operations.csproj", "{5C10F8AE-3AFE-4B51-B6A3-79AEE26A166F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hygia.Operations.AuditUploads.Feed", "src\Hygia.Operations.AuditUploads.Feed\Hygia.Operations.AuditUploads.Feed.csproj", "{6A0038B9-C4EE-4D63-8421-02DF506F7AF4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hygia.Operations.Communications", "src\Hygia.Operations.Communications\Hygia.Operations.Communications.csproj", "{17F39146-3378-4E7D-A99E-3FBC738F4842}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hygia.Operations.Faults.Feed", "src\Hygia.Operations.Faults.Feed\Hygia.Operations.Faults.Feed.csproj", "{4C47DD0A-EE68-4E0A-9A64-5C4C72A4D058}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Operations", "Operations", "{D81B785D-0230-465B-A800-CE658CC786CD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3AECB1E9-D566-4224-BBFB-E2AA66F77681}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3AECB1E9-D566-4224-BBFB-E2AA66F77681}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3AECB1E9-D566-4224-BBFB-E2AA66F77681}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3AECB1E9-D566-4224-BBFB-E2AA66F77681}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C10F8AE-3AFE-4B51-B6A3-79AEE26A166F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C10F8AE-3AFE-4B51-B6A3-79AEE26A166F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C10F8AE-3AFE-4B51-B6A3-79AEE26A166F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C10F8AE-3AFE-4B51-B6A3-79AEE26A166F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A0038B9-C4EE-4D63-8421-02DF506F7AF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A0038B9-C4EE-4D63-8421-02DF506F7AF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A0038B9-C4EE-4D63-8421-02DF506F7AF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A0038B9-C4EE-4D63-8421-02DF506F7AF4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17F39146-3378-4E7D-A99E-3FBC738F4842}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17F39146-3378-4E7D-A99E-3FBC738F4842}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17F39146-3378-4E7D-A99E-3FBC738F4842}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17F39146-3378-4E7D-A99E-3FBC738F4842}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C47DD0A-EE68-4E0A-9A64-5C4C72A4D058}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C47DD0A-EE68-4E0A-9A64-5C4C72A4D058}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C47DD0A-EE68-4E0A-9A64-5C4C72A4D058}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C47DD0A-EE68-4E0A-9A64-5C4C72A4D058}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5C10F8AE-3AFE-4B51-B6A3-79AEE26A166F} = {D81B785D-0230-465B-A800-CE658CC786CD}
+		{4C47DD0A-EE68-4E0A-9A64-5C4C72A4D058} = {D81B785D-0230-465B-A800-CE658CC786CD}
+		{6A0038B9-C4EE-4D63-8421-02DF506F7AF4} = {D81B785D-0230-465B-A800-CE658CC786CD}
+		{17F39146-3378-4E7D-A99E-3FBC738F4842} = {D81B785D-0230-465B-A800-CE658CC786CD}
+	EndGlobalSection
+EndGlobal

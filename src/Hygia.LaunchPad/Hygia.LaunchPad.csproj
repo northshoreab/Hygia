@@ -77,10 +77,6 @@
       <Project>{17F39146-3378-4E7D-A99E-3FBC738F4842}</Project>
       <Name>Hygia.Operations.Communications</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Hygia.Operations.ErrorUploads.Feed\Hygia.Operations.Faults.Feed.csproj">
-      <Project>{4C47DD0A-EE68-4E0A-9A64-5C4C72A4D058}</Project>
-      <Name>Hygia.Operations.Faults.Feed</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Hygia.Operations\Hygia.Operations.csproj">
       <Project>{5C10F8AE-3AFE-4B51-B6A3-79AEE26A166F}</Project>
       <Name>Hygia.Operations</Name>
