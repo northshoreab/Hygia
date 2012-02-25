@@ -1,4 +1,4 @@
-﻿namespace Hygia.LaunchPad
+﻿namespace WatchR.LaunchPad
 {
     using NServiceBus;
 
