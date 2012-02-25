@@ -3,6 +3,9 @@
   <Role>module</Role>
   <Name>Hygia.Widgets</Name>
   <assembly>Hygia.Widgets</assembly>
+  <assembly>Hygia.Notifications.Domain</assembly>
+  <assembly>Hygia.PhysicalMonitoring.Index</assembly>
+  <assembly>Newtonsoft.Json</assembly>
   <assembly>Bottles</assembly>
   <assembly>Microsoft.Practices.ServiceLocation</assembly>
   <assembly>FubuCore</assembly>
