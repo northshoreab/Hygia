@@ -25,7 +25,7 @@
             var apiUrl = ConfigurationManager.AppSettings["watchr.apiurl"];
 
             if (string.IsNullOrEmpty(apiUrl))
-                throw new ConfigurationErrorsException("watchr.apiurl is required");
+                apiUrl = "http://api.watchr.se";
 
 
             Configure.Instance.Configurer.ConfigureComponent<CloudUploader>(DependencyLifecycle.SingleInstance)
