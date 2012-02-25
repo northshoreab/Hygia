@@ -2,32 +2,23 @@ using Hygia.Operations.AuditUploads.Commands;
 
 namespace Hygia.Operations.AuditUploads.Feed
 {
-    using System;
     using System.Collections.Generic;
     using System.Configuration;
-    using System.Net;
     using Communications;
     using NServiceBus;
-    using NServiceBus.ObjectBuilder;
-    using NServiceBus.Unicast.Queuing.Msmq;
+    using NServiceBus.Config;
+    using NServiceBus.Unicast;
     using NServiceBus.Unicast.Transport;
-    using NServiceBus.Unicast.Transport.Transactional;
-    using RestSharp;
     using log4net;
-    using FaultManager = NServiceBus.Faults.Forwarder.FaultManager;
 
-    public class Uploader : IWantCustomInitialization, IWantToRunAtStartup
+    public class Uploader : INeedInitialization, IWantToRunWhenTheBusStarts
     {
-        static ITransport inputTransport;
-        static bool includeMessageBody;
-        static Guid apiKey;
-        static Address auditQueueAddress;
-        static string apiUrl;
-        static ILog logger = LogManager.GetLogger("Audit");
 
+        public TransportFactory TransportFactory { get; set; }
+        public IUploadToTheBackend BackendUploader { get; set; }
+        
         public void Init()
         {
-
             var audit = ConfigurationManager.AppSettings["watchr.audit.input"];
             if (string.IsNullOrEmpty(audit))
             {
@@ -39,20 +30,7 @@ namespace Hygia.Operations.AuditUploads.Feed
 
 
             includeMessageBody = false;
-            inputTransport = new TransactionalTransport
-                                 {
-                                     MessageReceiver = new MsmqMessageReceiver(),
-                                     IsTransactional = true,
-                                     NumberOfWorkerThreads = 1,
-                                     MaxRetries = 5,
-                                     FailureManager = new FaultManager
-                                     {
-                                         ErrorQueue = Address.Parse("WatchR.Error")
-                                     }
-                                 };
-            builder = Configure.Instance.Builder;
-
-            inputTransport.TransportMessageReceived += OnTransportMessageReceived;
+        
         }
 
         public void Run()
@@ -60,13 +38,11 @@ namespace Hygia.Operations.AuditUploads.Feed
             if (auditQueueAddress == null)
                 return;
 
+            inputTransport = TransportFactory.GetTransport(OnTransportMessageReceived); 
             inputTransport.Start(auditQueueAddress);
         }
 
-        public void Stop()
-        {
-        }
-
+       
         void OnTransportMessageReceived(object sender, TransportMessageReceivedEventArgs e)
         {
             var transportMessage = e.Message;
@@ -83,12 +59,14 @@ namespace Hygia.Operations.AuditUploads.Feed
             if (includeMessageBody)
                 message.Body = transportMessage.Body;
 
-            builder.Build<IUploadToTheBackend>().Upload(message);
-
-
-
+            BackendUploader.Upload(message);
         }
 
-        static IBuilder builder;
+        ITransport inputTransport;
+        static bool includeMessageBody;
+        static Address auditQueueAddress;
+        static readonly ILog logger = LogManager.GetLogger("Audit");
+
+      
     }
 }

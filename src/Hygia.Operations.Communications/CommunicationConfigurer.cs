@@ -17,7 +17,7 @@
             else
                 CloudMode(key);
 
-           
+            Configure.Instance.Configurer.ConfigureComponent<TransportFactory>(DependencyLifecycle.SingleInstance);
         }
 
         void CloudMode(string apikey)

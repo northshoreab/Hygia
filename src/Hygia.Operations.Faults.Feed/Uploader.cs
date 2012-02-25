@@ -7,18 +7,20 @@ namespace Hygia.Operations.Faults.Feed
     using Communications;
     using NServiceBus;
     using NServiceBus.Config;
-    using NServiceBus.Faults.Forwarder;
     using NServiceBus.ObjectBuilder;
     using NServiceBus.Unicast;
     using NServiceBus.Unicast.Queuing;
-    using NServiceBus.Unicast.Queuing.Msmq;
     using NServiceBus.Unicast.Transport;
-    using NServiceBus.Unicast.Transport.Transactional;
     using log4net;
 
     public class Uploader : INeedInitialization, IWantToRunWhenTheBusStarts
     {
-       
+        public TransportFactory TransportFactory { get; set; }
+
+        public IUploadToTheBackend BackendUploader { get; set; }
+
+        public ISendMessages MessageSender { get; set; }
+
         public void Init()
         {
 
@@ -34,30 +36,17 @@ namespace Hygia.Operations.Faults.Feed
             
             errorQueueAddress = Address.Parse(error);
             errorLogAddress = Address.Parse(errorLog);
-
-            inputTransport = new TransactionalTransport
-                                 {
-                                     MessageReceiver = new MsmqMessageReceiver(),
-                                     IsTransactional = true,
-                                     NumberOfWorkerThreads = 1,
-                                     MaxRetries = 5,
-                                     FailureManager = new FaultManager
-                                                          {
-                                                              ErrorQueue = Address.Parse("WatchR.Error")
-                                                          }
-                                 };
-
-            builder = Configure.Instance.Builder;
-
-            inputTransport.TransportMessageReceived += OnTransportMessageReceived;
         }
-
+        
         public void Run()
         {
             if (errorQueueAddress == null)
                 return;
 
             NServiceBus.Utils.MsmqUtilities.CreateQueueIfNecessary(errorLogAddress, Thread.CurrentPrincipal.Identity.Name);
+
+            inputTransport = TransportFactory.GetTransport(OnTransportMessageReceived);
+
             inputTransport.Start(errorQueueAddress);
         }
 
@@ -71,13 +60,12 @@ namespace Hygia.Operations.Faults.Feed
                                   Body = Encoding.UTF8.GetString(transportMessage.Body)//wil only work for text serialization
                               };
 
-            builder.Build<IUploadToTheBackend>().Upload(message);
+            BackendUploader.Upload(message);
 
-            builder.Build<ISendMessages>().Send(transportMessage,errorLogAddress);
+            MessageSender.Send(transportMessage,errorLogAddress);
         }
 
-        static IBuilder builder;
-        static ITransport inputTransport;
+        ITransport inputTransport;
         static Address errorQueueAddress;
         static Address errorLogAddress;
         static ILog logger = LogManager.GetLogger("Errors");
