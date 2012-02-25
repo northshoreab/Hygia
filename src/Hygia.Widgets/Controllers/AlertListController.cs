@@ -1,12 +1,31 @@
+using System;
+using System.Linq;
+using Hygia.Notifications.Domain;
 using Hygia.Widgets.Models;
+using Raven.Client;
+using Raven.Client.Linq;
 
 namespace Hygia.Widgets.Controllers
 {
     public class AlertListController
     {
-        public AlertListViewModel get_widgets_alertlist()
+        private readonly IDocumentSession _session;
+
+        public AlertListController(IDocumentSession session)
         {
-            return new AlertListViewModel();
+            _session = session;
+        }
+
+        public AlertListViewModel get_alertlist()
+        {
+            var alertNotifications = _session.Query<Notification>().Where(x => x.NotificationDate >= DateTime.Now.AddDays(-2)).ToList();
+
+            var alertListViewModel = new AlertListViewModel
+                                         {
+                                             Alerts = alertNotifications
+                                         };
+
+            return alertListViewModel;
         }
     }
 }
