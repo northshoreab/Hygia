@@ -22,13 +22,13 @@ namespace Hygia.Operations.Faults.Feed
         public void Init()
         {
 
-            var error = ConfigurationManager.AppSettings["hygia.errors.input"];
+            var error = ConfigurationManager.AppSettings["watchr.errors.input"];
             if (string.IsNullOrEmpty(error))
             {
                 logger.Warn("No error input queue defined, error feed won't start");
                 return;
             }
-            var errorLog = ConfigurationManager.AppSettings["hygia.errors.log"];
+            var errorLog = ConfigurationManager.AppSettings["watchr.errors.log"];
             if (string.IsNullOrEmpty(error))
                 throw new ConfigurationErrorsException("No error log queue defined, error feed won't start");
             
@@ -43,7 +43,7 @@ namespace Hygia.Operations.Faults.Feed
                                      MaxRetries = 5,
                                      FailureManager = new FaultManager
                                                           {
-                                                              ErrorQueue = Address.Parse("LaunchPad.Error")
+                                                              ErrorQueue = Address.Parse("WatchR.Error")
                                                           }
                                  };
 

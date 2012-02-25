@@ -10,7 +10,7 @@
         public void Init()
         {
 
-            var key = ConfigurationManager.AppSettings["hygia.apikey"];
+            var key = ConfigurationManager.AppSettings["watchr.apikey"];
 
             if (string.IsNullOrEmpty(key))
                 OnPremiseMode();
@@ -22,10 +22,10 @@
 
         void CloudMode(string apikey)
         {
-            var apiUrl = ConfigurationManager.AppSettings["hygia.apiurl"];
+            var apiUrl = ConfigurationManager.AppSettings["watchr.apiurl"];
 
             if (string.IsNullOrEmpty(apiUrl))
-                throw new ConfigurationErrorsException("Hygia.apiurl is required");
+                throw new ConfigurationErrorsException("watchr.apiurl is required");
 
 
             Configure.Instance.Configurer.ConfigureComponent<CloudUploader>(DependencyLifecycle.SingleInstance)

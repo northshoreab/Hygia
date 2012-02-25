@@ -28,7 +28,7 @@ namespace Hygia.Operations.AuditUploads.Feed
         public void Init()
         {
 
-            var audit = ConfigurationManager.AppSettings["hygia.audit.input"];
+            var audit = ConfigurationManager.AppSettings["watchr.audit.input"];
             if (string.IsNullOrEmpty(audit))
             {
                 logger.Warn("No audit input queue defined, audit feed won't start");
@@ -47,7 +47,7 @@ namespace Hygia.Operations.AuditUploads.Feed
                                      MaxRetries = 5,
                                      FailureManager = new FaultManager
                                      {
-                                         ErrorQueue = Address.Parse("LaunchPad.Error")
+                                         ErrorQueue = Address.Parse("WatchR.Error")
                                      }
                                  };
             builder = Configure.Instance.Builder;
