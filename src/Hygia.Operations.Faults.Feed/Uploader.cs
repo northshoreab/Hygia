@@ -54,6 +54,9 @@ namespace Hygia.Operations.Faults.Feed
 
         public void Run()
         {
+            if (errorQueueAddress == null)
+                return;
+
             NServiceBus.Utils.MsmqUtilities.CreateQueueIfNecessary(errorLogAddress, Thread.CurrentPrincipal.Identity.Name);
             inputTransport.Start(errorQueueAddress);
         }

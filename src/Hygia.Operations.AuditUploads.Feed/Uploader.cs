@@ -37,7 +37,7 @@ namespace Hygia.Operations.AuditUploads.Feed
 
             auditQueueAddress = Address.Parse(audit);
 
-            
+
             includeMessageBody = false;
             inputTransport = new TransactionalTransport
                                  {
@@ -57,6 +57,9 @@ namespace Hygia.Operations.AuditUploads.Feed
 
         public void Run()
         {
+            if (auditQueueAddress == null)
+                return;
+
             inputTransport.Start(auditQueueAddress);
         }
 
@@ -82,7 +85,7 @@ namespace Hygia.Operations.AuditUploads.Feed
 
             builder.Build<IUploadToTheBackend>().Upload(message);
 
-            
+
 
         }
 
