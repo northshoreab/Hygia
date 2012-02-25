@@ -7,7 +7,6 @@ namespace Hygia.Operations.Faults.Feed
     using Communications;
     using NServiceBus;
     using NServiceBus.Config;
-    using NServiceBus.ObjectBuilder;
     using NServiceBus.Unicast;
     using NServiceBus.Unicast.Queuing;
     using NServiceBus.Unicast.Transport;

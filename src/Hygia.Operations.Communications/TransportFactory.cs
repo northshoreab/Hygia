@@ -1,14 +1,19 @@
 ﻿namespace Hygia.Operations.Communications
 {
     using System;
+    using System.Configuration;
+    using System.Threading;
     using NServiceBus;
+    using NServiceBus.Config;
     using NServiceBus.Faults.Forwarder;
     using NServiceBus.Unicast.Queuing.Msmq;
     using NServiceBus.Unicast.Transport;
     using NServiceBus.Unicast.Transport.Transactional;
 
-    public class TransportFactory
+    public class TransportFactory : INeedInitialization
     {
+        static Address errorQueue;
+
         public ITransport GetTransport(EventHandler<TransportMessageReceivedEventArgs> onTransportMessageReceived)
         {
             var transport = new TransactionalTransport
@@ -19,7 +24,7 @@
                 MaxRetries = 5,
                 FailureManager = new FaultManager
                 {
-                    ErrorQueue = Address.Parse("WatchR.Error")
+                    ErrorQueue = errorQueue
                 }
             };
 
@@ -28,5 +33,17 @@
             return transport;
         }
 
+        public void Init()
+        {
+            var error = ConfigurationManager.AppSettings["watchr.errorqueue"];
+
+            if (string.IsNullOrEmpty(error))
+                error = "WatchR.Error";
+
+            errorQueue = Address.Parse(error);
+            NServiceBus.Utils.MsmqUtilities.CreateQueueIfNecessary(errorQueue, Thread.CurrentPrincipal.Identity.Name);
+
+        }
     }
+
 }
