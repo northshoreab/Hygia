@@ -6,7 +6,6 @@ using Raven.Client;
 namespace Hygia.Notifications
 {
     using System.Collections.Generic;
-    using System.ComponentModel;
     using System.Dynamic;
     using System.Linq;
     using FaultManagement.Events;
@@ -18,47 +17,42 @@ namespace Hygia.Notifications
 
         public IBus Bus { get; set; }
 
-        IEnumerable<IProvideFaultInformation> faultInformationProviders;
+        readonly IEnumerable<IProvideFaultInformation> _faultInformationProviders;
 
         public FaultAlarmHandler(IEnumerable<IProvideFaultInformation> faultInformationProviders)
         {
-            this.faultInformationProviders = faultInformationProviders;
+            _faultInformationProviders = faultInformationProviders;
         }
 
         public void Handle(FaultRegistered message)
         {
-            var faultNotificationSetting = new FaultNotificationSetting
-                                               {
-                                                   NotificationType = "Email",
-                                                   EmailAdress = "andreasohlund2@gmail.com"
-                                               };
-            //todo - Danne fix this and add a json doc to the repos that we can copy paste into raven
-            //foreach (var faultNotificationSetting in Session.Query<FaultNotificationSetting>().Where(x => x.AllMessages))
-            //{
-            dynamic faultInformation = new ExpandoObject();
-
-            foreach (var faultInformationProvider in faultInformationProviders)
+            foreach (var faultNotificationSetting in Session.Query<FaultNotificationSetting>().Where(x => x.AllMessages))
             {
-                faultInformation = DynamicHelpers.Combine(faultInformation, faultInformationProvider.ProvideFor(message.EnvelopeId,message.MessageTypes));
+                dynamic faultInformation = new ExpandoObject();
 
-            }
+                foreach (var faultInformationProvider in _faultInformationProviders)
+                {
+                    faultInformation = DynamicHelpers.Combine(faultInformation, faultInformationProvider.ProvideFor(message.EnvelopeId, message.MessageTypes));
+                }
 
-            switch (faultNotificationSetting.NotificationType)
-            {
-                case NotificationTypes.Email:
-                    Bus.Send<SendEmailRequest>(e =>
-                                                       {
-                                                           e.Body = FormatBody(faultInformation);
-                                                           e.Subject = FormatSubject(faultInformation);
-                                                           e.To = faultNotificationSetting.EmailAdress;
-                                                       });
-                    break;
-                case NotificationTypes.RSS:
-                    Session.Store(new FaultNotification(faultNotificationSetting.MessageTypeId, faultInformation.ExceptionReason,
-                                                            faultInformation.TimeOfFailure));
-                    break;
+                string body = FormatBody(faultInformation);
+                string subject = FormatSubject(faultInformation);
+
+                switch (faultNotificationSetting.NotificationType)
+                {
+                    case NotificationTypes.Email:
+                        Bus.Send<SendEmailRequest>(e =>
+                        {
+                            e.Body = body;
+                            e.Subject = subject;
+                            e.To = faultNotificationSetting.EmailAdress;
+                        });
+                        break;
+                    case NotificationTypes.RSS:
+                        Session.Store(new FaultNotification(subject, body));
+                        break;
+                }
             }
-            // }
         }
 
         string FormatSubject(dynamic faultInformation)
@@ -72,7 +66,5 @@ namespace Hygia.Notifications
             //todo: Use templating engine
             return ((IDictionary<string, object>)faultInformation).Aggregate("", (current, pair) => current + (pair.Key + " - " + pair.Value));
         }
-
-      
     }
 }

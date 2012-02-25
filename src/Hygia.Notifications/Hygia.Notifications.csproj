@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Settings\FaultNotificationSetting.document" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Hygia.Alarms.Events\Hygia.Alarms.Events.csproj">
