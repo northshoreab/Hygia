@@ -29,8 +29,8 @@ namespace Hygia.Operations.Faults.Feed
                 return;
             }
             var errorLog = ConfigurationManager.AppSettings["watchr.errors.log"];
-            if (string.IsNullOrEmpty(error))
-                throw new ConfigurationErrorsException("No error log queue defined, error feed won't start");
+            if (string.IsNullOrEmpty(errorLog))
+                errorLog = error + "_log";
             
             errorQueueAddress = Address.Parse(error);
             errorLogAddress = Address.Parse(errorLog);
