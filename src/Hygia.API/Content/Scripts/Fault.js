@@ -80,6 +80,16 @@
             });
         },
         home: function () {
+            //todo: this is just a temp hack
+            var today = new Date();
+            var expire = new Date();
+            var nDays = 10;
+            var environment = hygia.getParameterByName('environment');
+            if (nDays == null || nDays == 0) nDays = 1;
+            expire.setTime(today.getTime() + 3600000 * 24 * nDays);
+            document.cookie = 'environment' + "=" + escape(environment)
+                 + ";expires=" + expire.toGMTString();
+
             $main = $('#main');
             $main.empty();
 
