@@ -126,10 +126,6 @@
       <Project>{EF6577D8-FDF8-478E-9C5A-621CD4504ECE}</Project>
       <Name>Hygia.Notifications</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Hygia.Operations.Communications\Hygia.Operations.Communications.csproj">
-      <Project>{17F39146-3378-4E7D-A99E-3FBC738F4842}</Project>
-      <Name>Hygia.Operations.Communications</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Hygia.Operations.Email.Commands\Hygia.Operations.Email.Commands.csproj">
       <Project>{8C8975BF-302A-4462-9EDF-1CBA03270C57}</Project>
       <Name>Hygia.Operations.Email.Commands</Name>
@@ -145,10 +141,6 @@
     <ProjectReference Include="..\Hygia.Operations.Faults.Commands\Hygia.Operations.Faults.Commands.csproj">
       <Project>{C3E15AE4-E527-48FB-B653-EA403FF01F25}</Project>
       <Name>Hygia.Operations.Faults.Commands</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Hygia.Operations.Faults.Feed\Hygia.Operations.Faults.Feed.csproj">
-      <Project>{4C47DD0A-EE68-4E0A-9A64-5C4C72A4D058}</Project>
-      <Name>Hygia.Operations.Faults.Feed</Name>
     </ProjectReference>
     <ProjectReference Include="..\Hygia.Operations.Faults\Hygia.Operations.Faults.csproj">
       <Project>{391F6B9B-9CE9-4168-B033-AB1CA2D9FC23}</Project>

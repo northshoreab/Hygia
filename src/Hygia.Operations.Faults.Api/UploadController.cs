@@ -21,7 +21,7 @@
 
             var command = new ProcessFaultMessage
                               {
-                                  FaultEnvelopeId =input.MessageId,
+                                  FaultEnvelopeId = input.FaultEnvelopeId,
                                   Headers = input.Headers,
                                   Body = input.Body
                               };
@@ -35,7 +35,7 @@
 
     public class UploadInputModel
     {
-        public string MessageId { get; set; }
+        public string FaultEnvelopeId { get; set; }
 
         public Guid ApiKey { get; set; }
 
