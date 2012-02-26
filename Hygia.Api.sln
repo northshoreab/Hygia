@@ -1,0 +1,54 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hygia.API", "src\Hygia.Api\Hygia.API.csproj", "{68A2EDA5-D69B-49E9-B965-F2F5BAE69618}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hygia.Operations", "src\Hygia.Operations\Hygia.Operations.csproj", "{5C10F8AE-3AFE-4B51-B6A3-79AEE26A166F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hygia.Operations.AuditUploads.Api", "src\Hygia.Operations.AuditUploads.Api\Hygia.Operations.AuditUploads.Api.csproj", "{9414D4D0-DB3C-4C4D-BA66-7AC97288F923}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Operations", "Operations", "{BB5B542D-8B5D-46E3-897D-EF7F3D4BE59F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hygia.Operations.Faults.Api", "src\Hygia.Operations.Faults.Api\Hygia.Operations.Faults.Api.csproj", "{B9B2A6E8-24D7-42B9-BFCE-6EF7578069EC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FaultManagement", "FaultManagement", "{FBAA2A34-3446-46E5-8DDA-6964D4D2786B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hygia.FaultManagement.Domain", "src\Hygia.FaultManagement.Domain\Hygia.FaultManagement.Domain.csproj", "{FE5A6411-D13A-4252-9E95-BE775D172560}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{68A2EDA5-D69B-49E9-B965-F2F5BAE69618}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68A2EDA5-D69B-49E9-B965-F2F5BAE69618}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68A2EDA5-D69B-49E9-B965-F2F5BAE69618}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68A2EDA5-D69B-49E9-B965-F2F5BAE69618}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C10F8AE-3AFE-4B51-B6A3-79AEE26A166F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C10F8AE-3AFE-4B51-B6A3-79AEE26A166F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C10F8AE-3AFE-4B51-B6A3-79AEE26A166F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C10F8AE-3AFE-4B51-B6A3-79AEE26A166F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9414D4D0-DB3C-4C4D-BA66-7AC97288F923}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9414D4D0-DB3C-4C4D-BA66-7AC97288F923}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9414D4D0-DB3C-4C4D-BA66-7AC97288F923}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9414D4D0-DB3C-4C4D-BA66-7AC97288F923}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9B2A6E8-24D7-42B9-BFCE-6EF7578069EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9B2A6E8-24D7-42B9-BFCE-6EF7578069EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9B2A6E8-24D7-42B9-BFCE-6EF7578069EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9B2A6E8-24D7-42B9-BFCE-6EF7578069EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE5A6411-D13A-4252-9E95-BE775D172560}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE5A6411-D13A-4252-9E95-BE775D172560}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE5A6411-D13A-4252-9E95-BE775D172560}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE5A6411-D13A-4252-9E95-BE775D172560}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5C10F8AE-3AFE-4B51-B6A3-79AEE26A166F} = {BB5B542D-8B5D-46E3-897D-EF7F3D4BE59F}
+		{9414D4D0-DB3C-4C4D-BA66-7AC97288F923} = {BB5B542D-8B5D-46E3-897D-EF7F3D4BE59F}
+		{B9B2A6E8-24D7-42B9-BFCE-6EF7578069EC} = {BB5B542D-8B5D-46E3-897D-EF7F3D4BE59F}
+		{FE5A6411-D13A-4252-9E95-BE775D172560} = {FBAA2A34-3446-46E5-8DDA-6964D4D2786B}
+	EndGlobalSection
+EndGlobal
