@@ -25,10 +25,9 @@ namespace Hygia.API
 
             this.UseSpark();
             IncludeDiagnostics(true);
-            Applies.ToThisAssembly();
-   //             .ToThisAssembly();
-   //             .ToAssembly("Hygia.Operations.Faults.Api")
-   //.ToAssembly("Hygia.Operations.AuditUploads.Api"); //todo- Better way?
+            Applies.ToThisAssembly()
+                .ToAssembly("Hygia.Operations.Faults.Api")
+   .ToAssembly("Hygia.Operations.AuditUploads.Api"); //todo- Better way?
 
             // All public methods from concrete classes ending in "Controller"
             // in this assembly are assumed to be action methods
