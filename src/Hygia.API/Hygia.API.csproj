@@ -90,14 +90,8 @@
     <Reference Include="Raven.Abstractions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
       <HintPath>..\..\packages\RavenDB.1.0.616\lib\net40\Raven.Abstractions.dll</HintPath>
     </Reference>
-    <Reference Include="Raven.Client.Debug">
-      <HintPath>..\..\packages\RavenDB.1.0.616\lib\net40\Raven.Client.Debug.dll</HintPath>
-    </Reference>
     <Reference Include="Raven.Client.Lightweight, Version=1.0.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
       <HintPath>..\..\packages\RavenDB.1.0.616\lib\net40\Raven.Client.Lightweight.dll</HintPath>
-    </Reference>
-    <Reference Include="Raven.Client.MvcIntegration">
-      <HintPath>..\..\packages\RavenDB.1.0.616\lib\net40\Raven.Client.MvcIntegration.dll</HintPath>
     </Reference>
     <Reference Include="Spark">
       <HintPath>..\..\packages\Spark.1.6\lib\NET40\Spark.dll</HintPath>
