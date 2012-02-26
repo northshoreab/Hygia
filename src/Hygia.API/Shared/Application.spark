@@ -1,0 +1,46 @@
+﻿﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+		<title><use content="title"/> | Mission Control</title>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+
+		<link rel="stylesheet" href="/content/css/style.css">
+		<link rel="stylesheet" href="/content/css/bootstrap.css">
+  
+		<script type="text/javascript" src="/Content/Scripts/jquery-1.7.1.min.js"></script>
+		
+		<script type="text/javascript" src="/Content/Scripts/underscore.js"></script>
+		<script type="text/javascript" src="/Content/Scripts/backbone.js"></script>
+		<script type="text/javascript" src="/Content/Scripts/index.js"></script>
+		<script type="text/javascript" src="/Content/Scripts/fault.js"></script>
+	</head>
+<body>
+  <!-- Top navigation -->
+    <div class="topbar">
+      <div class="fill">
+        <div class="container">
+          <a class="brand" href="#">Mission Control</a>
+          <ul class="nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+          <form action="" class="pull-right">
+            <input class="input-small" type="text" placeholder="Username">
+            <input class="input-small" type="password" placeholder="Password">
+            <button class="btn" type="submit">Sign in</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  
+  <!-- Main container -->
+  <div role="main" id="main"></div>
+
+  <!-- footer -->
+  <footer><p>Footer</p></footer>
+
+</body>
+</html>

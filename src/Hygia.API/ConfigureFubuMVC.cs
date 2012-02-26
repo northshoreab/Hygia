@@ -1,8 +1,10 @@
 namespace Hygia.API
 {
+    using FubuMVC.Spark;
     using StructureMap;
     using FubuMVC.Core;
     using NServiceBus;
+    using Web.Controllers;
 
     public class ConfigureFubuMVC : FubuRegistry
     {
@@ -21,16 +23,17 @@ namespace Hygia.API
 
             new BootstrapRaven().Init();
 
+            this.UseSpark();
             IncludeDiagnostics(true);
-
-            Applies
-                .ToThisAssembly()
-                .ToAssembly("Hygia.Operations.Faults.Api")
-   .ToAssembly("Hygia.Operations.AuditUploads.Api"); //todo- Better way?
+            Applies.ToThisAssembly();
+   //             .ToThisAssembly();
+   //             .ToAssembly("Hygia.Operations.Faults.Api")
+   //.ToAssembly("Hygia.Operations.AuditUploads.Api"); //todo- Better way?
 
             // All public methods from concrete classes ending in "Controller"
             // in this assembly are assumed to be action methods
             Actions.IncludeClassesSuffixedWithController();
+            Routes.HomeIs<HomeController>(c => c.get_home());
 
             // Policies
             Routes
