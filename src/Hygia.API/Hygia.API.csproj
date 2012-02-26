@@ -211,7 +211,9 @@
     <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Styles\requests\view.css" />
     <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Shared\bindings.xml" />
     <Content Include="fubu-content\FubuMVC.GettingStarted.dll" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
