@@ -51,7 +51,6 @@
                 view.el.innerHTML = tmpl({});
 
                 done(view.el);
-
                 var $faults,
                     collection = view.collection;
                 $faults = view.$('.faults');
@@ -67,5 +66,29 @@
 
             });
         }
+    });
+
+    window.currentFaults = new Faults();
+
+    window.MainRouter = Backbone.Router.extend({
+        routes: {
+            '': 'home'
+        },
+        initialize: function () {
+            this.faultsView = new FaultsView({
+                collection: window.currentFaults
+            });
+        },
+        home: function () {
+            $main = $('#main');
+            $main.empty();
+
+            this.faultsView.render(function (el) { $main.append(el); });
+        }
+    });
+
+    $(function () {
+        window.App = new MainRouter();
+        Backbone.history.start();
     });
 })(jQuery);
