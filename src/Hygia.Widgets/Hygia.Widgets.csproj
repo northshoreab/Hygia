@@ -132,7 +132,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FubuMVC.cs" />
-    <Compile Include="BootstrapRaven.cs" />
     <Compile Include="ConfigureFubuMVC.cs" />
     <Compile Include="Controllers\AlertListController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -141,7 +140,7 @@
     <Compile Include="Features\MessageTypePerMinute\Domain\MessageTypePerMinuteSetting.cs" />
     <Compile Include="Features\MessageTypePerMinute\Domain\MessageTypePerMinuteTypeCompare.cs" />
     <Compile Include="Features\MessageTypePerMinute\Models\MessageTypePerMinuteTypeCompareModel.cs" />
-    <Compile Include="Models\AlertListViewModel.cs" />
+    <Compile Include="Models\FaultsViewModel.cs" />
     <Compile Include="Models\HomeViewModel.cs" />
     <Compile Include="Features\Tests\Controllers\WidgetController.cs" />
     <Compile Include="Features\SystemNotification\Controllers\SystemNotificationController.cs" />
@@ -167,7 +166,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <None Include=".package-manifest" />
+    <None Include=".package-manifest">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Hygia.Widgets.nuspec">
       <SubType>Designer</SubType>
     </None>
@@ -175,13 +176,25 @@
     <None Include="View\home.spark" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Hygia.Core\Hygia.Core.csproj">
+      <Project>{C4F880A3-653F-4CC9-9333-DBE2CB4EFEF9}</Project>
+      <Name>Hygia.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hygia.FaultManagement.Domain\Hygia.FaultManagement.Domain.csproj">
+      <Project>{FE5A6411-D13A-4252-9E95-BE775D172560}</Project>
+      <Name>Hygia.FaultManagement.Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Hygia.Notifications.Domain\Hygia.Notifications.Domain.csproj">
       <Project>{90281B60-6D3F-479D-8449-1F25E81B4991}</Project>
       <Name>Hygia.Notifications.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Hygia.PhysicalMonitoring.Index\Hygia.PhysicalMonitoring.Index.csproj">
-      <Project>{B1589498-379C-47EC-A20C-4460894A3497}</Project>
-      <Name>Hygia.PhysicalMonitoring.Index</Name>
+    <ProjectReference Include="..\Hygia.Notifications.Provide\Hygia.Notifications.Provide.csproj">
+      <Project>{6AEE8B0C-ED5D-4B25-B863-FB4A47B507CC}</Project>
+      <Name>Hygia.Notifications.Provide</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hygia.Operations.Events\Hygia.Operations.Events.csproj">
+      <Project>{A1BD8BAC-28CC-4169-B73E-B13C22132DFB}</Project>
+      <Name>Hygia.Operations.Events</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

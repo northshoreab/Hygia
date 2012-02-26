@@ -1,5 +1,5 @@
 ﻿<html>
-  <viewdata model="Hygia.Widgets.Models.AlertListViewModel" />
+  <viewdata model="Hygia.Widgets.Models.FaultsViewModel" />
 
   <head>
     <link href="/Content/css/bootstrap.css" rel="stylesheet">

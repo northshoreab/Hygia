@@ -14,9 +14,7 @@ namespace Hygia.Widgets
             // in this assembly are assumed to be action methods
             Actions.IncludeClassesSuffixedWithController();
 
-            new BootstrapRaven().Init();
-
-            // Policies
+           // Policies
             Routes
                 .IgnoreControllerNamesEntirely()
                 .IgnoreMethodSuffix("Html")

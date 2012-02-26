@@ -1,11 +1,8 @@
-using System.Linq;
-using Hygia.Notifications.Domain;
 using Hygia.Widgets.Features.SystemNotification.Models;
 using Hygia.Widgets.Features.Tests.Testdata;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Raven.Client;
-using Raven.Client.Linq;
 
 namespace Hygia.Widgets.Features.SystemNotification.Controllers
 {

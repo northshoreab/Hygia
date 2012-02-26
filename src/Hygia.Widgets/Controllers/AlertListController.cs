@@ -1,12 +1,12 @@
-using System;
 using System.Linq;
-using Hygia.Notifications.Domain;
 using Hygia.Widgets.Models;
 using Raven.Client;
 using Raven.Client.Linq;
 
 namespace Hygia.Widgets.Controllers
 {
+    using FaultManagement.Domain;
+
     public class AlertListController
     {
         private readonly IDocumentSession _session;
@@ -16,11 +16,11 @@ namespace Hygia.Widgets.Controllers
             _session = session;
         }
 
-        public AlertListViewModel get_alertlist()
+        public FaultsViewModel get_alertlist()
         {
-            var alertNotifications = _session.Query<Notification>().Where(x => x.NotificationDate >= DateTime.Now.AddDays(-2)).ToList();
+            var alertNotifications = _session.Query<Fault>().OrderByDescending(f=>f.TimeOfFailure).ToList();
 
-            var alertListViewModel = new AlertListViewModel
+            var alertListViewModel = new FaultsViewModel
                                          {
                                              Alerts = alertNotifications
                                          };

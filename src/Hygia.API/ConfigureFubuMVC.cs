@@ -19,7 +19,7 @@ namespace Hygia.API
                .UnicastBus()
                .SendOnly();  // This line turns on the basic diagnostics and request tracing                        
 
-            //new BootstrapRaven().Init();
+            new BootstrapRaven().Init();
 
             IncludeDiagnostics(true);
 

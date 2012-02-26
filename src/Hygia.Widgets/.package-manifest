@@ -4,7 +4,6 @@
   <Name>Hygia.Widgets</Name>
   <assembly>Hygia.Widgets</assembly>
   <assembly>Hygia.Notifications.Domain</assembly>
-  <assembly>Hygia.PhysicalMonitoring.Index</assembly>
   <assembly>Newtonsoft.Json</assembly>
   <assembly>Bottles</assembly>
   <assembly>Microsoft.Practices.ServiceLocation</assembly>
@@ -21,6 +20,11 @@
   <assembly>WebActivator</assembly>
   <assembly>Raven.Abstractions</assembly>
   <assembly>Raven.Client.Lightweight</assembly>
+  <assembly>Hygia.FaultManagement.Domain</assembly>
+  <assembly>Hygia.Notifications.Domain</assembly>
+  <assembly>Hygia.Notifications.Provide</assembly>
+  <assembly>Hygia.Operations.Events</assembly>
+  <assembly>Hygia.Core</assembly>
   <assembly>AsyncCtpLibrary</assembly>  
   <DataFileSet Include="*.*">
     <DeepSearch>true</DeepSearch>
