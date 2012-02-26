@@ -19,7 +19,7 @@ namespace Hygia.FaultManagement
         public IDocumentSession Session { get; set; }
 
         public IBus Bus { get; set; }
-    
+
         public void Handle(FaultMessageReceived message)
         {
             var envelopeId = message.Headers["NServiceBus.OriginalId"].ToGuid();
@@ -34,28 +34,36 @@ namespace Hygia.FaultManagement
                                                                                                MessageId = (envelopeId + ordinal.ToString()).ToGuid(),
                                                                                                MessageTypeId = messageType.TypeName.ToGuid()
                                                                                            }).ToList();
+            var exception = new ExceptionInfo
+                                {
+                                    Message = message.Headers["NServiceBus.ExceptionInfo.Message"],
+                                    Reason = message.Headers["NServiceBus.ExceptionInfo.Reason"],
+                                    ExceptionType =
+                                        message.Headers["NServiceBus.ExceptionInfo.ExceptionType"],
+                                    Source = message.Headers["NServiceBus.ExceptionInfo.Source"],
+                                    StackTrace = message.Headers["NServiceBus.ExceptionInfo.StackTrace"],
+                                };
 
             var fault = new Fault
                             {
                                 Id = envelopeId,
                                 FaultEnvelopeId = message.FaultEnvelopeId.ToGuid(),
                                 Body = message.Body,
+                                Status = FaultStatus.New,
+                                AssignedTo = Guid.Empty,
                                 TimeOfFailure = timeOfFailure,
-                                Exception = new ExceptionInfo
-                                                {
-                                                    Message = message.Headers["NServiceBus.ExceptionInfo.Message"],
-                                                    Reason = message.Headers["NServiceBus.ExceptionInfo.Reason"],
-                                                    ExceptionType =
-                                                        message.Headers["NServiceBus.ExceptionInfo.ExceptionType"],
-                                                    Source = message.Headers["NServiceBus.ExceptionInfo.Source"],
-                                                    StackTrace = message.Headers["NServiceBus.ExceptionInfo.StackTrace"],
-                                                },
+                                Exception = exception,
                                 Endpoint = message.Headers["NServiceBus.FailedQ"],
                                 EndpointId = message.Headers["NServiceBus.FailedQ"].ToGuid(),
                                 Headers = message.Headers,
-                                ContainedMessages = messageTypes
+                                ContainedMessages = messageTypes,
+                                History = new List<HistoryItem>
+                                              {
+                                                  new HistoryItem{TimeOfFailure = timeOfFailure,Exception = exception}
+                                              }
 
                             };
+
             Session.Store(fault);
 
             Bus.Publish(new FaultRegistered
@@ -66,6 +74,7 @@ namespace Hygia.FaultManagement
                              });
         }
     }
+
     public static class FaultMessageReceivedExtensions
     {
         public static bool HasHeader(this FaultMessageReceived envelope, string header)

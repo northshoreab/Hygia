@@ -44,6 +44,9 @@
   <ItemGroup>
     <Compile Include="ExceptionInfo.cs" />
     <Compile Include="Fault.cs" />
+    <Compile Include="FaultStatus.cs" />
+    <Compile Include="HistoryItem.cs" />
+    <Compile Include="PhysicalMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

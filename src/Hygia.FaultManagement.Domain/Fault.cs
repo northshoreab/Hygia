@@ -5,6 +5,7 @@ namespace Hygia.FaultManagement.Domain
 {
     public class Fault
     {
+        public FaultStatus Status{ get; set; }
         public ExceptionInfo Exception{ get; set; }
         public Guid Id { get; set; }
 
@@ -21,11 +22,9 @@ namespace Hygia.FaultManagement.Domain
         public IEnumerable<PhysicalMessage> ContainedMessages { get; set; }
 
         public DateTime TimeOfFailure { get; set; }
-    }
 
-    public class PhysicalMessage
-    {
-        public Guid MessageId { get; set; }
-        public Guid MessageTypeId { get; set; }
+        public Guid AssignedTo { get; set; }
+
+        public ICollection<HistoryItem> History { get; set; }
     }
 }
