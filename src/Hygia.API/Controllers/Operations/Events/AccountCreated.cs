@@ -1,4 +1,4 @@
-namespace Hygia.Web.Controllers.Operations.Events
+namespace Hygia.API.Controllers.Operations.Events
 {
     using System;
 

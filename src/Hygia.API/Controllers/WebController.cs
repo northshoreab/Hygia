@@ -1,4 +1,4 @@
-namespace Hygia.Web.Controllers
+namespace Hygia.API.Controllers
 {
     using NServiceBus;
     using Raven.Client;

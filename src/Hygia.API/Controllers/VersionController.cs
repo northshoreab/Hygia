@@ -1,8 +1,8 @@
-﻿using System.Diagnostics;
-using System.Reflection;
-
-namespace Hygia.Web.Controllers
+﻿namespace Hygia.API.Controllers
 {
+    using System.Diagnostics;
+    using System.Reflection;
+
     public class VersionController
     {
         public string get_Version()

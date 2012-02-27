@@ -1,10 +1,10 @@
 namespace Hygia.API
 {
+    using Controllers;
     using FubuMVC.Spark;
     using StructureMap;
     using FubuMVC.Core;
     using NServiceBus;
-    using Web.Controllers;
 
     public class ConfigureFubuMVC : FubuRegistry
     {
@@ -27,6 +27,7 @@ namespace Hygia.API
             IncludeDiagnostics(true);
             Applies.ToThisAssembly()
                 .ToAssembly("Hygia.Operations.Faults.Api")
+                .ToAssembly("Hygia.FaultManagement.Api")
                 .ToAssembly("Hygia.Operations.AuditUploads.Api"); //todo- Better way?
 
             // All public methods from concrete classes ending in "Controller"

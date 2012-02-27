@@ -1,6 +1,6 @@
-namespace Hygia.Web.Controllers
+namespace Hygia.API.Controllers
 {
-    using Models;
+    using Hygia.Web.Models;
 
     public class HomeController
     {

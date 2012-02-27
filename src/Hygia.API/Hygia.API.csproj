@@ -225,7 +225,6 @@
     <Compile Include="App_Start\FubuMVC.cs" />
     <Compile Include="BootstrapRaven.cs" />
     <Compile Include="ConfigureFubuMVC.cs" />
-    <Compile Include="Controllers\EnvironmentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Operations\Accounts\Account.cs" />
     <Compile Include="Controllers\Operations\Accounts\AccountsController.cs" />
@@ -259,6 +258,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Hygia.FaultManagement.Api\Hygia.FaultManagement.Api.csproj">
+      <Project>{9E46E4A9-8CB5-4B21-AA79-2554DEFAD5E7}</Project>
+      <Name>Hygia.FaultManagement.Api</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Hygia.FaultManagement.Domain\Hygia.FaultManagement.Domain.csproj">
       <Project>{FE5A6411-D13A-4252-9E95-BE775D172560}</Project>
       <Name>Hygia.FaultManagement.Domain</Name>

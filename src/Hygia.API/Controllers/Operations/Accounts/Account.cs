@@ -1,4 +1,4 @@
-namespace Hygia.Web.Controllers.Operations.Accounts
+namespace Hygia.API.Controllers.Operations.Accounts
 {
     using System;
     using System.Collections.Generic;
