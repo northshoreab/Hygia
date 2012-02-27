@@ -83,6 +83,12 @@ namespace Hygia.API
                 if (param != null)
                     return param;
 
+
+                var apiKey = Headers["apikey"];
+
+                if (apiKey != null)
+                    return apiKey;
+
                 return string.Empty;
             }
         }

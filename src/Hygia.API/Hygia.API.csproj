@@ -275,6 +275,10 @@
       <Project>{9414D4D0-DB3C-4C4D-BA66-7AC97288F923}</Project>
       <Name>Hygia.Operations.AuditUploads.Api</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Hygia.Operations.Communication.Api\Hygia.Operations.Communication.Api.csproj">
+      <Project>{1F196238-7817-4163-8002-B41681503A94}</Project>
+      <Name>Hygia.Operations.Communication.Api</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Hygia.Operations.Faults.Api\Hygia.Operations.Faults.Api.csproj">
       <Project>{B9B2A6E8-24D7-42B9-BFCE-6EF7578069EC}</Project>
       <Name>Hygia.Operations.Faults.Api</Name>

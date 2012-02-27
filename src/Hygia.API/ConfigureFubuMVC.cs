@@ -3,6 +3,7 @@ namespace Hygia.API
     using Behaviors;
     using Controllers;
     using FubuMVC.Spark;
+    using Operations.Communication.Api;
     using StructureMap;
     using FubuMVC.Core;
     using NServiceBus;
@@ -27,9 +28,13 @@ namespace Hygia.API
             this.UseSpark();
             IncludeDiagnostics(true);
             Applies.ToThisAssembly()
+                .ToAllPackageAssemblies()
                 .ToAssembly("Hygia.Operations.Faults.Api")
+                .ToAssembly("Hygia.Operations.Communication.Api")
+                  .ToAssembly("Hygia.Operations.Communication.Domain")
                 .ToAssembly("Hygia.FaultManagement.Api")
-                .ToAssembly("Hygia.Operations.AuditUploads.Api"); //todo- Better way?
+                .ToAssembly("Hygia.Operations.AuditUploads.Api");
+            //todo- Better way?
 
             // All public methods from concrete classes ending in "Controller"
             // in this assembly are assumed to be action methods
@@ -46,7 +51,10 @@ namespace Hygia.API
             // on model type, view name, and namespace
             Views.TryToAttachWithDefaultConventions();
 
+            
+            //todo: use scanning instead
             ApplyConvention<PersistenceConvention>();
+            ApplyConvention<CommandsToPickUpBehaviourConfiguration>();
         }
     }
 }

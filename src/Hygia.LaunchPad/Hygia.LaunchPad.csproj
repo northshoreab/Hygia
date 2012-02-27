@@ -73,10 +73,6 @@
       <Project>{6A0038B9-C4EE-4D63-8421-02DF506F7AF4}</Project>
       <Name>Hygia.Operations.AuditUploads.Feed</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Hygia.Operations.Communications\Hygia.Operations.Communications.csproj">
-      <Project>{17F39146-3378-4E7D-A99E-3FBC738F4842}</Project>
-      <Name>Hygia.Operations.Communications</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Hygia.Operations.Faults.Feed\Hygia.Operations.Faults.Feed.csproj">
       <Project>{4C47DD0A-EE68-4E0A-9A64-5C4C72A4D058}</Project>
       <Name>Hygia.Operations.Faults.Feed</Name>

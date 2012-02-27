@@ -59,9 +59,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Hygia.Operations.Communications\Hygia.Operations.Communications.csproj">
+    <ProjectReference Include="..\Hygia.Operations.Communications\Hygia.Operations.Communication.csproj">
       <Project>{17F39146-3378-4E7D-A99E-3FBC738F4842}</Project>
-      <Name>Hygia.Operations.Communications</Name>
+      <Name>Hygia.Operations.Communication</Name>
     </ProjectReference>
     <ProjectReference Include="..\Hygia.Operations.Faults.Commands\Hygia.Operations.Faults.Commands.csproj">
       <Project>{C3E15AE4-E527-48FB-B653-EA403FF01F25}</Project>
