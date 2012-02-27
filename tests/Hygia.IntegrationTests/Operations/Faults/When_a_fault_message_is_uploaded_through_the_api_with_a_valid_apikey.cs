@@ -17,12 +17,12 @@
             request.AddHeader("apikey", Guid.Parse("327951bf-bae4-46a4-93a0-71f61dfbe801").ToString());
             request.AddBody(new
                                 {
-                                    MessageId = Guid.Parse("8ec1ce07-36c6-4043-98ed-7cd106239153").ToString(),
+                                    FaultEnvelopeId = Guid.Parse("8ec1ce07-36c6-4043-98ed-7cd106239153").ToString(),
                                     Headers = new Dictionary<string, string>
                                                   {
                                                       { "NServiceBus.OriginalId", "xyz" }, 
                                                       { "NServiceBus.TimeSent", "2012-02-21 21:38:57:236209 Z" },
-                                                      { "NServiceBus.EnclosedMessageTypes", "X.y, Version=1.0.0.0" },
+                                                      { "NServiceBus.EnclosedMessageTypes", "OrderPlaced, Version=1.0.0.0" },
                                                       { "NServiceBus.FailedQ", "orders@myserver" },
                                                       { "NServiceBus.ExceptionInfo.Message", "Test exception message" },
                                                       { "NServiceBus.ExceptionInfo.Reason", "Some reason" },

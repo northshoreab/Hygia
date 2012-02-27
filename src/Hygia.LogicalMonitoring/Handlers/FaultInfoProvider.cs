@@ -12,14 +12,20 @@ namespace Hygia.LogicalMonitoring.Handlers
         public dynamic ProvideFor(Guid faultEnvelopeId, IEnumerable<Guid> messageTypes)
         {
             var id = messageTypes.FirstOrDefault();
-            MessageType messageType = null;
+            string messageTypeName = null;
 
             if (id != null)
-                messageType = Session.Load<MessageType>(id);
+            {
+                var messageType = Session.Load<MessageType>(id);
+
+                if (messageType != null)
+                    messageTypeName = messageType.Type;
+            }
+            
 
             return new
                        {
-                           MessageTypeName = messageType == null ? "No message type found" : messageType.Type
+                           MessageTypeName = messageTypeName
                        };
         }
     }

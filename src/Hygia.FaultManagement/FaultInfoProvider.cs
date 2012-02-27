@@ -17,7 +17,8 @@
                        {
                            fault.TimeOfFailure,
                            fault.Exception.Message,
-                           fault.Body
+                           fault.Body,
+                           fault.Headers
                        };
         }
     }

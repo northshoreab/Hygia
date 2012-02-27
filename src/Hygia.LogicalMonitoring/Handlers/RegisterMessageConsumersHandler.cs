@@ -19,9 +19,7 @@
 
         public void Handle(RegisterMessageConsumers message)
         {
-            var messageTypeId = message.MessageTypeId.ToString();
-
-            var messageType = session.Load<MessageType>(messageTypeId) ?? new MessageType{ Id = messageTypeId,};
+            var messageType = session.Load<MessageType>(message.MessageTypeId) ?? new MessageType { Id = message.MessageTypeId, };
 
             if (messageType.ConsumedByACs == null)
                 messageType.ConsumedByACs = new List<Guid>();

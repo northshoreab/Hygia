@@ -11,7 +11,7 @@ namespace Hygia.Notifications
     using FaultManagement.Events;
     using Provide;
 
-    public class FaultAlarmHandler : IHandleMessages<FaultRegistered>
+    public class FaultNotificationHandler : IHandleMessages<FaultRegistered>
     {
         public IDocumentSession Session { get; set; }
 
@@ -19,7 +19,7 @@ namespace Hygia.Notifications
 
         readonly IEnumerable<IProvideFaultInformation> _faultInformationProviders;
 
-        public FaultAlarmHandler(IEnumerable<IProvideFaultInformation> faultInformationProviders)
+        public FaultNotificationHandler(IEnumerable<IProvideFaultInformation> faultInformationProviders)
         {
             _faultInformationProviders = faultInformationProviders;
         }
@@ -57,8 +57,10 @@ namespace Hygia.Notifications
 
         string FormatSubject(dynamic faultInformation)
         {
+            var messageType = faultInformation.MessageTypeName ?? faultInformation.Headers["NServiceBus.EnclosedMessageTypes"];
+
             //todo: Use templating engine
-            return string.Format("Message of type {0}", faultInformation.MessageTypeName);
+            return string.Format("[WatchR|NewFault] Message of type {0} has failed", messageType);
         }
 
         string FormatBody(dynamic faultInformation)

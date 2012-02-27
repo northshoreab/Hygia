@@ -17,7 +17,7 @@
 
         public void Handle(RegisterMessageType message)
         {
-            var messageTypeId = message.MessageTypeId.ToString();
+            var messageTypeId = message.MessageTypeId;
 
             var messageType = session.Load<MessageType>(messageTypeId);
 

@@ -115,10 +115,6 @@
       <Project>{C4F880A3-653F-4CC9-9333-DBE2CB4EFEF9}</Project>
       <Name>Hygia.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\Hygia.LaunchPad\Hygia.LaunchPad.csproj">
-      <Project>{3AECB1E9-D566-4224-BBFB-E2AA66F77681}</Project>
-      <Name>Hygia.LaunchPad</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\src\Hygia.LogicalMonitoring\Hygia.LogicalMonitoring.csproj">
       <Project>{ACD5D3D1-675A-49EF-8CF4-7E27528CFAC1}</Project>
       <Name>Hygia.LogicalMonitoring</Name>

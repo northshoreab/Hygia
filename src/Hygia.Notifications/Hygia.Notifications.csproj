@@ -50,7 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CriticalTimeSLAViolatedHandler.cs" />
-    <Compile Include="FaultAlarmHandler.cs" />
+    <Compile Include="FaultNotificationHandler.cs" />
     <Compile Include="Summary\Commands\ProcessSLABreachMessageReceived.cs" />
     <Compile Include="Summary\Handlers\AlertCommandHandlers.cs" />
     <Compile Include="Summary\Saga\Data\AlerterSummarySagaData.cs" />

@@ -2,13 +2,14 @@
 
 namespace Hygia.LogicalMonitoring.Inspectors
 {
+    using System;
     using System.Linq;
     using Commands;
     using NServiceBus;
     using NServiceBus.Unicast.Subscriptions;
     using Operations.Events;
 
-    public class MessageTypesInspector : IHandleMessages<AuditMessageReceived>
+    public class MessageTypesInspector : IHandleMessages<AuditMessageReceived>, IHandleMessages<FaultMessageReceived>
     {
         readonly IBus bus;
 
@@ -25,23 +26,36 @@ namespace Hygia.LogicalMonitoring.Inspectors
                 return;
 
             foreach (var messageType in messageTypes)
-            {
-                var messageIntent = DetectIntent(messageReceived, messageType);
-                
-                bus.Send(new RegisterMessageType
-                                 {
-                                     MessageTypeId = messageType.TypeName.ToGuid(),
-                                     MessageType = messageType.TypeName, 
-                                     MessageVersion = messageType.Version.ToString(),
-                                     MessageIntent = messageIntent
-                                 });
-            }
-                
+                RegisterMessageType(DetectIntent(messageReceived, messageType), messageType);
+
+        }
+
+        public void Handle(FaultMessageReceived message)
+        {
+            var messageTypes = message.Headers.MessageTypes().ToList();
+
+            if (!messageTypes.Any())
+                return;
+
+            foreach (var messageType in messageTypes)
+                RegisterMessageType(MessageIntent.Unknown, messageType);
+
+        }
+
+        void RegisterMessageType(MessageIntent messageIntent, MessageType messageType)
+        {
+            bus.Send(new RegisterMessageType
+                         {
+                             MessageTypeId = messageType.TypeName.ToGuid(),
+                             MessageType = messageType.TypeName,
+                             MessageVersion = messageType.Version.ToString(),
+                             MessageIntent = messageIntent
+                         });
         }
 
         MessageIntent DetectIntent(AuditMessageReceived envelope, MessageType messageType)
         {
-            switch(envelope.AdditionalInformation["MessageIntent"])
+            switch (envelope.AdditionalInformation["MessageIntent"])
             {
                 case "Publish":
                     return MessageIntent.Event;
@@ -51,13 +65,13 @@ namespace Hygia.LogicalMonitoring.Inspectors
                     return MessageIntent.Subscribe;
             }
 
-            if(envelope.IsControlMessage())
+            if (envelope.IsControlMessage())
                 return MessageIntent.Control;
 
-            if(envelope.CorrelationId() != null)
+            if (envelope.CorrelationId() != Guid.Empty)
                 return MessageIntent.Response;
 
-            if(IsCommand(messageType))
+            if (IsCommand(messageType))
                 return MessageIntent.Command;
 
 
@@ -70,6 +84,7 @@ namespace Hygia.LogicalMonitoring.Inspectors
             return messageType.TypeName.Contains("Command");
         }
 
+      
     }
 
     public enum MessageIntent

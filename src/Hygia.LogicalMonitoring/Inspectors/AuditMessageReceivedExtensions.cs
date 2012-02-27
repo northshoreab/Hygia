@@ -53,14 +53,20 @@ namespace Hygia
 
         public static IEnumerable<MessageType> MessageTypes(this AuditMessageReceived transportMessageReceived)
         {
+            return transportMessageReceived.Headers.MessageTypes();
+        }
+
+        public static IEnumerable<MessageType> MessageTypes(this IDictionary<string,string> headers)
+        {
             var result = new List<MessageType>();
 
-            if (!transportMessageReceived.HasHeader(Headers.EnclosedMessageTypes))
+            if (!headers.ContainsKey(Headers.EnclosedMessageTypes))
                 return result;
 
-            return transportMessageReceived.Headers[Headers.EnclosedMessageTypes].Split(new [] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList()
+            return headers[Headers.EnclosedMessageTypes].Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries).ToList()
                 .Select(s => new MessageType(s));
         }
+
 
         public static IEnumerable<string> GetPipelineInfoFor(this AuditMessageReceived envelope,MessageType messageType)
         {
