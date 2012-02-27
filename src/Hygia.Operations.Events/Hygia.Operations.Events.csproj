@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="AuditMessageReceived.cs" />
     <Compile Include="FaultMessageReceived.cs" />
+    <Compile Include="EmailReceived.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

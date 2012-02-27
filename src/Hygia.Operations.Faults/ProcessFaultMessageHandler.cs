@@ -1,4 +1,6 @@
-﻿namespace Hygia.Operations.Faults
+﻿using System;
+
+namespace Hygia.Operations.Faults
 {
     using Commands;
     using Events;

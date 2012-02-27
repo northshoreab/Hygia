@@ -1,18 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Hygia.Core;
-using Hygia.FaultManagement.Domain;
-using Hygia.FaultManagement.Events;
-using NServiceBus;
-using NServiceBus.Unicast.Subscriptions;
-using Headers = NServiceBus.Unicast.Monitoring.Headers;
-
-namespace Hygia.FaultManagement
+﻿namespace Hygia.FaultManagement
 {
-    //using NServiceBus;
     using Operations.Events;
     using Raven.Client;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Core;
+    using Domain;
+    using Events;
+    using NServiceBus;
+    using NServiceBus.Unicast.Subscriptions;
+    using Headers = NServiceBus.Unicast.Monitoring.Headers;
 
     public class FaultHistoryHandler : IHandleMessages<FaultMessageReceived>
     {
