@@ -51,11 +51,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LaunchPadCommands\EmailCommand.cs" />
-    <Compile Include="LaunchPadCommands\EmailReceivedHandler.cs" />
-    <Compile Include="LaunchPadCommands\DeleteCommand.cs" />
-    <Compile Include="LaunchPadCommands\LaunchPadCommands.cs" />
-    <Compile Include="LaunchPadCommands\RetryCommand.cs" />
     <Compile Include="ProcessFaultMessageHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -3,7 +3,6 @@ namespace Hygia.FaultManagement
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using EmailCommands;
     using LaunchPadCommands;
     using Operations.Communications;
     using Operations.Events;
@@ -42,7 +41,7 @@ namespace Hygia.FaultManagement
                                                         });
                             break;
                         case EmailLaunchPadCommandTypes.Delete:
-                            _launchPadCommands.Send(new DeleteCommand());
+                            _launchPadCommands.Send(new DeleteCommand {MessageId = messageId});
                             break;
                     }
                 }                

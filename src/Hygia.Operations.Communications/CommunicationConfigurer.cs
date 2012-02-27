@@ -1,4 +1,4 @@
-﻿using Hygia.Operations.Communications.LaunchPadCommands;
+﻿using Hygia.Operations.Communications.LaunchPad;
 
 namespace Hygia.Operations.Communications
 {

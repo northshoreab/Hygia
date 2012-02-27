@@ -44,13 +44,13 @@ namespace Hygia.Operations.Email
                 {
                     var msg = pop.GetMessage(i);
 
-                    _bus.Publish(new EmailReceived
-                                     {
-                                         To = msg.To.Select(x => x.Address),
-                                         Body = msg.Body,
-                                         From = msg.From.Address,
-                                         Subject = msg.Subject
-                                     });
+                    _bus.Publish<EmailReceived>(email =>
+                                                    {
+                                                        email.To = msg.To.Select(x => x.Address);
+                                                        email.Body = msg.Body;
+                                                        email.From = msg.From.Address;
+                                                        email.Subject = msg.Subject;
+                                                    });
 
                     pop.DeleteMessage(i);
                 }

@@ -64,7 +64,7 @@
     <Compile Include="Cloud\CloudUploader.cs" />
     <Compile Include="ILaunchPadCommands.cs" />
     <Compile Include="IUploadToTheBackend.cs" />
-    <Compile Include="LaunchPadCommands\LaunchPadCommandPersister.cs" />
+    <Compile Include="LaunchPad\LaunchPadCommandPersister.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CommunicationConfigurer.cs" />
     <Compile Include="TransportFactory.cs" />

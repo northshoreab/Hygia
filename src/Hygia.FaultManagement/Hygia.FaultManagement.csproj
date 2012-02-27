@@ -73,8 +73,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FaultEmailCommandHandler.cs" />
     <Compile Include="FaultHistoryHandler.cs" />
     <Compile Include="FaultInfoProvider.cs" />
+    <Compile Include="LaunchPadCommands\DeleteCommand.cs" />
+    <Compile Include="LaunchPadCommands\EmailCommand.cs" />
+    <Compile Include="LaunchPadCommands\EmailLaunchPadCommandTypes.cs" />
+    <Compile Include="LaunchPadCommands\RetryCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -96,6 +101,10 @@
     <ProjectReference Include="..\Hygia.Notifications.Provide\Hygia.Notifications.Provide.csproj">
       <Project>{6AEE8B0C-ED5D-4B25-B863-FB4A47B507CC}</Project>
       <Name>Hygia.Notifications.Provide</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hygia.Operations.Communications\Hygia.Operations.Communications.csproj">
+      <Project>{17F39146-3378-4E7D-A99E-3FBC738F4842}</Project>
+      <Name>Hygia.Operations.Communications</Name>
     </ProjectReference>
     <ProjectReference Include="..\Hygia.Operations.Events\Hygia.Operations.Events.csproj">
       <Project>{A1BD8BAC-28CC-4169-B73E-B13C22132DFB}</Project>
