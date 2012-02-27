@@ -3,6 +3,7 @@
     using System;
     using System.Net;
     using RestSharp;
+    using log4net;
 
     public class CloudUploader:IUploadToTheBackend
     {
@@ -24,6 +25,10 @@
 
             if (response.StatusCode != HttpStatusCode.OK)
                 throw new Exception("Failed to upload message: " + response.StatusDescription);
+
+            logger.InfoFormat("{0} uploaded successfully to {1}",message.GetType().Name,ApiUrl+action);
         }
+
+        static readonly ILog logger = LogManager.GetLogger("communication");
     }
 }
