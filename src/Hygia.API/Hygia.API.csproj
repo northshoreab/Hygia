@@ -232,6 +232,24 @@
     <Compile Include="Controllers\Operations\Events\AccountCreated.cs" />
     <Compile Include="Controllers\VersionController.cs" />
     <Compile Include="Controllers\WebController.cs" />
+    <Compile Include="Features\Funnel.cs" />
+    <Compile Include="Features\HighChartsLineChart.cs" />
+    <Compile Include="Features\LineChart.cs" />
+    <Compile Include="Features\MessageTypePerMinute\Controllers\MessageTypePerMinuteController.cs" />
+    <Compile Include="Features\MessageTypePerMinute\Controllers\MessageTypePerMinuteTypeCompareController.cs" />
+    <Compile Include="Features\MessageTypePerMinute\Domain\MessageTypePerMinuteSetting.cs" />
+    <Compile Include="Features\MessageTypePerMinute\Domain\MessageTypePerMinuteTypeCompare.cs" />
+    <Compile Include="Features\MessageTypePerMinute\Models\MessageTypePerMinuteModel.cs" />
+    <Compile Include="Features\MessageTypePerMinute\Models\MessageTypePerMinuteTypeCompareModel.cs" />
+    <Compile Include="Features\PieChart.cs" />
+    <Compile Include="Features\SystemNotification\Controllers\SystemNotificationController.cs" />
+    <Compile Include="Features\SystemNotification\Controllers\SystemNotificationItemController.cs" />
+    <Compile Include="Features\SystemNotification\Models\SystemNotificationItemModel.cs" />
+    <Compile Include="Features\SystemNotification\Models\SystemNotificationModel.cs" />
+    <Compile Include="Features\SystemNotification\NotificationExtensions.cs" />
+    <Compile Include="Features\Tests\Controllers\WidgetController.cs" />
+    <Compile Include="Features\Tests\Models\TestWidgetModel.cs" />
+    <Compile Include="Features\Tests\Testdata\TestdataHelper.cs" />
     <Compile Include="Models\HomeViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -244,6 +262,10 @@
     <ProjectReference Include="..\Hygia.FaultManagement.Domain\Hygia.FaultManagement.Domain.csproj">
       <Project>{FE5A6411-D13A-4252-9E95-BE775D172560}</Project>
       <Name>Hygia.FaultManagement.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hygia.Notifications.Domain\Hygia.Notifications.Domain.csproj">
+      <Project>{90281B60-6D3F-479D-8449-1F25E81B4991}</Project>
+      <Name>Hygia.Notifications.Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\Hygia.Operations.AuditUploads.Api\Hygia.Operations.AuditUploads.Api.csproj">
       <Project>{9414D4D0-DB3C-4C4D-BA66-7AC97288F923}</Project>

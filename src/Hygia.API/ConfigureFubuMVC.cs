@@ -27,7 +27,7 @@ namespace Hygia.API
             IncludeDiagnostics(true);
             Applies.ToThisAssembly()
                 .ToAssembly("Hygia.Operations.Faults.Api")
-   .ToAssembly("Hygia.Operations.AuditUploads.Api"); //todo- Better way?
+                .ToAssembly("Hygia.Operations.AuditUploads.Api"); //todo- Better way?
 
             // All public methods from concrete classes ending in "Controller"
             // in this assembly are assumed to be action methods
