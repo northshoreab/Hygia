@@ -67,7 +67,6 @@ namespace Hygia.API
 
         public string EnvironmentId
         {
-            // ta fram key på nått bra sätt...
             get
             {
                 var cookie = Cookies["environment"];

@@ -1,5 +1,6 @@
 namespace Hygia.API
 {
+    using Behaviors;
     using Controllers;
     using FubuMVC.Spark;
     using StructureMap;
@@ -44,6 +45,8 @@ namespace Hygia.API
             // Match views to action methods by matching
             // on model type, view name, and namespace
             Views.TryToAttachWithDefaultConventions();
+
+            ApplyConvention<PersistenceConvention>();
         }
     }
 }
