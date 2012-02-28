@@ -1,6 +1,5 @@
 using System.Configuration;
 using System.Linq;
-using System.Timers;
 using Hygia.Operations.Events;
 using NServiceBus;
 using NServiceBus.Config;
@@ -9,6 +8,7 @@ using NServiceBus.Unicast;
 namespace Hygia.Operations.Email
 {
     using System;
+    using System.Threading;
     using log4net;
 
     public class EmailReciever : INeedInitialization, IWantToRunWhenTheBusStarts
@@ -30,11 +30,10 @@ namespace Hygia.Operations.Email
             int.TryParse(ConfigurationManager.AppSettings["CheckIntervalInSeconds"], out _checkInterval);
             int.TryParse(ConfigurationManager.AppSettings["POP3Port"], out _pop3Port);
             bool.TryParse(ConfigurationManager.AppSettings["Pop3IsSSL"], out _pop3IsSsl);
-            _timer = new Timer(_checkInterval * 1000);
-            _timer.Elapsed += TimerElapsed;
+          
         }
 
-        private void TimerElapsed(object sender, ElapsedEventArgs e)
+        private void TimerElapsed(object sender)
         {
             try
             {
@@ -47,31 +46,43 @@ namespace Hygia.Operations.Email
 
                         var environmentId = to.Split('+').FirstOrDefault();
 
-                        Bus.Publish<EmailReceived>(email =>
-                        {
-                            if (!string.IsNullOrEmpty(environmentId))
-                                email.SetHeader("EnvironmentId",environmentId);
+                        Guid temp;
 
-                            email.To = msg.To.First().Address;
-                            email.Body = msg.Body;
-                            email.From = msg.From.Address;
-                            email.Subject = msg.Subject;
-                        });
+                        if (!Guid.TryParse(environmentId, out temp))
+                            environmentId = null;
+
+                        Bus.Publish<EmailReceived>(email =>
+                                                       {
+                                                       
+                                                           if (!string.IsNullOrEmpty(environmentId))
+                                                               email.SetHeader("EnvironmentId", environmentId);
+
+                                                           email.To = msg.To.First().Address;
+                                                           email.Body = msg.Body;
+                                                           email.From = msg.From.Address;
+                                                           email.Subject = msg.Subject;
+                                                       });
 
                         pop.DeleteMessage(i);
+
                     }
-                }            
+                }
 
             }
             catch (Exception ex)
             {
                 logger.Error("There was a problem fetching emails from " + _pop3Server, ex);
             }
+            finally
+            {
+                _timer.Change(_checkInterval * 1000, int.MaxValue);
+            }
         }
 
         public void Run()
         {
-            _timer.Start();
+            _timer = new Timer(TimerElapsed, null,0, int.MaxValue);
+
         }
 
         static ILog logger = LogManager.GetLogger("emails");
