@@ -2,15 +2,18 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Dynamic;
     using System.Globalization;
     using System.IO;
     using System.Linq;
     using System.Messaging;
+    using System.Text;
     using System.Xml.Serialization;
 
     public class NServiceBusMessage
     {
-        readonly IList<string> messageTypes = new List<string>();
+        readonly IList<NSBMessage> messages = new List<NSBMessage>();
 
         public NServiceBusMessage()
         {
@@ -36,7 +39,7 @@
 
         bool processingTimesSet;
 
-        public NServiceBusMessage ProcessingTimes(DateTime sent,DateTime received,DateTime processed)
+        public NServiceBusMessage ProcessingTimes(DateTime sent, DateTime received, DateTime processed)
         {
             Headers["NServiceBus.TimeSent"] = sent.ToWireFormattedString();
             Headers["NServiceBus.ProcessingStarted"] = received.ToWireFormattedString();
@@ -54,25 +57,37 @@
             return this;
         }
 
-        public NServiceBusMessage AddMessage(string typeName,string version)
+        public NServiceBusMessage AddMessage(string typeName, string version)
         {
-            messageTypes.Add(string.Format("{0}, Version={1}, Culture=neutral, PublicKeyToken=null",typeName,version));
+
+            return this.AddMessage(typeName, version, null);
+        }
+
+        public NServiceBusMessage AddMessage(string typeName, string version, dynamic message)
+        {
+            messages.Add(new NSBMessage
+            {
+                MessageType = string.Format("{0}, Version={1}, Culture=neutral, PublicKeyToken=null", typeName, version),
+                Body = message
+            });
 
             return this;
         }
 
         public NServiceBusMessage AddMessage(string assemblyQualifiedName)
         {
-            messageTypes.Add(assemblyQualifiedName);
+            messages.Add(new NSBMessage
+            {
+                MessageType = assemblyQualifiedName,
+                Body = null
+            });
 
             return this;
         }
 
         public NServiceBusMessage AddMessage(Type messageType)
         {
-            messageTypes.Add(messageType.AssemblyQualifiedName);
-
-            return this;
+            return this.AddMessage(messageType.AssemblyQualifiedName);
         }
 
 
@@ -121,14 +136,43 @@
 
         void SerializeMessages()
         {
-            //for now just add the header
-            Headers[EnclosedMessageTypes] = string.Join(";",messageTypes);
+            var message = messages.First();
 
-            Body = null;//new byte[1];
+            //for now just add the header
+            Headers[EnclosedMessageTypes] = string.Join(";", messages.Select(m=>m.MessageType));
+
+            var root = message.MessageType.Split(',').First().Split('.').Last();
+            var ns = "Hygia.Operations.Events";
+
+            var result = "<?xml version='1.0' ?><Messages xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns='http://tempuri.net/" + ns + "'><" + root + ">";
+
+            foreach (var pair in (IDictionary<string,object>)ToDynamic( message.Body) )
+            {
+                result += string.Format("<{0}>{1}</{0}>",pair.Key,pair.Value);
+            }
+            result += "</" + root + "></Messages>";
+
+            Body = Encoding.UTF8.GetBytes(result);
         }
 
         public const string EnclosedMessageTypes = "NServiceBus.EnclosedMessageTypes";
         readonly XmlSerializer headerSerializer = new XmlSerializer(typeof(List<HeaderInfo>));
+
+        public static dynamic ToDynamic(object value)
+        {
+            IDictionary<string, object> expando = new ExpandoObject();
+
+            foreach (PropertyDescriptor property in TypeDescriptor.GetProperties(value.GetType()))
+                expando.Add(property.Name, property.GetValue(value));
+
+            return expando as ExpandoObject;
+        }
+    }
+
+    internal class NSBMessage
+    {
+        public string MessageType { get; set; }
+        public dynamic Body { get; set; }
     }
 
     public enum MessageIntent

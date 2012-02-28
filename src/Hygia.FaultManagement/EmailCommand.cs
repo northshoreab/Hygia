@@ -4,6 +4,10 @@ namespace Hygia.FaultManagement
 
     public class EmailCommand
     {
+        public EmailCommand()
+        {
+        }
+
         public EmailCommand(string name)
         {
             Name = name;

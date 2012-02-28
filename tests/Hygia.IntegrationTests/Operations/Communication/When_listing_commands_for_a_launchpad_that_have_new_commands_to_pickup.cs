@@ -1,4 +1,4 @@
-namespace Hygia.IntegrationTests.Operations.Faults
+namespace Hygia.IntegrationTests.Operations.Communication
 {
     using System;
     using Machine.Specifications;

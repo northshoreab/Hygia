@@ -2,6 +2,7 @@ namespace Hygia.FaultManagement
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.Linq;
     using Commands;
     using Operations.Events;
