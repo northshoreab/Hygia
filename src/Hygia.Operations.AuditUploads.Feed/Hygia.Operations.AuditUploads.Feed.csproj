@@ -73,9 +73,9 @@
       <Project>{F69BC5DB-C4E2-4AA0-A622-AA0C20CB2E3F}</Project>
       <Name>Hygia.Operations.AuditUploads.Commands</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Hygia.Operations.Communications\Hygia.Operations.Communication.csproj">
-      <Project>{17F39146-3378-4E7D-A99E-3FBC738F4842}</Project>
-      <Name>Hygia.Operations.Communication</Name>
+    <ProjectReference Include="..\Hygia.Operations.Communication.LaunchPad\Hygia.Operations.Communication.LaunchPad.csproj">
+      <Project>{A2B1B8E9-CB6C-4FFB-9B9A-E96B18F1F7D1}</Project>
+      <Name>Hygia.Operations.Communication.LaunchPad</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

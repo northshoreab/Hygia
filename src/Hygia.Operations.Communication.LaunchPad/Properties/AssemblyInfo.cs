@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Hygia.Operations.Communications")]
+[assembly: AssemblyTitle("Hygia.Operations.Communication.LaunchPad")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Hygia.Operations.Communications")]
+[assembly: AssemblyProduct("Hygia.Operations.Communication.LaunchPad")]
 [assembly: AssemblyCopyright("Copyright ©  2012")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("367a9402-21d6-41b4-ba63-3de327d2a174")]
+[assembly: Guid("057d7f80-8895-4268-8877-5923d2a2bf1a")]
 
 // Version information for an assembly consists of the following four values:
 //

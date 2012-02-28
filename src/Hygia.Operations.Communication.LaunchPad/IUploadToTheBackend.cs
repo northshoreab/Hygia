@@ -1,4 +1,4 @@
-namespace Hygia.Operations.Communications
+namespace Hygia.Operations.Communication.LaunchPad
 {
     public interface IUploadToTheBackend
     {

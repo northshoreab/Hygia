@@ -1,6 +1,5 @@
-﻿using Hygia.Operations.Communications.LaunchPad;
-
-namespace Hygia.Operations.Communications
+﻿
+namespace Hygia.Operations.Communication.LaunchPad
 {
     using System.Configuration;
     using Cloud;
@@ -19,7 +18,6 @@ namespace Hygia.Operations.Communications
             else
                 CloudMode(key);
 
-            Configure.Instance.Configurer.ConfigureComponent<LaunchPadCommandPersister>(DependencyLifecycle.SingleInstance);
             Configure.Instance.Configurer.ConfigureComponent<TransportFactory>(DependencyLifecycle.SingleInstance);
         }
 

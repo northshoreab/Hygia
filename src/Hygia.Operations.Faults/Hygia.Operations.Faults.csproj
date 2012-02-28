@@ -55,10 +55,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Hygia.Operations.Communications\Hygia.Operations.Communications.csproj">
-      <Project>{17F39146-3378-4E7D-A99E-3FBC738F4842}</Project>
-      <Name>Hygia.Operations.Communications</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Hygia.Operations.Events\Hygia.Operations.Events.csproj">
       <Project>{A1BD8BAC-28CC-4169-B73E-B13C22132DFB}</Project>
       <Name>Hygia.Operations.Events</Name>

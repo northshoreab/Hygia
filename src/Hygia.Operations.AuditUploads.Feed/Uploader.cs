@@ -1,10 +1,9 @@
-using Hygia.Operations.AuditUploads.Commands;
-
 namespace Hygia.Operations.AuditUploads.Feed
 {
     using System.Collections.Generic;
     using System.Configuration;
-    using Communications;
+    using Commands;
+    using Communication.LaunchPad;
     using NServiceBus;
     using NServiceBus.Config;
     using NServiceBus.Unicast;

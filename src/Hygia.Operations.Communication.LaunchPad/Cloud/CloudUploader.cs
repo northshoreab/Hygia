@@ -1,4 +1,4 @@
-﻿namespace Hygia.Operations.Communications.Cloud
+﻿namespace Hygia.Operations.Communication.LaunchPad.Cloud
 {
     using System;
     using System.Net;

@@ -4,7 +4,7 @@ namespace Hygia.Operations.Faults.Feed
     using System.Text;
     using System.Threading;
     using Commands;
-    using Communications;
+    using Communication.LaunchPad;
     using NServiceBus;
     using NServiceBus.Config;
     using NServiceBus.Unicast;

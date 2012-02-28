@@ -4,13 +4,13 @@ namespace Hygia.FaultManagement
     using System.Collections.Generic;
     using System.Linq;
     using LaunchPadCommands;
-    using Operations.Communications;
+    using Operations.Communication;
     using Operations.Events;
     using NServiceBus;
 
     public class FaultEmailCommandHandler : IHandleMessages<EmailReceived>
     {
-        private readonly ILaunchPadCommands _launchPadCommands;
+        private readonly ILaunchPadCommand launchPadCommand;
 
         private class FaultDetailsInMail
         {
@@ -18,9 +18,9 @@ namespace Hygia.FaultManagement
             public IEnumerable<Guid> MessageIds { get; set; }
         }
 
-        public FaultEmailCommandHandler(ILaunchPadCommands launchPadCommands)
+        public FaultEmailCommandHandler(ILaunchPadCommand launchPadCommand)
         {
-            _launchPadCommands = launchPadCommands;
+            launchPadCommand = launchPadCommand;
         }
 
         public void Handle(EmailReceived emailReceived)
@@ -34,14 +34,14 @@ namespace Hygia.FaultManagement
                     switch (command.Name.ToUpper())
                     {
                         case EmailLaunchPadCommandTypes.Retry:
-                            _launchPadCommands.Send(new RetryCommand
+                            launchPadCommand.Send(new RetryCommand
                                                         {
                                                             RetryType = command.Values.First(x => x.Key == "TYPE").Value,
                                                             MessageId = messageId
                                                         });
                             break;
                         case EmailLaunchPadCommandTypes.Delete:
-                            _launchPadCommands.Send(new DeleteCommand {MessageId = messageId});
+                            launchPadCommand.Send(new DeleteCommand {MessageId = messageId});
                             break;
                     }
                 }                

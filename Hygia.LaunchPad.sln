@@ -11,7 +11,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hygia.Operations.Faults.Fee
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Operations", "Operations", "{D81B785D-0230-465B-A800-CE658CC786CD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hygia.Operations.Communication", "src\Hygia.Operations.Communications\Hygia.Operations.Communication.csproj", "{17F39146-3378-4E7D-A99E-3FBC738F4842}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hygia.Operations.Communication.LaunchPad", "src\Hygia.Operations.Communication.LaunchPad\Hygia.Operations.Communication.LaunchPad.csproj", "{A2B1B8E9-CB6C-4FFB-9B9A-E96B18F1F7D1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hygia.Operations.AuditUploads.Commands", "src\Hygia.Operations.AuditUploads.Commands\Hygia.Operations.AuditUploads.Commands.csproj", "{F69BC5DB-C4E2-4AA0-A622-AA0C20CB2E3F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hygia.Operations.Faults.Commands", "src\Hygia.Operations.Faults.Commands\Hygia.Operations.Faults.Commands.csproj", "{C3E15AE4-E527-48FB-B653-EA403FF01F25}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +39,18 @@ Global
 		{4C47DD0A-EE68-4E0A-9A64-5C4C72A4D058}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C47DD0A-EE68-4E0A-9A64-5C4C72A4D058}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C47DD0A-EE68-4E0A-9A64-5C4C72A4D058}.Release|Any CPU.Build.0 = Release|Any CPU
-		{17F39146-3378-4E7D-A99E-3FBC738F4842}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{17F39146-3378-4E7D-A99E-3FBC738F4842}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{17F39146-3378-4E7D-A99E-3FBC738F4842}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{17F39146-3378-4E7D-A99E-3FBC738F4842}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2B1B8E9-CB6C-4FFB-9B9A-E96B18F1F7D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2B1B8E9-CB6C-4FFB-9B9A-E96B18F1F7D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2B1B8E9-CB6C-4FFB-9B9A-E96B18F1F7D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2B1B8E9-CB6C-4FFB-9B9A-E96B18F1F7D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F69BC5DB-C4E2-4AA0-A622-AA0C20CB2E3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F69BC5DB-C4E2-4AA0-A622-AA0C20CB2E3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F69BC5DB-C4E2-4AA0-A622-AA0C20CB2E3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F69BC5DB-C4E2-4AA0-A622-AA0C20CB2E3F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3E15AE4-E527-48FB-B653-EA403FF01F25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3E15AE4-E527-48FB-B653-EA403FF01F25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3E15AE4-E527-48FB-B653-EA403FF01F25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3E15AE4-E527-48FB-B653-EA403FF01F25}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -47,6 +59,8 @@ Global
 		{6A0038B9-C4EE-4D63-8421-02DF506F7AF4} = {D81B785D-0230-465B-A800-CE658CC786CD}
 		{4C47DD0A-EE68-4E0A-9A64-5C4C72A4D058} = {D81B785D-0230-465B-A800-CE658CC786CD}
 		{5C10F8AE-3AFE-4B51-B6A3-79AEE26A166F} = {D81B785D-0230-465B-A800-CE658CC786CD}
-		{17F39146-3378-4E7D-A99E-3FBC738F4842} = {D81B785D-0230-465B-A800-CE658CC786CD}
+		{A2B1B8E9-CB6C-4FFB-9B9A-E96B18F1F7D1} = {D81B785D-0230-465B-A800-CE658CC786CD}
+		{F69BC5DB-C4E2-4AA0-A622-AA0C20CB2E3F} = {D81B785D-0230-465B-A800-CE658CC786CD}
+		{C3E15AE4-E527-48FB-B653-EA403FF01F25} = {D81B785D-0230-465B-A800-CE658CC786CD}
 	EndGlobalSection
 EndGlobal

@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{4C47DD0A-EE68-4E0A-9A64-5C4C72A4D058}</ProjectGuid>
+    <ProjectGuid>{46D8B4D4-ED58-4831-9880-4785332DFCC3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Hygia.Operations.Faults.Feed</RootNamespace>
-    <AssemblyName>Hygia.Operations.Faults.Feed</AssemblyName>
+    <RootNamespace>Hygia.Operations.Communication.Handlers</RootNamespace>
+    <AssemblyName>Hygia.Operations.Communication.Handlers</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\hygia\</SolutionDir>
@@ -33,17 +33,29 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="log4net">
-      <HintPath>..\..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
+    <Reference Include="AsyncCtpLibrary">
+      <HintPath>..\..\packages\RavenDB.1.0.616\lib\net40\AsyncCtpLibrary.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus">
-      <HintPath>..\..\packages\NServiceBus-CI.3.0.2028\lib\net40\NServiceBus.dll</HintPath>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\packages\Newtonsoft.Json.4.0.5\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.Core">
-      <HintPath>..\..\packages\NServiceBus-CI.3.0.2028\lib\net40\NServiceBus.Core.dll</HintPath>
+    <Reference Include="NLog">
+      <HintPath>..\..\packages\NLog.2.0.0.2000\lib\net40\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="Raven.Abstractions">
+      <HintPath>..\..\packages\RavenDB.1.0.616\lib\net40\Raven.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Raven.Client.Debug">
+      <HintPath>..\..\packages\RavenDB.1.0.616\lib\net40\Raven.Client.Debug.dll</HintPath>
+    </Reference>
+    <Reference Include="Raven.Client.Lightweight">
+      <HintPath>..\..\packages\RavenDB.1.0.616\lib\net40\Raven.Client.Lightweight.dll</HintPath>
+    </Reference>
+    <Reference Include="Raven.Client.MvcIntegration">
+      <HintPath>..\..\packages\RavenDB.1.0.616\lib\net40\Raven.Client.MvcIntegration.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -52,20 +64,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LaunchPadCommandPersister.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Uploader.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Hygia.Operations.Communication.LaunchPad\Hygia.Operations.Communication.LaunchPad.csproj">
-      <Project>{A2B1B8E9-CB6C-4FFB-9B9A-E96B18F1F7D1}</Project>
-      <Name>Hygia.Operations.Communication.LaunchPad</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Hygia.Operations.Faults.Commands\Hygia.Operations.Faults.Commands.csproj">
-      <Project>{C3E15AE4-E527-48FB-B653-EA403FF01F25}</Project>
-      <Name>Hygia.Operations.Faults.Commands</Name>
+    <ProjectReference Include="..\Hygia.Operations.Communication\Hygia.Operations.Communication.csproj">
+      <Project>{7DC1D128-B3F6-400B-9271-B40821DC9FE3}</Project>
+      <Name>Hygia.Operations.Communication</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
