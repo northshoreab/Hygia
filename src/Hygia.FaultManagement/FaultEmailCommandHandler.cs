@@ -4,13 +4,11 @@ namespace Hygia.FaultManagement
     using System.Collections.Generic;
     using System.Linq;
     using LaunchPadCommands;
-    using Operations.Communication;
     using Operations.Events;
     using NServiceBus;
 
     public class FaultEmailCommandHandler : IHandleMessages<EmailReceived>
     {
-        private readonly ILaunchPadCommand launchPadCommand;
 
         private class FaultDetailsInMail
         {
@@ -18,11 +16,7 @@ namespace Hygia.FaultManagement
             public IEnumerable<Guid> MessageIds { get; set; }
         }
 
-        public FaultEmailCommandHandler(ILaunchPadCommand launchPadCommand)
-        {
-            launchPadCommand = launchPadCommand;
-        }
-
+        public IBus Bus { get; set; }
         public void Handle(EmailReceived emailReceived)
         {
             FaultDetailsInMail faultDetailsInMail = ParseEmail(emailReceived);
@@ -33,15 +27,16 @@ namespace Hygia.FaultManagement
                 {
                     switch (command.Name.ToUpper())
                     {
-                        case EmailLaunchPadCommandTypes.Retry:
-                            launchPadCommand.Send(new RetryCommand
+                        case EmailCommandTypes.Retry:
+                            //todo, this should probably be a command to our self to record the fact that we did a retry (and then another message to tell the launchpad to actually do it)
+                            Bus.Send(new RetryFault
                                                         {
                                                             RetryType = command.Values.First(x => x.Key == "TYPE").Value,
                                                             MessageId = messageId
                                                         });
                             break;
-                        case EmailLaunchPadCommandTypes.Delete:
-                            launchPadCommand.Send(new DeleteCommand {MessageId = messageId});
+                        case EmailCommandTypes.Archive:
+                            Bus.Send(new ArchiveFault { MessageId = messageId });
                             break;
                     }
                 }                

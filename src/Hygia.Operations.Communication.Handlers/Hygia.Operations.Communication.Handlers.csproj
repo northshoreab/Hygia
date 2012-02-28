@@ -36,11 +36,20 @@
     <Reference Include="AsyncCtpLibrary">
       <HintPath>..\..\packages\RavenDB.1.0.616\lib\net40\AsyncCtpLibrary.dll</HintPath>
     </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\packages\Newtonsoft.Json.4.0.5\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="NLog">
       <HintPath>..\..\packages\NLog.2.0.0.2000\lib\net40\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="NServiceBus">
+      <HintPath>..\..\packages\NServiceBus-CI.3.0.2044\lib\net40\NServiceBus.dll</HintPath>
+    </Reference>
+    <Reference Include="NServiceBus.Core">
+      <HintPath>..\..\packages\NServiceBus-CI.3.0.2044\lib\net40\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="Raven.Abstractions">
       <HintPath>..\..\packages\RavenDB.1.0.616\lib\net40\Raven.Abstractions.dll</HintPath>
@@ -64,13 +73,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LaunchPadCommandPersister.cs" />
+    <Compile Include="LaunchPadCommandHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Hygia.Operations.Communication.Domain\Hygia.Operations.Communication.Domain.csproj">
+      <Project>{BD2F02FB-8605-42CF-B974-1907CE54C8CE}</Project>
+      <Name>Hygia.Operations.Communication.Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Hygia.Operations.Communication\Hygia.Operations.Communication.csproj">
       <Project>{7DC1D128-B3F6-400B-9271-B40821DC9FE3}</Project>
       <Name>Hygia.Operations.Communication</Name>

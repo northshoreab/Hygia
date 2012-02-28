@@ -6,5 +6,7 @@ namespace Hygia.Operations.Communication.Domain
     {
         public Guid Id { get; set; }
         public bool Delivered { get; set; }
+
+        public dynamic Command { get; set; }
     }
 }

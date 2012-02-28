@@ -1,8 +1,8 @@
 namespace Hygia.FaultManagement.LaunchPadCommands
 {
-    public static class EmailLaunchPadCommandTypes
+    public static class EmailCommandTypes
     {
-        public const string Delete = "DELETE";
+        public const string Archive = "DELETE";
         //public const string Issue = "ISSUE";
         public const string Retry = "RETRY";
     }

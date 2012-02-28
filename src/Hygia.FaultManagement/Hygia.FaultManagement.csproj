@@ -76,10 +76,10 @@
     <Compile Include="FaultEmailCommandHandler.cs" />
     <Compile Include="FaultHistoryHandler.cs" />
     <Compile Include="FaultInfoProvider.cs" />
-    <Compile Include="LaunchPadCommands\DeleteCommand.cs" />
+    <Compile Include="LaunchPadCommands\ArchiveFault.cs" />
     <Compile Include="LaunchPadCommands\EmailCommand.cs" />
-    <Compile Include="LaunchPadCommands\EmailLaunchPadCommandTypes.cs" />
-    <Compile Include="LaunchPadCommands\RetryCommand.cs" />
+    <Compile Include="LaunchPadCommands\EmailCommandTypes.cs" />
+    <Compile Include="LaunchPadCommands\RetryFault.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
