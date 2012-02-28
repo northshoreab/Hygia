@@ -20,28 +20,28 @@ namespace Hygia.FaultManagement
         public IBus Bus { get; set; }
         public void Handle(EmailReceived emailReceived)
         {
+            var emailCommand = GetCommand(emailReceived.Body);
+
+            if (emailCommand == null)
+                return;
+
             foreach (var addressInfo in GetAddressInfo(emailReceived))
             {
                 if (addressInfo.Area.ToUpper() != "FAULTS")
                     break;
 
-                if(emailReceived.Body.ToUpper().StartsWith(EmailLaunchPadCommandTypes.Delete))
+                if(emailCommand.Name.ToUpper() == EmailCommandTypes.Retry)
                 {
-                    switch (command.Name.ToUpper())
-                    {
-                        case EmailCommandTypes.Retry:
-                            //todo, this should probably be a command to our self to record the fact that we did a retry (and then another message to tell the launchpad to actually do it)
-                            Bus.Send(new RetryFault
-                                                        {
-                                                            RetryType = command.Values.First(x => x.Key == "TYPE").Value,
-                                                            MessageId = messageId
-                                                        });
-                            break;
-                        case EmailCommandTypes.Archive:
-                            Bus.Send(new ArchiveFault { MessageId = messageId });
-                            break;
-                    }
-                }                
+                    Bus.Send(new RetryFault
+                                 {
+                                     Parameters = emailCommand.Values,
+                                     MessageId = addressInfo.MessageId
+                                 });
+                }
+                else if(emailCommand.Name.ToUpper() == EmailCommandTypes.Archive)
+                {
+                    Bus.Send(new ArchiveFault { MessageId = addressInfo.MessageId, EnvironmentId = addressInfo.EnvironmentId});
+                }
             }
         }
 
@@ -73,9 +73,14 @@ namespace Hygia.FaultManagement
         private EmailCommand GetCommand(string emailBody)
         {
             EmailCommand emailCommand = null;
-            if(emailBody.ToUpper().StartsWith(EmailLaunchPadCommandTypes.Delete))
+
+            if(emailBody.ToUpper().StartsWith(EmailCommandTypes.Retry))
             {
-                emailCommand = new EmailCommand(EmailLaunchPadCommandTypes.Delete);
+                emailCommand = new EmailCommand(EmailCommandTypes.Retry);
+            }
+            else if(emailBody.ToUpper().StartsWith(EmailCommandTypes.Archive))
+            {
+                emailCommand = new EmailCommand(EmailCommandTypes.Archive);
             }
 
             if(emailCommand == null)
