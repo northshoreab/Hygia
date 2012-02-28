@@ -1,4 +1,4 @@
-namespace Hygia.FaultManagement.LaunchPadCommands
+namespace Hygia.FaultManagement
 {
     public static class EmailCommandTypes
     {

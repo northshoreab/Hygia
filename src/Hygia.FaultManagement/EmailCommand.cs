@@ -1,7 +1,7 @@
-using System.Collections.Generic;
-
-namespace Hygia.FaultManagement.LaunchPadCommands
+namespace Hygia.FaultManagement
 {
+    using System.Collections.Generic;
+
     public class EmailCommand
     {
         public EmailCommand(string name)

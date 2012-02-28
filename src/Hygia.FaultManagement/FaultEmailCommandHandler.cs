@@ -3,7 +3,7 @@ namespace Hygia.FaultManagement
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using LaunchPadCommands;
+    using Commands;
     using Operations.Events;
     using NServiceBus;
 

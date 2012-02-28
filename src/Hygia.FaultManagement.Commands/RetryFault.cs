@@ -1,7 +1,6 @@
-using System;
-
-namespace Hygia.FaultManagement.LaunchPadCommands
+namespace Hygia.FaultManagement.Commands
 {
+    using System;
     using Operations.Communication;
 
     public class RetryFault : ILaunchPadCommand

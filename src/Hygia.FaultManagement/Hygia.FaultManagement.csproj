@@ -76,10 +76,8 @@
     <Compile Include="FaultEmailCommandHandler.cs" />
     <Compile Include="FaultHistoryHandler.cs" />
     <Compile Include="FaultInfoProvider.cs" />
-    <Compile Include="LaunchPadCommands\ArchiveFault.cs" />
-    <Compile Include="LaunchPadCommands\EmailCommand.cs" />
-    <Compile Include="LaunchPadCommands\EmailCommandTypes.cs" />
-    <Compile Include="LaunchPadCommands\RetryFault.cs" />
+    <Compile Include="EmailCommand.cs" />
+    <Compile Include="EmailCommandTypes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -89,6 +87,10 @@
     <ProjectReference Include="..\Hygia.Core\Hygia.Core.csproj">
       <Project>{C4F880A3-653F-4CC9-9333-DBE2CB4EFEF9}</Project>
       <Name>Hygia.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hygia.FaultManagement.Commands\Hygia.FaultManagement.Commands.csproj">
+      <Project>{A18663E7-36E5-4BCC-B8F3-1E4A62EA6306}</Project>
+      <Name>Hygia.FaultManagement.Commands</Name>
     </ProjectReference>
     <ProjectReference Include="..\Hygia.FaultManagement.Domain\Hygia.FaultManagement.Domain.csproj">
       <Project>{FE5A6411-D13A-4252-9E95-BE775D172560}</Project>
