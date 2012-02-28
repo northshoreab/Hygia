@@ -7,7 +7,7 @@ namespace Hygia.FaultManagement.Commands
 
     public class RetryFault : ILaunchPadCommand
     {
-        public IDictionary<string, string> Parameters { get; set; }
+        public Dictionary<string, string> Parameters { get; set; }
         public Guid MessageId { get; set; }
         public Guid EnvironmentId { get; set; }
     }

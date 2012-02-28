@@ -26,65 +26,62 @@ namespace Hygia.FaultManagement
             if (emailCommand == null)
                 return;
 
-            foreach (var addressInfo in GetAddressInfo(emailReceived))
-            {
-                if (addressInfo.Area.ToUpper() != "FAULTS")
-                    break;
+            var addressInfo = GetAddressInfo(emailReceived);
 
-                if(emailCommand.Name.ToUpper() == EmailCommandTypes.Retry)
-                {
-                    Bus.Send(new RetryFault
-                                 {
-                                     Parameters = emailCommand.Values,
-                                     MessageId = addressInfo.MessageId
-                                 });
-                }
-                else if(emailCommand.Name.ToUpper() == EmailCommandTypes.Archive)
-                {
-                    Bus.Send(new ArchiveFault { MessageId = addressInfo.MessageId, EnvironmentId = addressInfo.EnvironmentId});
-                }
+            if (addressInfo.Area.ToUpper() != "FAULTS")
+                return;
+
+            if (emailCommand.Name.ToUpper() == EmailCommandTypes.Retry)
+            {
+                Bus.Send(new RetryFault
+                             {
+                                 Parameters = emailCommand.Values,
+                                 MessageId = addressInfo.MessageId
+                             });
             }
+            else if (emailCommand.Name.ToUpper() == EmailCommandTypes.Archive)
+            {
+                Bus.Send(new ArchiveFault { MessageId = addressInfo.MessageId, EnvironmentId = addressInfo.EnvironmentId });
+            }
+
         }
 
-        private IEnumerable<AddressInfo> GetAddressInfo(EmailReceived emailReceived)
+        private AddressInfo GetAddressInfo(EmailReceived emailReceived)
         {
-            foreach (var toAddress in emailReceived.To)
-            {
-                string[] address = toAddress.Split('+');
-                
-                if (address.Count() < 2 || address[1].Length < 39)
-                    break;
+            string[] address = emailReceived.To.Split('+');
 
-                string area = address[1].Substring(0, address[1].IndexOf('-') - 1);
-                Guid messageId;
-                Guid environmentId;
+            if (address.Count() < 2 || address[1].Length < 39)
+                return null;
 
-                Guid.TryParse(address[0], out environmentId);
-                Guid.TryParse(address[0].Substring(area.Length + 1, 38), out messageId);
+            string area = address[1].Split('-').First();
+            Guid messageId;
+            Guid environmentId;
 
-                yield return new AddressInfo
-                                 {
-                                     Area = area,
-                                     EnvironmentId = environmentId,
-                                     MessageId = messageId
-                                 };
-            }
+            Guid.TryParse(address[0], out environmentId);
+            Guid.TryParse(address[1].Split('-').Last(), out messageId);
+
+            return new AddressInfo
+                             {
+                                 Area = area,
+                                 EnvironmentId = environmentId,
+                                 MessageId = messageId
+                             };
         }
 
         private EmailCommand GetCommand(string emailBody)
         {
             EmailCommand emailCommand = null;
 
-            if(emailBody.ToUpper().StartsWith(EmailCommandTypes.Retry))
+            if (emailBody.ToUpper().StartsWith(EmailCommandTypes.Retry))
             {
                 emailCommand = new EmailCommand(EmailCommandTypes.Retry);
             }
-            else if(emailBody.ToUpper().StartsWith(EmailCommandTypes.Archive))
+            else if (emailBody.ToUpper().StartsWith(EmailCommandTypes.Archive))
             {
                 emailCommand = new EmailCommand(EmailCommandTypes.Archive);
             }
 
-            if(emailCommand == null)
+            if (emailCommand == null)
                 return null;
 
             int rowLength = emailBody.IndexOf('\n');
@@ -95,7 +92,7 @@ namespace Hygia.FaultManagement
             return emailCommand;
         }
 
-        private IDictionary<string, string> ParseCommandValues(string valueString)
+        private Dictionary<string, string> ParseCommandValues(string valueString)
         {
             return valueString.Split(';').Select(x => x.Split('=')).ToDictionary(k => k[0], v => v[1]);
         }

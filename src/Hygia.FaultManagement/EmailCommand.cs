@@ -14,6 +14,6 @@ namespace Hygia.FaultManagement
         }
 
         public string Name { get; private set; }
-        public IDictionary<string, string> Values { get; set; }
+        public Dictionary<string, string> Values { get; set; }
     }
 }
