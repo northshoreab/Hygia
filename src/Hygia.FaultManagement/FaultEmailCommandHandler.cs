@@ -15,7 +15,6 @@ namespace Hygia.FaultManagement
         {
             public string Area { get; set; }
             public Guid MessageId { get; set; }
-            public Guid EnvironmentId { get; set; }
         }
 
         public IBus Bus { get; set; }
@@ -27,6 +26,9 @@ namespace Hygia.FaultManagement
                 return;
 
             var addressInfo = GetAddressInfo(emailReceived);
+
+            if (addressInfo == null)
+                return;
 
             if (addressInfo.Area.ToUpper() != "FAULTS")
                 return;
@@ -41,7 +43,7 @@ namespace Hygia.FaultManagement
             }
             else if (emailCommand.Name.ToUpper() == EmailCommandTypes.Archive)
             {
-                Bus.Send(new ArchiveFault { MessageId = addressInfo.MessageId, EnvironmentId = addressInfo.EnvironmentId });
+                Bus.Send(new ArchiveFault { MessageId = addressInfo.MessageId});
             }
 
         }
@@ -50,21 +52,18 @@ namespace Hygia.FaultManagement
         {
             string[] address = emailReceived.To.Split('+');
 
-            if (address.Count() < 2 || address[1].Length < 39)
+            if (address.Count() < 2)
                 return null;
 
             string area = address[1].Split('-').First();
-            Guid messageId;
-            Guid environmentId;
 
-            Guid.TryParse(address[0], out environmentId);
-            Guid.TryParse(address[1].Split('-').Last(), out messageId);
+            var id = address[1].Substring(area.Length+1).Split('@').First();
 
+            
             return new AddressInfo
                              {
                                  Area = area,
-                                 EnvironmentId = environmentId,
-                                 MessageId = messageId
+                                 MessageId = Guid.Parse(id)
                              };
         }
 

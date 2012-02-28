@@ -20,6 +20,8 @@ namespace Hygia.IntegrationTests.Operations.Faults
                                                                               Subject = "Subject",
                                                                               Body = "Retry"
                                                                         });
+
+            message.Headers["EnvironmentId"] = apiKey.ToString();
         };
 
 

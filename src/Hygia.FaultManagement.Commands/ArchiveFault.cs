@@ -4,7 +4,6 @@ namespace Hygia.FaultManagement.Commands
 
     public class ArchiveFault
     {
-        public Guid EnvironmentId { get; set; }
         public Guid MessageId { get; set; }
     }
 }

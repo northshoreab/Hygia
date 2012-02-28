@@ -43,9 +43,15 @@ namespace Hygia.Operations.Email
                     for (var i = pop.GetMessageCount() - 1; i >= 0; i--)
                     {
                         var msg = pop.GetMessage(i);
+                        var to = msg.To.First().Address;
+
+                        var environmentId = to.Split('+').FirstOrDefault();
 
                         Bus.Publish<EmailReceived>(email =>
                         {
+                            if (!string.IsNullOrEmpty(environmentId))
+                                email.SetHeader("EnvironmentId",environmentId);
+
                             email.To = msg.To.First().Address;
                             email.Body = msg.Body;
                             email.From = msg.From.Address;

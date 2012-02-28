@@ -9,6 +9,5 @@ namespace Hygia.FaultManagement.Commands
     {
         public Dictionary<string, string> Parameters { get; set; }
         public Guid MessageId { get; set; }
-        public Guid EnvironmentId { get; set; }
     }
 }
