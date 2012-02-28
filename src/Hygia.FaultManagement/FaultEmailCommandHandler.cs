@@ -10,20 +10,22 @@ namespace Hygia.FaultManagement
     public class FaultEmailCommandHandler : IHandleMessages<EmailReceived>
     {
 
-        private class FaultDetailsInMail
+        private class AddressInfo
         {
-            public IEnumerable<EmailCommand> Commands { get; set; }
-            public IEnumerable<Guid> MessageIds { get; set; }
+            public string Area { get; set; }
+            public Guid MessageId { get; set; }
+            public Guid EnvironmentId { get; set; }
         }
 
         public IBus Bus { get; set; }
         public void Handle(EmailReceived emailReceived)
         {
-            FaultDetailsInMail faultDetailsInMail = ParseEmail(emailReceived);
-
-            foreach (var messageId in faultDetailsInMail.MessageIds)
+            foreach (var addressInfo in GetAddressInfo(emailReceived))
             {
-                foreach (var command in faultDetailsInMail.Commands)
+                if (addressInfo.Area.ToUpper() != "FAULTS")
+                    break;
+
+                if(emailReceived.Body.ToUpper().StartsWith(EmailLaunchPadCommandTypes.Delete))
                 {
                     switch (command.Name.ToUpper())
                     {
@@ -43,47 +45,48 @@ namespace Hygia.FaultManagement
             }
         }
 
-        private FaultDetailsInMail ParseEmail(EmailReceived emailReceived)
+        private IEnumerable<AddressInfo> GetAddressInfo(EmailReceived emailReceived)
         {
-            return new FaultDetailsInMail
-                       {
-                           Commands = GetCommands(emailReceived.Body),
-                           MessageIds = ParseToAddressToMessageId(emailReceived.To)
-                       };
-        }
-
-        private IEnumerable<Guid> ParseToAddressToMessageId(IEnumerable<string> to)
-        {
-            foreach (var toAdress in to)
+            foreach (var toAddress in emailReceived.To)
             {
-                Guid messageId;
-                Guid.TryParse(toAdress.Substring(0, toAdress.IndexOf('@') - 1), out messageId);
-                if (messageId != default(Guid))
-                    yield return messageId;
-            }
-        }
-
-        private IEnumerable<EmailCommand> GetCommands(string stringContainingCommands)
-        {
-            while (stringContainingCommands.Contains("[["))
-            {
-                int start = stringContainingCommands.IndexOf("[[") + 2;
-                int end = stringContainingCommands.IndexOf("]]");
-
-                if (end <= start)
+                string[] address = toAddress.Split('+');
+                
+                if (address.Count() < 2 || address[1].Length < 39)
                     break;
 
-                string[] commandAndValues = stringContainingCommands.Substring(start, end).Split(':');
+                string area = address[1].Substring(0, address[1].IndexOf('-') - 1);
+                Guid messageId;
+                Guid environmentId;
 
-                var mailCommand = new EmailCommand(commandAndValues[0].ToUpper());
+                Guid.TryParse(address[0], out environmentId);
+                Guid.TryParse(address[0].Substring(area.Length + 1, 38), out messageId);
 
-                if (commandAndValues.Count() > 0)
-                    mailCommand.Values = ParseCommandValues(commandAndValues[1]);
-
-                yield return mailCommand;
-
-                stringContainingCommands = stringContainingCommands.Substring(end, stringContainingCommands.Length - end);
+                yield return new AddressInfo
+                                 {
+                                     Area = area,
+                                     EnvironmentId = environmentId,
+                                     MessageId = messageId
+                                 };
             }
+        }
+
+        private EmailCommand GetCommand(string emailBody)
+        {
+            EmailCommand emailCommand = null;
+            if(emailBody.ToUpper().StartsWith(EmailLaunchPadCommandTypes.Delete))
+            {
+                emailCommand = new EmailCommand(EmailLaunchPadCommandTypes.Delete);
+            }
+
+            if(emailCommand == null)
+                return null;
+
+            int rowLength = emailBody.IndexOf('\n');
+
+            if (rowLength > emailCommand.Name.Length + 1)
+                emailCommand.Values = ParseCommandValues(emailBody.Substring(emailCommand.Name.Length + 1, rowLength));
+
+            return emailCommand;
         }
 
         private IDictionary<string, string> ParseCommandValues(string valueString)
