@@ -25,6 +25,12 @@ namespace Hygia.FaultManagement.Domain
 
         public Guid AssignedTo { get; set; }
 
-        public ICollection<HistoryItem> History { get; set; }
+
+        ICollection<HistoryItem> history;
+
+        public ICollection<HistoryItem> History { 
+            get { return history ?? (history = new List<HistoryItem>()); }
+            set { history = value; } 
+        }
     }
 }

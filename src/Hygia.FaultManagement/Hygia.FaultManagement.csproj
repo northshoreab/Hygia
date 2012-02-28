@@ -73,6 +73,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArchiveFaultHandler.cs" />
     <Compile Include="FaultEmailCommandHandler.cs" />
     <Compile Include="FaultHistoryHandler.cs" />
     <Compile Include="FaultInfoProvider.cs" />

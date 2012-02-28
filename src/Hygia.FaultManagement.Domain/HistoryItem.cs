@@ -4,8 +4,8 @@ namespace Hygia.FaultManagement.Domain
 
     public class HistoryItem
     {
-        public DateTime TimeOfFailure { get; set; }
+        public DateTime Time { get; set; }
 
-        public ExceptionInfo Exception { get; set; }
+        public string Status { get; set; }
     }
 }

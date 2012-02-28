@@ -57,7 +57,7 @@
                                 ContainedMessages = messageTypes,
                                 History = new List<HistoryItem>
                                               {
-                                                  new HistoryItem{TimeOfFailure = timeOfFailure,Exception = exception}
+                                                  new HistoryItem{Time = timeOfFailure,Status = "Failed with exception - " +exception.Message}
                                               }
 
                             };
