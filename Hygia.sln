@@ -107,6 +107,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hygia.Operations.Communicat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hygia.FaultManagement.Commands", "src\Hygia.FaultManagement.Commands\Hygia.FaultManagement.Commands.csproj", "{A18663E7-36E5-4BCC-B8F3-1E4A62EA6306}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hygia.Operations.Communication.Api", "src\Hygia.Operations.Communication.Api\Hygia.Operations.Communication.Api.csproj", "{1F196238-7817-4163-8002-B41681503A94}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -253,6 +255,10 @@ Global
 		{A18663E7-36E5-4BCC-B8F3-1E4A62EA6306}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A18663E7-36E5-4BCC-B8F3-1E4A62EA6306}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A18663E7-36E5-4BCC-B8F3-1E4A62EA6306}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F196238-7817-4163-8002-B41681503A94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F196238-7817-4163-8002-B41681503A94}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F196238-7817-4163-8002-B41681503A94}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F196238-7817-4163-8002-B41681503A94}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -299,5 +305,6 @@ Global
 		{BD2F02FB-8605-42CF-B974-1907CE54C8CE} = {46F68DD7-EDBA-4F96-BF44-F5BF6C2E2776}
 		{46D8B4D4-ED58-4831-9880-4785332DFCC3} = {46F68DD7-EDBA-4F96-BF44-F5BF6C2E2776}
 		{7DC1D128-B3F6-400B-9271-B40821DC9FE3} = {46F68DD7-EDBA-4F96-BF44-F5BF6C2E2776}
+		{1F196238-7817-4163-8002-B41681503A94} = {46F68DD7-EDBA-4F96-BF44-F5BF6C2E2776}
 	EndGlobalSection
 EndGlobal

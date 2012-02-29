@@ -122,18 +122,28 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Css\bootstrap.css" />
-    <Content Include="Content\Css\faults.css" />
-    <Content Include="Content\Css\style.css" />
-    <Content Include="Content\img\backbone.png" />
-    <Content Include="Content\Scripts\backbone.js" />
-    <Content Include="Content\Scripts\Fault.js" />
-    <Content Include="Content\Scripts\index.js" />
-    <Content Include="Content\Scripts\jquery-1.7.1.min.js" />
-    <Content Include="Content\Scripts\SampleTest.js" />
-    <Content Include="Content\Scripts\underscore.js" />
-    <Content Include="Content\templates\fault.html" />
-    <Content Include="Content\templates\faults.html" />
+    <Content Include="Content\app\config.js" />
+    <Content Include="Content\app\main.js" />
+    <Content Include="Content\app\modules\faults.js" />
+    <Content Include="Content\app\modules\home.js" />
+    <Content Include="Content\app\namespace.js" />
+    <Content Include="Content\app\templates\faults.list.html" />
+    <Content Include="Content\app\templates\faults.item.html" />
+    <Content Include="Content\app\templates\home.index.html" />
+    <Content Include="Content\assets\css\bootstrap-responsive.css" />
+    <Content Include="Content\assets\css\bootstrap-responsive.min.css" />
+    <Content Include="Content\assets\css\bootstrap.css" />
+    <Content Include="Content\assets\css\bootstrap.min.css" />
+    <Content Include="Content\assets\img\backbone.png" />
+    <Content Include="Content\assets\img\glyphicons-halflings-white.png" />
+    <Content Include="Content\assets\img\glyphicons-halflings.png" />
+    <Content Include="Content\assets\js\libs\almond.js" />
+    <Content Include="Content\assets\js\libs\backbone.js" />
+    <Content Include="Content\assets\js\libs\bootstrap.js" />
+    <Content Include="Content\assets\js\libs\jquery.js" />
+    <Content Include="Content\assets\js\libs\require.js" />
+    <Content Include="Content\assets\js\libs\underscore.js" />
+    <Content Include="Content\assets\js\plugins\use.js" />
     <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Images\block.png" />
     <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Images\console-line.png" />
     <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Images\down-arrow.png" />
