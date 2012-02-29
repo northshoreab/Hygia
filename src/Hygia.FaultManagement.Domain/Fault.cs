@@ -32,5 +32,7 @@ namespace Hygia.FaultManagement.Domain
             get { return history ?? (history = new List<HistoryItem>()); }
             set { history = value; } 
         }
+
+        public int Retries { get; set; }
     }
 }
