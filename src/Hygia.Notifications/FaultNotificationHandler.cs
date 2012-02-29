@@ -26,15 +26,14 @@ namespace Hygia.Notifications
 
         public void Handle(FaultRegistered message)
         {
+            dynamic faultInformation = new ExpandoObject();
+
+            foreach (var faultInformationProvider in _faultInformationProviders)
+                faultInformation = DynamicHelpers.Combine(faultInformation, faultInformationProvider.ProvideFor(message.EnvelopeId, message.MessageTypes));
+            
+
             foreach (var faultNotificationSetting in Session.Query<FaultNotificationSetting>().Where(x => x.AllMessages))
             {
-                dynamic faultInformation = new ExpandoObject();
-
-                foreach (var faultInformationProvider in _faultInformationProviders)
-                {
-                    faultInformation = DynamicHelpers.Combine(faultInformation, faultInformationProvider.ProvideFor(message.EnvelopeId, message.MessageTypes));
-                }
-
                 string body = FormatBody(faultInformation);
                 string subject = FormatSubject(faultInformation);
 
@@ -46,6 +45,8 @@ namespace Hygia.Notifications
                             e.Body = body;
                             e.Subject = subject;
                             e.To = faultNotificationSetting.EmailAdress;
+                            e.Service = "faults";
+                            e.Parameters = message.EnvelopeId.ToString();
                         });
                         break;
                     case NotificationTypes.RSS:

@@ -33,20 +33,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Bottles">
-      <HintPath>..\..\packages\Bottles.0.9.1.195\lib\Bottles.dll</HintPath>
+    <Reference Include="Bottles, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Bottles.0.9.1.197\lib\Bottles.dll</HintPath>
     </Reference>
-    <Reference Include="FubuCore">
-      <HintPath>..\..\packages\FubuCore.0.9.4.113\lib\FubuCore.dll</HintPath>
+    <Reference Include="FubuCore, Version=0.9.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\FubuCore.0.9.4.114\lib\FubuCore.dll</HintPath>
     </Reference>
-    <Reference Include="FubuLocalization">
-      <HintPath>..\..\packages\FubuLocalization.0.9.4.113\lib\FubuLocalization.dll</HintPath>
+    <Reference Include="FubuLocalization, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\FubuLocalization.0.9.4.114\lib\FubuLocalization.dll</HintPath>
     </Reference>
-    <Reference Include="FubuMVC.Core">
-      <HintPath>..\..\packages\FubuMVC.References.0.9.3.738\lib\net40\FubuMVC.Core.dll</HintPath>
+    <Reference Include="FubuMVC.Core, Version=0.9.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\FubuMVC.References.0.9.3.740\lib\net40\FubuMVC.Core.dll</HintPath>
     </Reference>
-    <Reference Include="FubuMVC.StructureMap">
-      <HintPath>..\..\packages\FubuMVC.References.0.9.3.738\lib\net40\FubuMVC.StructureMap.dll</HintPath>
+    <Reference Include="FubuMVC.StructureMap, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\FubuMVC.References.0.9.3.740\lib\net40\FubuMVC.StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="HtmlTags">
       <HintPath>..\..\packages\HtmlTags.1.0.0.55\lib\4.0\HtmlTags.dll</HintPath>
@@ -57,11 +57,11 @@
     <Reference Include="Microsoft.Practices.ServiceLocation">
       <HintPath>..\..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus">
-      <HintPath>..\..\packages\NServiceBus-CI.3.0.2037\lib\net40\NServiceBus.dll</HintPath>
+    <Reference Include="NServiceBus, Version=3.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NServiceBus-CI.3.0.2052\lib\net40\NServiceBus.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.Core">
-      <HintPath>..\..\packages\NServiceBus-CI.3.0.2037\lib\net40\NServiceBus.Core.dll</HintPath>
+    <Reference Include="NServiceBus.Core, Version=3.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NServiceBus-CI.3.0.2052\lib\net40\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="StructureMap">
       <HintPath>..\..\packages\structuremap.2.6.3\lib\StructureMap.dll</HintPath>

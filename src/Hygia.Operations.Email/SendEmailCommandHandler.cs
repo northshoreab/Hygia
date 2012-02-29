@@ -23,6 +23,7 @@ namespace Hygia.Operations.Email
             int.TryParse(ConfigurationManager.AppSettings["SmtpPort"], out _smtpPort);
         }
 
+
         public void Handle(SendEmailRequest message)
         {
             string from = string.IsNullOrEmpty(message.From) ? _defaultFromEmail : message.From;
@@ -38,8 +39,32 @@ namespace Hygia.Operations.Email
                                      Credentials = new NetworkCredential(_smtpUser, _smtpPassword),
                                      DeliveryMethod = SmtpDeliveryMethod.Network,
                                  };
+            mailMessage.ReplyToList.Add(GenerateFromAddress(message));
 
             smtpClient.Send(mailMessage);
+        }
+
+        string GenerateFromAddress(SendEmailRequest message)
+        {
+            var from = "";
+            var environmentId = message.GetHeader("EnvironmentId");
+
+            if (!string.IsNullOrEmpty(environmentId))
+                from += environmentId;
+
+            if (!string.IsNullOrEmpty(message.Service))
+                from += "+"+message.Service;
+            
+            if (!string.IsNullOrEmpty(message.Parameters))
+                from += "+" + message.Parameters;
+
+            if (string.IsNullOrEmpty(from))
+                from = _defaultFromEmail;
+            else
+                from += "@watchr.se";
+
+
+            return from;
         }
     }
 }

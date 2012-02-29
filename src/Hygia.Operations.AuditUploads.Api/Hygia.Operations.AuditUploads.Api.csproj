@@ -33,23 +33,24 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Bottles">
-      <HintPath>..\..\packages\Bottles.0.9.1.190\lib\Bottles.dll</HintPath>
+    <Reference Include="Bottles, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Bottles.0.9.1.197\lib\Bottles.dll</HintPath>
     </Reference>
-    <Reference Include="FubuCore">
-      <HintPath>..\..\packages\FubuCore.0.9.4.112\lib\FubuCore.dll</HintPath>
+    <Reference Include="FubuCore, Version=0.9.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\FubuCore.0.9.4.114\lib\FubuCore.dll</HintPath>
     </Reference>
-    <Reference Include="FubuLocalization">
-      <HintPath>..\..\packages\FubuLocalization.0.9.4.112\lib\FubuLocalization.dll</HintPath>
+    <Reference Include="FubuLocalization, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\FubuLocalization.0.9.4.114\lib\FubuLocalization.dll</HintPath>
     </Reference>
-    <Reference Include="FubuMVC.Core">
-      <HintPath>..\..\packages\FubuMVC.References.0.9.3.729\lib\net40\FubuMVC.Core.dll</HintPath>
+    <Reference Include="FubuMVC.Core, Version=0.9.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\FubuMVC.References.0.9.3.740\lib\net40\FubuMVC.Core.dll</HintPath>
     </Reference>
-    <Reference Include="FubuMVC.StructureMap">
-      <HintPath>..\..\packages\FubuMVC.References.0.9.3.729\lib\net40\FubuMVC.StructureMap.dll</HintPath>
+    <Reference Include="FubuMVC.StructureMap, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\FubuMVC.References.0.9.3.740\lib\net40\FubuMVC.StructureMap.dll</HintPath>
     </Reference>
-    <Reference Include="HtmlTags">
-      <HintPath>..\..\packages\HtmlTags.1.0.0.54\lib\4.0\HtmlTags.dll</HintPath>
+    <Reference Include="HtmlTags, Version=1.0.0.55, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\HtmlTags.1.0.0.55\lib\4.0\HtmlTags.dll</HintPath>
     </Reference>
     <Reference Include="log4net">
       <HintPath>..\..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
@@ -58,10 +59,10 @@
       <HintPath>..\..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus, Version=3.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\NServiceBus-CI.3.0.2028\lib\net40\NServiceBus.dll</HintPath>
+      <HintPath>..\..\packages\NServiceBus-CI.3.0.2052\lib\net40\NServiceBus.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Core, Version=3.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\NServiceBus-CI.3.0.2028\lib\net40\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\..\packages\NServiceBus-CI.3.0.2052\lib\net40\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="StructureMap">
       <HintPath>..\..\packages\structuremap.2.6.3\lib\StructureMap.dll</HintPath>

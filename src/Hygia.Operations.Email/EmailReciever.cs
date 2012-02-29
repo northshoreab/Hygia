@@ -44,12 +44,22 @@ namespace Hygia.Operations.Email
                         var msg = pop.GetMessage(i);
                         var to = msg.To.First().Address;
 
-                        var environmentId = to.Split('+').FirstOrDefault();
+                        var tokens = to.Split('+');
 
+                        var environmentId = tokens.FirstOrDefault();
                         Guid temp;
 
                         if (!Guid.TryParse(environmentId, out temp))
                             environmentId = null;
+                        
+                        var service = string.Empty;
+
+                        if (tokens.Length > 1)
+                            service = tokens[1];
+
+                        var parameters = string.Empty;
+                        if (tokens.Length > 2)
+                            parameters = tokens[2].Split('@').First();
 
                         Bus.Publish<EmailReceived>(email =>
                                                        {
@@ -57,10 +67,13 @@ namespace Hygia.Operations.Email
                                                            if (!string.IsNullOrEmpty(environmentId))
                                                                email.SetHeader("EnvironmentId", environmentId);
 
-                                                           email.To = msg.To.First().Address;
+                                                           email.To = to;
                                                            email.Body = msg.Body;
                                                            email.From = msg.From.Address;
                                                            email.Subject = msg.Subject;
+                                                           email.Service = service;
+                                                           email.Parameters = parameters;
+
                                                        });
 
                         pop.DeleteMessage(i);
