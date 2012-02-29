@@ -7,10 +7,11 @@ require([
 
 // Modules  
   "modules/home",
-  "modules/faults"
+  "modules/faults",
+  "modules/utils"
 ],
 
-function (namespace, jQuery, Backbone, Home, Faults) {
+function (namespace, jQuery, Backbone, Home, Faults, Utils) {
 
     // Defining the application router, you can attach sub routers here.
     var Router = Backbone.Router.extend({
@@ -44,9 +45,9 @@ function (namespace, jQuery, Backbone, Home, Faults) {
             var route = this;
 
             var currentFaults = new Faults.Collection();
-            currentFaults.fetch()            
+            currentFaults.fetch()
 
-            var faults = new Faults.Views.List({"collection":currentFaults});
+            var faults = new Faults.Views.List({ "collection": currentFaults });
 
             // Attach the tutorial to the DOM
             faults.render(function (el) {
@@ -81,6 +82,7 @@ function (namespace, jQuery, Backbone, Home, Faults) {
         // Trigger the initial route and enable HTML5 History API support
         Backbone.history.start({ pushState: true });
 
+        Utils.setCookie();
     });
 
     // All navigation that is relative should be passed through the navigate

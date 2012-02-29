@@ -39,20 +39,11 @@ namespace Hygia.FaultManagement.Api
                                                  {
                                                      new HistoryItem
                                                          {
-                                                             Exception = new ExceptionInfo
-                                                                             {
-                                                                                 ExceptionType =
-                                                                                     "backboneIsHardException",
-                                                                                 Message = "do something easier",
-                                                                                 Reason = "bad coder",
-                                                                                 Source = "?",
-                                                                                 StackTrace = "..."
-                                                                             },
-                                                             TimeOfFailure = System.DateTime.Now
+                                                             Status = "status",
+                                                             Time = System.DateTime.Now
                                                          }
-                                                 },
-                                   Id = System.Guid.NewGuid(),
-                                   TimeOfFailure = System.DateTime.Now
+                                                 }
+                                   
                                }
                        };
 

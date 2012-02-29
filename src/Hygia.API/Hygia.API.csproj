@@ -124,6 +124,7 @@
   <ItemGroup>
     <Content Include="Content\app\config.js" />
     <Content Include="Content\app\main.js" />
+    <Content Include="Content\app\modules\utils.js" />
     <Content Include="Content\app\modules\faults.js" />
     <Content Include="Content\app\modules\home.js" />
     <Content Include="Content\app\namespace.js" />
@@ -349,7 +350,9 @@
     <None Include="Hygia.API.nuspec">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Shared\Application.spark" />
+    <None Include="Shared\Application.spark">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="View\home.spark" />
   </ItemGroup>
   <ItemGroup>
