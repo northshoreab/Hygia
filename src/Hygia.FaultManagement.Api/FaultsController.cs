@@ -14,6 +14,7 @@ namespace Hygia.FaultManagement.Api
         [JsonEndpoint]
         public dynamic get_faults()
         {
+            /* 
             return new List<Fault>
                        {
                            new Fault
@@ -46,7 +47,7 @@ namespace Hygia.FaultManagement.Api
                                    
                                }
                        };
-
+            */
             return Session.Query<Fault>()
                 .Where(f=>f.Status != FaultStatus.Archived)
                 .ToList();
