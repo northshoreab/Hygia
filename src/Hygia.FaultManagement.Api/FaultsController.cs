@@ -14,43 +14,59 @@ namespace Hygia.FaultManagement.Api
         [JsonEndpoint]
         public dynamic get_faults()
         {
-            /* 
+            /*
             return new List<Fault>
                        {
-                           new Fault
-                               {
-                                   Body = "body",
-                                   Status = FaultStatus.New,
-                                   AssignedTo = System.Guid.NewGuid(),
-                                   ContainedMessages = new List<PhysicalMessage>(),
-                                   Endpoint = "endpoint",
-                                   EndpointId = System.Guid.NewGuid(),
-                                   Exception =
-                                       new ExceptionInfo
-                                           {
-                                               ExceptionType = "backboneIsHardException",
-                                               Message = "do something easier",
-                                               Reason = "bad coder",
-                                               Source = "?",
-                                               StackTrace = "..."
-                                           },
-                                   FaultEnvelopeId = System.Guid.NewGuid(),
-                                   Headers = new Dictionary<string, string> {{"key", "value"}},
-                                   History = new List<HistoryItem>
-                                                 {
-                                                     new HistoryItem
-                                                         {
-                                                             Status = "status",
-                                                             Time = System.DateTime.Now
-                                                         }
-                                                 }
-                                   
-                               }
+                           getFakeFault(),
+                           getFakeFault(),
+                           getFakeFault(),
+                           getFakeFault(),
+                           getFakeFault(),
+                           getFakeFault(),
+                           getFakeFault()
                        };
             */
             return Session.Query<Fault>()
                 .Where(f=>f.Status != FaultStatus.Archived)
                 .ToList();
         }
+
+        /*
+        private Fault getFakeFault()
+        {
+            return new Fault
+                       {
+                           Body = "body",
+                           Status = FaultStatus.New,
+                           AssignedTo = System.Guid.NewGuid(),
+                           ContainedMessages = new List<PhysicalMessage>(),
+                           Endpoint = "endpoint",
+                           EndpointId = System.Guid.NewGuid(),
+                           Exception =
+                               new ExceptionInfo
+                                   {
+                                       ExceptionType = "backboneIsHardException",
+                                       Message = "do something easier",
+                                       Reason = "bad coder",
+                                       Source = "?",
+                                       StackTrace = "..."
+                                   },
+                           FaultEnvelopeId = System.Guid.NewGuid(),
+                           Headers =
+                               new Dictionary<string, string>
+                                   {{"NServiceBus.OriginalId", System.Guid.NewGuid().ToString()}},
+                           History = new List<HistoryItem>
+                                         {
+                                             new HistoryItem
+                                                 {
+                                                     Status = "status",
+                                                     Time = System.DateTime.Now
+                                                 }
+                                         }
+
+                       };
+        }
+        */
     }
+
 }

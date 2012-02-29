@@ -1,1 +1,4 @@
-<span><%= Headers['NServiceBus.OriginalId'] %> : <%= Headers['NServiceBus.EnclosedMessageTypes'] %> - <%= Exception.Message %> </span>
+
+  <a href="/faults/archive"><i class="icon-star"></i></a>  
+  <strong><%= Exception.Message %></strong>
+  <%= Headers['NServiceBus.OriginalId'] %> : <%= Headers['NServiceBus.EnclosedMesageTypes'] %> - <%= Exception.Message %>

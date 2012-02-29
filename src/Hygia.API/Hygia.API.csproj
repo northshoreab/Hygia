@@ -124,10 +124,13 @@
   <ItemGroup>
     <Content Include="Content\app\config.js" />
     <Content Include="Content\app\main.js" />
+    <Content Include="Content\app\modules\faultTbl.js" />
     <Content Include="Content\app\modules\utils.js" />
     <Content Include="Content\app\modules\faults.js" />
     <Content Include="Content\app\modules\home.js" />
     <Content Include="Content\app\namespace.js" />
+    <Content Include="Content\app\templates\faults.tr.html" />
+    <Content Include="Content\app\templates\faults.tbl.html" />
     <Content Include="Content\app\templates\faults.list.html" />
     <Content Include="Content\app\templates\faults.item.html" />
     <Content Include="Content\app\templates\home.index.html" />

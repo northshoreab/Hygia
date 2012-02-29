@@ -11,19 +11,18 @@
 
 function (namespace, Backbone) {
 
-    var Faults = namespace.module();
+    var FaultTbl = namespace.module();
 
-    Faults.Model = Backbone.Model.extend({});
+    FaultTbl.Model = Backbone.Model.extend({});
 
-    Faults.Collection = Backbone.Collection.extend({
-        model: Faults.Model,
+    FaultTbl.Collection = Backbone.Collection.extend({
+        model: FaultTbl.Model,
         url: "/faults"
-    });    
+    });
 
-    Faults.Views.Item = Backbone.View.extend({
-        template: '/content/app/templates/faults.item.html',
-        tagName: 'div',
-        className: 'alert',
+    FaultTbl.Views.Item = Backbone.View.extend({
+        template: '/content/app/templates/faults.tr.html',
+        tagName: 'tr',
         initialize: function () {
             _.bindAll(this, 'render');
             this.model.bind('change', this.render);
@@ -44,8 +43,8 @@ function (namespace, Backbone) {
         }
     });
 
-    Faults.Views.List = Backbone.View.extend({
-        template: '/content/app/templates/faults.list.html',
+    FaultTbl.Views.List = Backbone.View.extend({
+        template: '/content/app/templates/faults.tbl.html',
         tagName: 'div',
         className: 'faults',
         initialize: function () {
@@ -58,11 +57,17 @@ function (namespace, Backbone) {
             namespace.fetchTemplate(this.template, function (tmpl) {
                 view.el.innerHTML = tmpl();
 
+                $tbody = view.$('table > tbody');
+
                 view.collection.each(function (fault) {
-                    var itemView = new Faults.Views.Item({ model: fault });                    
-                    view.el.appendChild(itemView.render().el);
+                    var itemView = new FaultTbl.Views.Item({ model: fault });
+                    //view.el.appendChild(itemView.render().el);
+                    $tbody.append(itemView.render().el);
                 });
 
+                $table = view.$('table');
+                $table.append($tbody);
+                
                 if (_.isFunction(done)) {
                     done(view.el);
                 }
@@ -74,6 +79,6 @@ function (namespace, Backbone) {
     });
 
     // Required, return the module for AMD compliance
-    return Faults;
+    return FaultTbl;
 
 });
