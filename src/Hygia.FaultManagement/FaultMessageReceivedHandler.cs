@@ -69,7 +69,10 @@
 
         static DateTime DetermineTimeOfFailure(FaultMessageReceived message)
         {
-            var timeOfFailure = message.Headers["NServiceBus.TimeSent"].ToUtcDateTime();
+            var timeOfFailure = DateTime.UtcNow;
+
+            if (message.Headers.ContainsKey("NServiceBus.TimeSent"))
+                timeOfFailure = message.Headers["NServiceBus.TimeSent"].ToUtcDateTime();
 
             if (message.Headers.ContainsKey("NServiceBus.TimeOfFailure"))
                 timeOfFailure = message.Headers["NServiceBus.TimeOfFailure"].ToUtcDateTime();
