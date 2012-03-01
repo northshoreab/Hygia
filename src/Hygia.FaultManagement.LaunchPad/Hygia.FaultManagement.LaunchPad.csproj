@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{A2B1B8E9-CB6C-4FFB-9B9A-E96B18F1F7D1}</ProjectGuid>
+    <ProjectGuid>{36A89D72-51DE-4558-BDDF-BAB89A134B97}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Hygia.Operations.Communication.LaunchPad</RootNamespace>
-    <AssemblyName>Hygia.Operations.Communication.LaunchPad</AssemblyName>
+    <RootNamespace>Hygia.FaultManagement.LaunchPad</RootNamespace>
+    <AssemblyName>Hygia.FaultManagement.LaunchPad</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\hygia\</SolutionDir>
@@ -40,16 +40,12 @@
       <HintPath>..\..\packages\Newtonsoft.Json.4.0.5\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus">
-      <HintPath>..\..\packages\NServiceBus-CI.3.0.2044\lib\net40\NServiceBus.dll</HintPath>
+      <HintPath>..\..\packages\NServiceBus-CI.3.0.2052\lib\net40\NServiceBus.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Core">
-      <HintPath>..\..\packages\NServiceBus-CI.3.0.2044\lib\net40\NServiceBus.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="RestSharp">
-      <HintPath>..\..\packages\RestSharp.102.7\lib\net35\RestSharp.dll</HintPath>
+      <HintPath>..\..\packages\NServiceBus-CI.3.0.2052\lib\net40\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -58,26 +54,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cloud\CloudUploader.cs" />
-    <Compile Include="Commands\FetchCommands.cs" />
-    <Compile Include="Cloud\IApiCall.cs" />
-    <Compile Include="Cloud\ApiCommandFetcher.cs" />
-    <Compile Include="Cloud\RestSharpApiCall.cs" />
-    <Compile Include="CommunicationConfigurer.cs" />
-    <Compile Include="IUploadToTheBackend.cs" />
+    <Compile Include="FaultCommandConverter.cs" />
+    <Compile Include="JsonCreationConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TransportFactory.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="OnPremise\" />
+    <Compile Include="RetryFaultHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Hygia.Operations.Communication.Domain\Hygia.Operations.Communication.Domain.csproj">
-      <Project>{BD2F02FB-8605-42CF-B974-1907CE54C8CE}</Project>
-      <Name>Hygia.Operations.Communication.Domain</Name>
+    <ProjectReference Include="..\Hygia.FaultManagement.Commands\Hygia.FaultManagement.Commands.csproj">
+      <Project>{A18663E7-36E5-4BCC-B8F3-1E4A62EA6306}</Project>
+      <Name>Hygia.FaultManagement.Commands</Name>
     </ProjectReference>
     <ProjectReference Include="..\Hygia.Operations.Communication\Hygia.Operations.Communication.csproj">
       <Project>{7DC1D128-B3F6-400B-9271-B40821DC9FE3}</Project>

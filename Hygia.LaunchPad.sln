@@ -17,6 +17,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hygia.Operations.AuditUploa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hygia.Operations.Faults.Commands", "src\Hygia.Operations.Faults.Commands\Hygia.Operations.Faults.Commands.csproj", "{C3E15AE4-E527-48FB-B653-EA403FF01F25}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hygia.Operations.Communication.Domain", "src\Hygia.Operations.Communication.Domain\Hygia.Operations.Communication.Domain.csproj", "{BD2F02FB-8605-42CF-B974-1907CE54C8CE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FaultManagement", "FaultManagement", "{C8AFEB03-21B1-4705-A7F9-DED0C7152577}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hygia.FaultManagement.Commands", "src\Hygia.FaultManagement.Commands\Hygia.FaultManagement.Commands.csproj", "{A18663E7-36E5-4BCC-B8F3-1E4A62EA6306}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hygia.FaultManagement.LaunchPad", "src\Hygia.FaultManagement.LaunchPad\Hygia.FaultManagement.LaunchPad.csproj", "{36A89D72-51DE-4558-BDDF-BAB89A134B97}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hygia.Operations.Communication", "src\Hygia.Operations.Communication\Hygia.Operations.Communication.csproj", "{7DC1D128-B3F6-400B-9271-B40821DC9FE3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +61,22 @@ Global
 		{C3E15AE4-E527-48FB-B653-EA403FF01F25}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C3E15AE4-E527-48FB-B653-EA403FF01F25}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C3E15AE4-E527-48FB-B653-EA403FF01F25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD2F02FB-8605-42CF-B974-1907CE54C8CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD2F02FB-8605-42CF-B974-1907CE54C8CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD2F02FB-8605-42CF-B974-1907CE54C8CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD2F02FB-8605-42CF-B974-1907CE54C8CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A18663E7-36E5-4BCC-B8F3-1E4A62EA6306}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A18663E7-36E5-4BCC-B8F3-1E4A62EA6306}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A18663E7-36E5-4BCC-B8F3-1E4A62EA6306}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A18663E7-36E5-4BCC-B8F3-1E4A62EA6306}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36A89D72-51DE-4558-BDDF-BAB89A134B97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36A89D72-51DE-4558-BDDF-BAB89A134B97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36A89D72-51DE-4558-BDDF-BAB89A134B97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36A89D72-51DE-4558-BDDF-BAB89A134B97}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DC1D128-B3F6-400B-9271-B40821DC9FE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DC1D128-B3F6-400B-9271-B40821DC9FE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DC1D128-B3F6-400B-9271-B40821DC9FE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DC1D128-B3F6-400B-9271-B40821DC9FE3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -62,5 +88,9 @@ Global
 		{A2B1B8E9-CB6C-4FFB-9B9A-E96B18F1F7D1} = {D81B785D-0230-465B-A800-CE658CC786CD}
 		{F69BC5DB-C4E2-4AA0-A622-AA0C20CB2E3F} = {D81B785D-0230-465B-A800-CE658CC786CD}
 		{C3E15AE4-E527-48FB-B653-EA403FF01F25} = {D81B785D-0230-465B-A800-CE658CC786CD}
+		{BD2F02FB-8605-42CF-B974-1907CE54C8CE} = {D81B785D-0230-465B-A800-CE658CC786CD}
+		{7DC1D128-B3F6-400B-9271-B40821DC9FE3} = {D81B785D-0230-465B-A800-CE658CC786CD}
+		{A18663E7-36E5-4BCC-B8F3-1E4A62EA6306} = {C8AFEB03-21B1-4705-A7F9-DED0C7152577}
+		{36A89D72-51DE-4558-BDDF-BAB89A134B97} = {C8AFEB03-21B1-4705-A7F9-DED0C7152577}
 	EndGlobalSection
 EndGlobal

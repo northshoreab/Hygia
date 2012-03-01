@@ -29,7 +29,9 @@ namespace Hygia.Operations.Communication.LaunchPad
                 apiUrl = "http://api.watchr.se";
 
 
-            Configure.Instance.Configurer.ConfigureComponent<CloudUploader>(DependencyLifecycle.SingleInstance)
+
+            Configure.Instance.Configurer.ConfigureComponent<CloudUploader>(DependencyLifecycle.SingleInstance);
+            Configure.Instance.Configurer.ConfigureComponent<RestSharpApiCall>(DependencyLifecycle.SingleInstance)
                 .ConfigureProperty(p => p.ApiUrl, apiUrl)
                 .ConfigureProperty(p => p.ApiKey, apikey);
         }

@@ -33,7 +33,7 @@ namespace Hygia.Operations.Communication.Api
             var apiKey = context.Headers["apikey"];
 
             //for now assume that an api call always means that the request is coming from a launchpad
-            if (apiKey != null)
+            if (apiKey != null && context.Url.ToLower() != "/commands")
             {
                 if(session.Query<LaunchPadCommand>().Any(c => !c.Delivered))
                     writer.AppendHeader("watchr.commandsavailable", "true");
@@ -49,7 +49,7 @@ namespace Hygia.Operations.Communication.Api
     {
         public System.Collections.Specialized.NameValueCollection Headers { get; set; }
         public System.Collections.Specialized.NameValueCollection Params { get; set; }
-        public Uri Url { get; set; }
+        public string Url { get; set; }
     }
 
     public class CommandsToPickUpBehaviourConfiguration : IConfigurationAction
