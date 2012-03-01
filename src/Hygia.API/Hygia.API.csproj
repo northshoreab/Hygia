@@ -277,6 +277,10 @@
       <Project>{9E46E4A9-8CB5-4B21-AA79-2554DEFAD5E7}</Project>
       <Name>Hygia.FaultManagement.Api</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Hygia.FaultManagement.Commands\Hygia.FaultManagement.Commands.csproj">
+      <Project>{A18663E7-36E5-4BCC-B8F3-1E4A62EA6306}</Project>
+      <Name>Hygia.FaultManagement.Commands</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Hygia.FaultManagement.Domain\Hygia.FaultManagement.Domain.csproj">
       <Project>{FE5A6411-D13A-4252-9E95-BE775D172560}</Project>
       <Name>Hygia.FaultManagement.Domain</Name>
@@ -292,6 +296,14 @@
     <ProjectReference Include="..\Hygia.Operations.Communication.Api\Hygia.Operations.Communication.Api.csproj">
       <Project>{1F196238-7817-4163-8002-B41681503A94}</Project>
       <Name>Hygia.Operations.Communication.Api</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hygia.Operations.Communication.Domain\Hygia.Operations.Communication.Domain.csproj">
+      <Project>{BD2F02FB-8605-42CF-B974-1907CE54C8CE}</Project>
+      <Name>Hygia.Operations.Communication.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hygia.Operations.Communication\Hygia.Operations.Communication.csproj">
+      <Project>{7DC1D128-B3F6-400B-9271-B40821DC9FE3}</Project>
+      <Name>Hygia.Operations.Communication</Name>
     </ProjectReference>
     <ProjectReference Include="..\Hygia.Operations.Faults.Api\Hygia.Operations.Faults.Api.csproj">
       <Project>{B9B2A6E8-24D7-42B9-BFCE-6EF7578069EC}</Project>
