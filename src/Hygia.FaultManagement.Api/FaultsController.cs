@@ -14,7 +14,7 @@ namespace Hygia.FaultManagement.Api
         [JsonEndpoint]
         public dynamic get_faults()
         {
-            /*
+         /*   
             return new List<Fault>
                        {
                            getFakeFault(),
@@ -25,13 +25,13 @@ namespace Hygia.FaultManagement.Api
                            getFakeFault(),
                            getFakeFault()
                        };
-            */
+          */  
             return Session.Query<Fault>()
                 .Where(f=>f.Status != FaultStatus.Archived)
-                .ToList();
+                .ToList();          
         }
 
-        /*
+        
         private Fault getFakeFault()
         {
             return new Fault
@@ -54,7 +54,11 @@ namespace Hygia.FaultManagement.Api
                            FaultEnvelopeId = System.Guid.NewGuid(),
                            Headers =
                                new Dictionary<string, string>
-                                   {{"NServiceBus.OriginalId", System.Guid.NewGuid().ToString()}},
+                                   {
+                                    {"NServiceBus.OriginalId", System.Guid.NewGuid().ToString()},
+                                    {"NServiceBus.TimeSent", System.DateTime.Now.ToString()},
+                                    {"NServiceBus.EnclosedMessageTypes", "OrderPlaced, Version=1.0.0.0"}
+                                   },
                            History = new List<HistoryItem>
                                          {
                                              new HistoryItem
@@ -65,8 +69,6 @@ namespace Hygia.FaultManagement.Api
                                          }
 
                        };
-        }
-        */
+        }        
     }
-
 }

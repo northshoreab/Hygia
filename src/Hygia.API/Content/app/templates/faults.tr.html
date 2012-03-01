@@ -1,5 +1,20 @@
-<td><%= Headers['NServiceBus.OriginalId'] %></td>
-<td><%= Exception.Message %></td>
-<td><button class="btn btn-primary">Retry</button></td>
-<td><button class="btn btn-danger">Archive</button></td>
+<td>#</td>
+<td>
+    <div class="wrapper">
+        <h4>
+            <a href="#" class=""><%= Exception.Message %></a>
+            <span class="label label-info"><%= Headers['NServiceBus.EnclosedMessageTypes'] %></span>
+        </h4>
+        <p>
+            <small>
+                by <strong><a href="/endpoint/<%= EndpointId %>"><%= Endpoint %></a></strong>
+                <time class="js-relative-date" datetime="<%= Headers['NServiceBus.TimeSent'] %>" title="<%= Headers['NServiceBus.TimeSent'] %>"><%= Headers['NServiceBus.TimeSent'] %></time>
+            </small>
+        </p>
+    </div>
+</td>
+<td><a class="btn btn-mini btn-primary" href="/faults/retry/<%= FaultEnvelopeId %>"><i class="icon-retweet icon-white"></i> Retry</a></td>
+<td><a class="btn btn-mini btn-danger" href="/faults/archive/<%= FaultEnvelopeId %>"><i class="icon-minus icon-white"></i> Archive</a></td>
+
+
 
