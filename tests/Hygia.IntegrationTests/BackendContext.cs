@@ -31,4 +31,18 @@ namespace Hygia.IntegrationTests
         }
 
     }
+
+    public class LaunchPadContext
+    {
+        protected static Injector injector = new Injector();
+
+        protected static NServiceBusMessage message;
+
+       
+        protected static void InjectMessage()
+        {
+            injector.Inject(message, "WatchR.LaunchPad");
+        }
+
+    }
 }

@@ -9,7 +9,7 @@ namespace Hygia.FaultManagement.Domain
         public ExceptionInfo Exception{ get; set; }
         public Guid Id { get; set; }
 
-        public Guid FaultEnvelopeId { get; set; }
+        public string FaultEnvelopeId { get; set; }
 
         public string Body { get; set; }
 

@@ -78,6 +78,7 @@
     <Compile Include="FaultMessageReceivedHandler.cs" />
     <Compile Include="FaultInfoProvider.cs" />
     <Compile Include="EmailCommandTypes.cs" />
+    <Compile Include="IssueRetryForFaultHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

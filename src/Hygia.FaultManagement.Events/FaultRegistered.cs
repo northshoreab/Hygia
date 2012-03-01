@@ -7,8 +7,6 @@ namespace Hygia.FaultManagement.Events
     {
         public Guid EnvelopeId{ get; set; }
 
-        public Guid FaultEnvelopeId { get; set; }
-
         public List<Guid> MessageTypes { get; set; }
     }
 }

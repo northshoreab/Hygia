@@ -9,6 +9,7 @@
     public class ArchiveFaultHandler:IHandleMessages<ArchiveFault>
     {
         public IDocumentSession Session { get; set; }
+
         public void Handle(ArchiveFault message)
         {
             var fault = Session.Load<Fault>(message.MessageId);
@@ -22,6 +23,8 @@
                                       Time = DateTime.UtcNow,
                                       Status = "Fault archived"
                                   });
+
+
         }
     }
 }

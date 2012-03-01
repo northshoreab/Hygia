@@ -5,9 +5,11 @@
 
     public class RetryFaultHandler : IHandleMessages<RetryFault>
     {
+        public ErrorManager ErrorManager { get; set; }
+       
         public void Handle(RetryFault message)
         {
-            //todo
+            ErrorManager.ReturnMessageToSourceQueue(message.FaultEnvelopeId);
         }
     }
 }

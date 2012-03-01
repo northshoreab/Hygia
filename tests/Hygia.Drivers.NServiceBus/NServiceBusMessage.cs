@@ -141,8 +141,14 @@
             //for now just add the header
             Headers[EnclosedMessageTypes] = string.Join(";", messages.Select(m=>m.MessageType));
 
-            var root = message.MessageType.Split(',').First().Split('.').Last();
-            var ns = "Hygia.Operations.Events";
+            var rootType = message.MessageType.Split(',').First();
+            var root = rootType.Split('.').Last();
+
+            var nsTemp = message.MessageType.Split(',').First().Split('.').ToList();
+
+            nsTemp.RemoveAt(nsTemp.Count-1);
+
+            var ns = string.Join(".", nsTemp);
 
             var result = "<?xml version='1.0' ?><Messages xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns='http://tempuri.net/" + ns + "'><" + root + ">";
 

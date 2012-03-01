@@ -47,7 +47,7 @@
                 fault.Retries++;
             }
 
-            fault.FaultEnvelopeId = message.FaultEnvelopeId.ToGuid();
+            fault.FaultEnvelopeId = message.FaultEnvelopeId;
             fault.Headers = message.Headers;
             fault.ContainedMessages = messageTypes;
                                 
@@ -62,7 +62,6 @@
 
             Bus.Publish(new FaultRegistered
                              {
-                                 FaultEnvelopeId = fault.FaultEnvelopeId,
                                  EnvelopeId = fault.Id,
                                  MessageTypes = messageTypes.Select(t => t.MessageTypeId).ToList()
                              });

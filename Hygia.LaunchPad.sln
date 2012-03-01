@@ -27,6 +27,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hygia.FaultManagement.Launc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hygia.Operations.Communication", "src\Hygia.Operations.Communication\Hygia.Operations.Communication.csproj", "{7DC1D128-B3F6-400B-9271-B40821DC9FE3}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{8D3559B4-2C68-4B3C-98E7-0626F226DD4E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hygia.Drivers.NServiceBus", "tests\Hygia.Drivers.NServiceBus\Hygia.Drivers.NServiceBus.csproj", "{0336B64B-3535-4D62-A70A-ED6284945BAC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hygia.IntegrationTests", "tests\Hygia.IntegrationTests\Hygia.IntegrationTests.csproj", "{09DE4E5E-4672-4FEF-AB52-11B65536819A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +83,14 @@ Global
 		{7DC1D128-B3F6-400B-9271-B40821DC9FE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7DC1D128-B3F6-400B-9271-B40821DC9FE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7DC1D128-B3F6-400B-9271-B40821DC9FE3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0336B64B-3535-4D62-A70A-ED6284945BAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0336B64B-3535-4D62-A70A-ED6284945BAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0336B64B-3535-4D62-A70A-ED6284945BAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0336B64B-3535-4D62-A70A-ED6284945BAC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09DE4E5E-4672-4FEF-AB52-11B65536819A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09DE4E5E-4672-4FEF-AB52-11B65536819A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09DE4E5E-4672-4FEF-AB52-11B65536819A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09DE4E5E-4672-4FEF-AB52-11B65536819A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -92,5 +106,7 @@ Global
 		{7DC1D128-B3F6-400B-9271-B40821DC9FE3} = {D81B785D-0230-465B-A800-CE658CC786CD}
 		{A18663E7-36E5-4BCC-B8F3-1E4A62EA6306} = {C8AFEB03-21B1-4705-A7F9-DED0C7152577}
 		{36A89D72-51DE-4558-BDDF-BAB89A134B97} = {C8AFEB03-21B1-4705-A7F9-DED0C7152577}
+		{0336B64B-3535-4D62-A70A-ED6284945BAC} = {8D3559B4-2C68-4B3C-98E7-0626F226DD4E}
+		{09DE4E5E-4672-4FEF-AB52-11B65536819A} = {8D3559B4-2C68-4B3C-98E7-0626F226DD4E}
 	EndGlobalSection
 EndGlobal

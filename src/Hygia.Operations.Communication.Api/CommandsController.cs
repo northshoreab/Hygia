@@ -14,15 +14,6 @@ namespace Hygia.Operations.Communication.Api
         [JsonEndpoint]
         public dynamic get_commands()
         {
-            //Session.Store(new LaunchPadCommand
-            //                  {
-            //                      Delivered = false,
-            //                      Command = new RetryFault
-            //                                    {
-            //                                        MessageId = Guid.NewGuid()
-            //                                    },
-            //                  });
-
             return Session.Query<LaunchPadCommand>()
                 .Where(c=>!c.Delivered)
                 .ToList();

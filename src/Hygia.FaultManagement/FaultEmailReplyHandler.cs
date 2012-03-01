@@ -21,9 +21,8 @@ namespace Hygia.FaultManagement
             {
                 case EmailCommandTypes.Retry:
 
-                    Bus.Send(new RetryFault
+                    Bus.Send(new IssueRetryForFault
                                  {
-                                     Parameters = "",//todo
                                      MessageId = messageId
                                  });
                     break;

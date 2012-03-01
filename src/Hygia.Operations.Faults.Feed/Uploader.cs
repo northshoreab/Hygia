@@ -52,16 +52,18 @@ namespace Hygia.Operations.Faults.Feed
         void OnTransportMessageReceived(object sender, TransportMessageReceivedEventArgs e)
         {
             var transportMessage = e.Message;
+
+            //send first so that we get the new id that we can use for retries
+            MessageSender.Send(transportMessage,errorLogAddress);
+
             var message = new ProcessFaultMessage
-                              {
-                                  FaultEnvelopeId = transportMessage.IdForCorrelation,
-                                  Headers = transportMessage.Headers,
-                                  Body = Encoding.UTF8.GetString(transportMessage.Body)//wil only work for text serialization
-                              };
+            {
+                FaultEnvelopeId = transportMessage.Id,
+                Headers = transportMessage.Headers,
+                Body = Encoding.UTF8.GetString(transportMessage.Body)//wil only work for text serialization
+            };
 
             BackendUploader.Upload(message);
-
-            MessageSender.Send(transportMessage,errorLogAddress);
         }
 
         ITransport inputTransport;
