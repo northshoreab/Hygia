@@ -27,7 +27,7 @@ namespace Hygia.FaultManagement.Api
                        };
           */  
             return Session.Query<Fault>()
-                .Where(f=>f.Status != FaultStatus.Archived)
+                .Where(f=>f.Status != FaultStatus.Archived && f.Status != FaultStatus.RetryIssued)
                 .ToList();          
         }
 
