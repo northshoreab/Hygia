@@ -51,7 +51,7 @@ namespace Hygia.FaultManagement.Api
                                        Source = "?",
                                        StackTrace = "..."
                                    },
-                           FaultEnvelopeId = System.Guid.NewGuid(),
+                           FaultEnvelopeId = System.Guid.NewGuid().ToString(),
                            Headers =
                                new Dictionary<string, string>
                                    {
