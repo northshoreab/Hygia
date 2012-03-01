@@ -11,7 +11,7 @@ namespace Hygia.FaultManagement.LaunchPad
     {
         protected override RetryFault Create(Type objectType, JObject jObject)
         {
-
+            //todo - add more commands or figure out how to make the json parser do it for us
             return new RetryFault();
         }
 

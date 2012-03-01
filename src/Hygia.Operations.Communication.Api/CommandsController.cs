@@ -1,6 +1,7 @@
 namespace Hygia.Operations.Communication.Api
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using Domain;
     using FaultManagement.Commands;
@@ -10,28 +11,33 @@ namespace Hygia.Operations.Communication.Api
     public class CommandsController
     {
         public IDocumentSession Session { get; set; }
-       
+
         [JsonEndpoint]
         public dynamic get_commands()
         {
             return Session.Query<LaunchPadCommand>()
-                .Where(c=>!c.Delivered)
+                .Where(c => !c.Delivered)
                 .ToList();
         }
 
-
-        public void post_commands_markasprocessed(MarkAsProcessedViewModel model)
+        [JsonEndpoint]
+        public dynamic post_commands_markasprocessed(MarkAsProcessedViewModel model)
         {
-            var command = Session.Load<LaunchPadCommand>(model.CommandId);
+            foreach (var commandId in model.Commands)
+            {
+                var command = Session.Load<LaunchPadCommand>(commandId);
 
-            if (command != null)
-                command.Delivered = true;
+                if (command != null)
+                    command.Delivered = true;
 
+            }
+
+            return "ok";
         }
     }
 
     public class MarkAsProcessedViewModel
     {
-        public Guid CommandId { get; set; }
+        public List<Guid> Commands { get; set; }
     }
 }

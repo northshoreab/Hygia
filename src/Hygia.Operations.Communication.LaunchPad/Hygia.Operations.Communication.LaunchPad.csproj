@@ -59,9 +59,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cloud\CloudUploader.cs" />
+    <Compile Include="Cloud\HeartBeat.cs" />
     <Compile Include="Commands\FetchCommands.cs" />
     <Compile Include="Cloud\IApiCall.cs" />
-    <Compile Include="Cloud\ApiCommandFetcher.cs" />
+    <Compile Include="Cloud\FetchCommandsHandler.cs" />
     <Compile Include="Cloud\RestSharpApiCall.cs" />
     <Compile Include="CommunicationConfigurer.cs" />
     <Compile Include="IUploadToTheBackend.cs" />

@@ -1,13 +1,14 @@
 namespace Hygia.Operations.Communication.LaunchPad.Cloud
 {
     using System.Collections.Generic;
+    using System.Linq;
     using Commands;
     using Domain;
     using NServiceBus;
     using Newtonsoft.Json;
     using RestSharp;
 
-    public class ApiCommandFetcher : IHandleMessages<FetchCommands>
+    public class FetchCommandsHandler : IHandleMessages<FetchCommands>
     {
         public IBus Bus { get; set; }
 
@@ -22,8 +23,18 @@ namespace Hygia.Operations.Communication.LaunchPad.Cloud
 
             var commands = JsonConvert.DeserializeObject<List<LaunchPadCommand>>(response.Content, Converter);
 
+            if(!commands.Any())
+                return;
+
             foreach (var launchPadCommand in commands)
                 Bus.SendLocal(launchPadCommand.Command);
+            
+               
+            //mark all as fetched
+            ApiCall.Invoke(Method.POST,"commands/markasprocessed", new
+                                                                          {
+                                                                              Commands = commands.Select(c=>c.Id).ToList()
+                                                                          });
         }
     }
 
