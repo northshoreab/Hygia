@@ -7,20 +7,18 @@ require([
 
 // Modules  
   "modules/home",
-  "modules/faults",
-  "modules/faultTbl",
+  "modules/faults",  
   "modules/utils"
   
 ],
 
-function (namespace, jQuery, Backbone, Home, Faults, FaultTbl, Utils) {
+function (namespace, jQuery, Backbone, Home, Faults, Utils) {
 
     // Defining the application router, you can attach sub routers here.
     var Router = Backbone.Router.extend({
         routes: {
             "": "index",
-            "fault": "faults",
-            "tbl" : "tbl"
+            "fault": "faults"            
         },
 
         index: function (hash) {
@@ -65,31 +63,7 @@ function (namespace, jQuery, Backbone, Home, Faults, FaultTbl, Utils) {
                     route._alreadyTriggered = true;
                 }
             });
-        },
-
-        tbl: function (hash) {
-            var route = this;
-
-            var faultTbl = new FaultTbl.Views.List({ "collection": app.currentFaults });
-
-            // Attach the tutorial to the DOM
-            faultTbl.render(function (el) {
-                $("#main").html(el);
-
-                // Fix for hashes in pushState and hash fragment
-                if (hash && !route._alreadyTriggered) {
-                    // Reset to home, pushState support automatically converts hashes
-                    Backbone.history.navigate("", false);
-
-                    // Trigger the default browser behavior
-                    location.hash = hash;
-
-                    // Set an internal flag to stop recursive looping
-                    route._alreadyTriggered = true;
-                }
-            });
         }
-
     });
 
     // Shorthand the application namespace
@@ -104,7 +78,7 @@ function (namespace, jQuery, Backbone, Home, Faults, FaultTbl, Utils) {
 
         Utils.setCookie();
 
-        app.currentFaults = new FaultTbl.Collection();
+        app.currentFaults = new Faults.Collection();
         app.currentFaults.fetch();
 
 

@@ -29,8 +29,7 @@
           <div class="nav-collapse">
             <ul class="nav">
               <li class="active"><a href="#">Home</a></li>
-              <li><a href="#fault">Faults</a></li>
-              <li><a href="#tbl">Faults i tabellform</a></li>
+              <li><a href="#fault">Faults</a></li>              
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -40,10 +39,8 @@
   <div class="row-fluid">
     <div class="span4">      
     </div>
-    <div class="span4">
+    <div class="span8">
       <div role="main" id="main"></div>    
-    </div>
-    <div class="span4">      
     </div>
   </div>
 

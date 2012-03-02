@@ -14,7 +14,7 @@ namespace Hygia.FaultManagement.Api
         [JsonEndpoint]
         public dynamic get_faults()
         {
-         /*   
+            /*
             return new List<Fault>
                        {
                            getFakeFault(),
@@ -25,13 +25,24 @@ namespace Hygia.FaultManagement.Api
                            getFakeFault(),
                            getFakeFault()
                        };
-          */  
+            */
             return Session.Query<Fault>()
                 .Where(f=>f.Status != FaultStatus.Archived && f.Status != FaultStatus.RetryIssued)
                 .ToList();          
         }
-
         
+        [JsonEndpoint]
+        public dynamic post_faults_retry(FaultEnvelopeIdModel model)
+        {
+            return string.Empty;
+        }
+
+        [JsonEndpoint]
+        public dynamic post_faults_archive(FaultEnvelopeIdModel model)
+        {
+            return string.Empty;
+        }
+
         private Fault getFakeFault()
         {
             return new Fault
@@ -70,5 +81,10 @@ namespace Hygia.FaultManagement.Api
 
                        };
         }        
+    }
+
+    public class FaultEnvelopeIdModel
+    {
+        public string FaultEnvelopeId { get; set; }        
     }
 }
