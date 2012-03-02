@@ -84,6 +84,7 @@
   <ItemGroup>
     <Compile Include="CommandsToPickUpBehaviour.cs" />
     <Compile Include="CommandsController.cs" />
+    <Compile Include="ContextInputModel.cs" />
     <Compile Include="HeartBeatController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
