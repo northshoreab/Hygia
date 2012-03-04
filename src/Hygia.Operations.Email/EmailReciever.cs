@@ -6,6 +6,7 @@ using NServiceBus.Unicast;
 namespace Hygia.Operations.Email
 {
     using System;
+    using System.Configuration;
     using System.Threading;
     using AE.Net.Mail;
     using log4net;
@@ -14,19 +15,19 @@ namespace Hygia.Operations.Email
     {
         static Timer _timer;
 
-        public int CheckInterval { get; set; }
+        int checkInterval;
 
         public IBus Bus { get; set; }
 
-        public IMailClient EmailClient { get; set; }
+        readonly IMailClient emailClient;
 
         private void TimerElapsed(object sender)
         {
             try
             {
-                for (var i = EmailClient.GetMessageCount() - 1; i >= 0; i--)
+                for (var i = emailClient.GetMessageCount() - 1; i >= 0; i--)
                 {
-                    var msg = EmailClient.GetMessage(i);
+                    var msg = emailClient.GetMessage(i);
                     var to = msg.To.First().Address;
 
                     var tokens = to.Split('+');
@@ -61,7 +62,7 @@ namespace Hygia.Operations.Email
 
                                                    });
 
-                    EmailClient.DeleteMessage(msg);
+                    emailClient.DeleteMessage(msg);
                 }
             }
             catch (Exception ex)
@@ -70,16 +71,22 @@ namespace Hygia.Operations.Email
             }
             finally
             {
-                _timer.Change(CheckInterval * 1000, int.MaxValue);
+                _timer.Change(checkInterval * 1000, int.MaxValue);
             }
         }
 
         public void Run()
         {
-          
+            if (!int.TryParse(ConfigurationManager.AppSettings["CheckIntervalInSeconds"], out checkInterval))
+                checkInterval = 60;
             _timer = new Timer(TimerElapsed, null, 0, int.MaxValue);
         }
 
         static ILog logger = LogManager.GetLogger("emails");
+
+        public EmailReciever(IMailClient emailClient)
+        {
+            this.emailClient = emailClient;
+        }
     }
 }
