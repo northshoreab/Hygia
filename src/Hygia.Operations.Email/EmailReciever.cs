@@ -1,101 +1,83 @@
-using System.Configuration;
 using System.Linq;
 using Hygia.Operations.Events;
 using NServiceBus;
-using NServiceBus.Config;
 using NServiceBus.Unicast;
 
 namespace Hygia.Operations.Email
 {
     using System;
     using System.Threading;
+    using AE.Net.Mail;
     using log4net;
 
-    public class EmailReciever : INeedInitialization, IWantToRunWhenTheBusStarts
+    public class EmailReciever : IWantToRunWhenTheBusStarts
     {
         static Timer _timer;
-        static int _checkInterval;
-        static string _pop3Server;
-        static int _pop3Port;
-        static bool _pop3IsSsl;
-        static string _pop3User;
-        static string _pop3Password;
+
+        public int CheckInterval { get; set; }
+
         public IBus Bus { get; set; }
 
-        public void Init()
-        {
-            _pop3Server = ConfigurationManager.AppSettings["POP3Server"];
-            _pop3Password = ConfigurationManager.AppSettings["POP3Password"];
-            _pop3User = ConfigurationManager.AppSettings["POP3User"];
-            int.TryParse(ConfigurationManager.AppSettings["CheckIntervalInSeconds"], out _checkInterval);
-            int.TryParse(ConfigurationManager.AppSettings["POP3Port"], out _pop3Port);
-            bool.TryParse(ConfigurationManager.AppSettings["Pop3IsSSL"], out _pop3IsSsl);
-          
-        }
+        public IMailClient EmailClient { get; set; }
 
         private void TimerElapsed(object sender)
         {
             try
             {
-                using (var pop = new AE.Net.Mail.Pop3Client(_pop3Server, _pop3User, _pop3Password, _pop3Port, _pop3IsSsl))
+                for (var i = EmailClient.GetMessageCount() - 1; i >= 0; i--)
                 {
-                    for (var i = pop.GetMessageCount() - 1; i >= 0; i--)
-                    {
-                        var msg = pop.GetMessage(i);
-                        var to = msg.To.First().Address;
+                    var msg = EmailClient.GetMessage(i);
+                    var to = msg.To.First().Address;
 
-                        var tokens = to.Split('+');
+                    var tokens = to.Split('+');
 
-                        var environmentId = tokens.FirstOrDefault();
-                        Guid temp;
+                    var environmentId = tokens.FirstOrDefault();
+                    Guid temp;
 
-                        if (!Guid.TryParse(environmentId, out temp))
-                            environmentId = null;
-                        
-                        var service = string.Empty;
+                    if (!Guid.TryParse(environmentId, out temp))
+                        environmentId = null;
 
-                        if (tokens.Length > 1)
-                            service = tokens[1];
+                    var service = string.Empty;
 
-                        var parameters = string.Empty;
-                        if (tokens.Length > 2)
-                            parameters = tokens[2].Split('@').First();
+                    if (tokens.Length > 1)
+                        service = tokens[1];
 
-                        Bus.Publish<EmailReceived>(email =>
-                                                       {
-                                                       
-                                                           if (!string.IsNullOrEmpty(environmentId))
-                                                               email.SetHeader("EnvironmentId", environmentId);
+                    var parameters = string.Empty;
+                    if (tokens.Length > 2)
+                        parameters = tokens[2].Split('@').First();
 
-                                                           email.To = to;
-                                                           email.Body = msg.Body;
-                                                           email.From = msg.From.Address;
-                                                           email.Subject = msg.Subject;
-                                                           email.Service = service;
-                                                           email.Parameters = parameters;
+                    Bus.Publish<EmailReceived>(email =>
+                                                   {
 
-                                                       });
+                                                       if (!string.IsNullOrEmpty(environmentId))
+                                                           email.SetHeader("EnvironmentId", environmentId);
 
-                        pop.DeleteMessage(i);
+                                                       email.To = to;
+                                                       email.Body = msg.Body;
+                                                       email.From = msg.From.Address;
+                                                       email.Subject = msg.Subject;
+                                                       email.Service = service;
+                                                       email.Parameters = parameters;
 
-                    }
+                                                   });
+
+                    EmailClient.DeleteMessage(msg);
                 }
-
             }
             catch (Exception ex)
             {
-                logger.Error("There was a problem fetching emails from " + _pop3Server, ex);
+                logger.Error("There was a problem fetching emails", ex);
             }
             finally
             {
-                _timer.Change(_checkInterval * 1000, int.MaxValue);
+                _timer.Change(CheckInterval * 1000, int.MaxValue);
             }
         }
 
         public void Run()
         {
-            _timer = new Timer(TimerElapsed, null,0, int.MaxValue);
-
+          
+            _timer = new Timer(TimerElapsed, null, 0, int.MaxValue);
         }
 
         static ILog logger = LogManager.GetLogger("emails");
