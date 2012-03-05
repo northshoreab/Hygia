@@ -1,15 +1,17 @@
-using System.Collections.Generic;
-
 namespace Hygia.FaultManagement.Api
 {
+    using System.Collections.Generic;
     using System.Linq;
-    using Domain;
+    using NServiceBus;    
     using FubuMVC.Core;
-    using Raven.Client;
+    using Raven.Client;    
+    using Commands;
+    using Domain;
 
     public class FaultsController
     {
         public IDocumentSession Session { get; set; }
+        public IBus Bus { get; set; }
        
         [JsonEndpoint]
         public dynamic get_faults()
@@ -32,14 +34,18 @@ namespace Hygia.FaultManagement.Api
         }
         
         [JsonEndpoint]
-        public dynamic post_faults_retry(FaultEnvelopeIdModel model)
+        public dynamic post_faults_retry(FaultEnvelopeInputModel model)
         {
+            Bus.Send(new IssueRetryForFault { MessageId = System.Guid.Parse(model.FaultEnvelopeId) });
+
             return string.Empty;
         }
 
         [JsonEndpoint]
-        public dynamic post_faults_archive(FaultEnvelopeIdModel model)
+        public dynamic post_faults_archive(FaultEnvelopeInputModel model)
         {
+            Bus.Send(new ArchiveFault { MessageId = System.Guid.Parse(model.FaultEnvelopeId) });
+
             return string.Empty;
         }
 
@@ -83,8 +89,13 @@ namespace Hygia.FaultManagement.Api
         }        
     }
 
-    public class FaultEnvelopeIdModel
+    public class FaultEnvelopeOutputModel
     {
-        public string FaultEnvelopeId { get; set; }        
+        public string FaultEnvelopeId { get; set; }   
+    }
+
+    public class FaultEnvelopeInputModel : FaultEnvelopeOutputModel
+    {
+        
     }
 }

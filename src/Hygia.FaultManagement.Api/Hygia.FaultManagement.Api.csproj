@@ -54,6 +54,9 @@
     <Reference Include="HtmlTags">
       <HintPath>..\..\packages\HtmlTags.1.0.0.55\lib\4.0\HtmlTags.dll</HintPath>
     </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation">
       <HintPath>..\..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
@@ -62,6 +65,12 @@
     </Reference>
     <Reference Include="NLog">
       <HintPath>..\..\packages\NLog.2.0.0.2000\lib\net40\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="NServiceBus">
+      <HintPath>..\..\packages\NServiceBus-CI.3.0.2062\lib\net40\NServiceBus.dll</HintPath>
+    </Reference>
+    <Reference Include="NServiceBus.Core">
+      <HintPath>..\..\packages\NServiceBus-CI.3.0.2062\lib\net40\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="Raven.Abstractions">
       <HintPath>..\..\packages\RavenDB.1.0.616\lib\net40\Raven.Abstractions.dll</HintPath>
@@ -83,10 +92,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FaultsController.cs" />
-    <Compile Include="FaultsModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Hygia.FaultManagement.Commands\Hygia.FaultManagement.Commands.csproj">
+      <Project>{A18663E7-36E5-4BCC-B8F3-1E4A62EA6306}</Project>
+      <Name>Hygia.FaultManagement.Commands</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Hygia.FaultManagement.Domain\Hygia.FaultManagement.Domain.csproj">
       <Project>{FE5A6411-D13A-4252-9E95-BE775D172560}</Project>
       <Name>Hygia.FaultManagement.Domain</Name>
