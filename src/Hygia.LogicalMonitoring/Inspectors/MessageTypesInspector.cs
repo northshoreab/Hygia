@@ -32,7 +32,7 @@ namespace Hygia.LogicalMonitoring.Inspectors
 
         public void Handle(FaultMessageReceived message)
         {
-            var messageTypes = message.Headers.MessageTypes().ToList();
+            var messageTypes = message.Headers.MessageTypes().Select(s=>new MessageType(s)).ToList();
 
             if (!messageTypes.Any())
                 return;

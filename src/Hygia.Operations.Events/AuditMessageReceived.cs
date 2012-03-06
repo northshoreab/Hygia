@@ -11,5 +11,7 @@ namespace Hygia.Operations.Events
         public Dictionary<string, string> AdditionalInformation { get; set; }
 
         public byte[] Body { get; set; }
+
+
     }
 }

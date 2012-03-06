@@ -52,13 +52,17 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Hygia.Core\Hygia.Core.csproj">
+      <Project>{C4F880A3-653F-4CC9-9333-DBE2CB4EFEF9}</Project>
+      <Name>Hygia.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hygia.Operations.Events\Hygia.Operations.Events.csproj">
+      <Project>{A1BD8BAC-28CC-4169-B73E-B13C22132DFB}</Project>
+      <Name>Hygia.Operations.Events</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Hygia.ServiceLevelAgreements.Events\Hygia.ServiceLevelAgreements.Events.csproj">
       <Project>{A60EE78F-91F9-4843-9560-C9EBAC9EDF52}</Project>
       <Name>Hygia.ServiceLevelAgreements.Events</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Hygia.PhysicalMonitoring\Hygia.PhysicalMonitoring.csproj">
-      <Project>{A69B2E6E-9E40-40B4-BFD8-3164DF393744}</Project>
-      <Name>Hygia.PhysicalMonitoring</Name>
     </ProjectReference>
     <ProjectReference Include="..\Hygia.ServiceLevelAgreements.Domain\Hygia.ServiceLevelAgreements.Domain.csproj">
       <Project>{BB51732F-3674-4BA3-A512-98CD46A9AFF3}</Project>
