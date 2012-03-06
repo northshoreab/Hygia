@@ -1,3 +1,5 @@
+using System;
+
 namespace Hygia.FaultManagement.Api
 {
     using System.Collections.Generic;
@@ -14,88 +16,69 @@ namespace Hygia.FaultManagement.Api
         public IBus Bus { get; set; }
        
         [JsonEndpoint]
-        public dynamic get_faults()
-        {
-            /*
-            return new List<Fault>
-                       {
-                           getFakeFault(),
-                           getFakeFault(),
-                           getFakeFault(),
-                           getFakeFault(),
-                           getFakeFault(),
-                           getFakeFault(),
-                           getFakeFault()
-                       };
-            */
+        public IEnumerable<FaultEnvelopeOutputModel> get_faults()
+        {                                 
             return Session.Query<Fault>()
                 .Where(f=>f.Status != FaultStatus.Archived && f.Status != FaultStatus.RetryIssued)
-                .ToList();          
+                .Select(f => f.ToOutputModel())
+                .ToList();                      
         }
-        
+
         [JsonEndpoint]
         public dynamic post_faults_retry(FaultEnvelopeInputModel model)
         {
-            Bus.Send(new IssueRetryForFault { MessageId = System.Guid.Parse(model.FaultEnvelopeId) });
-
+            Bus.Send(new IssueRetryForFault {MessageId = Guid.Parse(model.FaultEnvelopeId)});
             return string.Empty;
         }
 
         [JsonEndpoint]
         public dynamic post_faults_archive(FaultEnvelopeInputModel model)
         {
-            Bus.Send(new ArchiveFault { MessageId = System.Guid.Parse(model.FaultEnvelopeId) });
-
+            Bus.Send(new ArchiveFault {MessageId = Guid.Parse(model.FaultEnvelopeId)});
             return string.Empty;
-        }
+        }       
+    }
 
-        private Fault getFakeFault()
+    public static class FaultEnvelopeViewModelExtensions
+    {
+        public static FaultEnvelopeOutputModel ToOutputModel(this Fault fault)
         {
-            return new Fault
-                       {
-                           Body = "body",
-                           Status = FaultStatus.New,
-                           AssignedTo = System.Guid.NewGuid(),
-                           ContainedMessages = new List<PhysicalMessage>(),
-                           Endpoint = "endpoint",
-                           EndpointId = System.Guid.NewGuid(),
-                           Exception =
-                               new ExceptionInfo
-                                   {
-                                       ExceptionType = "backboneIsHardException",
-                                       Message = "do something easier",
-                                       Reason = "bad coder",
-                                       Source = "?",
-                                       StackTrace = "..."
-                                   },
-                           FaultEnvelopeId = System.Guid.NewGuid().ToString(),
-                           Headers =
-                               new Dictionary<string, string>
-                                   {
-                                    {"NServiceBus.OriginalId", System.Guid.NewGuid().ToString()},
-                                    {"NServiceBus.TimeSent", System.DateTime.Now.ToString()},
-                                    {"NServiceBus.EnclosedMessageTypes", "OrderPlaced, Version=1.0.0.0"}
-                                   },
-                           History = new List<HistoryItem>
-                                         {
-                                             new HistoryItem
-                                                 {
-                                                     Status = "status",
-                                                     Time = System.DateTime.Now
-                                                 }
-                                         }
+            string enclosedMessageTypes;
 
-                       };
-        }        
+            try
+            {
+                enclosedMessageTypes = fault.Headers["NServiceBus.EnclosedMessageTypes"].Split(',')[0].Split('.').LastOrDefault();
+            }
+            catch (Exception)
+            {
+                enclosedMessageTypes = string.Empty;                
+            }
+            
+            var viewModel = new FaultEnvelopeOutputModel
+                                {
+                                    BusinessService = "", 
+                                    EnclosedMessageTypes = enclosedMessageTypes ?? string.Empty,
+                                    ExceptionMessage = fault.Exception.Message,
+                                    FaultEnvelopeId = fault.FaultEnvelopeId,
+                                    FaultId = 0,
+                                    Status = fault.Status,
+                                    TimeSent = fault.TimeOfFailure.ToString()
+                                };
+
+            return viewModel;
+        }
     }
 
     public class FaultEnvelopeOutputModel
     {
-        public string FaultEnvelopeId { get; set; }   
+        public long FaultId { get; set; }
+        public string FaultEnvelopeId { get; set; }
+        public string ExceptionMessage { get; set; }
+        public string TimeSent { get; set; }
+        public FaultStatus Status { get; set; }
+        public string EnclosedMessageTypes { get; set; }                
+        public string BusinessService { get; set; }
     }
 
-    public class FaultEnvelopeInputModel : FaultEnvelopeOutputModel
-    {
-        
-    }
+    public class FaultEnvelopeInputModel : FaultEnvelopeOutputModel { }
 }

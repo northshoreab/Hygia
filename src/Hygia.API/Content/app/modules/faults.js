@@ -31,7 +31,6 @@ function (namespace, Backbone) {
             _.bindAll(this, 'render');
             this.model.bind('change', this.render);
         },
-
         retry: function () {
             $.ajax({
                 type: 'POST',
@@ -50,7 +49,6 @@ function (namespace, Backbone) {
                 dataType: "json"
             });
         },
-
         render: function (done) {
             var view = this;
 
@@ -77,7 +75,6 @@ function (namespace, Backbone) {
             _.bindAll(this, 'render');
             this.collection.bind('reset', this.render);
         },
-
         reload: function () {
             this.collection.fetch();
         },
@@ -108,5 +105,4 @@ function (namespace, Backbone) {
     });
 
     return Faults;
-
 });
