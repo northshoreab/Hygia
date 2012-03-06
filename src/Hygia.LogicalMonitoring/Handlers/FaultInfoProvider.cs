@@ -21,7 +21,7 @@ namespace Hygia.LogicalMonitoring.Handlers
                 if (messageType != null)
                     messageTypeName = messageType.Type;
             }
-            
+
 
             return new
                        {

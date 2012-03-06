@@ -1,0 +1,11 @@
+﻿ID SLANotificationSettings/0a0e9955-7cc7-515a-e40c-c0ba31c0159b
+DOC
+{
+  "EmailAdress": "andreasohlund2@gmail.com",
+  "NotificationType": "Email"
+}
+META
+{
+  "Raven-Entity-Name": "SLANotificationSettings",
+  "Raven-Clr-Type": "Hygia.Notifications.Domain.SLANotificationSetting, Hygia.Notifications.Domain"
+}

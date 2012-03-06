@@ -75,6 +75,7 @@
     <Compile Include="Commands\RegisterMessageType.cs" />
     <Compile Include="Handlers\FaultInfoProvider.cs" />
     <Compile Include="Handlers\MessageType.cs" />
+    <Compile Include="Handlers\MessageTypeInformationProvider.cs" />
     <Compile Include="Handlers\RegisterAutonomousComponentHandler.cs" />
     <Compile Include="Handlers\RegisterLogicalServiceHandler.cs" />
     <Compile Include="Handlers\RegisterMessageConsumersHandler.cs" />

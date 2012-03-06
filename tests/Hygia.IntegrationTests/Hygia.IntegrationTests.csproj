@@ -73,6 +73,7 @@
   <ItemGroup>
     <Compile Include="ApiContext.cs" />
     <Compile Include="BackendContext.cs" />
+    <Compile Include="ServiceLevelAgreements\When_a_audit_message_is_received_that_breaks_the_environment_sla.cs" />
     <Compile Include="Operations\Faults\When_a_email_arrives_with_a_fault_that_should_be_retried.cs" />
     <Compile Include="Operations\Faults\When_a_fault_message_is_uploaded_through_the_api_with_a_valid_apikey.cs" />
     <Compile Include="Operations\Communication\When_listing_commands_for_a_launchpad_that_have_new_commands_to_pickup.cs" />

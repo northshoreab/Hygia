@@ -55,7 +55,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CriticalTimeSLAViolatedHandler.cs" />
+    <Compile Include="CriticalTimeSLAViolatedNotificationHandler.cs" />
     <Compile Include="FaultNotificationHandler.cs" />
     <Compile Include="Summary\Commands\ProcessSLABreachMessageReceived.cs" />
     <Compile Include="Summary\Handlers\AlertCommandHandlers.cs" />
@@ -71,7 +71,8 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
-    <None Include="Settings\FaultNotificationSetting.document" />
+    <None Include="Settings\SLANotificationSetting.json" />
+    <None Include="Settings\FaultNotificationSetting.json" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Hygia.Alarms.Events\Hygia.Alarms.Events.csproj">

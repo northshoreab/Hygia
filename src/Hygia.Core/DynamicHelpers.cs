@@ -33,8 +33,8 @@ namespace Hygia
 
             return result;
         }
-
-        public static dynamic ToDynamic(object value)
+       
+        public static dynamic ToDynamic(this object value)
         {
             IDictionary<string, object> expando = new ExpandoObject();
 

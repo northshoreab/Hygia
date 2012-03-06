@@ -19,7 +19,7 @@ namespace Hygia.ServiceLevelAgreements
 
             if (environmentSLA == null)
                 return;
-
+                
             foreach(var applicativeMessage in message.Headers.MessageTypes())
             {
                 var criticalTimeSLA = environmentSLA.DefaultCriticalTimeSLA;
@@ -30,7 +30,7 @@ namespace Hygia.ServiceLevelAgreements
                     criticalTimeSLA = messageSpecificSLA.CriticalTimeSLA;
                 var criticalTime = message.Headers.CriticalTime();
 
-                if (criticalTimeSLA > criticalTime)
+                if (criticalTimeSLA < criticalTime)
                 {
                     Bus.Publish(new CriticalTimeSLAViolated
                                      {

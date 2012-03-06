@@ -1,0 +1,13 @@
+﻿ID Environment/ServiceLevelAgreement
+
+DOC
+{
+  "DefaultCriticalTimeSLA": "00:10:00",
+  "DefaultReactionTime": "00:20:00"
+}
+
+META
+{
+  "Raven-Entity-Name": "EnvironmentSLAs",
+  "Raven-Clr-Type": "Hygia.ServiceLevelAgreements.Domain.EnvironmentSLA, Hygia.ServiceLevelAgreements.Domain"
+}

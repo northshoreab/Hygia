@@ -4,7 +4,8 @@ namespace Hygia.Notifications.Domain
 {
     public class SLANotificationSetting
     {
-        public Guid SLAId { get; set; }
+        public Guid Id { get; set; }
+        public string EmailAdress { get; set; }
         public string NotificationType { get; set; }
     }
 }

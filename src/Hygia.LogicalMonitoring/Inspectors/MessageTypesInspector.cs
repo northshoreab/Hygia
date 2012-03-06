@@ -32,7 +32,7 @@ namespace Hygia.LogicalMonitoring.Inspectors
 
         public void Handle(FaultMessageReceived message)
         {
-            var messageTypes = message.Headers.MessageTypes().Select(s=>new MessageType(s)).ToList();
+            var messageTypes = message.Headers.MessageTypes().Select(s => new MessageType(s)).ToList();
 
             if (!messageTypes.Any())
                 return;
@@ -55,15 +55,16 @@ namespace Hygia.LogicalMonitoring.Inspectors
 
         MessageIntent DetectIntent(AuditMessageReceived envelope, MessageType messageType)
         {
-            switch (envelope.AdditionalInformation["MessageIntent"])
-            {
-                case "Publish":
-                    return MessageIntent.Event;
-                case "Unsubscribe":
-                    return MessageIntent.Unsubscribe;
-                case "Subscribe":
-                    return MessageIntent.Subscribe;
-            }
+            if (envelope.AdditionalInformation.ContainsKey("MessageIntent"))
+                switch (envelope.AdditionalInformation["MessageIntent"])
+                {
+                    case "Publish":
+                        return MessageIntent.Event;
+                    case "Unsubscribe":
+                        return MessageIntent.Unsubscribe;
+                    case "Subscribe":
+                        return MessageIntent.Subscribe;
+                }
 
             if (envelope.IsControlMessage())
                 return MessageIntent.Control;
@@ -84,7 +85,7 @@ namespace Hygia.LogicalMonitoring.Inspectors
             return messageType.TypeName.Contains("Command");
         }
 
-      
+
     }
 
     public enum MessageIntent

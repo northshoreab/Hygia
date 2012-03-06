@@ -1,0 +1,13 @@
+﻿ID FaultNotificationSettings/0a0e9955-7cc7-515a-e40c-c0ba31c0159b
+DOC
+{
+	"MessageTypeId":null,
+	"AllMessages":true,
+	"EmailAdress":"andreasohlund2@gmail.com",
+	"NotificationType":"Email"
+}
+META
+{
+  "Raven-Entity-Name": "FaultNotificationSettings",
+  "Raven-Clr-Type": "Hygia.Notifications.Domain.FaultNotificationSetting, Hygia.Notifications.Domain"
+}
