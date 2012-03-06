@@ -5,6 +5,7 @@ namespace Hygia.API
     using System;
     using System.Collections.Generic;
     using FubuMVC.Core.Runtime;
+    using Operations;
     using Raven.Client;
     using Raven.Client.Document;
     using StructureMap;
@@ -42,20 +43,13 @@ namespace Hygia.API
 
             string environmentId = request.Get<ContextInputModel>().EnvironmentId;
 
-            string database = string.Empty;
-
-            if (!string.IsNullOrEmpty(environmentId))
-                database = environmentIdToDatabaseLookup[Guid.Parse(environmentId)];
 
             var currentStore = ctx.GetInstance<IDocumentStore>();
 
-            return string.IsNullOrEmpty(database) ? currentStore.OpenSession() : currentStore.OpenSession(database);                      
+
+            return RavenSession.OpenSession(environmentId, currentStore);
         }
-        static readonly IDictionary<Guid, string> environmentIdToDatabaseLookup = new Dictionary<Guid, string>
-                                                                                      {
-                                                                                          { Guid.Parse("327951bf-bae4-46a4-93a0-71f61dfbe801"), "Hygia.Acme" },
-                                                                                          { Guid.Parse("918490ce-5a0c-4260-aaf8-a4d080c1f5cf"), "WatchR.RavenHQ.Production" }
-                                                                                      };
+
     }
 
     public class ContextInputModel

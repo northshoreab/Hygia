@@ -1,7 +1,5 @@
 namespace Hygia.Backend
 {
-    using System;
-    using System.Collections.Generic;
     using NServiceBus;
     using NServiceBus.UnitOfWork;
     using Operations;
@@ -40,24 +38,14 @@ namespace Hygia.Backend
         static IDocumentSession OpenSession(IContext ctx)
         {
             var bus = ctx.GetInstance<IBus>();
-            string database = null;
+            string environmentId = null;
 
             if (bus.CurrentMessageContext != null && bus.CurrentMessageContext.Headers.ContainsKey("EnvironmentId"))
-                database = environmentIdToDatabaseLookup[Guid.Parse(bus.CurrentMessageContext.Headers["EnvironmentId"])];
+                environmentId = bus.CurrentMessageContext.Headers["EnvironmentId"];
 
-            var s = ctx.GetInstance<IDocumentStore>();
+            var store = ctx.GetInstance<IDocumentStore>();
 
-            if (string.IsNullOrEmpty(database))
-                return s.OpenSession();
-
-            return s.OpenSession(database);
+            return RavenSession.OpenSession(environmentId, store);
         }
-
-
-        static readonly IDictionary<Guid, string> environmentIdToDatabaseLookup = new Dictionary<Guid, string>
-                                                                                      {
-                                                                                          { Guid.Parse("327951bf-bae4-46a4-93a0-71f61dfbe801"), "Hygia.Acme" },
-                                                                                          { Guid.Parse("918490ce-5a0c-4260-aaf8-a4d080c1f5cf"), "WatchR.RavenHQ.Production" }
-                                                                                      };
     }
 }
