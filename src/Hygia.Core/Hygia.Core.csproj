@@ -42,6 +42,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DateTimeExtensions.cs" />
+    <Compile Include="HeaderExtensions.cs" />
     <Compile Include="DeterministicGuids.cs" />
     <Compile Include="DynamicHelpers.cs" />
     <Compile Include="IProvide.cs" />

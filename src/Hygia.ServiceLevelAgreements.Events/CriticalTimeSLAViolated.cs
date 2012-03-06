@@ -8,7 +8,7 @@ namespace Hygia.ServiceLevelAgreements.Events
 
         public DateTime TimeOfSLABreach { get; set; }
         public Guid MessageTypeId { get; set; }
-        public TimeSpan CriticalTimeSetting { get; set; }
-        public TimeSpan MessageCriticalTime { get; set; }
+        public TimeSpan ActiveSLA { get; set; }
+        public TimeSpan ActualCriticalTime { get; set; }
     }
 }

@@ -35,7 +35,8 @@
             if (envelope.ProcessingStarted.HasValue && envelope.ProcessingEnded.HasValue)
                 envelope.ProcessingTime = envelope.ProcessingEnded - envelope.ProcessingStarted;
 
-            Session.Store(envelope);
+            //no need to store the envelope for now
+            //Session.Store(envelope);
 
             _bus.Publish<EnvelopeRegistered>(e => { e.RegisteredEnvelope = envelope; });
         }

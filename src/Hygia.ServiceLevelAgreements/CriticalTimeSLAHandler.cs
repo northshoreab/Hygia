@@ -1,42 +1,43 @@
-using System;
-using System.Linq;
-using Hygia.ServiceLevelAgreements.Domain;
-using Hygia.ServiceLevelAgreements.Events;
 using NServiceBus;
 using Raven.Client;
-using Hygia.PhysicalMonitoring.Events;
 
 namespace Hygia.ServiceLevelAgreements
 {
-    public class CriticalTimeSLAHandler : IHandleMessages<EnvelopeRegistered>
+    using Domain;
+    using Events;
+    using Operations.Events;
+
+    public class CriticalTimeSLAHandler : IHandleMessages<AuditMessageReceived>
     {
-        private readonly IBus _bus;
         public IDocumentSession Session { get; set; }
 
-        public CriticalTimeSLAHandler(IBus bus)
-        {
-            _bus = bus;
-        }
+        public IBus Bus { get; set; }
 
-        public void Handle(EnvelopeRegistered message)
+        public void Handle(AuditMessageReceived message)
         {
-            var slas =
-                Session.Load<CriticalTimeSLA>().Where(
-                    x =>
-                    message.RegisteredEnvelope.ContainedMessages.Select(e => e.MessageTypeId).Contains(
-                        x.MessageTypeId));
+            var environmentSLA = Session.Load<EnvironmentSLA>("Environment/ServiceLevelAgreement");
 
-            foreach (var criticalTimeSLA in slas)
+            if (environmentSLA == null)
+                return;
+
+            foreach(var applicativeMessage in message.Headers.MessageTypes())
             {
-                if(criticalTimeSLA.CriticalTime > message.RegisteredEnvelope.CriticalTime)
+                var criticalTimeSLA = environmentSLA.DefaultCriticalTimeSLA;
+
+                var messageSpecificSLA = Session.Load<MessageTypeSLA>(applicativeMessage.MessageTypeId());
+
+                if (messageSpecificSLA != null)
+                    criticalTimeSLA = messageSpecificSLA.CriticalTimeSLA;
+                var criticalTime = message.Headers.CriticalTime();
+
+                if (criticalTimeSLA > criticalTime)
                 {
-                    _bus.Publish(new CriticalTimeSLAViolated
+                    Bus.Publish(new CriticalTimeSLAViolated
                                      {
-                                         SLAId = criticalTimeSLA.Id,
-                                         MessageTypeId = criticalTimeSLA.MessageTypeId,
-                                         CriticalTimeSetting = criticalTimeSLA.CriticalTime,
-                                         MessageCriticalTime = message.RegisteredEnvelope.CriticalTime.Value,
-                                         TimeOfSLABreach = message.RegisteredEnvelope.ProcessingEnded.HasValue ? message.RegisteredEnvelope.ProcessingEnded.Value : DateTime.MinValue
+                                         MessageTypeId = applicativeMessage.MessageTypeId(),
+                                         ActiveSLA = criticalTimeSLA,
+                                         ActualCriticalTime = criticalTime,
+                                         TimeOfSLABreach = message.Headers.ProcessingEnded()
                                      });
                 }
             }
