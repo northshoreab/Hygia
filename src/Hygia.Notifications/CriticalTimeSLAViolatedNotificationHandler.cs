@@ -29,8 +29,7 @@ namespace Hygia.Notifications
             var information = message.ToDynamic();
 
             foreach (var messageTypeInformationProvider in _messageTypeInformationProviders)
-                information = DynamicHelpers.Combine(information, messageTypeInformationProvider.ProvideFor(message.MessageTypeId));
-            
+                information = DynamicHelpers.Combine(information, messageTypeInformationProvider.ProvideFor(message.MessageTypeId));            
 
             foreach (var slaNotificationSetting in Session.Query<SLANotificationSetting>())
             {
@@ -70,6 +69,5 @@ namespace Hygia.Notifications
             //todo: Use templating engine
             return ((IDictionary<string, object>)information).Aggregate("", (current, pair) => current + (pair.Key + " - " + pair.Value));
         }
-
     }
 }
