@@ -17,11 +17,11 @@ namespace Hygia.FaultManagement.Api
        
         [JsonEndpoint]
         public IEnumerable<FaultEnvelopeOutputModel> get_faults()
-        {                                 
+        {
             return Session.Query<Fault>()
-                .Where(f=>f.Status != FaultStatus.Archived && f.Status != FaultStatus.RetryIssued)
-                .Select(f => f.ToOutputModel())
-                .ToList();                      
+                .Where(f => f.Status != FaultStatus.Archived && f.Status != FaultStatus.RetryIssued)
+                .ToList()
+                .ToOutputModels();
         }
 
         [JsonEndpoint]
@@ -41,6 +41,11 @@ namespace Hygia.FaultManagement.Api
 
     public static class FaultEnvelopeViewModelExtensions
     {
+        public static IEnumerable<FaultEnvelopeOutputModel> ToOutputModels(this IEnumerable<Fault> faults)
+        {
+            return faults.Select(fault => fault.ToOutputModel());
+        }
+
         public static FaultEnvelopeOutputModel ToOutputModel(this Fault fault)
         {
             string enclosedMessageTypes;
