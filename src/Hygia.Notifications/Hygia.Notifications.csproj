@@ -130,7 +130,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Settings\SLANotificationSetting.json" />
     <None Include="Settings\FaultNotificationSetting.json" />
   </ItemGroup>

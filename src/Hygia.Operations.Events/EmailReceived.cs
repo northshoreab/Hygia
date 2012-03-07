@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace Hygia.Operations.Events
 {
     public class EmailReceived
