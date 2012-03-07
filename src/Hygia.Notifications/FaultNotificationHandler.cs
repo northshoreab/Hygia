@@ -1,7 +1,10 @@
+using System.IO;
+using System.Reflection;
 using Hygia.Notifications.Domain;
 using Hygia.Operations.Email.Commands;
 using NServiceBus;
 using Raven.Client;
+using RazorEngine;
 
 namespace Hygia.Notifications
 {
@@ -29,8 +32,7 @@ namespace Hygia.Notifications
             dynamic faultInformation = new ExpandoObject();
 
             foreach (var faultInformationProvider in _faultInformationProviders)
-                faultInformation = DynamicHelpers.Combine(faultInformation, faultInformationProvider.ProvideFor(message.EnvelopeId, message.MessageTypes));
-            
+                faultInformation = DynamicHelpers.Combine(faultInformation, faultInformationProvider.ProvideFor(message.EnvelopeId, message.MessageTypes));            
 
             foreach (var faultNotificationSetting in Session.Query<FaultNotificationSetting>().Where(x => x.AllMessages))
             {
@@ -41,13 +43,13 @@ namespace Hygia.Notifications
                 {
                     case NotificationTypes.Email:
                         Bus.Send<SendEmailRequest>(e =>
-                        {
-                            e.Body = body;
-                            e.Subject = subject;
-                            e.To = faultNotificationSetting.EmailAdress;
-                            e.Service = "faults";
-                            e.Parameters = message.EnvelopeId.ToString();
-                        });
+                                                       {
+                                                           e.Body = body;
+                                                           e.Subject = subject;
+                                                           e.To = faultNotificationSetting.EmailAdress;
+                                                           e.Service = "faults";
+                                                           e.Parameters = message.EnvelopeId.ToString();
+                                                       });
                         break;
                     case NotificationTypes.RSS:
                         Session.Store(new FaultNotification(subject, body));
@@ -66,8 +68,16 @@ namespace Hygia.Notifications
 
         string FormatBody(dynamic faultInformation)
         {
-            //todo: Use templating engine
-            return ((IDictionary<string, object>)faultInformation).Aggregate("", (current, pair) => current + (pair.Key + " - " + pair.Value));
+            var assembly = Assembly.GetExecutingAssembly();
+
+            var stream = assembly.GetManifestResourceStream("Hygia.Notifications.EmailTemplate.FaultEmail.htm");
+
+            if (stream == null)
+                return ((IDictionary<string, object>)faultInformation).Aggregate("", (current, pair) => current + (pair.Key + " - " + pair.Value));
+
+            var textStreamReader = new StreamReader(stream);
+
+            return Razor.Parse(textStreamReader.ReadToEnd(), faultInformation);
         }
     }
 }

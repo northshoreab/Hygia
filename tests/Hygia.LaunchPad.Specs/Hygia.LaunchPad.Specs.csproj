@@ -125,6 +125,10 @@
       <Project>{ACD5D3D1-675A-49EF-8CF4-7E27528CFAC1}</Project>
       <Name>Hygia.LogicalMonitoring</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\src\Hygia.Notifications.Domain\Hygia.Notifications.Domain.csproj">
+      <Project>{90281B60-6D3F-479D-8449-1F25E81B4991}</Project>
+      <Name>Hygia.Notifications.Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\Hygia.Operations.AuditUploads\Hygia.Operations.AuditUploads.csproj">
       <Project>{0913F8B5-DA27-4B5C-9E13-682A8555BCE3}</Project>
       <Name>Hygia.Operations.AuditUploads</Name>

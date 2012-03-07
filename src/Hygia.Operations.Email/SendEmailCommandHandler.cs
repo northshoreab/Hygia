@@ -8,35 +8,35 @@ namespace Hygia.Operations.Email
 {
     public class SendEmailCommandHandler : IHandleMessages<SendEmailRequest>
     {
-        private readonly string _smtpServer;
-        private readonly int _smtpPort;
-        private readonly string _smtpUser;
-        private readonly string _smtpPassword;
-        private readonly string _defaultFromEmail;
+        private readonly string smtpServer;
+        private readonly int smtpPort;
+        private readonly string smtpUser;
+        private readonly string smtpPassword;
+        private readonly string defaultFromEmail;
 
         public SendEmailCommandHandler()
         {
-            _smtpServer = ConfigurationManager.AppSettings["SmtpServer"];
-            _smtpPassword = ConfigurationManager.AppSettings["SmtpPassword"];
-            _smtpUser = ConfigurationManager.AppSettings["SmtpUser"];
-            _defaultFromEmail = ConfigurationManager.AppSettings["DefaultFromEmail"];
-            int.TryParse(ConfigurationManager.AppSettings["SmtpPort"], out _smtpPort);
+            smtpServer = ConfigurationManager.AppSettings["SmtpServer"];
+            smtpPassword = ConfigurationManager.AppSettings["SmtpPassword"];
+            smtpUser = ConfigurationManager.AppSettings["SmtpUser"];
+            defaultFromEmail = ConfigurationManager.AppSettings["DefaultFromEmail"];
+            int.TryParse(ConfigurationManager.AppSettings["SmtpPort"], out smtpPort);
         }
-
 
         public void Handle(SendEmailRequest message)
         {
-            string from = string.IsNullOrEmpty(message.From) ? _defaultFromEmail : message.From;
+            string from = string.IsNullOrEmpty(message.From) ? defaultFromEmail : message.From;
 
             var mailMessage = new MailMessage(from, message.To)
                                   {
                                       Subject = message.Subject,
-                                      Body = message.Body
+                                      Body = message.Body,
+                                      IsBodyHtml = true
                                   };
 
-            var smtpClient = new SmtpClient(_smtpServer, _smtpPort)
+            var smtpClient = new SmtpClient(smtpServer, smtpPort)
                                  {
-                                     Credentials = new NetworkCredential(_smtpUser, _smtpPassword),
+                                     Credentials = new NetworkCredential(smtpUser, smtpPassword),
                                      DeliveryMethod = SmtpDeliveryMethod.Network,
                                  };
             mailMessage.ReplyToList.Add(GenerateFromAddress(message));
@@ -59,10 +59,9 @@ namespace Hygia.Operations.Email
                 from += "+" + message.Parameters;
 
             if (string.IsNullOrEmpty(from))
-                from = _defaultFromEmail;
+                from = defaultFromEmail;
             else
                 from += "@watchr.se";
-
 
             return from;
         }

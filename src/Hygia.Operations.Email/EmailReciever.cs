@@ -13,7 +13,7 @@ namespace Hygia.Operations.Email
 
     public class EmailReciever : IWantToRunWhenTheBusStarts
     {
-        static Timer _timer;
+        static Timer timer;
 
         int checkInterval;
 
@@ -71,7 +71,7 @@ namespace Hygia.Operations.Email
             }
             finally
             {
-                _timer.Change(checkInterval * 1000, int.MaxValue);
+                timer.Change(checkInterval * 1000, int.MaxValue);
             }
         }
 
@@ -79,7 +79,7 @@ namespace Hygia.Operations.Email
         {
             if (!int.TryParse(ConfigurationManager.AppSettings["CheckIntervalInSeconds"], out checkInterval))
                 checkInterval = 60;
-            _timer = new Timer(TimerElapsed, null, 0, int.MaxValue);
+            timer = new Timer(TimerElapsed, null, 0, int.MaxValue);
         }
 
         static ILog logger = LogManager.GetLogger("emails");

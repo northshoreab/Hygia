@@ -2,8 +2,6 @@ namespace Hygia.Operations.Email
 {
     using System.Configuration;
     using AE.Net.Mail;
-    using NServiceBus;
-    using NServiceBus.Config;
     using StructureMap.Configuration.DSL;
 
     public class EmailRegistry:Registry
@@ -26,8 +24,6 @@ namespace Hygia.Operations.Email
             Profile("Integration", c => c.For<IMailClient>()
                                             .Use<FakePop3Client>()
                 );
-
-
         }
     }
 
