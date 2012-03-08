@@ -14,10 +14,35 @@ function (namespace, Backbone) {
     var Faults = namespace.module();
 
     Faults.Model = Backbone.Model.extend({});
+    Faults.DetailModel = Backbone.Model.extend({
+        url: function () { return '/faults/' + this.id; }
+    });
 
     Faults.Collection = Backbone.Collection.extend({
         model: Faults.Model,
         url: "/faults"
+    });
+
+    Faults.Views.Detail = Backbone.View.extend({
+        template: '/content/app/templates/faults.detail.html',
+        initialize: function () {
+            _.bindAll(this, 'render');
+            this.model.bind('change', this.render);
+            this.model.fetch();
+        },
+        render: function (done) {
+            var view = this;
+
+            namespace.fetchTemplate(this.template, function (tmpl) {
+                view.el.innerHTML = tmpl(view.model.toJSON());
+
+                if (_.isFunction(done)) {
+                    done(view.el);
+                }
+            });
+
+            return view;
+        }
     });
 
     Faults.Views.Item = Backbone.View.extend({
@@ -35,7 +60,7 @@ function (namespace, Backbone) {
             $.ajax({
                 type: 'POST',
                 url: '/faults/retry',
-                data: { FaultEnvelopeId : this.model.get('FaultEnvelopeId') },
+                data: { FaultEnvelopeId: this.model.get('FaultEnvelopeId') },
                 success: function () { console.log("success!"); },
                 dataType: "json"
             });

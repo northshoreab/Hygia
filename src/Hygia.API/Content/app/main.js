@@ -7,9 +7,9 @@ require([
 
 // Modules  
   "modules/home",
-  "modules/faults",  
+  "modules/faults",
   "modules/utils"
-  
+
 ],
 
 function (namespace, jQuery, Backbone, Home, Faults, Utils) {
@@ -18,7 +18,8 @@ function (namespace, jQuery, Backbone, Home, Faults, Utils) {
     var Router = Backbone.Router.extend({
         routes: {
             "": "index",
-            "fault": "faults"            
+            "fault": "faults",
+            "fault/:id": "faultDetail"
         },
 
         index: function (hash) {
@@ -41,7 +42,16 @@ function (namespace, jQuery, Backbone, Home, Faults, Utils) {
                 }
             });
         },
+        faultDetail: function (id) {
+            var route = this;
 
+            var detailModel = new Faults.DetailModel({ "id": id });            
+            var detailView = new Faults.Views.Detail({ "model": detailModel });
+
+            detailView.render(function (el) {
+                $("#main").html(el);
+            });
+        },
         faults: function (hash) {
             var route = this;
 
@@ -74,7 +84,7 @@ function (namespace, jQuery, Backbone, Home, Faults, Utils) {
     // point should be definitions.
     jQuery(function ($) {
         app.router = new Router();
-        
+
 
         Utils.setCookie();
 

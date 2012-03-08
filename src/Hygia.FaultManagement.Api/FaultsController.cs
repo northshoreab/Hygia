@@ -23,6 +23,14 @@ namespace Hygia.FaultManagement.Api
                 .ToList()
                 .ToOutputModels();
         }
+        
+        [JsonEndpoint]
+        public Fault get_faults_FaultEnvelopeId(FaultEnvelopeInputModel model)
+        {
+            return Session.Query<Fault>()
+                .Where(f => f.FaultEnvelopeId == model.FaultEnvelopeId)
+                .SingleOrDefault();
+        }
 
         [JsonEndpoint]
         public dynamic post_faults_retry(FaultEnvelopeInputModel model)
