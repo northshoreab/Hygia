@@ -11,7 +11,7 @@ namespace Hygia.Notifications
     using Provide;
     using Hygia;
 
-    public class CriticalTimeSLAViolatedNotificationHandler : IHandleMessages<CriticalTimeSLAViolated>
+    public class CriticalTimeSLAViolatedNotificationHandler : IHandleMessages<CriticalTimeSLAForMessageTypeViolated>
     {
         public IDocumentSession Session { get; set; }
             public IBus Bus { get; set; }
@@ -23,7 +23,7 @@ namespace Hygia.Notifications
             _messageTypeInformationProviders = messageTypeInformationProviders;
         }
 
-        public void Handle(CriticalTimeSLAViolated message)
+        public void Handle(CriticalTimeSLAForMessageTypeViolated message)
         {
 
             var information = message.ToDynamic();

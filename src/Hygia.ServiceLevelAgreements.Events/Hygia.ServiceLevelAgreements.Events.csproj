@@ -42,7 +42,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CriticalTimeSLAViolated.cs" />
+    <Compile Include="CriticalTimeSLAForMessageTypeRestored.cs" />
+    <Compile Include="CriticalTimeSLAForMessageTypeViolated.cs" />
     <Compile Include="SLABreachMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

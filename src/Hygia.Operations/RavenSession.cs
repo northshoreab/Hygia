@@ -25,7 +25,13 @@
 
              return String.IsNullOrEmpty(database) ? store.OpenSession() : store.OpenSession(database);                      
          }
+         public static string EnvironmentToDatabaseLookup(string environmentId)
+         {
+             if(string.IsNullOrEmpty(environmentId))
+                 return string.Empty;
 
+             return environmentIdToDatabaseLookup[Guid.Parse(environmentId)];
+         }
          public static IDictionary<Guid, string> ReloadEnvironmentLookup(IDocumentStore currentStore)
          {
              using (var session = currentStore.OpenSession())
