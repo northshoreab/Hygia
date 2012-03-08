@@ -3,11 +3,11 @@ namespace Hygia.FaultManagement.LaunchPad
     using System;
     using System.Configuration;
     using System.Messaging;
+    using System.Threading;
     using System.Transactions;
     using NServiceBus;
     using NServiceBus.Config;
     using NServiceBus.Faults;
-    using NServiceBus.Unicast.Transport;
     using NServiceBus.Utils;
 
     public class ErrorManager : INeedInitialization
@@ -81,9 +81,12 @@ namespace Hygia.FaultManagement.LaunchPad
             if (string.IsNullOrEmpty(errorLog))
                 errorLog = error + "_log";
 
+            var errorLogAddress = Address.Parse(errorLog);
+            MsmqUtilities.CreateQueueIfNecessary(errorLogAddress, Thread.CurrentPrincipal.Identity.Name);
+
             Configure.Instance.Configurer.RegisterSingleton<ErrorManager>(new ErrorManager
                                                                               {
-                                                                                  InputQueue = Address.Parse(errorLog)
+                                                                                  InputQueue = errorLogAddress
                                                                               });
         }
     }
