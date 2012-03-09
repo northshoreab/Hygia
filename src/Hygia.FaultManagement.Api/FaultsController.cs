@@ -18,6 +18,14 @@ namespace Hygia.FaultManagement.Api
         [JsonEndpoint]
         public IEnumerable<FaultEnvelopeOutputModel> get_faults()
         {
+            return new List<Fault>
+                       {
+                            new Fault{ FaultEnvelopeId = "234234-234324-234234", Exception = new ExceptionInfo {Message = "message message message message message message message", Reason = "reason", StackTrace = "stacktrace"}},
+                            new Fault{ FaultEnvelopeId = "7673456265767-657564", Exception = new ExceptionInfo {Message = "message", Reason = "reason", StackTrace = "stacktrace"}},
+                            new Fault{ FaultEnvelopeId = "989789-234324-234234", Exception = new ExceptionInfo {Message = "message", Reason = "reason", StackTrace = "stacktrace"}}
+                       }.ToOutputModels();
+
+
             return Session.Query<Fault>()
                 .Where(f => f.Status != FaultStatus.Archived && f.Status != FaultStatus.RetryIssued)
                 .ToList()
@@ -27,6 +35,12 @@ namespace Hygia.FaultManagement.Api
         [JsonEndpoint]
         public Fault get_faults_FaultEnvelopeId(FaultEnvelopeInputModel model)
         {
+            return new Fault
+                       {
+                           Exception =
+                               new ExceptionInfo {Message = "message", Reason = "reason", StackTrace = "stacktrace"}
+                       };
+
             return Session.Query<Fault>()
                 .Where(f => f.FaultEnvelopeId == model.FaultEnvelopeId)
                 .SingleOrDefault();
@@ -86,6 +100,23 @@ namespace Hygia.FaultManagement.Api
     {
         public long FaultId { get; set; }
         public string FaultEnvelopeId { get; set; }
+        public string Title 
+        {
+            get
+            {
+                if (!string.IsNullOrEmpty(ExceptionMessage))
+                {
+                    if (ExceptionMessage.Length > 30)
+                    {
+                        return ExceptionMessage.Substring(0, 27) + "...";
+                    }
+
+                    return ExceptionMessage;
+                }
+
+                return string.Empty;
+            }
+        }
         public string ExceptionMessage { get; set; }
         public string TimeSent { get; set; }
         public FaultStatus Status { get; set; }

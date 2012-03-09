@@ -13,13 +13,14 @@ function (namespace, Backbone) {
 
     var Faults = namespace.module();
 
-    Faults.Model = Backbone.Model.extend({});
-    Faults.DetailModel = Backbone.Model.extend({
+    Faults.Models.Item = Backbone.Model.extend({});
+
+    Faults.Models.Detail = Backbone.Model.extend({
         url: function () { return '/faults/' + this.id; }
     });
 
-    Faults.Collection = Backbone.Collection.extend({
-        model: Faults.Model,
+    Faults.Collections.List = Backbone.Collection.extend({
+        model: Faults.Models.Item,
         url: "/faults"
     });
 
@@ -28,7 +29,6 @@ function (namespace, Backbone) {
         initialize: function () {
             _.bindAll(this, 'render');
             this.model.bind('change', this.render);
-            this.model.fetch();
         },
         render: function (done) {
             var view = this;
@@ -61,7 +61,9 @@ function (namespace, Backbone) {
                 type: 'POST',
                 url: '/faults/retry',
                 data: { FaultEnvelopeId: this.model.get('FaultEnvelopeId') },
-                success: function () { console.log("success!"); },
+                success: function () {
+                    console.log("now, remove this model: " + this.model.id + " - not impl.");
+                },
                 dataType: "json"
             });
         },
@@ -126,6 +128,47 @@ function (namespace, Backbone) {
             });
 
             return view;
+        }
+    });
+    
+    Faults.Router = Backbone.Router.extend({
+        routes: {
+            "fault": "faults",
+            "fault/:id": "faultDetail"
+        },
+        faultDetail: function (id) {
+            var route = this;
+
+            var detailModel = new Faults.Models.Detail({ "id": id });
+
+            detailModel.fetch({
+                success: function (model, response) {
+                    var detailView = new Faults.Views.Detail({ "model": model });
+                    detailView.render(function (el) {
+                        $("#main").html(el);
+                    });
+                }
+            });
+        },
+        faults: function (hash) {
+            var route = this;
+            
+            var currentFaults = new Faults.Collections.List();
+
+            currentFaults.fetch({
+                success: function (collection, response) {
+                    var faults = new Faults.Views.List({ "collection": collection });
+                    faults.render(function (el) {
+                        $("#main").html(el);
+
+                        if (hash && !route._alreadyTriggered) {
+                            Backbone.history.navigate("", false);
+                            location.hash = hash;
+                            route._alreadyTriggered = true;
+                        }
+                    });                     
+                }
+            });            
         }
     });
 

@@ -2,7 +2,7 @@
 <td>
     <div class="wrapper">
         <h4>
-            <a href="#/fault/<%= FaultEnvelopeId %>" class=""><%= ExceptionMessage %></a>
+            <a href="/#fault/<%= FaultEnvelopeId %>" alt="<%= ExceptionMessage %>"><%= Title %></a>
             <span class="label label-info"><%= EnclosedMessageTypes %></span>
             <% if (Status == 2) { %>
                 <span class="label label-important">Repeted failures</span>    

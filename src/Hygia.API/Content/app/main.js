@@ -17,9 +17,7 @@ function (namespace, jQuery, Backbone, Home, Faults, Utils) {
     // Defining the application router, you can attach sub routers here.
     var Router = Backbone.Router.extend({
         routes: {
-            "": "index",
-            "fault": "faults",
-            "fault/:id": "faultDetail"
+            "": "index"
         },
 
         index: function (hash) {
@@ -27,38 +25,6 @@ function (namespace, jQuery, Backbone, Home, Faults, Utils) {
             var home = new Home.Views.Index();
 
             home.render(function (el) {
-                $("#main").html(el);
-
-                // Fix for hashes in pushState and hash fragment
-                if (hash && !route._alreadyTriggered) {
-                    // Reset to home, pushState support automatically converts hashes
-                    Backbone.history.navigate("", false);
-
-                    // Trigger the default browser behavior
-                    location.hash = hash;
-
-                    // Set an internal flag to stop recursive looping
-                    route._alreadyTriggered = true;
-                }
-            });
-        },
-        faultDetail: function (id) {
-            var route = this;
-
-            var detailModel = new Faults.DetailModel({ "id": id });            
-            var detailView = new Faults.Views.Detail({ "model": detailModel });
-
-            detailView.render(function (el) {
-                $("#main").html(el);
-            });
-        },
-        faults: function (hash) {
-            var route = this;
-
-            var faults = new Faults.Views.List({ "collection": app.currentFaults });
-
-            // Attach the tutorial to the DOM
-            faults.render(function (el) {
                 $("#main").html(el);
 
                 // Fix for hashes in pushState and hash fragment
@@ -84,14 +50,9 @@ function (namespace, jQuery, Backbone, Home, Faults, Utils) {
     // point should be definitions.
     jQuery(function ($) {
         app.router = new Router();
-
+        app.faultRouter = new Faults.Router();
 
         Utils.setCookie();
-
-        app.currentFaults = new Faults.Collection();
-        app.currentFaults.fetch();
-
-
 
         Backbone.history.start({ pushState: true });
     });
