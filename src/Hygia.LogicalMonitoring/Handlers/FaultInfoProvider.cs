@@ -9,9 +9,13 @@ namespace Hygia.LogicalMonitoring.Handlers
     public class FaultInfoProvider : IProvideFaultInformation
     {
         public IDocumentSession Session { get; set; }
-        public dynamic ProvideFor(Guid faultEnvelopeId, IEnumerable<Guid> messageTypes)
+        public dynamic ProvideFor(dynamic parameters)
         {
-            var id = messageTypes.FirstOrDefault();
+            IEnumerable<Guid> mt = parameters.MessageTypes;
+
+            //get the first message type
+            var id = mt.FirstOrDefault();
+
             string messageTypeName = null;
 
             if (id != null)

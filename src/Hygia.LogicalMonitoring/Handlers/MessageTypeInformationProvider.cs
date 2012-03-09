@@ -7,8 +7,9 @@ namespace Hygia.LogicalMonitoring.Handlers
     public class MessageTypeInformationProvider : IProvideMessageTypeInformation
     {
         public IDocumentSession Session { get; set; }
-        public dynamic ProvideFor(Guid messageTypeId)
+        public dynamic ProvideFor(dynamic parameters)
         {
+            var messageTypeId = parameters.MessageTypeId;
 
             string messageTypeName = null;
 

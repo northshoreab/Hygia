@@ -107,7 +107,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contexts\WithHandler.cs" />
     <Compile Include="LogicalMonitoring\MessageChains.cs" />
     <Compile Include="LogicalMonitoring\MessageRegistration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -136,6 +135,10 @@
     <ProjectReference Include="..\..\src\Hygia.PhysicalMonitoring\Hygia.PhysicalMonitoring.csproj">
       <Project>{A69B2E6E-9E40-40B4-BFD8-3164DF393744}</Project>
       <Name>Hygia.PhysicalMonitoring</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hygia.Specs\Hygia.Specs.csproj">
+      <Project>{55616C8C-DA1D-4FB3-B6D1-D1615B3B2EAB}</Project>
+      <Name>Hygia.Specs</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

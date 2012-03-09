@@ -83,7 +83,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ProviderRegistry.cs" />
     <Compile Include="RavenRegistry.cs" />
     <Compile Include="EndpointConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -107,6 +106,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Hygia.Core.Providers\Hygia.Core.Providers.csproj">
+      <Project>{09427EF8-67F9-426D-8030-85AAE6274310}</Project>
+      <Name>Hygia.Core.Providers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Hygia.Core\Hygia.Core.csproj">
       <Project>{C4F880A3-653F-4CC9-9333-DBE2CB4EFEF9}</Project>
       <Name>Hygia.Core</Name>

@@ -1,12 +1,8 @@
 ﻿namespace Hygia.LaunchPad.Specs.LogicalMonitoring
 {
     using System;
-    using System.Linq;
-    using System.Collections.Generic;
-    using Contexts;
+    using Hygia.Specs;
     using Machine.Specifications;
-    using NServiceBus.Unicast.Monitoring;
-    using NServiceBus.Unicast.Transport;
     using PhysicalMonitoring.Commands;
     using PhysicalMonitoring.Domain;
     using PhysicalMonitoring.Handlers;

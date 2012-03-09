@@ -14,22 +14,14 @@ namespace Hygia.Notifications
     public class CriticalTimeSLAViolatedNotificationHandler : IHandleMessages<CriticalTimeSLAForMessageTypeViolated>
     {
         public IDocumentSession Session { get; set; }
-            public IBus Bus { get; set; }
+        
+        public IBus Bus { get; set; }
 
-        readonly IEnumerable<IProvideMessageTypeInformation> _messageTypeInformationProviders;
-
-        public CriticalTimeSLAViolatedNotificationHandler(IEnumerable<IProvideMessageTypeInformation> messageTypeInformationProviders)
-        {
-            _messageTypeInformationProviders = messageTypeInformationProviders;
-        }
-
+        public IInvokeProviders Providers { get; set; }
+        
         public void Handle(CriticalTimeSLAForMessageTypeViolated message)
         {
-
-            var information = message.ToDynamic();
-
-            foreach (var messageTypeInformationProvider in _messageTypeInformationProviders)
-                information = DynamicHelpers.Combine(information, messageTypeInformationProvider.ProvideFor(message.MessageTypeId));            
+            var information = Providers.Invoke<IProvideMessageTypeInformation>(new { message.MessageTypeId });
 
             foreach (var slaNotificationSetting in Session.Query<SLANotificationSetting>())
             {

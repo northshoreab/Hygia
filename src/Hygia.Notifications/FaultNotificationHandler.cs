@@ -9,7 +9,6 @@ using RazorEngine;
 namespace Hygia.Notifications
 {
     using System.Collections.Generic;
-    using System.Dynamic;
     using System.Linq;
     using FaultManagement.Events;
     using Provide;
@@ -20,19 +19,16 @@ namespace Hygia.Notifications
 
         public IBus Bus { get; set; }
 
-        readonly IEnumerable<IProvideFaultInformation> _faultInformationProviders;
+        public IInvokeProviders Providers { get; set; }
 
-        public FaultNotificationHandler(IEnumerable<IProvideFaultInformation> faultInformationProviders)
-        {
-            _faultInformationProviders = faultInformationProviders;
-        }
 
         public void Handle(FaultRegistered message)
         {
-            dynamic faultInformation = new ExpandoObject();
-
-            foreach (var faultInformationProvider in _faultInformationProviders)
-                faultInformation = DynamicHelpers.Combine(faultInformation, faultInformationProvider.ProvideFor(message.EnvelopeId, message.MessageTypes));            
+            var faultInformation = Providers.Invoke<IProvideFaultInformation>( new
+                            {
+                                FaultEnvelopeId = message.EnvelopeId,
+                                message.MessageTypes
+                            });
 
             foreach (var faultNotificationSetting in Session.Query<FaultNotificationSetting>().Where(x => x.AllMessages))
             {
