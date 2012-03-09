@@ -1,10 +1,9 @@
 require([
   "namespace",
-
 // Libs
   "jquery",
   "use!backbone",
-
+  "use!bootstrap",
 // Modules  
   "modules/home",
   "modules/faults",
@@ -12,7 +11,7 @@ require([
 
 ],
 
-function (namespace, jQuery, Backbone, Home, Faults, Utils) {
+function (namespace, jQuery, Backbone, Bootstrap, Home, Faults, Utils) {
 
     // Defining the application router, you can attach sub routers here.
     var Router = Backbone.Router.extend({

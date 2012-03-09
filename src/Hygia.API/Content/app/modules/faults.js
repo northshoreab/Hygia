@@ -49,8 +49,8 @@ function (namespace, Backbone) {
         template: '/content/app/templates/faults.tr.html',
         tagName: 'tr',
         events: {
-            "click button.btn-retry-fault": "retry",
-            "click button.btn-archive-fault": "archive"
+            "click a.action-retry-fault": "retry",
+            "click a.action-archive-fault": "archive"
         },
         initialize: function () {
             _.bindAll(this, 'render');

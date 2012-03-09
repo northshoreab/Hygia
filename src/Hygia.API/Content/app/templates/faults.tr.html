@@ -15,8 +15,15 @@
         <p>
             <small>occured <time class="js-relative-date" datetime="<%= TimeSent %>" title="<%= TimeSent %>"><%= TimeSent %></time></small>
         </p>
+
     </div>
 </td>
-<td><button class="btn btn-mini btn-primary btn-retry-fault"><i class="icon-retweet icon-white"></i> Retry</button></td>
-<td><button class="btn btn-mini btn-danger btn-archive-fault"><i class="icon-minus icon-white"></i> Archive</button></td>
-
+<td>
+    <div class="btn-group right">
+        <a class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="/#fault"><i class="icon-chevron-down"></i></a>
+        <ul class="dropdown-menu">
+        <li><a class="action-retry-fault" href="/#fault">Retry</a></li>
+        <li><a class="action-archive-fault" href="/#fault">Archive</a></li>
+        </ul>
+    </div>
+</td>
