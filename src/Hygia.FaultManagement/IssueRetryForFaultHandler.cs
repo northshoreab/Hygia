@@ -16,10 +16,10 @@ namespace Hygia.FaultManagement
 
         public void Handle(IssueRetryForFault message)
         {
-            var fault = Session.Load<Fault>(message.MessageId);
+            var fault = Session.Load<Fault>(message.FaultId);
 
             if (fault == null)
-                throw new InvalidOperationException("No fault with id " + message.MessageId + "found");
+                throw new InvalidOperationException("No fault with id " + message.FaultId + "found");
 
             fault.Status = FaultStatus.RetryIssued;
             fault.History.Add(new HistoryItem
