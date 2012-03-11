@@ -15,7 +15,7 @@ namespace Hygia.FaultManagement
 
             var emailCommand = GetCommand(emailReceived.Body);
 
-            var faultId = Guid.Parse(emailReceived.Parameters);
+            var messageId = Guid.Parse(emailReceived.Parameters);
 
             switch (emailCommand.ToUpper())
             {
@@ -23,12 +23,12 @@ namespace Hygia.FaultManagement
 
                     Bus.Send(new IssueRetryForFault
                                  {
-                                     FaultId = faultId
+                                     FaultId = messageId
                                  });
                     break;
 
                 case EmailCommandTypes.Archive:
-                    Bus.Send(new ArchiveFault { FaultId = faultId });
+                    Bus.Send(new ArchiveFault { FaultId = messageId });
                     break;
                 default:
                     //todo just add a comment to the fault
