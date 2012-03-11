@@ -236,7 +236,7 @@
   <ItemGroup>
     <Compile Include="App_Start\FubuMVC.cs" />
     <Compile Include="Behaviors\PersistenceBehavior.cs" />
-    <Compile Include="BootstrapRaven.cs" />
+    <Compile Include="Behaviors\RavenRegistry.cs" />
     <Compile Include="ConfigureFubuMVC.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Operations\Accounts\Account.cs" />
@@ -263,6 +263,7 @@
     <Compile Include="Features\Tests\Models\TestWidgetModel.cs" />
     <Compile Include="Features\Tests\Testdata\TestdataHelper.cs" />
     <Compile Include="Models\HomeViewModel.cs" />
+    <Compile Include="Mutators\SetEnviromentIdOnSendMutator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

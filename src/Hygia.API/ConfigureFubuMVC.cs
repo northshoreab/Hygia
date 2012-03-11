@@ -2,7 +2,10 @@ namespace Hygia.API
 {
     using Behaviors;
     using Controllers;
+    using FubuMVC.Core.Runtime;
     using FubuMVC.Spark;
+    using Mutators;
+    using NServiceBus.MessageMutator;
     using Operations.Communication.Api;
     using StructureMap;
     using FubuMVC.Core;
@@ -23,7 +26,14 @@ namespace Hygia.API
                .UnicastBus()
                .SendOnly();  // This line turns on the basic diagnostics and request tracing                        
 
-            new BootstrapRaven().Init();
+
+            ObjectFactory.Configure(c =>
+              c.Scan(s =>
+              {
+                  s.LookForRegistries();
+                  s.AssembliesFromApplicationBaseDirectory();
+              }));
+
 
             this.UseSpark();
             IncludeDiagnostics(true);
@@ -51,10 +61,20 @@ namespace Hygia.API
             // on model type, view name, and namespace
             Views.TryToAttachWithDefaultConventions();
 
-            
+
             //todo: use scanning instead
             ApplyConvention<PersistenceConvention>();
             ApplyConvention<CommandsToPickUpBehaviourConfiguration>();
         }
+
+        public class ContextInputModel
+        {
+            public System.Web.HttpCookieCollection Cookies { get; set; }
+            public System.Collections.Specialized.NameValueCollection Headers { get; set; }
+            public System.Collections.Specialized.NameValueCollection Params { get; set; }
+            public string Url { get; set; }
+        }
     }
+
+
 }

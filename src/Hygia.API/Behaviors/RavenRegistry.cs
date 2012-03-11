@@ -1,19 +1,17 @@
-using System;
-
-namespace Hygia.API
+namespace Hygia.API.Behaviors
 {
     using System;
-    using System.Collections.Generic;
     using FubuMVC.Core.Runtime;
     using Operations;
     using Raven.Client;
     using Raven.Client.Document;
     using StructureMap;
+    using StructureMap.Configuration.DSL;
     using StructureMap.Graph;
 
-    class BootstrapRaven
+    public class RavenRegistry:Registry 
     {
-        public void Init()
+        public  RavenRegistry()
         {
             var store = new DocumentStore
                             {
