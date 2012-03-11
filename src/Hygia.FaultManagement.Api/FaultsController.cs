@@ -33,7 +33,7 @@ namespace Hygia.FaultManagement.Api
         }
         
         [JsonEndpoint]
-        public Fault get_faults_FaultEnvelopeId(FaultEnvelopeInputModel model)
+        public Fault get_faults_FaultId(FaultEnvelopeInputModel model)
         {
 			/*
             return new Fault
@@ -42,22 +42,20 @@ namespace Hygia.FaultManagement.Api
                                new ExceptionInfo {Message = "message", Reason = "reason", StackTrace = "stacktrace"}
                        };
 			*/
-            return Session.Query<Fault>()
-                .Where(f => f.FaultEnvelopeId == model.FaultEnvelopeId)
-                .SingleOrDefault();
+            return Session.Load<Fault>(model.FaultId);
         }
 
         [JsonEndpoint]
         public dynamic post_faults_retry(FaultEnvelopeInputModel model)
         {
-            Bus.Send(new IssueRetryForFault {MessageId = Guid.Parse(model.FaultEnvelopeId)});
+            Bus.Send(new IssueRetryForFault {FaultId =model.FaultId});
             return string.Empty;
         }
 
         [JsonEndpoint]
         public dynamic post_faults_archive(FaultEnvelopeInputModel model)
         {
-            Bus.Send(new ArchiveFault {MessageId = Guid.Parse(model.FaultEnvelopeId)});
+            Bus.Send(new ArchiveFault {FaultId = model.FaultId});
             return string.Empty;
         }       
     }
@@ -87,8 +85,8 @@ namespace Hygia.FaultManagement.Api
                                     BusinessService = "", 
                                     EnclosedMessageTypes = enclosedMessageTypes ?? string.Empty,
                                     ExceptionMessage = fault.Exception.Message,
-                                    FaultEnvelopeId = fault.FaultEnvelopeId,
-                                    FaultId = 0,
+                                    FaultId = fault.Id,
+                                    FaultNumber = 0,
                                     Status = fault.Status,
                                     TimeSent = fault.TimeOfFailure.ToString()
                                 };
@@ -99,8 +97,8 @@ namespace Hygia.FaultManagement.Api
 
     public class FaultEnvelopeOutputModel
     {
-        public long FaultId { get; set; }
-        public string FaultEnvelopeId { get; set; }
+        public Guid FaultId { get; set; }
+        public long FaultNumber { get; set; }
         public string Title 
         {
             get

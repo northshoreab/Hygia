@@ -60,7 +60,7 @@ function (namespace, Backbone) {
             $.ajax({
                 type: 'POST',
                 url: '/faults/retry',
-                data: { FaultEnvelopeId: this.model.get('FaultEnvelopeId') },
+                data: { FaultId: this.model.get('FaultId') },
                 success: function () {
                     console.log("now, remove this model: " + this.model.id + " - not impl.");
                 },
@@ -71,7 +71,7 @@ function (namespace, Backbone) {
             $.ajax({
                 type: 'POST',
                 url: '/faults/archive',
-                data: { FaultEnvelopeId: this.model.get('FaultEnvelopeId') },
+                data: { FaultId: this.model.get('FaultId') },
                 success: function () { console.log("success!"); },
                 dataType: "json"
             });

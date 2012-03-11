@@ -1,8 +1,8 @@
-<td><%= FaultId %></td>
+<td><%= FaultNumber %></td>
 <td>
     <div class="wrapper">
         <h4>
-            <a href="/#fault/<%= FaultEnvelopeId %>" alt="<%= ExceptionMessage %>"><%= Title %></a>
+            <a href="/#fault/<%= FaultId %>" alt="<%= ExceptionMessage %>"><%= Title %></a>
             <span class="label label-info"><%= EnclosedMessageTypes %></span>
             <% if (Status == 2) { %>
                 <span class="label label-important">Repeted failures</span>    
