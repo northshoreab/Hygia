@@ -25,7 +25,7 @@ function (watchr, Backbone) {
     });
 
     MessageTypes.Views.Detail = Backbone.View.extend({
-        template: '/content/app/templates/messagetypes.detail.html',
+        template: '/content/app/templates/messagetype.detail.html',
         initialize: function () {
             _.bindAll(this, 'render');
             this.model.bind('change', this.render);
@@ -48,7 +48,7 @@ function (watchr, Backbone) {
     MessageTypes.Views.Item = Backbone.View.extend({
         template: '/content/app/templates/messagetypes.tr.html',
         tagName: 'tr',
-        events: { },
+        events: {},
         initialize: function () {
             _.bindAll(this, 'render');
             this.model.bind('change', this.render);
@@ -110,10 +110,10 @@ function (watchr, Backbone) {
 
     MessageTypes.Router = Backbone.Router.extend({
         routes: {
-            "messageType": "messageTypes",
-            "messageType/:id": "messageTypeDetail"
+            "messagetype": "messagetypes",
+            "messagetype/:id": "messagetypeDetail"
         },
-        messageTypeDetail: function (id) {
+        messagetypeDetail: function (id) {
             var route = this;
 
             var detailModel = new MessageTypes.Models.Detail({ "id": id });
@@ -127,7 +127,7 @@ function (watchr, Backbone) {
                 }
             });
         },
-        messageTypes: function (hash) {
+        messagetypes: function (hash) {
             var route = this;
 
             var currentMessageTypes = new MessageTypes.Collections.List();

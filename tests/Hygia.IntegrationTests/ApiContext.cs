@@ -14,7 +14,7 @@ namespace Hygia.IntegrationTests
                                     Store = new DocumentStore
                                                 {
                                                     Url = "http://localhost:8080",
-                                                    DefaultDatabase = "Hygia.Acme"
+                                                    DefaultDatabase = "WatchR"
                                                 };
                                     Store.Initialize();
                                     client = new RestClient("http://localhost:61000/");

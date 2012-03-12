@@ -43,6 +43,7 @@ namespace Hygia.API
                 .ToAssembly("Hygia.Operations.Communication.Api")
                   .ToAssembly("Hygia.Operations.Communication.Domain")
                 .ToAssembly("Hygia.FaultManagement.Api")
+                .ToAssembly("Hygia.LogicalMonitoring.Api")
                 .ToAssembly("Hygia.Operations.AuditUploads.Api");
             //todo- Better way?
 

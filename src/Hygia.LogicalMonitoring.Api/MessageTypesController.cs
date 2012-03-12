@@ -35,7 +35,8 @@ namespace Hygia.LogicalMonitoring.Api
         {
             return new MessageTypeOutputModel
                                 {
-                                    MessageTypeId = messageType.Id
+                                    MessageTypeId = messageType.Id,
+                                    Type = messageType.Type
                                 };
         }
     }
@@ -48,5 +49,6 @@ namespace Hygia.LogicalMonitoring.Api
     public class MessageTypeOutputModel
     {
         public Guid MessageTypeId { get; set; }
+        public string Type { get; set; }
     }
 }

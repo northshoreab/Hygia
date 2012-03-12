@@ -128,6 +128,9 @@
     <Content Include="Content\app\modules\faults.js" />
     <Content Include="Content\app\modules\utils.js" />
     <Content Include="Content\app\modules\home.js" />
+    <Content Include="Content\app\templates\messagetype.detail.html" />
+    <Content Include="Content\app\templates\messagetypes.tbl.html" />
+    <Content Include="Content\app\templates\messagetypes.tr.html" />
     <Content Include="Content\app\watchr.js" />
     <Content Include="Content\app\templates\faults.detail.html" />
     <Content Include="Content\app\templates\faults.tr.html" />
@@ -284,6 +287,10 @@
     <ProjectReference Include="..\Hygia.FaultManagement.Domain\Hygia.FaultManagement.Domain.csproj">
       <Project>{FE5A6411-D13A-4252-9E95-BE775D172560}</Project>
       <Name>Hygia.FaultManagement.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hygia.LogicalMonitoring.Api\Hygia.LogicalMonitoring.Api.csproj">
+      <Project>{B3F1ECC1-66F0-465E-BBE2-50DD0106652F}</Project>
+      <Name>Hygia.LogicalMonitoring.Api</Name>
     </ProjectReference>
     <ProjectReference Include="..\Hygia.Notifications.Domain\Hygia.Notifications.Domain.csproj">
       <Project>{90281B60-6D3F-479D-8449-1F25E81B4991}</Project>
