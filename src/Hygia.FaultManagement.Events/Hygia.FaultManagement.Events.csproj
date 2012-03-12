@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="FaultRegistered.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RetryFailed.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Hygia.FaultManagement.Domain\Hygia.FaultManagement.Domain.csproj">

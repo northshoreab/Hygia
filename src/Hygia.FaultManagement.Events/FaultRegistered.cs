@@ -5,7 +5,7 @@ namespace Hygia.FaultManagement.Events
 
     public class FaultRegistered
     {
-        public Guid EnvelopeId{ get; set; }
+        public Guid FaultId{ get; set; }
 
         public List<Guid> MessageTypes { get; set; }
     }

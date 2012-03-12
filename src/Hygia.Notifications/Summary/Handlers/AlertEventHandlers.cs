@@ -21,7 +21,7 @@ namespace Hygia.Notifications.Summary.Handlers
 
         public void Handle(FaultRegistered message)
         {
-            Bus.SendLocal<ProcessFaultMessageReceived>(m => { m.AlerterInstanceId = _alerterInstanceId; m.FaultId = message.EnvelopeId; });
+            Bus.SendLocal<ProcessFaultMessageReceived>(m => { m.AlerterInstanceId = _alerterInstanceId; m.FaultId = message.FaultId; });
         }
 
         public void Handle(SLABreachMessage message)

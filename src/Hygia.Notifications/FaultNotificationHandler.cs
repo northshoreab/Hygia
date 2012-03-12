@@ -26,7 +26,7 @@ namespace Hygia.Notifications
         {
             var faultInformation = Providers.Invoke<IProvideFaultInformation>( new
                             {
-                                FaultEnvelopeId = message.EnvelopeId,
+                                FaultEnvelopeId = message.FaultId,
                                 message.MessageTypes
                             });
 
@@ -44,7 +44,7 @@ namespace Hygia.Notifications
                                                            e.Subject = subject;
                                                            e.To = faultNotificationSetting.EmailAdress;
                                                            e.Service = "faults";
-                                                           e.Parameters = message.EnvelopeId.ToString();
+                                                           e.Parameters = message.FaultId.ToString();
                                                        });
                         break;
                     case NotificationTypes.RSS:

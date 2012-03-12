@@ -37,7 +37,7 @@ namespace Hygia.Notifications.Specs
 
         Because of = () => Handle<FaultRegistered>(m =>
                                                        {
-                                                           m.EnvelopeId = FaultEnvelopeId;
+                                                           m.FaultId = FaultEnvelopeId;
                                                            m.MessageTypes = new List<Guid> { MessageTypeId };
                                                        });
 

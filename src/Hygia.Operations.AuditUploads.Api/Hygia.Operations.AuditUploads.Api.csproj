@@ -74,6 +74,7 @@
   <ItemGroup>
     <Compile Include="UploadController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UploadInputModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -32,18 +32,27 @@
             var exception = ExtractExceptionInfo(message);
             var fault = Session.Load<Fault>(envelopeId);
             if (fault == null)
+            {
                 fault = new Fault
-                                {
-                                    Id = envelopeId,
-                                    Status = FaultStatus.New,
-                                    Retries = 0,
-                                    AssignedTo = Guid.Empty,
-                                    Endpoint = message.Headers["NServiceBus.FailedQ"],
-                                    EndpointId = message.Headers["NServiceBus.FailedQ"].ToGuid(),
-                                };
+                {
+                    Id = envelopeId,
+                    Status = FaultStatus.New,
+                    Retries = 0,
+                    AssignedTo = Guid.Empty,
+                    Endpoint = message.Headers["NServiceBus.FailedQ"],
+                    EndpointId = message.Headers["NServiceBus.FailedQ"].ToGuid(),
+                };
+
+                Bus.Publish(new FaultRegistered
+                {
+                    FaultId = fault.Id,
+                    MessageTypes = messageTypes.Select(t => t.MessageTypeId).ToList()
+                });
+            }
             else
             {
                 fault.Retries++;
+                Bus.Publish(new RetryFailed { FaultId = fault.Id });
             }
 
             fault.FaultEnvelopeId = message.FaultEnvelopeId;
@@ -58,12 +67,6 @@
                                               
                                
             Session.Store(fault);
-
-            Bus.Publish(new FaultRegistered
-                             {
-                                 EnvelopeId = fault.Id,
-                                 MessageTypes = messageTypes.Select(t => t.MessageTypeId).ToList()
-                             });
         }
 
         static DateTime DetermineTimeOfFailure(FaultMessageReceived message)
