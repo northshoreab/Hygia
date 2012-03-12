@@ -13,6 +13,12 @@
             //this probably has to do with the way that NSB invokes the mutators. So we have to use the raw httpcontext for now
            var environment = HttpContext.Current.Request.Params["environment"];
 
+           if(environment == null)
+               environment = HttpContext.Current.Request.Params["apikey"];
+
+           if (environment == null)
+               environment = HttpContext.Current.Request.Headers["apikey"];
+
            if (environment != null)
                transportMessage.Headers["EnvironmentId"] = environment;
         }

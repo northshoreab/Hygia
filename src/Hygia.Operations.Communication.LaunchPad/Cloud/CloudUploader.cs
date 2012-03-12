@@ -6,7 +6,7 @@
     {
         public void Upload(object message)
         {
-            ApiCall.Invoke( Method.POST,"upload/" + message.GetType().Name,message);
+            ApiCall.Invoke( "POST","upload/" + message.GetType().Name,message);
         }
 
         public IApiCall ApiCall { get; set; }

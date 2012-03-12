@@ -71,6 +71,10 @@
       <Project>{A18663E7-36E5-4BCC-B8F3-1E4A62EA6306}</Project>
       <Name>Hygia.FaultManagement.Commands</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Hygia.Operations.Communication.LaunchPad\Hygia.Operations.Communication.LaunchPad.csproj">
+      <Project>{A2B1B8E9-CB6C-4FFB-9B9A-E96B18F1F7D1}</Project>
+      <Name>Hygia.Operations.Communication.LaunchPad</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Hygia.Operations.Communication\Hygia.Operations.Communication.csproj">
       <Project>{7DC1D128-B3F6-400B-9271-B40821DC9FE3}</Project>
       <Name>Hygia.Operations.Communication</Name>

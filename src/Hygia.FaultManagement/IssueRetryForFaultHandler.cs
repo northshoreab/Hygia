@@ -30,6 +30,7 @@ namespace Hygia.FaultManagement
 
             Bus.Send(new RetryFault
             {
+                FaultId = fault.Id,
                 FaultEnvelopeId = fault.FaultEnvelopeId
             });
         }

@@ -24,7 +24,7 @@
         {
             try
             {
-                ApiCall.Invoke(Method.POST, "heartbeat", new
+                ApiCall.Invoke("POST", "heartbeat", new
                 {
                     //empty for now
                 });

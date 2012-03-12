@@ -57,7 +57,24 @@ namespace Hygia.FaultManagement.Api
         {
             Bus.Send(new ArchiveFault {FaultId = model.FaultId});
             return string.Empty;
-        }       
+        }
+
+        [JsonEndpoint]
+        public dynamic post_faults_retried(FaultRetriedInputModel model)
+        {
+            Bus.Send(new RegisterSuccessfullRetry
+                         {
+                             FaultId = model.FaultId,
+                             TimeOfRetry = model.TimeOfRetry
+                         });
+            return string.Empty;
+        }      
+    }
+
+    public class FaultRetriedInputModel
+    {
+        public Guid FaultId { get; set; }
+        public DateTime TimeOfRetry { get; set; }
     }
 
     public static class FaultEnvelopeViewModelExtensions

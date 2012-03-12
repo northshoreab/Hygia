@@ -6,7 +6,6 @@ namespace Hygia.Operations.Communication.LaunchPad.Cloud
     using Domain;
     using NServiceBus;
     using Newtonsoft.Json;
-    using RestSharp;
 
     public class FetchCommandsHandler : IHandleMessages<FetchCommands>
     {
@@ -18,10 +17,10 @@ namespace Hygia.Operations.Communication.LaunchPad.Cloud
 
         public void Handle(FetchCommands message)
         {
-            var response = ApiCall.Invoke<List<LaunchPadCommand>>(Method.GET, "commands");
+            var response = ApiCall.Invoke("GET", "commands");
 
 
-            var commands = JsonConvert.DeserializeObject<List<LaunchPadCommand>>(response.Content, Converter);
+            var commands = JsonConvert.DeserializeObject<List<LaunchPadCommand>>(response, Converter);
 
             if(!commands.Any())
                 return;
@@ -31,10 +30,7 @@ namespace Hygia.Operations.Communication.LaunchPad.Cloud
             
                
             //mark all as fetched
-            ApiCall.Invoke(Method.POST,"commands/markasprocessed", new
-                                                                          {
-                                                                              Commands = commands.Select(c=>c.Id).ToList()
-                                                                          });
+            ApiCall.Invoke("POST","commands/markasprocessed", new{ Commands = commands.Select(c=>c.Id).ToList()});
         }
     }
 

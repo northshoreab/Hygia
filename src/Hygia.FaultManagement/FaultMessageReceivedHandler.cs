@@ -43,7 +43,6 @@
                                 };
             else
             {
-                fault.Status = FaultStatus.RepetedFailures;
                 fault.Retries++;
             }
 
