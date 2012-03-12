@@ -24,7 +24,7 @@
         {
             try
             {
-                ApiCall.Invoke("POST", "heartbeat", new
+                ApiCall.Invoke("POST", "launchpad/heartbeat", new
                 {
                     //empty for now
                 });
