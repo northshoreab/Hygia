@@ -29,7 +29,8 @@
           <div class="nav-collapse">
             <ul class="nav">
               <li class="active"><a href="#">Home</a></li>
-              <li><a href="#fault">Faults</a></li>              
+              <li><a href="#fault">Faults</a></li>
+              <li><a href="#messagetype">Message types</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>

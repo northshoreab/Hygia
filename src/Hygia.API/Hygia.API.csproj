@@ -124,6 +124,7 @@
   <ItemGroup>
     <Content Include="Content\app\config.js" />
     <Content Include="Content\app\main.js" />
+    <Content Include="Content\app\modules\messagetypes.js" />
     <Content Include="Content\app\modules\faults.js" />
     <Content Include="Content\app\modules\utils.js" />
     <Content Include="Content\app\modules\home.js" />

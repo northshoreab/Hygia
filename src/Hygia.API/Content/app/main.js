@@ -7,11 +7,12 @@ require([
 // Modules  
   "modules/home",
   "modules/faults",
+  "modules/messagetypes",
   "modules/utils"
 
 ],
 
-function (namespace, jQuery, Backbone, Bootstrap, Home, Faults, Utils) {
+function (namespace, jQuery, Backbone, Bootstrap, Home, Faults, MessageTypes, Utils) {
 
     // Defining the application router, you can attach sub routers here.
     var Router = Backbone.Router.extend({
@@ -50,6 +51,7 @@ function (namespace, jQuery, Backbone, Bootstrap, Home, Faults, Utils) {
     jQuery(function ($) {
         app.router = new Router();
         app.faultRouter = new Faults.Router();
+        app.messageTypeRouter = new MessageTypes.Router();
 
         Utils.setCookie();
 
