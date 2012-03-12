@@ -23,7 +23,7 @@ namespace Hygia.FaultManagement.Api
                        {
                             new Fault{ FaultEnvelopeId = "234234-234324-234234", Exception = new ExceptionInfo {Message = "message message message message message message message", Reason = "reason", StackTrace = "stacktrace"}},
                             new Fault{ FaultEnvelopeId = "7673456265767-657564", Exception = new ExceptionInfo {Message = "message", Reason = "reason", StackTrace = "stacktrace"}},
-                            new Fault{ FaultEnvelopeId = "989789-234324-234234", Exception = new ExceptionInfo {Message = "message", Reason = "reason", StackTrace = "stacktrace"}}
+                            new Fault{ FaultEnvelopeId = "989789-234324-234234", Exception = new ExceptionInfo {Message = "message", Reason = "reason", StackTrace = "stacktrace"}, Retries = 2}
                        }.ToOutputModels();
 			*/
             return Session.Query<Fault>()
@@ -86,9 +86,9 @@ namespace Hygia.FaultManagement.Api
                                     EnclosedMessageTypes = enclosedMessageTypes ?? string.Empty,
                                     ExceptionMessage = fault.Exception.Message,
                                     FaultId = fault.Id,
-                                    FaultNumber = 0,
-                                    Status = fault.Status,
-                                    TimeSent = fault.TimeOfFailure.ToString()
+                                    FaultNumber = 0,                                    
+                                    TimeSent = fault.TimeOfFailure.ToString(),
+                                    Retries = fault.Retries
                                 };
 
             return viewModel;
@@ -117,8 +117,8 @@ namespace Hygia.FaultManagement.Api
             }
         }
         public string ExceptionMessage { get; set; }
-        public string TimeSent { get; set; }
-        public FaultStatus Status { get; set; }
+        public string TimeSent { get; set; }        
+        public int Retries { get; set; }
         public string EnclosedMessageTypes { get; set; }                
         public string BusinessService { get; set; }
     }

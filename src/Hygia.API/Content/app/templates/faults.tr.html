@@ -4,7 +4,7 @@
         <h4>
             <a href="/#fault/<%= FaultId %>" alt="<%= ExceptionMessage %>"><%= Title %></a>
             <span class="label label-info"><%= EnclosedMessageTypes %></span>
-            <% if (Status == 2) { %>
+            <% if (Retries >= 1) { %>
                 <span class="label label-important">Repeted failures</span>    
             <% } %>
 

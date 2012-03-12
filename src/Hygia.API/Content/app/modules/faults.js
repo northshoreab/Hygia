@@ -1,5 +1,5 @@
 ﻿define([
-  "namespace",
+  "watchr",
 
 // Libs
   "use!backbone"
@@ -9,9 +9,9 @@
 // Plugins
 ],
 
-function (namespace, Backbone) {
+function (watchr, Backbone) {
 
-    var Faults = namespace.module();
+    var Faults = watchr.module();
 
     Faults.Models.Item = Backbone.Model.extend({});
 
@@ -33,7 +33,7 @@ function (namespace, Backbone) {
         render: function (done) {
             var view = this;
 
-            namespace.fetchTemplate(this.template, function (tmpl) {
+            watchr.fetchTemplate(this.template, function (tmpl) {
                 view.el.innerHTML = tmpl(view.model.toJSON());
 
                 if (_.isFunction(done)) {
@@ -79,7 +79,7 @@ function (namespace, Backbone) {
         render: function (done) {
             var view = this;
 
-            namespace.fetchTemplate(this.template, function (tmpl) {
+            watchr.fetchTemplate(this.template, function (tmpl) {
                 view.el.innerHTML = tmpl(view.model.toJSON());
 
                 if (_.isFunction(done)) {
@@ -108,7 +108,7 @@ function (namespace, Backbone) {
         render: function (done) {
             var view = this;
 
-            namespace.fetchTemplate(this.template, function (tmpl) {
+            watchr.fetchTemplate(this.template, function (tmpl) {
                 view.el.innerHTML = tmpl();
 
                 $tbody = view.$('table > tbody');

@@ -1,5 +1,5 @@
 require([
-  "namespace",
+  "watchr",
 // Libs
   "jquery",
   "use!backbone",
@@ -12,7 +12,7 @@ require([
 
 ],
 
-function (namespace, jQuery, Backbone, Bootstrap, Home, Faults, MessageTypes, Utils) {
+function (watchr, jQuery, Backbone, Bootstrap, Home, Faults, MessageTypes, Utils) {
 
     // Defining the application router, you can attach sub routers here.
     var Router = Backbone.Router.extend({
@@ -43,7 +43,7 @@ function (namespace, jQuery, Backbone, Bootstrap, Home, Faults, MessageTypes, Ut
     });
 
     // Shorthand the application namespace
-    var app = namespace.app;
+    var app = watchr.app;
 
     // Treat the jQuery ready function as the entry point to the application.
     // Inside this function, kick-off all initialization, everything up to this

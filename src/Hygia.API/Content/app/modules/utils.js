@@ -1,5 +1,5 @@
 ﻿define([
-  "namespace"
+  "watchr"
 
 // Libs  
 
@@ -8,10 +8,10 @@
 // Plugins
 ],
 
-function (namespace) {
+function (watchr) {
 
     // Create a new module
-    var Utils = namespace.module();
+    var Utils = watchr.module();
 
     Utils.getParameterByName = function (name) {
         name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
