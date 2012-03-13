@@ -88,10 +88,6 @@
     <None Include="Settings\FaultNotificationSetting.json" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Hygia.Alarms.Events\Hygia.Alarms.Events.csproj">
-      <Project>{8637EBD3-514D-4071-8A90-D727CA7095F4}</Project>
-      <Name>Hygia.Alarms.Events</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Hygia.Core\Hygia.Core.csproj">
       <Project>{C4F880A3-653F-4CC9-9333-DBE2CB4EFEF9}</Project>
       <Name>Hygia.Core</Name>
