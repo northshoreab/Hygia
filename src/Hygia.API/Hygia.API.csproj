@@ -128,7 +128,7 @@
     <Content Include="Content\app\modules\faults.js" />
     <Content Include="Content\app\modules\utils.js" />
     <Content Include="Content\app\modules\home.js" />
-    <Content Include="Content\app\templates\messagetype.detail.html" />
+    <Content Include="Content\app\templates\messagetypes.detail.html" />
     <Content Include="Content\app\templates\messagetypes.tbl.html" />
     <Content Include="Content\app\templates\messagetypes.tr.html" />
     <Content Include="Content\app\watchr.js" />

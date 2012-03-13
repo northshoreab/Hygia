@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using FubuMVC.Core;
 using Hygia.LogicalMonitoring.Handlers;
+using Hygia.LogicalMonitoring.Inspectors;
 using Raven.Client;
 
 namespace Hygia.LogicalMonitoring.Api
@@ -36,7 +37,12 @@ namespace Hygia.LogicalMonitoring.Api
             return new MessageTypeOutputModel
                                 {
                                     MessageTypeId = messageType.Id,
-                                    Type = messageType.Type
+                                    Type = messageType.Type,
+                                    ConsumedByACs = messageType.ConsumedByACs == null ? "" : string.Join(", ", messageType.ConsumedByACs),
+                                    Intent = Enum.GetName(typeof(MessageIntent), messageType.Intent),
+                                    PreceedingMessageTypes = messageType.PreceedingMessageTypes == null ? "" : string.Join(", ", messageType.PreceedingMessageTypes),
+                                    ProducedByACs = messageType.ProducedByACs == null ? "" : string.Join(", ", messageType.ProducedByACs),
+                                    Versions = messageType.Versions == null ? "" : string.Join(", ", messageType.Versions)
                                 };
         }
     }
@@ -50,5 +56,10 @@ namespace Hygia.LogicalMonitoring.Api
     {
         public Guid MessageTypeId { get; set; }
         public string Type { get; set; }
+        public string Intent { get; set; }
+        public string Versions { get; set; }
+        public string ConsumedByACs { get; set; }
+        public string ProducedByACs { get; set; }
+        public string PreceedingMessageTypes { get; set; }
     }
 }

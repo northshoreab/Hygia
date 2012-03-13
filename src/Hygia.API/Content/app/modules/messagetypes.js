@@ -25,7 +25,7 @@ function (watchr, Backbone) {
     });
 
     MessageTypes.Views.Detail = Backbone.View.extend({
-        template: '/content/app/templates/messagetype.detail.html',
+        template: '/content/app/templates/messagetypes.detail.html',
         initialize: function () {
             _.bindAll(this, 'render');
             this.model.bind('change', this.render);
