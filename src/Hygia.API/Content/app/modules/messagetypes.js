@@ -110,10 +110,10 @@ function (watchr, Backbone) {
 
     MessageTypes.Router = Backbone.Router.extend({
         routes: {
-            "messagetype": "messagetypes",
-            "messagetype/:id": "messagetypeDetail"
+            "messagetype": "list",
+            "messagetype/:id": "detail"
         },
-        messagetypeDetail: function (id) {
+        detail: function (id) {
             var route = this;
 
             var detailModel = new MessageTypes.Models.Detail({ "id": id });
@@ -127,25 +127,20 @@ function (watchr, Backbone) {
                 }
             });
         },
-        messagetypes: function (hash) {
+        list: function (hash) {
             var route = this;
 
-            var currentMessageTypes = new MessageTypes.Collections.List();
+            var messageTypes = new MessageTypes.Views.List({ "collection": watchr.app.Current.MessageTypes });
 
-            currentMessageTypes.fetch({
-                success: function (collection, response) {
-                    var messageTypes = new MessageTypes.Views.List({ "collection": collection });
-                    messageTypes.render(function (el) {
-                        $("#main").html(el);
+            messageTypes.render(function (el) {
+                $("#main").html(el);
 
-                        if (hash && !route._alreadyTriggered) {
-                            Backbone.history.navigate("", false);
-                            location.hash = hash;
-                            route._alreadyTriggered = true;
-                        }
-                    });                     
+                if (hash && !route._alreadyTriggered) {
+                    Backbone.history.navigate("", false);
+                    location.hash = hash;
+                    route._alreadyTriggered = true;
                 }
-            });            
+            });                     
         }
     });
 

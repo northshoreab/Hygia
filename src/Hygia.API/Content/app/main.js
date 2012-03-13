@@ -53,6 +53,12 @@ function (watchr, jQuery, Backbone, Bootstrap, Home, Faults, MessageTypes, Utils
         app.faultRouter = new Faults.Router();
         app.messageTypeRouter = new MessageTypes.Router();
 
+        app.Current.Faults = new Faults.Collections.List();
+        app.Current.Faults.fetch();
+
+        app.Current.MessageTypes = new MessageTypes.Collections.List();
+        app.Current.MessageTypes.fetch();
+
         Utils.setCookie();
 
         Backbone.history.start({ pushState: true });

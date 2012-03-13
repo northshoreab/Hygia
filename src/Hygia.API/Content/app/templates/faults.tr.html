@@ -3,15 +3,18 @@
     <div class="wrapper">
         <h4>
             <a href="/#fault/<%= FaultId %>" alt="<%= ExceptionMessage %>"><%= Title %></a>
-            <span class="label label-info"><%= EnclosedMessageTypes %></span>
-            <% if (Retries >= 1) { %>
-                <span class="label label-important">Repeted failures</span>    
-            <% } %>
+            <div class="pull-right">
+                <span class="label label-info"><%= EnclosedMessageTypes %></span>
+                <% if (Retries >= 1) { %>
+                    <span class="label label-important">Repeted failures</span>    
+                <% } %>
 
-            <% if (BusinessService && BusinessService.length > 0) { %>
-                <span class="label"><%= BusinessService %></span>    
-            <% } %>
+                <% if (BusinessService && BusinessService.length > 0) { %>
+                    <span class="label"><%= BusinessService %></span>    
+                <% } %>
+            </div>
         </h4>
+
         <p>
             <small>occured <time class="js-relative-date" datetime="<%= TimeSent %>" title="<%= TimeSent %>"><%= TimeSent %></time></small>
         </p>

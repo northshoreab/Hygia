@@ -37,6 +37,6 @@ function ($, _, Backbone) {
         },
 
         // Keep active application instances namespaced under an app object.
-        app: _.extend({}, Backbone.Events)
+        app: _.extend({ Current: {} }, Backbone.Events)
     };
 });

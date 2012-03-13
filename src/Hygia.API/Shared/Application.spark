@@ -17,6 +17,7 @@
 </head>
 
 <body>
+  <div class="container-fluid">
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
@@ -28,23 +29,29 @@
           <a class="brand" href="#">WatchR</a>
           <div class="nav-collapse">
             <ul class="nav">
-              <li class="active"><a href="#">Home</a></li>
-              <li><a href="#fault">Faults</a></li>
-              <li><a href="#messagetype">Message types</a></li>
+              <li class="active">
+                <a href="/#">Home</a>
+              </li>
+              <li>
+                <a href="/#fault">Faults</a>
+              </li>
+              <li>
+                <a href="/#messagetype">Message types</a>
+              </li>
             </ul>
-          </div><!--/.nav-collapse -->
+          </div>
+          <!--/.nav-collapse -->
         </div>
       </div>
     </div>
 
-  <div class="row-fluid">
-    <div class="span4">      
-    </div>
-    <div class="span8">
-      <div role="main" id="main"></div>    
+    <div class="row-fluid">
+      <div class="span12">
+        <div role="main" id="main"></div>
+      </div>
     </div>
   </div>
-
+  
 	<!-- Application source -->
 	<script data-main="content/app/config" src="/content/assets/js/libs/require.js"></script>
 </body>

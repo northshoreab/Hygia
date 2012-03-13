@@ -130,13 +130,13 @@ function (watchr, Backbone) {
             return view;
         }
     });
-    
+
     Faults.Router = Backbone.Router.extend({
         routes: {
-            "fault": "faults",
-            "fault/:id": "faultDetail"
+            "fault": "list",
+            "fault/:id": "detail"
         },
-        faultDetail: function (id) {
+        detail: function (id) {
             var route = this;
 
             var detailModel = new Faults.Models.Detail({ "id": id });
@@ -150,25 +150,20 @@ function (watchr, Backbone) {
                 }
             });
         },
-        faults: function (hash) {
+        list: function (hash) {
             var route = this;
-            
-            var currentFaults = new Faults.Collections.List();
 
-            currentFaults.fetch({
-                success: function (collection, response) {
-                    var faults = new Faults.Views.List({ "collection": collection });
-                    faults.render(function (el) {
-                        $("#main").html(el);
+            var faults = new Faults.Views.List({ "collection": watchr.app.Current.Faults });
 
-                        if (hash && !route._alreadyTriggered) {
-                            Backbone.history.navigate("", false);
-                            location.hash = hash;
-                            route._alreadyTriggered = true;
-                        }
-                    });                     
+            faults.render(function (el) {
+                $("#main").html(el);
+
+                if (hash && !route._alreadyTriggered) {
+                    Backbone.history.navigate("", false);
+                    location.hash = hash;
+                    route._alreadyTriggered = true;
                 }
-            });            
+            });
         }
     });
 
