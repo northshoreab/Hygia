@@ -7,5 +7,6 @@
         public Guid Id{ get; set; }
         public Guid EnvironmentId{ get; set; }
         public DateTime TimeOfLastHeartBeat { get; set; }
+        public string Version { get; set; }
     }
 }

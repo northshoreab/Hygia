@@ -1,6 +1,7 @@
 namespace Hygia.Operations.Communication.Api
 {
     using System;
+    using System.Collections.Specialized;
     using Domain;
     using FubuMVC.Core;
     using Raven.Client;
@@ -10,7 +11,7 @@ namespace Hygia.Operations.Communication.Api
         public IDocumentSession Session { get; set; }
 
         [JsonEndpoint]
-        public dynamic post_launchpad_heartbeat(ContextInputModel model)
+        public dynamic post_launchpad_heartbeat(HeartBeatInputModel model)
         {
             var apiKey = model.Headers["apikey"];
 
@@ -30,6 +31,7 @@ namespace Hygia.Operations.Communication.Api
                              };
 
             status.TimeOfLastHeartBeat = DateTime.UtcNow;
+            status.Version = model.Version;
 
             Session.Store(status);
 
@@ -50,6 +52,13 @@ namespace Hygia.Operations.Communication.Api
 
             return "ok";
         }
+    }
+
+    public class HeartBeatInputModel
+    {
+        public NameValueCollection Headers { get; set; }
+
+        public string Version { get; set; }
     }
 
     public class LaunchPadError

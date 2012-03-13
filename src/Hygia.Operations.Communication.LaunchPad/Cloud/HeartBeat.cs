@@ -2,6 +2,8 @@
 {
     using System;
     using System.Configuration;
+    using System.Diagnostics;
+    using System.Reflection;
     using System.Threading;
     using NServiceBus.Unicast;
     using RestSharp;
@@ -10,8 +12,15 @@
     public class HeartBeat:IWantToRunWhenTheBusStarts
     {
         static Timer timer;
+        static string version;
+
         public void Run()
         {
+
+            var fileInfo = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location);
+            
+            version = string.Format("{0}.{1}.{2}", fileInfo.FileMajorPart, fileInfo.FileMinorPart, fileInfo.FileBuildPart);
+
             var heartbeat = ConfigurationManager.AppSettings["watchr.heartbeat"];
             if (string.IsNullOrEmpty(heartbeat))
                 heartbeat = "30";
@@ -26,7 +35,7 @@
             {
                 ApiCall.Invoke("POST", "launchpad/heartbeat", new
                 {
-                    //empty for now
+                    Version = version
                 });
 
             }
