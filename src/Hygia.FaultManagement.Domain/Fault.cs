@@ -5,10 +5,14 @@ namespace Hygia.FaultManagement.Domain
 {
     public class Fault
     {
-        public FaultStatus Status{ get; set; }
-        public ExceptionInfo Exception{ get; set; }
         public Guid Id { get; set; }
 
+        public long Number { get; set; }
+
+        public FaultStatus Status { get; set; }
+        
+        public ExceptionInfo Exception{ get; set; }
+        
         public string FaultEnvelopeId { get; set; }
 
         public string Body { get; set; }

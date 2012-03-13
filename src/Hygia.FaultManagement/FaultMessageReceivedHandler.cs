@@ -34,14 +34,17 @@
             if (fault == null)
             {
                 fault = new Fault
-                {
-                    Id = envelopeId,
-                    Status = FaultStatus.New,
-                    Retries = 0,
-                    AssignedTo = Guid.Empty,
-                    Endpoint = message.Headers["NServiceBus.FailedQ"],
-                    EndpointId = message.Headers["NServiceBus.FailedQ"].ToGuid(),
-                };
+                                {
+                                    Id = envelopeId,
+                                    Status = FaultStatus.New,
+                                    Retries = 0,
+                                    AssignedTo = Guid.Empty,
+                                    Endpoint = message.Headers["NServiceBus.FailedQ"],
+                                    EndpointId = message.Headers["NServiceBus.FailedQ"].ToGuid()
+                                };
+
+                fault.Number = HiLoGenerator.GenerateNumber<Fault>(Session);
+
 
                 Bus.Publish(new FaultRegistered
                 {
@@ -58,14 +61,14 @@
             fault.FaultEnvelopeId = message.FaultEnvelopeId;
             fault.Headers = message.Headers;
             fault.ContainedMessages = messageTypes;
-                                
+
             fault.TimeOfFailure = timeOfFailure;
             fault.Exception = exception;
-                                   
+
             fault.Body = message.Body;
-            fault.History.Add(new HistoryItem{Time = timeOfFailure,Status = "Failed with exception - " +exception.Message});
-                                              
-                               
+            fault.History.Add(new HistoryItem { Time = timeOfFailure, Status = "Failed with exception - " + exception.Message });
+
+
             Session.Store(fault);
         }
 

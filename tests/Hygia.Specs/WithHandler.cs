@@ -16,22 +16,25 @@ namespace Hygia.Specs
 
         protected static IDocumentSession Session;
 
-        protected static dynamic ResultOfProvide = new{};
+        protected static dynamic ResultOfProvide = new { };
 
         Establish context = () =>
                                 {
                                     FakeBus = A.Fake<IBus>();
                                     FakeProviders = new FakeProviderInvoker(() => DynamicHelpers.ToDynamic(ResultOfProvide));
-                                    
+
                                     store = new EmbeddableDocumentStore();
                                     store.Initialize();
                                     Session = store.OpenSession();
 
                                     Handler = Activator.CreateInstance(typeof(T));
 
-                                    typeof(T).GetProperty("Session").SetValue(Handler, Session, null);
-                                    typeof(T).GetProperty("Bus").SetValue(Handler, FakeBus, null);
-                                    typeof(T).GetProperty("Providers").SetValue(Handler, FakeProviders, null);
+                                    if (typeof(T).GetProperty("Session") != null)
+                                        typeof(T).GetProperty("Session").SetValue(Handler, Session, null);
+                                    if (typeof(T).GetProperty("Bus") != null)
+                                        typeof(T).GetProperty("Bus").SetValue(Handler, FakeBus, null);
+                                    if (typeof(T).GetProperty("Providers") != null)
+                                        typeof(T).GetProperty("Providers").SetValue(Handler, FakeProviders, null);
                                 };
 
         protected static void Handle<TMessage>(Action<TMessage> a) where TMessage : new()
