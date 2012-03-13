@@ -1,5 +1,8 @@
 using System.IO;
 using System.Reflection;
+using System.Text;
+using System.Web;
+using System.Xml;
 using Hygia.Notifications.Domain;
 using Hygia.Operations.Email.Commands;
 using NServiceBus;
@@ -12,6 +15,17 @@ namespace Hygia.Notifications
     using System.Linq;
     using FaultManagement.Events;
     using Provide;
+
+    public static class XmlDocumentExtensions
+    {
+        public static string ToIndentedString(this XmlDocument doc)
+        {
+            var stringWriter = new StringWriter(new StringBuilder());
+            var xmlTextWriter = new XmlTextWriter(stringWriter) { Formatting = Formatting.Indented };
+            doc.Save(xmlTextWriter);
+            return stringWriter.ToString();
+        }
+    }
 
     public class FaultNotificationHandler : IHandleMessages<FaultRegistered>
     {
@@ -56,7 +70,9 @@ namespace Hygia.Notifications
 
         string FormatSubject(dynamic faultInformation)
         {
-            var messageType = faultInformation.MessageTypeName ?? faultInformation.Headers["NServiceBus.EnclosedMessageTypes"];
+            string messageType = faultInformation.MessageTypeName ?? faultInformation.Headers["NServiceBus.EnclosedMessageTypes"];
+
+            messageType = messageType.Split(',')[0].Split('.').LastOrDefault();
 
             //todo: Use templating engine
             return string.Format("[WatchR|NewFault] Message of type {0} has failed", messageType);
@@ -73,7 +89,21 @@ namespace Hygia.Notifications
 
             var textStreamReader = new StreamReader(stream);
 
-            return Razor.Parse(textStreamReader.ReadToEnd(), faultInformation);
+            string prettyPrintedBody = faultInformation.Body;
+
+            try
+            {
+                var bodyXmlDoc = new XmlDocument{ XmlResolver =  null};
+                bodyXmlDoc.LoadXml(prettyPrintedBody);
+                prettyPrintedBody = bodyXmlDoc.ToIndentedString();
+                prettyPrintedBody = HttpUtility.HtmlEncode(prettyPrintedBody);
+                prettyPrintedBody = prettyPrintedBody.Replace(" ", "&nbsp;").Replace("\r\n", "<br />");
+            }
+            catch { }
+
+            string body = Razor.Parse(textStreamReader.ReadToEnd(), new { FaultInfo = faultInformation, PrettyPrintedBody = prettyPrintedBody });
+
+            return body.Replace("[[BODY]]", prettyPrintedBody);
         }
     }
 }

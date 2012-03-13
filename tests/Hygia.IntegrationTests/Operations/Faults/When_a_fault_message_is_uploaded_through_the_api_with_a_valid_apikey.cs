@@ -22,7 +22,7 @@
                                                   {
                                                       { "NServiceBus.OriginalId", "xyz" }, 
                                                       { "NServiceBus.TimeSent", "2012-02-21 21:38:57:236209 Z" },
-                                                      { "NServiceBus.EnclosedMessageTypes", "OrderPlaced, Version=1.0.0.0" },
+                                                      { "NServiceBus.EnclosedMessageTypes", "Barista.Coffee.OrderPlaced, Version=1.0.0.0" },
                                                       { "NServiceBus.FailedQ", "orders@myserver" },
                                                       { "NServiceBus.ExceptionInfo.Message", "Test exception message" },
                                                       { "NServiceBus.ExceptionInfo.Reason", "Some reason" },
@@ -31,7 +31,7 @@
                                                       { "NServiceBus.ExceptionInfo.StackTrace", "A stacktrace" }
                                                      
                                                   },
-                                    Body = "<xml/>"
+                                    Body = "<xml><testar><att><bygga><enxml /></bygga></att></testar></xml>"
 
                                 });
             
