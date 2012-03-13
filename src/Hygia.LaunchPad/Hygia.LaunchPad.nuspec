@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>WatchR.LaunchPad</id>
+    <version>$version$</version>
+    <authors>North Shore AB</authors>
+    <description>LaunchPad</description>
+    <language>en-US</language>
+    <projectUrl>http://watchr.se/</projectUrl>
+    <licenseUrl>http://watchr.se/license</licenseUrl>
+  </metadata>
+</package>

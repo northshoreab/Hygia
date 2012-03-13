@@ -73,6 +73,9 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Hygia.LaunchPad.nuspec">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -117,12 +120,13 @@
       <Name>Hygia.Operations</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <StartAction>Program</StartAction>
     <StartProgram>$(ProjectDir)$(OutputPath)NServiceBus.Host.exe</StartProgram>
     <StartArguments>NServiceBus.Lite</StartArguments>
+    <OctopusTemporaryDirectory>$(ProjectDir)\bin\nuget-temp</OctopusTemporaryDirectory>
   </PropertyGroup>
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <Import Project="..\..\packages\OctoPack.1.0.82\targets\OctoPack.targets" />
 </Project>
