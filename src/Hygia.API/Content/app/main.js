@@ -6,13 +6,14 @@ require([
   "use!bootstrap",
 // Modules  
   "modules/home",
+  "modules/faq",
   "modules/faults",
   "modules/messagetypes",
   "modules/utils"
 
 ],
 
-function (watchr, jQuery, Backbone, Bootstrap, Home, Faults, MessageTypes, Utils) {
+function (watchr, jQuery, Backbone, Bootstrap, Home, Faq, Faults, MessageTypes, Utils) {
 
     // Defining the application router, you can attach sub routers here.
     var Router = Backbone.Router.extend({
@@ -52,6 +53,7 @@ function (watchr, jQuery, Backbone, Bootstrap, Home, Faults, MessageTypes, Utils
         app.router = new Router();
         app.faultRouter = new Faults.Router();
         app.messageTypeRouter = new MessageTypes.Router();
+        app.faqRouter = new Faq.Router();
 
         app.Current.Faults = new Faults.Collections.List();
         app.Current.Faults.fetch();
