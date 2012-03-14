@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using System.Reflection;
 using System.Text;
@@ -27,7 +28,8 @@ namespace Hygia.Notifications
         }
     }
 
-    public class FaultNotificationHandler : IHandleMessages<FaultRegistered>
+    public class FaultNotificationHandler : IHandleMessages<FaultRegistered>,
+                                            IHandleMessages<RetryFailed>
     {
         public IDocumentSession Session { get; set; }
 
@@ -35,14 +37,23 @@ namespace Hygia.Notifications
 
         public IInvokeProviders Providers { get; set; }
 
+        public void Handle(RetryFailed message)
+        {
+            SendEmailToAllNotificationSettings(message.FaultId, message.MessageTypes);
+        }
 
         public void Handle(FaultRegistered message)
         {
-            var faultInformation = Providers.Invoke<IProvideFaultInformation>( new
-                            {
-                                FaultEnvelopeId = message.FaultId,
-                                message.MessageTypes
-                            });
+            SendEmailToAllNotificationSettings(message.FaultId, message.MessageTypes);
+        }
+
+        private void SendEmailToAllNotificationSettings(Guid faultId, IList<Guid> messageTypes)
+        {
+            var faultInformation = Providers.Invoke<IProvideFaultInformation>(new
+                                                                                  {
+                                                                                      FaultEnvelopeId = faultId,
+                                                                                      MessageTypes = messageTypes
+                                                                                  });
 
             foreach (var faultNotificationSetting in Session.Query<FaultNotificationSetting>().Where(x => x.AllMessages))
             {
@@ -53,14 +64,14 @@ namespace Hygia.Notifications
                 {
                     case NotificationTypes.Email:
                         Bus.Send<SendEmailRequest>(e =>
-                                                       {
-                                                           e.Body = body;
-                                                           e.Subject = subject;
-                                                           e.To = faultNotificationSetting.EmailAdress;
-                                                           e.Service = "faults";
-                                                           e.Parameters = message.FaultId.ToString();
-                                                           e.DisplayName = "WatchR - Faults";
-                                                       });
+                        {
+                            e.Body = body;
+                            e.Subject = subject;
+                            e.To = faultNotificationSetting.EmailAdress;
+                            e.Service = "faults";
+                            e.Parameters = faultId.ToString();
+                            e.DisplayName = "WatchR - Faults";
+                        });
                         break;
                     case NotificationTypes.RSS:
                         Session.Store(new FaultNotification(subject, body));

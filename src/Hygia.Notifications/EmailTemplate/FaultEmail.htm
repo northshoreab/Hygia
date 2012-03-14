@@ -2,24 +2,27 @@
      <head>
          <title>WatchR Fault Email</title>
      </head>
-     <body style="width: 98%; margin-left: 10px; font-family: 'Helvetica Neue', Helvetica, Arial,  sans-serif; font-size: 13px; line-height: 18px; color: #333333; background-color: #ffffff;">
+     <body style="width: 98%; margin-left: 10px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; line-height: 18px; color: #333333; background-color: #ffffff;">
          <div style="background: black;">
-            <h1 style="font-size: 30px; line-height: 36px; color: white; margin-bottom: 4px; margin-top: 4px; font-weight: bold;">&nbsp;WatchR</h1>
+            <h1 style="font-size: 30px; line-height: 36px; color: white; margin-bottom: 4px; margin-top: 4px; font-weight: bold;">&nbsp;<a style="color: white; text-decoration: none;" href="http://www.watchr.se">WatchR</a></h1>
          </div>
          <div>
              <h3 style="margin-bottom: 4px; margin-top: 4px; font-weight: bold; color: #333333;">
-                 <a style="color: #0088cc; text-decoration: none; " href="#" class="">@Model.FaultInfo.Reason</a>
+                 <a style="color: #0088cc; text-decoration: none; " href="http://www.watchr.se/#fault/@Model.FaultInfo.Id" class="">@Model.FaultInfo.Reason</a>
              </h3>
              <p style="margin: 0 0 4px; font-family: 'Helvetica Neue', Helvetica, Arial,  sans-serif; font-size: 13px; line-height: 18px;">
-                 <small style="margin: 0px; padding: 0px; font-size: 11px; color: #999999;">
-                     <strong>Time of failure: </strong><time title="TimeOfFailure">@Model.FaultInfo.TimeOfFailure</time>
-                 </small>
+                <small style="margin: 0px; padding: 0px; font-size: 11px; color: #999999;">
+                    <strong>Time of failure: </strong><time title="TimeOfFailure">@Model.FaultInfo.TimeOfFailure</time>
+                </small>
+                @if(Model.FaultInfo.Retries > 0)
+                {
+                    <small style="margin: 0px; padding: 0px; font-size: 11px; color: #999999;">
+                        <br/>
+                        <strong style="color: red">Warnings: </strong>Has been retried @Model.FaultInfo.Retries times
+                    </small>
+                }
              </p>
-             <!--             <p>
-                                  <small>
-                                      <strong style="color: red">Warnings: </strong>Has  been retried 3 times, Deserialization exception
-                                  </small>
-                              </p>-->
+
              <div style="min-height: 20px; padding: 0px; margin-bottom: 10px; background-color: #f5f5f5; border: 1px solid #eee; border: 1px solid rgba(0, 0, 0, 0.05); -webkit-border-radius: 4px; -moz-border-radius: 4px; -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05); -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);">
                  <h4 style="margin-bottom: 4px; margin-top: 4px; font-weight: bold; color: #333333;">Exception details</h4>
                  <p style="margin: 0 0 4px; font-family: 'Helvetica Neue', Helvetica, Arial,  sans-serif; font-size: 13px; line-height: 18px;">
@@ -34,7 +37,9 @@
                  </p>
              </div>
          </div>
-         <p>Reply to this email with Retry|Archive in the body to retry or archive this message</p>
-         <p>For more information about the commands check out our <a href="http://www.watchr.se/#faq">email commands faq</a></p>
+         <p>
+            Reply to this email with Retry|Archive in the body to retry or archive this message<br/>
+            For more information about the commands check out our <a href="http://www.watchr.se/#faq">email commands faq</a>
+         </p>
      </body>
  </html>

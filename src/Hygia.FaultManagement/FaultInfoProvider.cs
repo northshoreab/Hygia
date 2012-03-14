@@ -13,11 +13,13 @@
 
             return new
                        {
+                           fault.Id,
                            fault.TimeOfFailure,
                            fault.Exception.Message,
                            fault.Exception.Reason,
                            fault.Body,
                            fault.Headers,
+                           fault.Retries
                        };
         }
     }

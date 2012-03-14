@@ -34,28 +34,30 @@
             if (fault == null)
             {
                 fault = new Fault
-                                {
-                                    Id = envelopeId,
-                                    Status = FaultStatus.New,
-                                    Retries = 0,
-                                    AssignedTo = Guid.Empty,
-                                    Endpoint = message.Headers["NServiceBus.FailedQ"],
-                                    EndpointId = message.Headers["NServiceBus.FailedQ"].ToGuid()
-                                };
-
-                fault.Number = HiLoGenerator.GenerateNumber<Fault>(Session);
-
+                            {
+                                Id = envelopeId,
+                                Status = FaultStatus.New,
+                                Retries = 0,
+                                AssignedTo = Guid.Empty,
+                                Endpoint = message.Headers["NServiceBus.FailedQ"],
+                                EndpointId = message.Headers["NServiceBus.FailedQ"].ToGuid(),
+                                Number = HiLoGenerator.GenerateNumber<Fault>(Session),
+                            };
 
                 Bus.Publish(new FaultRegistered
-                {
-                    FaultId = fault.Id,
-                    MessageTypes = messageTypes.Select(t => t.MessageTypeId).ToList()
-                });
+                                {
+                                    FaultId = fault.Id,
+                                    MessageTypes = messageTypes.Select(t => t.MessageTypeId).ToList()
+                                });
             }
             else
             {
                 fault.Retries++;
-                Bus.Publish(new RetryFailed { FaultId = fault.Id });
+                Bus.Publish(new RetryFailed
+                                {
+                                    FaultId = fault.Id, 
+                                    MessageTypes = messageTypes.Select(t => t.MessageTypeId).ToList()
+                                });
             }
 
             fault.FaultEnvelopeId = message.FaultEnvelopeId;
