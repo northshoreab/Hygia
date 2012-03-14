@@ -59,6 +59,7 @@ namespace Hygia.Notifications
                                                            e.To = faultNotificationSetting.EmailAdress;
                                                            e.Service = "faults";
                                                            e.Parameters = message.FaultId.ToString();
+                                                           e.DisplayName = "WatchR - Faults";
                                                        });
                         break;
                     case NotificationTypes.RSS:

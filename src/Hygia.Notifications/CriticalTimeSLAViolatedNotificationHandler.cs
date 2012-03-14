@@ -38,6 +38,7 @@ namespace Hygia.Notifications
                             e.To = slaNotificationSetting.EmailAdress;
                             e.Service = "sla";
                             e.Parameters = "";
+                            e.DisplayName = "WatchR - SLA";
                         });
                         break;
                     case NotificationTypes.RSS:

@@ -8,5 +8,6 @@
         public string To { get; set; }
         public string Service { get; set; }
         public string Parameters { get; set; }
+        public string DisplayName { get; set; }
     }
 }

@@ -27,7 +27,10 @@ namespace Hygia.Operations.Email
         {
             string from = string.IsNullOrEmpty(message.From) ? defaultFromEmail : message.From;
 
-            var mailMessage = new MailMessage(from, message.To)
+            var displayName = string.IsNullOrEmpty(message.DisplayName) ? "WatchR" : message.DisplayName;
+
+            
+            var mailMessage = new MailMessage(new MailAddress(from, displayName), new MailAddress(message.To))
                                   {
                                       Subject = message.Subject,
                                       Body = message.Body,
@@ -39,12 +42,13 @@ namespace Hygia.Operations.Email
                                      Credentials = new NetworkCredential(smtpUser, smtpPassword),
                                      DeliveryMethod = SmtpDeliveryMethod.Network,
                                  };
-            mailMessage.ReplyToList.Add(GenerateFromAddress(message));
+
+            mailMessage.ReplyToList.Add(new MailAddress(GenerateReplyToAddress(message),displayName));
 
             smtpClient.Send(mailMessage);
         }
 
-        string GenerateFromAddress(SendEmailRequest message)
+        string GenerateReplyToAddress(SendEmailRequest message)
         {
             var from = "";
             var environmentId = message.GetHeader("EnvironmentId");
@@ -62,7 +66,6 @@ namespace Hygia.Operations.Email
                 from = defaultFromEmail;
             else
                 from += "@watchr.se";
-
             return from;
         }
     }
