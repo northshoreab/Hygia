@@ -74,14 +74,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArchiveFaultHandler.cs" />
-    <Compile Include="FaultEmailReplyHandler.cs" />
+    <Compile Include="Retries\FaultRetrySaga.cs" />
+    <Compile Include="Retries\FaultRetrySagaData.cs" />
+    <Compile Include="MarkFaultAsResolvedHandler.cs" />
+    <Compile Include="Emails\FaultEmailReplyHandler.cs" />
     <Compile Include="FaultMessageReceivedHandler.cs" />
     <Compile Include="FaultInfoProvider.cs" />
-    <Compile Include="EmailCommandTypes.cs" />
+    <Compile Include="Emails\EmailCommandTypes.cs" />
     <Compile Include="HiLoGenerator.cs" />
-    <Compile Include="IssueRetryForFaultHandler.cs" />
+    <Compile Include="Retries\IssueRetryForFaultHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RegisterSuccessfullRetryHandler.cs" />
+    <Compile Include="Retries\RegisterSuccessfullRetryHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

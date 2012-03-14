@@ -1,8 +1,8 @@
-namespace Hygia.FaultManagement
+namespace Hygia.FaultManagement.Emails
 {
     using System;
-    using Commands;
-    using Operations.Events;
+    using Hygia.FaultManagement.Commands;
+    using Hygia.Operations.Events;
     using NServiceBus;
 
     public class FaultEmailReplyHandler : IHandleMessages<EmailReceived>

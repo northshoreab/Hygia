@@ -42,7 +42,10 @@
                                 Endpoint = message.Headers["NServiceBus.FailedQ"],
                                 EndpointId = message.Headers["NServiceBus.FailedQ"].ToGuid(),
                                 Number = HiLoGenerator.GenerateNumber<Fault>(Session),
+                                TimeOfFailure = timeOfFailure
                             };
+
+
 
                 Bus.Publish(new FaultRegistered
                                 {
@@ -52,6 +55,7 @@
             }
             else
             {
+                fault.Status = FaultStatus.RetryFailed;
                 fault.Retries++;
                 Bus.Publish(new RetryFailed
                                 {
@@ -64,7 +68,6 @@
             fault.Headers = message.Headers;
             fault.ContainedMessages = messageTypes;
 
-            fault.TimeOfFailure = timeOfFailure;
             fault.Exception = exception;
 
             fault.Body = message.Body;

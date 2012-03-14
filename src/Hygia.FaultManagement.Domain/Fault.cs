@@ -38,5 +38,7 @@ namespace Hygia.FaultManagement.Domain
         }
 
         public int Retries { get; set; }
+
+        public DateTime ResolvedAt { get; set; }
     }
 }

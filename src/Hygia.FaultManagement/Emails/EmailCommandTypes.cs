@@ -1,4 +1,4 @@
-namespace Hygia.FaultManagement
+namespace Hygia.FaultManagement.Emails
 {
     public static class EmailCommandTypes
     {

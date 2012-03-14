@@ -69,11 +69,11 @@
     <Reference Include="NLog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <HintPath>..\..\packages\NLog.2.0.0.2000\lib\net40\NLog.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus">
-      <HintPath>..\..\packages\NServiceBus-CI.3.0.2072\lib\net40\NServiceBus.dll</HintPath>
+    <Reference Include="NServiceBus, Version=3.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NServiceBus-CI.3.0.2088\lib\net40\NServiceBus.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.Core">
-      <HintPath>..\..\packages\NServiceBus-CI.3.0.2072\lib\net40\NServiceBus.Core.dll</HintPath>
+    <Reference Include="NServiceBus.Core, Version=3.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NServiceBus-CI.3.0.2088\lib\net40\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="Raven.Abstractions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
       <HintPath>..\..\packages\RavenDB-Embedded.1.0.701\lib\net40\Raven.Abstractions.dll</HintPath>
@@ -107,6 +107,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="NewFaults.cs" />
+    <Compile Include="FaultRetrySagaContext.cs" />
+    <Compile Include="RetryMonitoring.cs" />
+    <Compile Include="Retries.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -114,13 +117,25 @@
       <Project>{C4F880A3-653F-4CC9-9333-DBE2CB4EFEF9}</Project>
       <Name>Hygia.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\src\Hygia.FaultManagement.Commands\Hygia.FaultManagement.Commands.csproj">
+      <Project>{A18663E7-36E5-4BCC-B8F3-1E4A62EA6306}</Project>
+      <Name>Hygia.FaultManagement.Commands</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\Hygia.FaultManagement.Domain\Hygia.FaultManagement.Domain.csproj">
       <Project>{FE5A6411-D13A-4252-9E95-BE775D172560}</Project>
       <Name>Hygia.FaultManagement.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\src\Hygia.FaultManagement.Events\Hygia.FaultManagement.Events.csproj">
+      <Project>{102954BE-D780-46FD-AEC6-A7E58B9DD79D}</Project>
+      <Name>Hygia.FaultManagement.Events</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\Hygia.FaultManagement\Hygia.FaultManagement.csproj">
       <Project>{5F6C6873-E9F1-451E-8E1A-BDF906BC61F5}</Project>
       <Name>Hygia.FaultManagement</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Hygia.Operations.Communication\Hygia.Operations.Communication.csproj">
+      <Project>{7DC1D128-B3F6-400B-9271-B40821DC9FE3}</Project>
+      <Name>Hygia.Operations.Communication</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\Hygia.Operations.Events\Hygia.Operations.Events.csproj">
       <Project>{A1BD8BAC-28CC-4169-B73E-B13C22132DFB}</Project>

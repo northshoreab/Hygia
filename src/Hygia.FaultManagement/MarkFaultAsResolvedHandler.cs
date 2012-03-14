@@ -1,4 +1,4 @@
-namespace Hygia.FaultManagement
+﻿namespace Hygia.FaultManagement
 {
     using System;
     using Commands;
@@ -6,22 +6,23 @@ namespace Hygia.FaultManagement
     using NServiceBus;
     using Raven.Client;
 
-    public class RegisterSuccessfullRetryHandler : IHandleMessages<RegisterSuccessfullRetry>
+    public class MarkFaultAsResolvedHandler : IHandleMessages<MarkFaultAsResolved>
     {
         public IDocumentSession Session { get; set; }
 
-        public void Handle(RegisterSuccessfullRetry message)
+        public void Handle(MarkFaultAsResolved message)
         {
             var fault = Session.Load<Fault>(message.FaultId);
 
             if(fault == null)
                 throw new InvalidOperationException("No fault with id " + message.FaultId + "found");
 
-            fault.Status = FaultStatus.RetryPerformed;
+            fault.Status = FaultStatus.Resolved;
+            fault.ResolvedAt = message.ResolvedAt;
             fault.History.Add(new HistoryItem
                                   {
-                                      Time = message.TimeOfRetry,
-                                      Status = "Fault retried"
+                                      Time = message.ResolvedAt,
+                                      Status = "Fault resolved by a retry"
                                   });
 
 

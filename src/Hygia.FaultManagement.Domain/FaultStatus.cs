@@ -4,7 +4,9 @@ namespace Hygia.FaultManagement.Domain
     {
         New,
         Archived,
-        RetryIssued,
-        RetryPerformed
+        RetryRequested,
+        RetryPerformed,
+        RetryFailed,
+        Resolved
     }
 }

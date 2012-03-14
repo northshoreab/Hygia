@@ -1,31 +1,20 @@
 namespace Hygia.Specs
 {
-    using FakeItEasy;
+    using System.Linq;
     using System;
     using Machine.Specifications;
-    using NServiceBus;
-    using Raven.Client;
-    using Raven.Client.Embedded;
 
-    public class WithHandler<T>
+    public class WithHandler<T> : RavenContext
     {
         protected static dynamic Handler;
-        protected static IBus FakeBus;
+        protected static FakeBus FakeBus;
         static IInvokeProviders FakeProviders;
-        static IDocumentStore store;
-
-        protected static IDocumentSession Session;
-
         protected static dynamic ResultOfProvide = new { };
 
         Establish context = () =>
                                 {
-                                    FakeBus = A.Fake<IBus>();
+                                    FakeBus = new FakeBus();
                                     FakeProviders = new FakeProviderInvoker(() => DynamicHelpers.ToDynamic(ResultOfProvide));
-
-                                    store = new EmbeddableDocumentStore();
-                                    store.Initialize();
-                                    Session = store.OpenSession();
 
                                     Handler = Activator.CreateInstance(typeof(T));
 
@@ -36,6 +25,8 @@ namespace Hygia.Specs
                                     if (typeof(T).GetProperty("Providers") != null)
                                         typeof(T).GetProperty("Providers").SetValue(Handler, FakeProviders, null);
                                 };
+
+
 
         protected static void Handle<TMessage>(Action<TMessage> a) where TMessage : new()
         {
@@ -49,20 +40,26 @@ namespace Hygia.Specs
             Handler.Handle(message);
             Session.SaveChanges();
         }
-    }
 
-    internal class FakeProviderInvoker : IInvokeProviders
-    {
-        readonly Func<dynamic> func;
-
-        public FakeProviderInvoker(Func<dynamic> func)
+        protected static void AssertWasSent<TMessage>(Predicate<TMessage> predicate = null)
         {
-            this.func = func;
+            if (predicate == null)
+                predicate = message => true;
+
+            FakeBus.SentMessages.Any(m =>
+                                         {
+                                             if(!(m is TMessage))
+                                                 return false;
+                                             var message = (TMessage) m;
+
+                                             return predicate(message);
+                                         }).ShouldBeTrue();
         }
 
-        public dynamic Invoke<T>(dynamic parameters) where T : IProvide
+        protected static void AssertWasNotSent<TMessage>()
         {
-            return func();
+            FakeBus.SentMessages.Any(m => m.GetType() == typeof(TMessage)).ShouldBeFalse();
         }
+
     }
 }

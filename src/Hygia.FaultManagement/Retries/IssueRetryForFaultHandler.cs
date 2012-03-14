@@ -1,8 +1,8 @@
-namespace Hygia.FaultManagement
+namespace Hygia.FaultManagement.Retries
 {
     using System;
-    using Commands;
-    using Domain;
+    using Hygia.FaultManagement.Commands;
+    using Hygia.FaultManagement.Domain;
     using NServiceBus;
     using Raven.Client;
 
@@ -21,7 +21,11 @@ namespace Hygia.FaultManagement
             if (fault == null)
                 throw new InvalidOperationException("No fault with id " + message.FaultId + "found");
 
-            fault.Status = FaultStatus.RetryIssued;
+
+            if (fault.Status == FaultStatus.RetryRequested || fault.Status == FaultStatus.RetryPerformed)
+                return;
+
+            fault.Status = FaultStatus.RetryRequested;
             fault.History.Add(new HistoryItem
                                   {
                                       Time = DateTime.UtcNow,
