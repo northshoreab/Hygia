@@ -2,6 +2,7 @@
 
 namespace Hygia.Operations.AuditUploads
 {
+    using Core;
     using Events;
     using NServiceBus;
 
@@ -20,7 +21,7 @@ namespace Hygia.Operations.AuditUploads
 
             bus.Publish<AuditMessageReceived>(e =>
                                                   {
-                                                      e.MessageId = message.MessageId;
+                                                      e.MessageId = message.MessageId.ToGuid();
                                                       e.Headers = message.Headers;
                                                       e.AdditionalInformation = message.AdditionalInformation;
                                                       e.Body = message.Body;

@@ -27,7 +27,8 @@ namespace Hygia.FaultManagement.Api
                        }.ToOutputModels();
 			*/
             return Session.Query<Fault>()
-                .Where(f => f.Status != FaultStatus.Archived)
+                .Where(f => f.Status != FaultStatus.Archived && f.Status != FaultStatus.Resolved)
+                .OrderByDescending(f=>f.TimeOfFailure)
                 .ToList()
                 .ToOutputModels();
         }

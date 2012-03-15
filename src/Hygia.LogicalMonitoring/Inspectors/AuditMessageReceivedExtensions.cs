@@ -21,10 +21,6 @@ namespace Hygia
         }
 
 
-        public static Guid EnvelopeId(this AuditMessageReceived envelope)
-        {
-            return envelope.MessageId.ToGuid();
-        }
         public static bool IsControlMessage(this AuditMessageReceived transportMessageReceived)
         {
             return transportMessageReceived.Headers.ContainsKey(ControlMessage.ControlMessageHeader);

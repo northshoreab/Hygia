@@ -29,7 +29,7 @@
 
         Because of = () => Handle<AuditMessageReceived>(m =>
                                                             {
-                                                                m.MessageId = faultId.ToString();
+                                                                m.MessageId = faultId;
                                                                 m.Headers = new Dictionary<string, string> { { "NServiceBus.SentTime", sentTime.ToWireFormattedString() } };
                                                             });
 

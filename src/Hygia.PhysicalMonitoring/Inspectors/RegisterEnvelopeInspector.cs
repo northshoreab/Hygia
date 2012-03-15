@@ -26,7 +26,7 @@ namespace Hygia.PhysicalMonitoring.Inspectors
         
             var command = new RegisterEnvelope
                               {
-                                  EnvelopeId = auditMessage.EnvelopeId(),
+                                  EnvelopeId = auditMessage.MessageId,
                                   CorrelatedEnvelopeId = auditMessage.CorrelationId(),
                                   ParentEnvelopeId = auditMessage.PreviousEnvelopeId(),
                                   Messages = messages

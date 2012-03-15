@@ -33,7 +33,7 @@ namespace Hygia.FaultManagement.Retries
         public override void ConfigureHowToFindSaga()
         {
             ConfigureMapping<FaultRegistered>(s => s.FaultId, m => m.FaultId);
-            ConfigureMapping<AuditMessageReceived>(s => s.FaultId, m => m.MessageId.ToGuid());
+            ConfigureMapping<AuditMessageReceived>(s => s.FaultId, m => m.MessageId);
         }
     }
 }
