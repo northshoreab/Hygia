@@ -44,7 +44,8 @@ namespace Hygia.API
                   .ToAssembly("Hygia.Operations.Communication.Domain")
                 .ToAssembly("Hygia.FaultManagement.Api")
                 .ToAssembly("Hygia.LogicalMonitoring.Api")
-                .ToAssembly("Hygia.Operations.AuditUploads.Api");
+                .ToAssembly("Hygia.Operations.AuditUploads.Api")
+                .ToAssembly("Hygia.UserManagement.Api");
             //todo- Better way?
 
             // All public methods from concrete classes ending in "Controller"

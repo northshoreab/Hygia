@@ -322,6 +322,10 @@
       <Project>{5C10F8AE-3AFE-4B51-B6A3-79AEE26A166F}</Project>
       <Name>Hygia.Operations</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Hygia.UserManagement.Api\Hygia.UserManagement.Api.csproj">
+      <Project>{FA580D03-187E-43A3-8044-547195B5F297}</Project>
+      <Name>Hygia.UserManagement.Api</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="fubu-content\fubumvc-diagnostics.zip" />

@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{09DE4E5E-4672-4FEF-AB52-11B65536819A}</ProjectGuid>
+    <ProjectGuid>{FA580D03-187E-43A3-8044-547195B5F297}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Hygia.IntegrationTests</RootNamespace>
-    <AssemblyName>Hygia.IntegrationTests</AssemblyName>
+    <RootNamespace>Hygia.UserManagement.Api</RootNamespace>
+    <AssemblyName>Hygia.UserManagement.Api</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\hygia\</SolutionDir>
@@ -33,18 +33,35 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AsyncCtpLibrary, Version=1.0.4107.18181, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\RavenDB.1.0.616\lib\net40\AsyncCtpLibrary.dll</HintPath>
+    <Reference Include="AsyncCtpLibrary">
+      <HintPath>..\..\packages\RavenDB-Client.1.0.701\lib\net40\AsyncCtpLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="Bottles">
+      <HintPath>..\..\packages\Bottles.0.9.1.199\lib\Bottles.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuCore">
+      <HintPath>..\..\packages\FubuCore.0.9.4.115\lib\FubuCore.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuLocalization">
+      <HintPath>..\..\packages\FubuLocalization.0.9.4.115\lib\FubuLocalization.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuMVC.Core">
+      <HintPath>..\..\packages\FubuMVC.References.0.9.3.744\lib\net40\FubuMVC.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="FubuMVC.StructureMap">
+      <HintPath>..\..\packages\FubuMVC.References.0.9.3.744\lib\net40\FubuMVC.StructureMap.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlTags">
+      <HintPath>..\..\packages\HtmlTags.1.0.0.55\lib\4.0\HtmlTags.dll</HintPath>
     </Reference>
     <Reference Include="log4net">
       <HintPath>..\..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="Machine.Specifications">
-      <HintPath>..\..\packages\Machine.Specifications.0.5.3.0\lib\Machine.Specifications.dll</HintPath>
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=4.0.5.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Newtonsoft.Json.4.0.5\lib\net40\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\packages\Newtonsoft.Json.4.0.8\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="NLog">
       <HintPath>..\..\packages\NLog.2.0.0.2000\lib\net40\NLog.dll</HintPath>
@@ -56,24 +73,23 @@
       <HintPath>..\..\packages\NServiceBus-CI.3.0.2091\lib\net40\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="Raven.Abstractions">
-      <HintPath>..\..\packages\RavenDB.1.0.616\lib\net40\Raven.Abstractions.dll</HintPath>
+      <HintPath>..\..\packages\RavenDB-Client.1.0.701\lib\net40\Raven.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="Raven.Client.Debug">
-      <HintPath>..\..\packages\RavenDB.1.0.616\lib\net40\Raven.Client.Debug.dll</HintPath>
+      <HintPath>..\..\packages\RavenDB-Client.1.0.701\lib\net40\Raven.Client.Debug.dll</HintPath>
     </Reference>
     <Reference Include="Raven.Client.Lightweight">
-      <HintPath>..\..\packages\RavenDB.1.0.616\lib\net40\Raven.Client.Lightweight.dll</HintPath>
+      <HintPath>..\..\packages\RavenDB-Client.1.0.701\lib\net40\Raven.Client.Lightweight.dll</HintPath>
     </Reference>
     <Reference Include="Raven.Client.MvcIntegration">
-      <HintPath>..\..\packages\RavenDB.1.0.616\lib\net40\Raven.Client.MvcIntegration.dll</HintPath>
+      <HintPath>..\..\packages\RavenDB-Client.1.0.701\lib\net40\Raven.Client.MvcIntegration.dll</HintPath>
     </Reference>
-    <Reference Include="RestSharp">
-      <HintPath>..\..\packages\RestSharp.102.6\lib\net35\RestSharp.dll</HintPath>
+    <Reference Include="StructureMap">
+      <HintPath>..\..\packages\structuremap.2.6.3\lib\StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Messaging" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -81,34 +97,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApiContext.cs" />
-    <Compile Include="BackendContext.cs" />
-    <Compile Include="ServiceLevelAgreements\When_a_audit_message_is_received_that_breaks_the_environment_sla.cs" />
-    <Compile Include="Operations\Faults\When_a_email_arrives_with_a_fault_that_should_be_retried.cs" />
-    <Compile Include="Operations\Faults\When_a_fault_message_is_uploaded_through_the_api_with_a_valid_apikey.cs" />
-    <Compile Include="Operations\Communication\When_listing_commands_for_a_launchpad_that_have_new_commands_to_pickup.cs" />
-    <Compile Include="Operations\Simulations\Faults_simulation.cs" />
-    <Compile Include="Operations\Simulations\Order_placed_simulation.cs" />
-    <Compile Include="Operations\Simulations\SimulationContext.cs" />
-    <Compile Include="Operations\Provisioning\When_creating_a_new_account_with_valid_information.cs" />
-    <Compile Include="RestSharpContext.cs" />
-    <Compile Include="UserManagement%27\When_a_user_is_signing_up_with_a_unique_email.cs" />
-    <Compile Include="WebContext.cs" />
-    <Compile Include="Operations\AuditUploads\When_a_audit_message_is_uploaded_through_the_api.cs" />
-    <Compile Include="Operations\Provisioning\When_provisioning_a_new_environment_for_a_account.cs" />
+    <Compile Include="SignupController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Hygia.Core\Hygia.Core.csproj">
+    <ProjectReference Include="..\Hygia.Core\Hygia.Core.csproj">
       <Project>{C4F880A3-653F-4CC9-9333-DBE2CB4EFEF9}</Project>
       <Name>Hygia.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Hygia.Drivers.NServiceBus\Hygia.Drivers.NServiceBus.csproj">
-      <Project>{0336B64B-3535-4D62-A70A-ED6284945BAC}</Project>
-      <Name>Hygia.Drivers.NServiceBus</Name>
+    <ProjectReference Include="..\Hygia.Operations.Email.Commands\Hygia.Operations.Email.Commands.csproj">
+      <Project>{8C8975BF-302A-4462-9EDF-1CBA03270C57}</Project>
+      <Name>Hygia.Operations.Email.Commands</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
