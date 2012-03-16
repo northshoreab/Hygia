@@ -7,7 +7,7 @@
     using NServiceBus.Unicast.Transport;
     using log4net;
 
-    public class LaunchPadFaultManager : IManageMessageFailures, INeedInitialization
+    public class LaunchPadFaultManager : IManageMessageFailures, IWantToRunBeforeConfiguration
     {
         public void SerializationFailedForMessage(TransportMessage message, Exception e)
         {
