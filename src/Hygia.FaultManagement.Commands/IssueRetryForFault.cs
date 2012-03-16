@@ -5,5 +5,7 @@ namespace Hygia.FaultManagement.Commands
     public class IssueRetryForFault
     {
         public Guid FaultId { get; set; }
+
+        public DateTime IssuedAt { get; set; }
     }
 }

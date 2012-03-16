@@ -23,7 +23,8 @@ namespace Hygia.FaultManagement.Emails
 
                     Bus.Send(new IssueRetryForFault
                                  {
-                                     FaultId = messageId
+                                     FaultId = messageId,
+                                     IssuedAt = emailReceived.TimeSent
                                  });
                     break;
 

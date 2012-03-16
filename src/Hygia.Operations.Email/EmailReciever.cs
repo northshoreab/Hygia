@@ -59,6 +59,7 @@ namespace Hygia.Operations.Email
                                                        email.Subject = msg.Subject;
                                                        email.Service = service;
                                                        email.Parameters = parameters;
+                                                       email.TimeSent = msg.Date;
 
                                                    });
 

@@ -25,10 +25,16 @@ namespace Hygia.FaultManagement.Retries
             if (fault.Status == FaultStatus.RetryRequested || fault.Status == FaultStatus.RetryPerformed)
                 return;
 
+
+            if (fault.Status == FaultStatus.Archived)
+                throw new InvalidOperationException("Can't retry an archived fault - " + message.FaultId);
+
+
+
             fault.Status = FaultStatus.RetryRequested;
             fault.History.Add(new HistoryItem
                                   {
-                                      Time = DateTime.UtcNow,
+                                      Time = message.IssuedAt,
                                       Status = "Retry issued"
                                   });
 

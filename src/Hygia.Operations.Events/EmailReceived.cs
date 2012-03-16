@@ -1,5 +1,7 @@
 namespace Hygia.Operations.Events
 {
+    using System;
+
     public class EmailReceived
     {
         public string To { get; set; }
@@ -8,5 +10,6 @@ namespace Hygia.Operations.Events
         public string Body { get; set; }
         public string Service { get; set; }
         public string Parameters { get; set; }
+        public DateTime TimeSent { get; set; }
     }
 }

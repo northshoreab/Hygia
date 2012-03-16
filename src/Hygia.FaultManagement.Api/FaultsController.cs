@@ -49,7 +49,11 @@ namespace Hygia.FaultManagement.Api
         [JsonEndpoint]
         public dynamic post_faults_retry(FaultEnvelopeInputModel model)
         {
-            Bus.Send(new IssueRetryForFault {FaultId =model.FaultId});
+            Bus.Send(new IssueRetryForFault
+                         {
+                             FaultId =model.FaultId,
+                             IssuedAt = DateTime.UtcNow
+                         });
             return string.Empty;
         }
 
