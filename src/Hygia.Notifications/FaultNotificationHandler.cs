@@ -82,12 +82,19 @@ namespace Hygia.Notifications
 
         string FormatSubject(dynamic faultInformation)
         {
-            string messageType = faultInformation.MessageTypeName ?? faultInformation.Headers["NServiceBus.EnclosedMessageTypes"];
+            string messageType = faultInformation.MessageTypeName;
+            
+            if(string.IsNullOrEmpty(messageType))
+                messageType = faultInformation.Headers.ContainsKey("NServiceBus.EnclosedMessageTypes") ? 
+                    faultInformation.Headers["NServiceBus.EnclosedMessageTypes"] :
+                    "Unknown";
 
             messageType = messageType.Split(',')[0].Split('.').LastOrDefault();
-
+            
+            var reason = "NewFault"; //todo -  get retries and set this to RetryFailed if Retries>0
+            
             //todo: Use templating engine
-            return string.Format("[WatchR|NewFault] Message of type {0} has failed", messageType);
+            return string.Format("[Production|{1}] Message of type {0} has failed", messageType,reason);
         }
 
         string FormatBody(dynamic faultInformation)
