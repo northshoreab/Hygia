@@ -17,7 +17,7 @@ function (watchr, Backbone) {
         url: '/signup'
     });
 
-    
+
     SignUp.Views.Index = Backbone.View.extend({
         template: '/content/app/templates/signup.index.html',
         initialize: function () {
@@ -28,7 +28,34 @@ function (watchr, Backbone) {
             var emailField = $('input[name=email]');
             this.model.save({
                 'email': emailField.val()
+            },
+            { 
+                success: function () {
+                    var complete = new SignUp.Views.SignupComplete({});
+
+                    complete.render(function (el) { $("#main").html(el); });
+                } 
             });
+        },
+        render: function (done) {
+            var view = this;
+
+            watchr.fetchTemplate(this.template, function (tmpl) {
+                view.el.innerHTML = tmpl({});
+
+                if (_.isFunction(done)) {
+                    done(view.el);
+                }
+            });
+
+            return view;
+        }
+    });
+
+    SignUp.Views.SignupComplete = Backbone.View.extend({
+        template: '/content/app/templates/signup.complete.html',
+        initialize: function () {
+
         },
         render: function (done) {
             var view = this;
