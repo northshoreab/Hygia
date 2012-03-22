@@ -108,7 +108,7 @@ namespace Hygia.FaultManagement.Api
                                     EnclosedMessageTypes = enclosedMessageTypes ?? string.Empty,
                                     ExceptionMessage = fault.Exception.Message,
                                     FaultId = fault.Id,
-                                    FaultNumber = 0,                                    
+                                    FaultNumber = fault.Number,                                    
                                     TimeSent = fault.TimeOfFailure.ToString(),
                                     Retries = fault.Retries
                                 };
