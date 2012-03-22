@@ -130,6 +130,7 @@
     <Content Include="Content\app\modules\faults.js" />
     <Content Include="Content\app\modules\utils.js" />
     <Content Include="Content\app\modules\home.js" />
+    <Content Include="Content\app\templates\signup.emailverified.html" />
     <Content Include="Content\app\templates\signup.complete.html" />
     <Content Include="Content\app\templates\signup.index.html" />
     <Content Include="Content\app\templates\faq.index.html" />

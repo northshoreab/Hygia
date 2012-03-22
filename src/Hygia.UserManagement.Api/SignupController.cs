@@ -14,6 +14,19 @@ namespace Hygia.UserManagement.Api
         public IDocumentSession Session { get; set; }
 
         public IBus Bus { get; set; }
+        [JsonEndpoint]
+        public dynamic post_signup_verify(VerifyInputModel model)
+        {
+            var account = Session.Load<UserAccount>(model.UserId);
+
+
+            if (account == null)
+                throw new InvalidOperationException("No user account found for userId " + model.UserId);
+
+            account.Status = UserAccountStatus.Verified;
+
+            return account;
+        }
 
         [JsonEndpoint]
         public dynamic post_signup(SignUpInputModel model)
@@ -41,7 +54,7 @@ namespace Hygia.UserManagement.Api
                              DisplayName = "WatchR - SignUp",
                              To = model.Email,
                              Subject = "Please verify your email at WatchR.se",
-                             Body = "Todo",
+                             Body = "http://watchr.se/#verify/" + userId,
                              Service = "usermanagement",
                              Parameters = userId.ToString()
                          });
@@ -49,9 +62,15 @@ namespace Hygia.UserManagement.Api
         }
     }
 
+    public class VerifyInputModel
+    {
+        public Guid UserId{ get; set; }
+    }
+
     public enum UserAccountStatus
     {
-        Unverified
+        Unverified,
+        Verified
     }
 
     public class UserAccount

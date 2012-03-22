@@ -29,12 +29,12 @@ function (watchr, Backbone) {
             this.model.save({
                 'email': emailField.val()
             },
-            { 
+            {
                 success: function () {
                     var complete = new SignUp.Views.SignupComplete({});
 
                     complete.render(function (el) { $("#main").html(el); });
-                } 
+                }
             });
         },
         render: function (done) {
@@ -72,10 +72,35 @@ function (watchr, Backbone) {
         }
     });
 
+    SignUp.Models.EmailVerification = Backbone.Model.extend({
+        url: '/signup/verify'
+    });
+
+    SignUp.Views.EmailVerified = Backbone.View.extend({
+        template: '/content/app/templates/signup.emailverified.html',
+        initialize: function () {
+
+        },
+        render: function (done) {
+            var view = this;
+
+            watchr.fetchTemplate(this.template, function (tmpl) {
+                view.el.innerHTML = tmpl({});
+
+                if (_.isFunction(done)) {
+                    done(view.el);
+                }
+            });
+
+            return view;
+        }
+    });
+
 
     SignUp.Router = Backbone.Router.extend({
         routes: {
-            "signup": "index"
+            "signup": "index",
+            "verify/:id": "verify"
         },
         index: function (hash) {
             var route = this;
@@ -92,6 +117,22 @@ function (watchr, Backbone) {
                     Backbone.history.navigate("", false);
                     location.hash = hash;
                     route._alreadyTriggered = true;
+                }
+            });
+        },
+        verify: function (id) {
+            var route = this;
+            var model = new SignUp.Models.EmailVerification({});
+
+            model.save({
+                'userid': id
+            },
+            {
+                success: function () {
+                    alert("SignUp oK!" + id);
+                },
+                error: function () {
+                    alert("error" + id);
                 }
             });
         }
