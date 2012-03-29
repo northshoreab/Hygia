@@ -16,16 +16,8 @@ namespace Hygia.FaultManagement.Api
         public IBus Bus { get; set; }
        
         [JsonEndpoint]
-        public IEnumerable<FaultEnvelopeOutputModel> get_faults()
+        public IEnumerable<FaultEnvelopeOutputModel> get_api_faults()
         {
-		    /*
-            return new List<Fault>
-                       {
-                            new Fault{ FaultEnvelopeId = "234234-234324-234234", Exception = new ExceptionInfo {Message = "message message message message message message message", Reason = "reason", StackTrace = "stacktrace"}},
-                            new Fault{ FaultEnvelopeId = "7673456265767-657564", Exception = new ExceptionInfo {Message = "message", Reason = "reason", StackTrace = "stacktrace"}},
-                            new Fault{ FaultEnvelopeId = "989789-234324-234234", Exception = new ExceptionInfo {Message = "message", Reason = "reason", StackTrace = "stacktrace"}, Retries = 2}
-                       }.ToOutputModels();
-			*/
             return Session.Query<Fault>()
                 .Where(f => f.Status != FaultStatus.Archived && f.Status != FaultStatus.Resolved && f.Status != FaultStatus.RetryPerformed)
                 .OrderByDescending(f=>f.TimeOfFailure)
@@ -34,20 +26,14 @@ namespace Hygia.FaultManagement.Api
         }
         
         [JsonEndpoint]
-        public Fault get_faults_FaultId(FaultEnvelopeInputModel model)
+        public Fault get_api_faults_FaultId(FaultEnvelopeInputModel model)
         {
-			/*
-            return new Fault
-                       {
-                           Exception =
-                               new ExceptionInfo {Message = "message", Reason = "reason", StackTrace = "stacktrace"}
-                       };
-			*/
+
             return Session.Load<Fault>(model.FaultId);
         }
 
         [JsonEndpoint]
-        public dynamic post_faults_retry(FaultEnvelopeInputModel model)
+        public dynamic post_api_faults_retry(FaultEnvelopeInputModel model)
         {
             Bus.Send(new IssueRetryForFault
                          {
@@ -58,14 +44,14 @@ namespace Hygia.FaultManagement.Api
         }
 
         [JsonEndpoint]
-        public dynamic post_faults_archive(FaultEnvelopeInputModel model)
+        public dynamic post_api_faults_archive(FaultEnvelopeInputModel model)
         {
             Bus.Send(new ArchiveFault {FaultId = model.FaultId});
             return string.Empty;
         }
 
         [JsonEndpoint]
-        public dynamic post_faults_retried(FaultRetriedInputModel model)
+        public dynamic post_api_faults_retried(FaultRetriedInputModel model)
         {
             Bus.Send(new RegisterSuccessfullRetry
                          {

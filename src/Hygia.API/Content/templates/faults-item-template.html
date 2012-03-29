@@ -1,0 +1,32 @@
+
+<div class="span1"><%= FaultNumber %></div>
+
+<div class="span10">
+  <div class="row-fluid">
+    <div class="span6">
+      <h4><a href="/#faults/<%= FaultId %>" alt="<%= ExceptionMessage %>"><%= Title %></a></h4>
+      <p><small>occured <time class="js-relative-date" datetime="<%= TimeSent %>" title="<%= TimeSent %>"><%= TimeSent %></time></small></p>
+    </div>
+    <div class="span4">
+      <% if (EnclosedMessageTypes.length > 0) { %>
+        <span class="label label-info"><%= EnclosedMessageTypes %></span>
+      <% } %>
+      <% if (Retries > 0) { %>
+        <span class="label label-important">Repeated failures</span>    
+      <% } %>
+      <% if (BusinessService && BusinessService.length > 0) { %>
+          <span class="label"><%= BusinessService %></span>    
+      <% } %>      
+    </div>
+  </div>
+</div>
+
+<div class="span1">
+  <div class="btn-group right">
+    <a class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+    <ul class="dropdown-menu">
+      <li><a class="action-retry-fault" href="#">Retry</a></li>
+      <li><a class="action-archive-fault" href="#">Archive</a></li>
+    </ul>
+  </div>  
+</div>      
