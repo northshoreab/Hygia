@@ -126,7 +126,10 @@
     <Content Include="Content\app\faults\faults.layout.js" />
     <Content Include="Content\app\faults\faults.list.js" />
     <Content Include="Content\app\faults\faults.routing.js" />
+    <Content Include="Content\app\faults\faults.service.js" />
+    <Content Include="Content\app\faults\faults.spread.js" />
     <Content Include="Content\app\faults\faults.summary.js" />
+    <Content Include="Content\app\faults\faults.trend.js" />
     <Content Include="Content\app\home\home.js" />
     <Content Include="Content\app\home\home.layout.js" />
     <Content Include="Content\app\home\home.routing.js" />
@@ -154,6 +157,7 @@
     <Content Include="Content\assets\js\TrafficCop.min.js" />
     <Content Include="Content\assets\js\underscore-min.js" />
     <Content Include="Content\assets\js\underscore.js" />
+    <Content Include="Content\templates\faults-detail-template.htm" />
     <Content Include="Content\templates\faults-item-template.html" />
     <Content Include="Content\templates\faults-layout-template.html" />
     <Content Include="Content\templates\faults-summary-item-template.html" />
@@ -423,8 +427,7 @@
     </PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
+    <PostBuildEvent>del $(TargetDir)\Raven.Client.MvcIntegration.*</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

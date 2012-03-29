@@ -5,7 +5,7 @@ WatchR.Routing.FaultsRouting = (function (WatchR, Backbone) {
 	FaultsRouting.Router = Backbone.Marionette.AppRouter.extend({
     	appRoutes: {      				   
       	 "faults": "show",
-         "faults/:id" : "showDetails"
+         "faults/:id" : "showDetails"         
     	} 	
   	});	
 

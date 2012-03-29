@@ -15,7 +15,8 @@ WatchR.Faults.FaultList = (function (WatchR, Backbone, $) {
 		template: '#faults-item-template',
         events: {
             "click a.action-retry-fault": "retry",
-            "click a.action-archive-fault": "archive"
+            "click a.action-archive-fault": "archive",
+            "click a.faults-detail-link": "detail"
         },		
 		initialize: function () {
 			this.model.bind('change', this.render, this);
@@ -29,6 +30,9 @@ WatchR.Faults.FaultList = (function (WatchR, Backbone, $) {
 			console.log("archive");
 			return false;
 		},
+        detail: function () {
+            console.log("retry " + this.model.get('id'));
+        },
 		onRender: function () {
 			console.log("render item");
 		}

@@ -29,8 +29,7 @@
   <body>
     <!-- Javascript
     ================================================== -->    
-    <script src="/content/assets/js/jquery-1.7.2.js" type="text/javascript"></script>
-    <script src="/content/assets/js/jquery-tmpl.js" type="text/javascript"></script>
+    <script src="/content/assets/js/jquery-1.7.2.js" type="text/javascript"></script>    
     <script src="/content/assets/js/underscore.js" type="text/javascript"></script>    
     <script src="/content/assets/js/backbone.js" type="text/javascript"></script>          
     <script src="/content/assets/js/backbone.marionette.js" type="text/javascript"></script>    
@@ -55,10 +54,13 @@
     <!-- insert home widgets here --> 
     <script src="/content/app/home/home.routing.js" type="text/javascript"></script>
 
-    <script src="/content/app/faults/faults.js" type="text/javascript"></script>  
+    <script src="/content/app/faults/faults.js" type="text/javascript"></script>     
     <script src="/content/app/faults/faults.layout.js" type="text/javascript"></script>  
+    <script src="/content/app/faults/faults.service.js" type="text/javascript"></script> 
     <script src="/content/app/faults/faults.list.js" type="text/javascript"></script>
     <script src="/content/app/faults/faults.summary.js" type="text/javascript"></script>
+    <script src="/content/app/faults/faults.trend.js" type="text/javascript"></script>
+    <script src="/content/app/faults/faults.spread.js" type="text/javascript"></script>
     <script src="/content/app/faults/faults.routing.js" type="text/javascript"></script>
       
     <script type="text/javascript">
