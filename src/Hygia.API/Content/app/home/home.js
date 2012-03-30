@@ -11,6 +11,12 @@ WatchR.Home = (function (WatchR, Backbone) {
         WatchR.Home.layout.signup.show(signUpView);
     });
 
+    WatchR.vent.bind("signup:registered", function () {
+        WatchR.Home.layout.signup.show(new WatchR.SignUp.Index.Registered({}));
+    });
+
+
+
     Home.show = function () {
         WatchR.layout.main.show(WatchR.Home.layout);
     };

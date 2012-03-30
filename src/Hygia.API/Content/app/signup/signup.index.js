@@ -17,12 +17,16 @@
             },
             {
                 success: function () {
-                    //var complete = new SignUp.Views.SignupComplete({});
-                    console.log("Signup complete");
-                    //complete.render(function (el) { $("#main").html(el); });
+                    WatchR.vent.trigger("signup:registered");
                 }
             });
         }
+    });
+
+    Index.Registered = WatchR.ItemView.extend({
+        tagName: 'div',
+        className: 'row-fluid',
+        template: '#signup-registered-template'
     });
 
     return Index;
