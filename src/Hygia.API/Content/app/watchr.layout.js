@@ -11,7 +11,7 @@
 		},
 
 		initialize: function(){
-		},
+		}
 	});
 
   WatchR.addInitializer(function(){    

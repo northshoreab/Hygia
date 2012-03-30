@@ -11,9 +11,9 @@ WatchR.Faults = (function (WatchR, Backbone) {
         WatchR.layout.main.show(WatchR.Faults.layout);
     };
 
-    Faults.showDetails = function (id) {
+    Faults.showDetails = function(id) {
         console.log(id);
-    }
+    };
 
     Faults.showFaultList = function () {
         var faultsListView = new WatchR.Faults.FaultList.FaultListView({

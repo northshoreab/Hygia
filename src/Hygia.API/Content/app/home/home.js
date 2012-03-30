@@ -1,18 +1,24 @@
-WatchR.Home = (function (WatchR, Backbone){
+WatchR.Home = (function (WatchR, Backbone) {
 
-	var Home = {};
+    var Home = {};
 
-	Home.show = function() {
-		WatchR.layout.main.show(WatchR.Home.layout);
 
-		WatchR.Home.layout.on("item:rendered", function(){
-			// render home screens				
-		}, this);		
-	};
+    WatchR.vent.bind("home:layout:show", function () {
+        var signUpView = new WatchR.SignUp.Index.View({
+            model: new WatchR.SignUp.Index.User({})
+        });
 
-	WatchR.addInitializer(function () {
-  	});	
+        WatchR.Home.layout.signup.show(signUpView);
+    });
 
-	return Home;
+    Home.show = function () {
+        WatchR.layout.main.show(WatchR.Home.layout);
+    };
+
+
+    WatchR.addInitializer(function () {
+    });
+
+    return Home;
 
 })(WatchR, Backbone);

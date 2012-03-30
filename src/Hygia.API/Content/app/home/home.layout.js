@@ -3,9 +3,11 @@
 		template: "#home-layout-template",
 
 		regions: {      
-
+            signup: "#signup-index"
 		},
-    
+        onShow: function () {					
+			WatchR.vent.trigger("home:layout:show");
+		},
 		events: {				
 		}
 	});

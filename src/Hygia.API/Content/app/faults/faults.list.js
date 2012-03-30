@@ -40,7 +40,7 @@ WatchR.Faults.FaultList = (function (WatchR, Backbone, $) {
 
 	FaultList.FaultListView = WatchR.CollectionView.extend({
 		tagName: 'div',							
-		itemView: FaultList.FaultItemView,
+		itemView: FaultList.FaultItemView
 	});
 
 	WatchR.addInitializer(function () {

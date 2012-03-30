@@ -133,6 +133,8 @@
     <Content Include="Content\app\home\home.js" />
     <Content Include="Content\app\home\home.layout.js" />
     <Content Include="Content\app\home\home.routing.js" />
+    <Content Include="Content\app\signup\signup.js" />
+    <Content Include="Content\app\signup\signup.index.js" />
     <Content Include="Content\app\utils\utils.js" />
     <Content Include="Content\app\watchr.collection.js" />
     <Content Include="Content\app\watchr.config.js" />
@@ -163,6 +165,7 @@
     <Content Include="Content\templates\faults-summary-item-template.html" />
     <Content Include="Content\templates\home-layout-template.html" />
     <Content Include="Content\templates\layout-template.html" />
+    <Content Include="Content\templates\signup-index-template.html" />
     <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Images\block.png" />
     <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Images\console-line.png" />
     <Content Include="fubu-content\fubumvc-diagnostics\WebContent\Content\Images\down-arrow.png" />
