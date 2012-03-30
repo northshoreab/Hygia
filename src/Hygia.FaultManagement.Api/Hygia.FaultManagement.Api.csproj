@@ -92,6 +92,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FaultEnvelopeInputModel.cs" />
+    <Compile Include="FaultEnvelopeOutputModel.cs" />
+    <Compile Include="FaultEnvelopeViewModelExtensions.cs" />
+    <Compile Include="FaultRetriedInputModel.cs" />
     <Compile Include="FaultsController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
