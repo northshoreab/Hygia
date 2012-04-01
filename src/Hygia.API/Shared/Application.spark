@@ -51,6 +51,7 @@
 
     <!-- insert signup widgets here --> 
 	<script src="/content/app/signup/signup.js" type="text/javascript"></script>     
+	<script src="/content/app/signup/signup.routing.js" type="text/javascript"></script>     
 	<script src="/content/app/signup/signup.index.js" type="text/javascript"></script>     
 
     <script src="/content/app/home/home.js" type="text/javascript"></script>    

@@ -21,6 +21,7 @@ WatchR.Home = (function (WatchR, Backbone) {
         WatchR.layout.main.show(WatchR.Home.layout);
     };
 
+   
 
     WatchR.addInitializer(function () {
     });

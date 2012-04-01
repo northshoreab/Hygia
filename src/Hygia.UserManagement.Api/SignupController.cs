@@ -27,6 +27,11 @@ namespace Hygia.UserManagement.Api
 
             return account;
         }
+        [JsonEndpoint]
+        public dynamic post_signup_github(GithubSignUpInputModel model)
+        {
+            return "ok";
+        }
 
         [JsonEndpoint]
         public dynamic post_signup(SignUpInputModel model)
@@ -60,6 +65,11 @@ namespace Hygia.UserManagement.Api
                          });
             return account;
         }
+    }
+
+    public class GithubSignUpInputModel
+    {
+        public string Code { get; set; }
     }
 
     public class VerifyInputModel

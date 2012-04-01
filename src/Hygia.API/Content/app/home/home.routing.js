@@ -4,8 +4,8 @@ WatchR.Routing.HomeRouting = (function (WatchR, Backbone) {
 	HomeRouting.Router = Backbone.Marionette.AppRouter.extend({
     	appRoutes: {      	
 			   "" : "show",
-         "home" : "show"      	 
-    	} 	
+			   "home": "show"
+		} 	
   	});	
 
   	WatchR.addInitializer(function () {

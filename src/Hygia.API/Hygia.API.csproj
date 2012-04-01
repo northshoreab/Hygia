@@ -133,6 +133,7 @@
     <Content Include="Content\app\home\home.js" />
     <Content Include="Content\app\home\home.layout.js" />
     <Content Include="Content\app\home\home.routing.js" />
+    <Content Include="Content\app\signup\signup.routing.js" />
     <Content Include="Content\app\signup\signup.js" />
     <Content Include="Content\app\signup\signup.index.js" />
     <Content Include="Content\app\utils\utils.js" />
