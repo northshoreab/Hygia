@@ -18,10 +18,16 @@ WatchR.Home = (function (WatchR, Backbone) {
 
 
     Home.show = function () {
-        WatchR.layout.main.show(WatchR.Home.layout);
+        if (WatchR.session.isAuthenticated()) {
+            alert("User authenticated, show the dashboard instead");
+        }
+        else {
+            WatchR.layout.main.show(WatchR.Home.layout);
+        }
+
     };
 
-   
+
 
     WatchR.addInitializer(function () {
     });

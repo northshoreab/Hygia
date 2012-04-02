@@ -6,6 +6,7 @@ namespace Hygia.UserManagement.Api
     using System.IO;
     using System.Linq;
     using System.Net;
+    using System.Web;
     using Core;
     using FubuMVC.Core;
     using NServiceBus;
@@ -36,7 +37,6 @@ namespace Hygia.UserManagement.Api
         public dynamic post_signup_github(GithubSignUpInputModel model)
         {
             var accessToken = GetGithubAccessToken(model.Code);
-
 
             //get user details so that we can auto suggest repos etc
             var userDetailsRequest = new RestRequest("/user", Method.GET) { RequestFormat = DataFormat.Json };
@@ -71,7 +71,12 @@ namespace Hygia.UserManagement.Api
             account = Session.Query<UserAccount>().SingleOrDefault(u => u.GithubUserId == githubUserId);
 
             if (account != null)
+            {
+                //todo - just set our auth cookie for now until we figure out how to do this
+                HttpContext.Current.Response.Cookies.Add(new System.Web.HttpCookie("access_token", accessToken));
+
                 return account;
+            }
 
             var userId = response.Data.email.ToGuid();
 
@@ -87,6 +92,8 @@ namespace Hygia.UserManagement.Api
             };
 
             Session.Store(account);
+
+           
 
             return account;
         }
@@ -106,6 +113,7 @@ namespace Hygia.UserManagement.Api
 
             if (response.StatusCode != HttpStatusCode.OK)
                 throw new Exception(response.StatusDescription);
+
             return response.Data.access_token;
         }
 

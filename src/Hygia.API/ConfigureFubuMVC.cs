@@ -1,5 +1,6 @@
 namespace Hygia.API
 {
+    using Authentication;
     using Behaviors;
     using Controllers;
     using FubuMVC.Core.Runtime;
@@ -67,6 +68,7 @@ namespace Hygia.API
             //todo: use scanning instead
             ApplyConvention<PersistenceConvention>();
             ApplyConvention<CommandsToPickUpBehaviourConfiguration>();
+            ApplyConvention<AuthorizeByAttributeConvention>(); 
         }
 
         public class ContextInputModel

@@ -18,7 +18,7 @@ WatchR.SignUp = (function (WatchR, Backbone) {
         },
             {
                 success: function () {
-                    alert("Github signup success");
+                    WatchR.session.load();
                 }
             });
     };

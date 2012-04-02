@@ -1,27 +1,30 @@
-(function(WatchR, Backbone, $){
-  
-	var Layout = Backbone.Marionette.Layout.extend({
-		template: "#layout-template",
+(function (WatchR, Backbone, $) {
 
-		regions: {      
-			main: "#main"
-		},
-    
-		events: {
-		},
+    var Layout = Backbone.Marionette.Layout.extend({
+        template: "#layout-template",
 
-		initialize: function(){
-		}
-	});
+        regions: {
+            main: "#main"
+        },
 
-  WatchR.addInitializer(function(){    
-    WatchR.layout = new Layout();
-    var layoutRender = WatchR.layout.render();
-    $("body").prepend(WatchR.layout.el);
-    
-    layoutRender.done(function(){
-      Backbone.history.start();
+        events: {
+        },
+
+        initialize: function () {
+        }
     });
-  });
+
+    WatchR.addInitializer(function () {
+        WatchR.session = new WatchR.Session();
+        WatchR.session.load();
+
+        WatchR.layout = new Layout();
+        var layoutRender = WatchR.layout.render();
+        $("body").prepend(WatchR.layout.el);
+
+        layoutRender.done(function () {
+            Backbone.history.start();
+        });
+    });
 
 })(WatchR, Backbone, $);

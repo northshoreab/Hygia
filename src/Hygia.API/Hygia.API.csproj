@@ -257,6 +257,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FubuMVC.cs" />
+    <Compile Include="Authentication\AuthorizeByAttributeConvention.cs" />
     <Compile Include="Behaviors\PersistenceBehavior.cs" />
     <Compile Include="Behaviors\RavenRegistry.cs" />
     <Compile Include="ConfigureFubuMVC.cs" />
