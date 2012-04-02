@@ -23,8 +23,12 @@
              }
 
 
-             return String.IsNullOrEmpty(database) ? store.OpenSession() : store.OpenSession(database);                      
+             var session = String.IsNullOrEmpty(database) ? store.OpenSession() : store.OpenSession(database);
+
+             session.Advanced.AllowNonAuthoritativeInformation = false;
+             return session;
          }
+
          public static string EnvironmentToDatabaseLookup(string environmentId)
          {
              if(string.IsNullOrEmpty(environmentId))
