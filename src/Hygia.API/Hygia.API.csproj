@@ -133,6 +133,7 @@
     <Content Include="Content\app\home\home.js" />
     <Content Include="Content\app\home\home.layout.js" />
     <Content Include="Content\app\home\home.routing.js" />
+    <Content Include="Content\app\signup\signup.finalize.js" />
     <Content Include="Content\app\signup\signup.routing.js" />
     <Content Include="Content\app\signup\signup.js" />
     <Content Include="Content\app\signup\signup.index.js" />
@@ -160,6 +161,7 @@
     <Content Include="Content\assets\js\TrafficCop.min.js" />
     <Content Include="Content\assets\js\underscore-min.js" />
     <Content Include="Content\assets\js\underscore.js" />
+    <Content Include="Content\templates\signup-finalize-template.html" />
     <Content Include="Content\templates\faults-detail-template.htm" />
     <Content Include="Content\templates\faults-item-template.html" />
     <Content Include="Content\templates\faults-layout-template.html" />
