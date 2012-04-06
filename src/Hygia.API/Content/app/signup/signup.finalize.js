@@ -5,17 +5,22 @@
         tagName: 'div',
         className: 'row-fluid',
         template: '#signup-finalize-template',
-        events: { "submit #signupForm": "apply" },
-        apply: function () {
+        events: {
+            "click #btn-finalize": "finalize"
+        },
+        finalize: function () {
+            alert("Finalize");
+            /*
             var emailField = $('input[name=email]');
             this.model.save({
-                'email': emailField.val()
+            'email': emailField.val()
             },
             {
-                success: function () {
-                    WatchR.vent.trigger("signup:registered");
-                }
+            success: function () {
+            WatchR.vent.trigger("signup:registered");
+            }
             });
+            */
         }
     });
 
