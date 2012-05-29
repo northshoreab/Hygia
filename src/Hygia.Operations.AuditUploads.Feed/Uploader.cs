@@ -6,10 +6,9 @@ namespace Hygia.Operations.AuditUploads.Feed
     using Communication.LaunchPad;
     using NServiceBus;
     using NServiceBus.Config;
-    using NServiceBus.Unicast;
     using NServiceBus.Unicast.Transport;
     using log4net;
-
+    
     public class Uploader : INeedInitialization, IWantToRunWhenTheBusStarts
     {
 

@@ -7,10 +7,10 @@ namespace Hygia.Operations.Faults.Feed
     using Communication.LaunchPad;
     using NServiceBus;
     using NServiceBus.Config;
-    using NServiceBus.Unicast;
     using NServiceBus.Unicast.Queuing;
     using NServiceBus.Unicast.Transport;
     using log4net;
+    using IWantToRunWhenTheBusStarts = NServiceBus.IWantToRunWhenTheBusStarts;
 
     public class Uploader : INeedInitialization, IWantToRunWhenTheBusStarts
     {

@@ -2,7 +2,6 @@
 {
     using System;
     using NServiceBus;
-    using NServiceBus.Config;
     using NServiceBus.Faults;
     using NServiceBus.Unicast.Transport;
     using log4net;
@@ -35,6 +34,11 @@
         public void ProcessingAlwaysFailsForMessage(TransportMessage message, Exception e)
         {
             ReportError(e);
+        }
+
+        public void Init(Address address)
+        {
+            
         }
 
         public void Init()
