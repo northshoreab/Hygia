@@ -1,5 +1,6 @@
 namespace Hygia.API
 {
+    using System.Web;
     using Authentication;
     using Behaviors;
     using Controllers;
@@ -17,7 +18,7 @@ namespace Hygia.API
         public ConfigureFubuMVC()
         {
             NServiceBus.Configure
-               .WithWeb()
+               .With(HttpRuntime.BinDirectory)
                .HygiaMessageConventions()
                .DefineEndpointName("Hygia.API")
                .StructureMapBuilder(ObjectFactory.Container)
@@ -25,8 +26,7 @@ namespace Hygia.API
                .MsmqTransport()
                .DontUseTransactions()
                .UnicastBus()
-               .SendOnly();  // This line turns on the basic diagnostics and request tracing                        
-
+               .SendOnly(); 
 
             ObjectFactory.Configure(c =>
               c.Scan(s =>

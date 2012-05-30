@@ -23,7 +23,7 @@ namespace Hygia
 
         public static bool IsControlMessage(this AuditMessageReceived transportMessageReceived)
         {
-            return transportMessageReceived.Headers.ContainsKey(ControlMessage.ControlMessageHeader);
+            return transportMessageReceived.Headers.ContainsKey(NServiceBus.Headers.ControlMessageHeader);
         }
 
         public static Guid CorrelationId(this AuditMessageReceived envelope)
