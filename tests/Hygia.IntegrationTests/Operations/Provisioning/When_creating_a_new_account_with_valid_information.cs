@@ -1,7 +1,6 @@
 namespace Hygia.IntegrationTests.Operations.Provisioning
 {
     using System;
-    using System.Collections.Generic;
     using System.Net;
     using Machine.Specifications;
     using RestSharp;
@@ -12,7 +11,7 @@ namespace Hygia.IntegrationTests.Operations.Provisioning
 
         Establish context = () =>
                                 {
-                                    request = new RestRequest("accounts/create", Method.POST) { RequestFormat = DataFormat.Json };
+                                    request = new RestRequest("api/accounts", Method.POST) { RequestFormat = DataFormat.Json };
 
                                     request.AddBody(new
                                                         {

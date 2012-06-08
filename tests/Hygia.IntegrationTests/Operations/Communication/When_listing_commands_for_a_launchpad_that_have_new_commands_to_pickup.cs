@@ -9,14 +9,13 @@ namespace Hygia.IntegrationTests.Operations.Communication
     {
         Establish context = () =>
                                 {
-                                    request = new RestRequest("commands", Method.GET) { RequestFormat = DataFormat.Json };
+                                    request = new RestRequest("api/launchpadcommands", Method.GET) { RequestFormat = DataFormat.Json };
 
                                     request.AddHeader("apikey", apiKey.ToString());
 
                                     StoreCommand();
 
                                 };
-
        
 
         It should_return_the_commands = () => response.Content.ShouldContain(commandId.ToString());
@@ -28,7 +27,7 @@ namespace Hygia.IntegrationTests.Operations.Communication
     {
         Establish context = () =>
         {
-            request = new RestRequest("commands/markasprocessed", Method.POST) { RequestFormat = DataFormat.Json };
+            request = new RestRequest("api/launchpadcommands", Method.POST) { RequestFormat = DataFormat.Json };
 
             request.AddHeader("apikey", apiKey.ToString());
             request.AddBody(new

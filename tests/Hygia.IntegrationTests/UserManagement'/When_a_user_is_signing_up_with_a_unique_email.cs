@@ -1,8 +1,6 @@
 ﻿namespace Hygia.IntegrationTests.Operations.Faults
 {
     using System;
-    using System.Collections.Generic;
-    using System.Net;
     using Core;
     using Machine.Specifications;
     using RestSharp;
@@ -14,19 +12,15 @@
 
         Establish context = () =>
         {
-            request = new RestRequest("signup", Method.POST) {RequestFormat = DataFormat.Json};
+            request = new RestRequest("api/useraccounts", Method.POST) {RequestFormat = DataFormat.Json};
 
-            request.AddBody(new{ email});
+            request.AddBody(new {email});
             
         };
-
-
 
         It should_send_a_verification_email = () => VerifyMessageSent("SendEmailRequest");
 
         It should_create_a_account = () => VerifyStore("UserAccounts/" + email.ToGuid());
-
-      
     }
 }
 
