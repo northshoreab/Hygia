@@ -6,7 +6,7 @@ WatchR.Faults.FaultList = (function (WatchR, Backbone, $) {
 	FaultList.Fault = Backbone.Model.extend({});
 	FaultList.FaultsCollection = WatchR.Collection.extend({
 		model: FaultList.Fault,
-		url: '/api/faults'		
+		url: '/api/faultmanagement/faults'		
 	});
 
 	FaultList.FaultItemView = WatchR.ItemView.extend({

@@ -320,7 +320,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Default.html">
+    <Content Include="index.html">
       <SubType>Designer</SubType>
     </Content>
     <None Include="Hygia.API.nuspec">

@@ -49,7 +49,7 @@
 
         Establish context = () =>
         {
-            request = new RestRequest("api/ProcessAuditMessage", Method.POST) { RequestFormat = DataFormat.Json };
+            request = new RestRequest("api/operations/uploads/auditmessages", Method.POST) { RequestFormat = DataFormat.Json };
 
             var timeSent = DateTime.UtcNow;
             var started = timeSent + TimeSpan.FromSeconds(1);

@@ -6,7 +6,7 @@ WatchR.SignUp = (function (WatchR, Backbone) {
     };
 
     SignUp.GithubSignUp = WatchR.Model.extend({
-        url: "/signup/github"
+        url: "api/usermanagement/github"
     });
 
     SignUp.CurrentUser = WatchR.Model.extend({

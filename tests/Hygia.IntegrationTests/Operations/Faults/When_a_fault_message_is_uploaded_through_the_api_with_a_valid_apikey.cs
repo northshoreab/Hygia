@@ -13,7 +13,7 @@
 
         Establish context = () =>
         {
-            request = new RestRequest("api/processfaultmessage", Method.POST) {RequestFormat = DataFormat.Json};
+            request = new RestRequest("api/operations/uploads/faultmessages", Method.POST) { RequestFormat = DataFormat.Json };
 
             request.AddHeader("apikey", Guid.Parse("327951bf-bae4-46a4-93a0-71f61dfbe801").ToString());
             request.AddBody(new

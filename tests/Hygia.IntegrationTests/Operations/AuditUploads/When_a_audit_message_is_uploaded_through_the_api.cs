@@ -12,7 +12,7 @@
       
         Establish context = () =>
         {
-            request = new RestRequest("api/ProcessAuditMessage", Method.POST) { RequestFormat = DataFormat.Json };
+            request = new RestRequest("api/operations/uploads/auditmessages", Method.POST) { RequestFormat = DataFormat.Json };
 
             request.AddBody(new
                                 {

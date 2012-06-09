@@ -11,7 +11,7 @@ namespace Hygia.IntegrationTests.Operations.Provisioning
 
         Establish context = () =>
                                 {
-                                    request = new RestRequest("api/accounts", Method.POST) { RequestFormat = DataFormat.Json };
+                                    request = new RestRequest("api/operations/accounts", Method.POST) { RequestFormat = DataFormat.Json };
 
                                     request.AddBody(new
                                                         {

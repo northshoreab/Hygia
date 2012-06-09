@@ -2,7 +2,7 @@
     var Index = {};
 
     Index.User = WatchR.Model.extend({
-        url: "/signup"
+        url: "/api/usermanagement/useraccounts/"
     });
 
     Index.View = WatchR.ItemView.extend({

@@ -2,7 +2,7 @@ WatchR.Faults.Summary = (function (WatchR, Backbone, $) {
 	var Summary = {};
 
 	Summary.Summary = Backbone.Model.extend({
-		url: '/api/faults/summary',
+		url: '/api/faultmanagement/faults/summary',
 		defaults: function () {
 			return { 
 				total: 123,

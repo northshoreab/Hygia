@@ -12,7 +12,7 @@
 
         Establish context = () =>
         {
-            request = new RestRequest("api/useraccounts", Method.POST) {RequestFormat = DataFormat.Json};
+            request = new RestRequest("api/usermanagement/useraccounts", Method.POST) { RequestFormat = DataFormat.Json };
 
             request.AddBody(new {email});
             
