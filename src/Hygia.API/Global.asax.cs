@@ -4,17 +4,16 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Http;
 using System.Web.Http.Dependencies;
-using System.Web.Routing;
-using Hygia.API.App_Start;
 using Hygia.Operations.Communication.Domain;
 using Raven.Client;
 using StructureMap;
 
 namespace Hygia.API
 {
-    public class Global : System.Web.HttpApplication
+    public class Global : HttpApplication
     {
         protected void Application_Start(object sender, EventArgs e)
         {
@@ -101,25 +100,8 @@ namespace Hygia.API
         {
             var apiRequest = container.GetInstance<IApiRequest>();
 
-            if (request.Headers.Contains("environment"))
-                apiRequest.EnvironmentId = request.Headers.Single(x => x.Key == "environment").Value.FirstOrDefault();
-
-            if(apiRequest.EnvironmentId == null && request.Properties.ContainsKey("environment"))
-                apiRequest.EnvironmentId = request.Properties["environment"] as string;
-
-            if(apiRequest.EnvironmentId == null && request.GetRouteData().Values.ContainsKey("environment"))
-                apiRequest.EnvironmentId = request.GetRouteData().Values["environment"] as string;
-
-            if(apiRequest.EnvironmentId == null)
-            {
-                var cookies = request.Headers.GetCookies().SelectMany(x => x.Cookies);
-                var cookie = cookies.SingleOrDefault(x => x.Name == "environment");
-
-                apiRequest.EnvironmentId = cookie != null ? cookie.Value : null;
-            }
-
-            if(request.Headers.Contains("apikey"))
-                apiRequest.ApiKey = request.Headers.Single(x => x.Key == "apikey").Value.FirstOrDefault();
+            apiRequest.EnvironmentId = request.GetEnvironment();            
+            apiRequest.ApiKey = request.GetApiKey();
 
             return base.SendAsync(request, cancellationToken);
         }
@@ -166,6 +148,31 @@ namespace Hygia.API
             }
 
             return false;
+        }
+    }
+
+    public static class HttpRequestMessageExtensions
+    {
+        public static string GetEnvironment(this HttpRequestMessage request)
+        {
+            if (request.Headers.Contains("environment"))
+                return request.Headers.Single(x => x.Key == "environment").Value.FirstOrDefault();
+
+            if (request.Properties.ContainsKey("environment"))
+                return request.Properties["environment"] as string;
+
+            if (request.GetRouteData().Values.ContainsKey("environment"))
+                return request.GetRouteData().Values["environment"] as string;
+
+            var cookies = request.Headers.GetCookies().SelectMany(x => x.Cookies);
+            var cookie = cookies.SingleOrDefault(x => x.Name == "environment");
+
+            return cookie != null ? cookie.Value : null;
+        }
+
+        public static string GetApiKey(this HttpRequestMessage request)
+        {
+            return request.Headers.Single(x => x.Key == "apikey").Value.FirstOrDefault();
         }
     }
 }

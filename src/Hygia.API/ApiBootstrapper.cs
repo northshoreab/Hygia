@@ -9,17 +9,16 @@ namespace Hygia.API
     {
         public static void Bootstrap()
         {
-            //NServiceBus.Configure
-            //   .With(HttpRuntime.BinDirectory)
-            //   .HygiaMessageConventions()
-            //   .DefineEndpointName("Hygia.API")
-            //   .StructureMapBuilder(ObjectFactory.Container)
-            //   .XmlSerializer()
-            //   .MsmqTransport()
-            //   .DontUseTransactions()
-            //   .UnicastBus()
-            //   .SendOnly();
-
+            Configure
+               .With(HttpRuntime.BinDirectory)
+               .HygiaMessageConventions()
+               .DefineEndpointName("Hygia.API")
+               .StructureMapBuilder(ObjectFactory.Container)
+               .XmlSerializer()
+               .MsmqTransport()
+               .DontUseTransactions()
+               .UnicastBus()
+               .SendOnly();
 
             ObjectFactory.Configure(c =>
                                         {

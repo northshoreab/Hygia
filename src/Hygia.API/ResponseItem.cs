@@ -17,6 +17,11 @@ namespace Hygia.API
 
     public class ResponseMetaData
     {
+        public ResponseMetaData()
+        {
+            Links = new List<Link>();
+        }
+
         public IEnumerable<Link> Links { get; set; }
         public MetaData MetaData { get; set; }        
     }
@@ -33,7 +38,7 @@ namespace Hygia.API
             return new ResponseItem<T>
                        {
                            Data = item,
-                           Links = links
+                           Links = links ?? new List<Link>()
                        };
         }
 
