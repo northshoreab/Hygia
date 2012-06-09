@@ -15,8 +15,9 @@ namespace Hygia.API.Controllers.FaultManagement
                        {
                            Links = new List<Link>
                                        {
-                                           new Link{ Href = "/api/faultmanagement/faults", Rel = "Faults"}
-                                       }
+                                           new Link{ Href = "/api/faultmanagement/faults", Rel = "Faults"},
+                                           new Link{ Href = "/api/faultmanagement/statistics", Rel = "Statistics"}
+                                       },
                        };
         }
     }
