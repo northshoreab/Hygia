@@ -7,7 +7,7 @@ using System.Web.Http;
 namespace Hygia.API.Controllers.Version
 {
     [DefaultHttpRouteConvention]
-    [RoutePrefix("api")]
+    [RoutePrefix("api/version")]
     public class VersionController : ApiController
     {
         public string GetAll()

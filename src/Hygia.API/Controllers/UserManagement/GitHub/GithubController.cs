@@ -13,7 +13,7 @@ using UserAccount = Hygia.API.Models.UserManagement.UserAccounts.UserAccount;
 namespace Hygia.API.Controllers.UserManagement.GitHub
 {
     [DefaultHttpRouteConvention]
-    [RoutePrefix("api/usermanagement/{controller}")]
+    [RoutePrefix("api/usermanagement/github")]
     public class GithubController : ApiController
     {
         private readonly IDocumentSession _session;

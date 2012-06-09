@@ -11,7 +11,7 @@ using Raven.Client;
 namespace Hygia.API.Controllers.Operations.Accounts
 {
     [DefaultHttpRouteConvention]
-    [RoutePrefix("api/operations/{controller}")]
+    [RoutePrefix("api/operations/accounts")]
     public class AccountsController : ApiController
     {
         private readonly IDocumentSession _session;

@@ -6,7 +6,7 @@ using AttributeRouting.Web.Http;
 namespace Hygia.API.Controllers.Operations
 {
     [DefaultHttpRouteConvention]
-    [RoutePrefix("api")]
+    [RoutePrefix("api/operations")]
     public class OperationsController : ApiController
     {
         public ResponseMetaData GetAll()

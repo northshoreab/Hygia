@@ -6,7 +6,7 @@ using AttributeRouting.Web.Http;
 namespace Hygia.API.Controllers.FaultManagement.Statistics
 {
     [DefaultHttpRouteConvention]
-    [RoutePrefix("api/faultmanagement")]
+    [RoutePrefix("api/faultmanagement/statistics")]
     public class StatisticsController : ApiController
     {
         public ResponseMetaData GetAll()

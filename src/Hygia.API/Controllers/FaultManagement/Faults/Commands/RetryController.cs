@@ -8,7 +8,7 @@ using NServiceBus;
 namespace Hygia.API.Controllers.FaultManagement.Faults.Commands
 {
     [DefaultHttpRouteConvention]
-    [RoutePrefix("api/faultmanagement/faults/{id:guid}/{controller}")]
+    [RoutePrefix("api/faultmanagement/faults/{id:guid}/retry")]
     public class RetryController : ApiController
     {
         private readonly IBus _bus;

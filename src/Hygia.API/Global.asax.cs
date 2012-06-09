@@ -172,6 +172,9 @@ namespace Hygia.API
 
         public static string GetApiKey(this HttpRequestMessage request)
         {
+            if (!request.Headers.Contains("apikey"))
+                return "";
+
             return request.Headers.Single(x => x.Key == "apikey").Value.FirstOrDefault();
         }
     }

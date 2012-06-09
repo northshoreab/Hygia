@@ -9,7 +9,7 @@ using UserAccount = Hygia.API.Models.UserManagement.UserAccounts.UserAccount;
 namespace Hygia.API.Controllers.UserManagement.UserAccounts.Commands
 {
     [DefaultHttpRouteConvention]
-    [RoutePrefix("api/usermanagement/useraccounts/{id:guid}")]
+    [RoutePrefix("api/usermanagement/useraccounts/{id:guid}/verify")]
     public class VerifyController : ApiController
     {
         private readonly IDocumentSession session;

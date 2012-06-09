@@ -12,7 +12,7 @@ using Fault = Hygia.API.Models.FaultManagement.Faults.Fault;
 namespace Hygia.API.Controllers.FaultManagement.Faults
 {
     [DefaultHttpRouteConvention]
-    [RoutePrefix("api/faultmanagement/{controller}")]
+    [RoutePrefix("api/faultmanagement/faults")]
     public class FaultsController : ApiController
     {
         private readonly IDocumentSession _session;

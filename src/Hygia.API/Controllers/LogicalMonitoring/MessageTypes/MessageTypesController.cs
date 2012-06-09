@@ -10,7 +10,7 @@ using Raven.Client;
 namespace Hygia.API.Controllers.LogicalMonitoring.MessageTypes
 {
     [DefaultHttpRouteConvention]
-    [RoutePrefix("api/logicalmonitoring/{controller}")]
+    [RoutePrefix("api/logicalmonitoring/messagetypes")]
     public class MessageTypesController : ApiController
     {
         private readonly IDocumentSession _session;

@@ -9,7 +9,7 @@ using Raven.Client;
 namespace Hygia.API.Controllers.Operations.LaunchPad.Commands
 {
     [DefaultHttpRouteConvention]
-    [RoutePrefix("api/operations/launchpad/{controller}")]
+    [RoutePrefix("api/operations/launchpad/heartbeat")]
     public class HeartbeatController : ApiController
     {
         private readonly IDocumentSession _session;

@@ -6,7 +6,7 @@ using AttributeRouting.Web.Http;
 namespace Hygia.API.Controllers.LogicalMonitoring
 {
     [DefaultHttpRouteConvention]
-    [RoutePrefix("api")]
+    [RoutePrefix("api/logicalmonitoring")]
     public class LogicalMonitoringController : ApiController
     {
         public ResponseMetaData GetAll()

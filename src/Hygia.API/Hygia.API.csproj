@@ -104,7 +104,7 @@
     </Reference>
     <Reference Include="System.Net.Http, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\System.Net.Http.2.0.20126.16343\lib\net40\System.Net.Http.dll</HintPath>
+      <HintPath>..\..\packages\Microsoft.Net.Http.2.0.20505.0\lib\net40\System.Net.Http.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Net.Http.WebRequest, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -209,6 +209,7 @@
     <Compile Include="Controllers\FaultManagement\Faults\Commands\RetryController.cs" />
     <Compile Include="Controllers\FaultManagement\Statistics\NumberOfFaultsPerIntervalController.cs" />
     <Compile Include="Controllers\FaultManagement\Statistics\StatisticsController.cs" />
+    <Compile Include="Controllers\RootController.cs" />
     <Compile Include="Models\FaultManagement\Faults\Fault.cs" />
     <Compile Include="Models\FaultManagement\Faults\FaultExtensions.cs" />
     <Compile Include="Controllers\FaultManagement\Faults\FaultsController.cs" />

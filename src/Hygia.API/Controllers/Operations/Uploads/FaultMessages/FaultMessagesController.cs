@@ -8,7 +8,7 @@ using NServiceBus;
 namespace Hygia.API.Controllers.Operations.Uploads.FaultMessages
 {
     [DefaultHttpRouteConvention]
-    [RoutePrefix("api/operations/uploads/{controller}")]
+    [RoutePrefix("api/operations/uploads/faultmessages")]
     public class FaultMessagesController : ApiController
     {
         private readonly IBus _bus;

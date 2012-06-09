@@ -12,7 +12,7 @@ using Raven.Client.Linq;
 namespace Hygia.API.Controllers.FaultManagement.Statistics
 {
     [DefaultHttpRouteConvention]
-    [RoutePrefix("api/faultmanagement/statistics/{controller}")]
+    [RoutePrefix("api/faultmanagement/statistics/numberoffaultsperinterval")]
     public class NumberOfFaultsPerIntervalController : ApiController
     {
         private readonly IDocumentSession session;

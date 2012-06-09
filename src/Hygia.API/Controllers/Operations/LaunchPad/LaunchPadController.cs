@@ -9,7 +9,7 @@ using Hygia.API.Models.Operations.LaunchPad;
 namespace Hygia.API.Controllers.Operations.LaunchPad
 {
     [DefaultHttpRouteConvention]
-    [RoutePrefix("api/operations/{controller}")]
+    [RoutePrefix("api/operations/launchpad")]
     public class LaunchPadController : ApiController
     {
         private readonly IDocumentSession _session;
