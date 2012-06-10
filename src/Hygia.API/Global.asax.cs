@@ -29,6 +29,8 @@ namespace Hygia.API
         {
             //TODO: Snabb hack..
             ObjectFactory.GetInstance<IDocumentSession>().SaveChanges();
+            
+            //todo: don't think we need this since I added nested containers + dispose to the dependency scope?
             ObjectFactory.ReleaseAndDisposeAllHttpScopedObjects();
         }
 
@@ -46,7 +48,7 @@ namespace Hygia.API
 
         public IDependencyScope BeginScope()
         {
-            return this;
+            return new StructureMapScope(Container.GetNestedContainer());
         }
     }
 
@@ -72,7 +74,10 @@ namespace Hygia.API
             return Container.GetAllInstances(serviceType).Cast<object>().ToList();
         }
 
-        public void Dispose() { }
+        public void Dispose()
+        {
+            Container.Dispose();
+        }
     }
 
     public interface IApiRequest
