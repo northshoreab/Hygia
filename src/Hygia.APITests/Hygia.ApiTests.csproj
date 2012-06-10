@@ -70,7 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiContext.cs" />
-    <Compile Include="Class1.cs" />
+    <Compile Include="NumberOfFaultsPerInterval_Filters_Faults_Correctly.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -29,18 +29,18 @@ namespace Hygia.API.Controllers.FaultManagement.Statistics
             DateTime next = model.From;
             int counter = 0;
 
-            while(next <= model.To || counter >= 20)
+            while(next <= model.To || counter >= 400)
             {
                 starts.Add(next);
                 next = next.Add(model.Interval);
                 counter ++;
             }
-            //TODO: Implement map reduce for grouping
+
             return session.Query<Fault>()
                 .Where(x => x.TimeOfFailure >= model.From && x.TimeOfFailure <= starts.Max())
+                .ToList()
                 .Select(s => new
                                  {
-                                     MesageType = s.ContainedMessages.First(),
                                      From = starts.Single(x => s.TimeOfFailure >= x && s.TimeOfFailure < x.Add(model.Interval))
                                  })
                 .GroupBy(x => x.From)

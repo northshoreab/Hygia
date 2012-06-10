@@ -34,8 +34,8 @@ namespace Hygia.APITests
                                     var now = DateTime.Now;
                                     faultsPerInterval = controller.Get(new IntervalInputModel
                                                                            {
-                                                                               From = now,
-                                                                               To = now.AddHours(1),
+                                                                               From = now.AddHours(-1),
+                                                                               To = now,
                                                                                Interval = new TimeSpan(0, 0, 30, 0)
                                                                            });
                                 };
