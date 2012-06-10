@@ -14,6 +14,7 @@ namespace Hygia.APITests
     public class NumberOfFaultsPerInterval_Filters_Faults_Correctly : ApiContext
     {
         private static ResponseItem<IEnumerable<FaultsPerInterval>> faultsPerInterval;
+        private static NumberOfFaultsPerIntervalController controller;
 
         Establish context = () =>
                                 {
@@ -25,20 +26,23 @@ namespace Hygia.APITests
 
                                     session.SaveChanges();
 
-                                    var controller = new NumberOfFaultsPerIntervalController(session);
+                                    controller = new NumberOfFaultsPerIntervalController(session);
 
                                     controller.Request = new HttpRequestMessage(HttpMethod.Post, "http://localhost:61000/api/faultmanagement/statistics/numberoffaultsperinterval");
 
                                     controller.Configuration = new System.Web.Http.HttpConfiguration(new System.Web.Http.HttpRouteCollection());
-
-                                    var now = DateTime.Now;
-                                    faultsPerInterval = controller.Get(new IntervalInputModel
-                                                                           {
-                                                                               From = now.AddHours(-1),
-                                                                               To = now,
-                                                                               Interval = new TimeSpan(0, 0, 30, 0)
-                                                                           });
                                 };
+
+        Because of = () =>
+        {
+            var now = DateTime.Now;
+            faultsPerInterval = controller.Get(new IntervalInputModel
+                                                   {
+                                                       From = now.AddHours(-1),
+                                                       To = now,
+                                                       Interval = new TimeSpan(0, 0, 30, 0)
+                                                   });
+        };
 
         It should_return_two_intervals = () => faultsPerInterval.Data.Count().ShouldEqual(2);
 

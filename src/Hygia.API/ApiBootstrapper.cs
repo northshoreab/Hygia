@@ -1,6 +1,5 @@
 using System.Web;
 using NServiceBus;
-using NServiceBus.Unicast;
 using StructureMap;
 
 namespace Hygia.API
@@ -29,7 +28,6 @@ namespace Hygia.API
                                                        });
 
                                             c.For<IApiRequest>().HybridHttpOrThreadLocalScoped().Use<ApiRequest>();
-                                            c.For<IBus>().Use<UnicastBus>();
                                         });
         }
     }
