@@ -101,6 +101,10 @@ namespace Hygia.API.Controllers.UserManagement.GitHub
             if (response.StatusCode != HttpStatusCode.OK)
                 throw new Exception(response.StatusDescription);
 
+            if(response.Data.access_token == null)
+                throw new Exception(response.Content);
+
+
             return response.Data.access_token;
         }
     }
