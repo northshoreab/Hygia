@@ -43,10 +43,11 @@ namespace Hygia.API.Controllers.Operations.Accounts
 
             _session.Store(account);
 
-            _bus.Publish<AccountCreated>(m =>
-                                             {
-                                                 m.AccountId = account.Id;
-                                             });
+            _bus.Send<AccountCreated>(m =>
+                                          {
+                                              m.AccountId = account.Id;
+                                          });
+
             return account.AsResponseItem();
         }
     }

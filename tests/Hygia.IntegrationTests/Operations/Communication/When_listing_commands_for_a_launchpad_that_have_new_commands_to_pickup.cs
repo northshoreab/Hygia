@@ -36,7 +36,6 @@ namespace Hygia.IntegrationTests.Operations.Communication
                                 });
 
             StoreCommand();
-            request.
         };
 
 

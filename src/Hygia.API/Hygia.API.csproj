@@ -72,6 +72,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Newtonsoft.Json.4.5.6\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="NLog">
+      <HintPath>..\..\packages\NLog.2.0.0.2000\lib\net40\NLog.dll</HintPath>
+    </Reference>
     <Reference Include="NServiceBus, Version=3.2.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <HintPath>..\..\packages\NServiceBus-CI.3.2.2275\lib\net40\NServiceBus.dll</HintPath>
     </Reference>
@@ -209,6 +212,7 @@
     <Compile Include="Controllers\FaultManagement\Faults\Commands\RetryController.cs" />
     <Compile Include="Controllers\FaultManagement\Statistics\NumberOfFaultsPerIntervalController.cs" />
     <Compile Include="Controllers\FaultManagement\Statistics\StatisticsController.cs" />
+    <Compile Include="Controllers\Operations\LaunchPad\LaunchPadController.cs" />
     <Compile Include="Controllers\RootController.cs" />
     <Compile Include="Models\FaultManagement\Faults\Fault.cs" />
     <Compile Include="Models\FaultManagement\Faults\FaultExtensions.cs" />
@@ -219,13 +223,13 @@
     <Compile Include="Models\LogicalMonitoring\MessageType\MessageType.cs" />
     <Compile Include="Controllers\LogicalMonitoring\MessageTypes\MessageTypesController.cs" />
     <Compile Include="Models\Operations\Accounts\Environment.cs" />
-    <Compile Include="Controllers\Operations\LaunchPad\Commands\HeartbeatController.cs" />
-    <Compile Include="Controllers\Operations\LaunchPad\Commands\ErrorController.cs" />
+    <Compile Include="Controllers\Operations\LaunchPad\HeartbeatController.cs" />
+    <Compile Include="Controllers\Operations\LaunchPad\ErrorController.cs" />
     <Compile Include="Controllers\Operations\OperationsController.cs" />
     <Compile Include="Controllers\Operations\Uploads\AuditMessages\AuditMessagesController.cs" />
     <Compile Include="Models\Operations\Uploads\AuditMessages\AuditMessage.cs" />
-    <Compile Include="Controllers\Operations\LaunchPad\Commands\CommandsController.cs" />
-    <Compile Include="Controllers\Operations\LaunchPad\LaunchPadController.cs" />
+    <Compile Include="Controllers\Operations\LaunchPad\CommandsController.cs" />
+    <Compile Include="Controllers\Operations\LaunchPad\StatusController.cs" />
     <Compile Include="Controllers\Operations\Uploads\FaultMessages\FaultMessagesController.cs" />
     <Compile Include="Models\Operations\Uploads\FaultMessages\FaultMessage.cs" />
     <Compile Include="Controllers\Operations\Uploads\UploadsController.cs" />

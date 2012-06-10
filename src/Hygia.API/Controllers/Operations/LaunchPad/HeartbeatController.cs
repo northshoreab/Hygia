@@ -6,7 +6,7 @@ using AttributeRouting.Web.Http;
 using Hygia.Operations.Communication.Domain;
 using Raven.Client;
 
-namespace Hygia.API.Controllers.Operations.LaunchPad.Commands
+namespace Hygia.API.Controllers.Operations.LaunchPad
 {
     [DefaultHttpRouteConvention]
     [RoutePrefix("api/operations/launchpad/heartbeat")]

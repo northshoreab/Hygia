@@ -1,10 +1,7 @@
-using System;
 using System.Collections.Generic;
 using System.Web.Http;
 using AttributeRouting;
 using AttributeRouting.Web.Http;
-using Raven.Client;
-using Hygia.API.Models.Operations.LaunchPad;
 
 namespace Hygia.API.Controllers.Operations.LaunchPad
 {
@@ -12,21 +9,18 @@ namespace Hygia.API.Controllers.Operations.LaunchPad
     [RoutePrefix("api/operations/launchpad")]
     public class LaunchPadController : ApiController
     {
-        private readonly IDocumentSession _session;
-
-        public LaunchPadController(IDocumentSession session)
+        public ResponseMetaData GetAll()
         {
-            _session = session;
-        }
-
-        public IEnumerable<LaunchPadStatus> GetAll()
-        {
-            return _session.Query<Hygia.Operations.Communication.Domain.LaunchPadStatus>().ToOutputModel();
-        }
-
-        public LaunchPadStatus Get(Guid id)
-        {
-            return _session.Load<Hygia.Operations.Communication.Domain.LaunchPadStatus>(id).ToOutputModel();
+            return new ResponseMetaData
+                       {
+                           Links = new List<Link>
+                                       {
+                                           new Link {Href = "/api/operations/launchpad/status", Rel = "Status"},
+                                           new Link {Href = "/api/operations/launchpad/commands", Rel = "Commands"},
+                                           new Link {Href = "/api/operations/launchpad/heartbeat", Rel = "Heartbeat"},
+                                           new Link {Href = "/api/operations/launchpad/error", Rel = "Error"}
+                                       }
+                       };
         }
     }
 }
