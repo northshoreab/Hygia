@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Web.Http;
 using AttributeRouting;
 using AttributeRouting.Web.Http;
 
@@ -6,7 +7,7 @@ namespace Hygia.API.Controllers.Operations.Uploads
 {
     [DefaultHttpRouteConvention]
     [RoutePrefix("api/operations/uploads")]
-    public class UploadsController
+    public class UploadsController : ApiController
     {
         public ResponseMetaData GetAll()
         {

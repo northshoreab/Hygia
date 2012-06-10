@@ -23,21 +23,19 @@ namespace Hygia.API.Controllers.UserManagement.UserAccounts
 
         public UserAccountsController(IDocumentSession session, IBus bus)
         {
+            links = userAccount => new List<Link>
+                                       {
+                                           new Link
+                                               {
+                                                   Href = "/api/usermanagement/useraccounts/" + userAccount.Id + "/verify",
+                                                   Rel = "verify"
+                                               }
+                                       };
             _session = session;
             _bus = bus;
         }
 
-        private readonly Func<UserAccount, IEnumerable<Link>> links = userAccount => new List<Link>
-                                                                                         {
-                                                                                             new Link
-                                                                                                 {
-                                                                                                     Href =
-                                                                                                         "/api/usermanagement/useraccounts/" +
-                                                                                                         userAccount.Id +
-                                                                                                         "/verify",
-                                                                                                     Rel = "verify"
-                                                                                                 }
-                                                                                         };
+        private readonly Func<UserAccount, IEnumerable<Link>> links;
 
 
         public ResponseItem<UserAccount> Get(Guid id)

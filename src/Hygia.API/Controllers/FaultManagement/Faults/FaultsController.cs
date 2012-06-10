@@ -19,27 +19,28 @@ namespace Hygia.API.Controllers.FaultManagement.Faults
        
         public FaultsController(IDocumentSession session)
         {
+            links = fault => new List<Link>
+                                 {
+                                     new Link
+                                         {
+                                             Href = "/api/faults/" + fault.FaultId + "/archive", 
+                                             Rel = "archive"
+                                         },
+                                     new Link
+                                         {
+                                             Href = "/api/faults/" + fault.FaultId + "/retry",
+                                             Rel = "retry"
+                                         },
+                                     new Link
+                                         {
+                                             Href = "/api/faults/" + fault.FaultId + "/retried",
+                                             Rel = "retried"
+                                         },
+                                 };
             _session = session;
         }
 
-        private readonly Func<Fault, IEnumerable<Link>> links = fault => new List<Link>
-                                                                     {
-                                                                         new Link
-                                                                             {
-                                                                                 Href = "/api/faults/" + fault.FaultId + "/archive", 
-                                                                                 Rel = "archive"
-                                                                             },
-                                                                         new Link
-                                                                             {
-                                                                                 Href = "/api/faults/" + fault.FaultId + "/retry",
-                                                                                 Rel = "retry"
-                                                                             },
-                                                                         new Link
-                                                                             {
-                                                                                 Href = "/api/faults/" + fault.FaultId + "/retried",
-                                                                                 Rel = "retried"
-                                                                             },
-                                                                     };
+        private readonly Func<Fault, IEnumerable<Link>> links;
 
         public IEnumerable<ResponseItem<Fault>> GetAll()
         {

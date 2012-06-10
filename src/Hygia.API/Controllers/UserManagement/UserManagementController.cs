@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Web.Http;
 using AttributeRouting;
 using AttributeRouting.Web.Http;
 
@@ -6,7 +7,7 @@ namespace Hygia.API.Controllers.UserManagement
 {
     [DefaultHttpRouteConvention]
     [RoutePrefix("api/usermanagement")]
-    public class UserManagementController
+    public class UserManagementController : ApiController
     {
         public ResponseMetaData GetAll()
         {
