@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Threading;
 using Hygia.API;
 using Hygia.API.Controllers.FaultManagement.Statistics;
 using Hygia.API.Models.FaultManagement.Statistics;
 using Hygia.FaultManagement.Domain;
 using Machine.Specifications;
+using Raven.Client.Embedded;
 
 namespace Hygia.APITests
 {
@@ -21,10 +23,14 @@ namespace Hygia.APITests
                                     var session = DocumentStore.OpenSession();
 
                                     session.Store(new Fault { TimeOfFailure = DateTime.Now });
-                                    session.Store(new Fault { TimeOfFailure = DateTime.Now.AddMinutes(-30) });
-                                    session.Store(new Fault { TimeOfFailure = DateTime.Now.AddMinutes(-80) });
+                                    session.Store(new Fault { TimeOfFailure = DateTime.Now.AddHours(-1) });
+                                    session.Store(new Fault { TimeOfFailure = DateTime.Now.AddHours(-2) });
 
                                     session.SaveChanges();
+
+                                    //TODO: Finns nåt bättre sätt att hantera det här i test?
+                                    while (((EmbeddableDocumentStore)DocumentStore).DocumentDatabase.Statistics.StaleIndexes.Length != 0)
+                                        Thread.Sleep(10);
 
                                     controller = new NumberOfFaultsPerIntervalController(session);
 
@@ -38,9 +44,9 @@ namespace Hygia.APITests
             var now = DateTime.Now;
             faultsPerInterval = controller.Get(new IntervalInputModel
                                                    {
-                                                       From = now.AddHours(-1),
+                                                       From = now.AddHours(-2),
                                                        To = now,
-                                                       Interval = new TimeSpan(0, 0, 30, 0)
+                                                       Interval = Interval.Hour
                                                    });
         };
 

@@ -4,13 +4,13 @@ using Raven.Client.Indexes;
 
 namespace Hygia.API.Features.MessageTypePerMinute.Domain
 {
-    public class MessageTypePerMinuteIndex : AbstractIndexCreationTask
-    {
-        public override IndexDefinition CreateIndexDefinition()
-        {
-            throw new NotImplementedException();
-        }
-    }
+    //public class MessageTypePerMinuteIndex : AbstractIndexCreationTask
+    //{
+    //    public override IndexDefinition CreateIndexDefinition()
+    //    {
+    //        //throw new NotImplementedException();
+    //    }
+    //}
 
     public class MessageTypePerMinuteIndexData
     {
