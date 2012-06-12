@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.IdentityModel.Claims;
+using Claim = Microsoft.IdentityModel.Claims.Claim;
+using ClaimTypes = Microsoft.IdentityModel.Claims.ClaimTypes;
 
 namespace Hygia.API.Authentication
 {
@@ -18,8 +20,6 @@ namespace Hygia.API.Authentication
 
         private IClaimsPrincipal CreateClientIdentity(IClaimsIdentity id)
         {
-            List<Claim> claims;
-
             // insert authentication method (windows, passsword, x509) as a claim
             var authMethod = id.Claims.SingleOrDefault(c => c.ClaimType == ClaimTypes.AuthenticationMethod) ??
                              new Claim(ClaimTypes.AuthenticationMethod, AuthenticationMethods.Unspecified);
@@ -47,7 +47,7 @@ namespace Hygia.API.Authentication
             //                 };
             //}
 
-            claims = new List<Claim>
+            var claims = new List<Claim>
                              {
                                  new Claim(ClaimTypes.Name, id.Name),
                                  new Claim(ClaimTypes.Role, "Users"),
