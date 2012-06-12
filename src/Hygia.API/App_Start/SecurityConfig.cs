@@ -32,7 +32,7 @@ namespace Hygia.API.App_Start
                                  ClaimsAuthenticationManager = new ClaimsTransformer(),
 
                                  // value of the www-authenticate header, if not set, the first scheme added to the handler collection is used
-                                 DefaultAuthenticationScheme = "Basic"
+                                 DefaultAuthenticationScheme = "Basic"                                 
                              };
 
             #region Basic Authentication
@@ -40,13 +40,11 @@ namespace Hygia.API.App_Start
             config.Handler.AddBasicAuthentication(ValidateUser);
             #endregion
 
-
             //#region IdSrv Simple Web Tokens
             //config.Handler.AddSimpleWebToken(
             //    "IdSrv",
             //    "http://identity.thinktecture.com/trust",
             //    Constants.Realm,
-                                     437cb66acfaf3e854d3342e8562b0fe9
             //    "Dc9Mpi3jbooUpBQpB/4R7XtUsa3D/ALSjTVvK8IUZbg=");
             //#endregion
 
