@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Dependencies;
+using Hygia.API.App_Start;
 using Hygia.Operations.Communication.Domain;
 using Raven.Client;
 using StructureMap;
@@ -18,6 +19,8 @@ namespace Hygia.API
         protected void Application_Start(object sender, EventArgs e)
         {
             //RouteConfig.RegisterRoutes(RouteTable.Routes);
+
+            SecurityConfig.ConfigureGlobal(GlobalConfiguration.Configuration);
 
             ApiBootstrapper.Bootstrap();
 
@@ -169,10 +172,12 @@ namespace Hygia.API
             if (request.GetRouteData().Values.ContainsKey("environment"))
                 return request.GetRouteData().Values["environment"] as string;
 
-            var cookies = request.Headers.GetCookies().SelectMany(x => x.Cookies);
-            var cookie = cookies.SingleOrDefault(x => x.Name == "environment");
+            //var cookies = request.Headers.GetCookies().SelectMany(x => x.Cookies);
+            //var cookie = cookies.SingleOrDefault(x => x.Name == "environment");
 
-            return cookie != null ? cookie.Value : null;
+            //return cookie != null ? cookie.Value : null;
+
+            return null;
         }
 
         public static string GetApiKey(this HttpRequestMessage request)
