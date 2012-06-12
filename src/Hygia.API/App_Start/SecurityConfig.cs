@@ -23,7 +23,7 @@ namespace Hygia.API.App_Start
             var config = new AuthenticationConfiguration
                              {
                                  // sample claims transformation for consultants sample, comment out to see raw claims
-                                 ClaimsAuthenticationManager = new ConsultantsClaimsTransformer(),
+                                 ClaimsAuthenticationManager = new ClaimsTransformer(),
 
                                  // value of the www-authenticate header, if not set, the first scheme added to the handler collection is used
                                  DefaultAuthenticationScheme = "Basic"

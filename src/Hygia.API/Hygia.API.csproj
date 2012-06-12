@@ -258,7 +258,7 @@
     <Compile Include="App_Start\SecurityConfig.cs" />
     <Compile Include="Authentication\AuthorizeByAttributeConvention.cs" />
     <Compile Include="Authentication\Constants.cs" />
-    <Compile Include="Authentication\ConsultantsClaimsTransformer.cs" />
+    <Compile Include="Authentication\ClaimsTransformer.cs" />
     <Compile Include="Authentication\AuthorizationManager.cs" />
     <Compile Include="Controllers\FaultManagement\FaultManagementController.cs" />
     <Compile Include="Controllers\FaultManagement\Faults\Commands\ArchiveController.cs" />
