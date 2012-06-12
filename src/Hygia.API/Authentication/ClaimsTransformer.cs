@@ -4,7 +4,7 @@ using Microsoft.IdentityModel.Claims;
 
 namespace Hygia.API.Authentication
 {
-    public class ConsultantsClaimsTransformer : ClaimsAuthenticationManager
+    public class ClaimsTransformer : ClaimsAuthenticationManager
     {
         public override IClaimsPrincipal Authenticate(string resourceName, IClaimsPrincipal incomingPrincipal)
         {
