@@ -8,10 +8,38 @@ using Hygia.API.Controllers.FaultManagement.Statistics;
 using Hygia.API.Models.FaultManagement.Statistics;
 using Hygia.FaultManagement.Domain;
 using Machine.Specifications;
+using Raven.Bundles.Authentication;
+using Raven.Client.Document;
 using Raven.Client.Embedded;
 
 namespace Hygia.APITests
 {
+    [Subject("Api")]
+    public class AddUser
+    {
+        private Establish context = () => { };
+
+        private Because of = () =>
+                                 {
+                                     var store = new DocumentStore {DefaultDatabase = "WatchR", Url = "http://localhost:8080"}.Initialize();
+
+                                     var session = store.OpenSession();
+
+                                     var user = new AuthenticationUser
+                                                    {
+                                                        Admin = false,
+                                                        AllowedDatabases = new[] {"*"},
+                                                        Name = "Test"
+                                                    };
+
+                                     user.SetPassword("test");
+                                     session.Store(user);
+                                     session.SaveChanges();
+                                 };
+
+        It should = () => {};
+    }
+
     [Subject("Api")]
     public class NumberOfFaultsPerInterval_Filters_Faults_Correctly : ApiContext
     {

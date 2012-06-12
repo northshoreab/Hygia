@@ -1,4 +1,5 @@
 using System;
+using Hygia.API.Authentication;
 using Hygia.Operations;
 using Raven.Client;
 using Raven.Client.Document;

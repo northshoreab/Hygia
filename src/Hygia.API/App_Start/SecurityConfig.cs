@@ -1,5 +1,10 @@
+using System.Linq;
 using System.Web.Http;
 using Hygia.API.Authentication;
+using Raven.Bundles.Authentication;
+using Raven.Client;
+using Raven.Client.Linq;
+using StructureMap;
 using Thinktecture.IdentityModel.Http;
 
 namespace Hygia.API.App_Start
@@ -14,8 +19,9 @@ namespace Hygia.API.App_Start
 
         public static bool ValidateUser(string userName, string password)
         {
-            
-            return true;
+            var session = ObjectFactory.GetInstance<IDocumentStore>().OpenSession();
+
+            return session.Query<AuthenticationUser>().Where(x => x.Name == userName).Single().ValidatePassword(password);
         }
 
         public static AuthenticationConfiguration ConfigureAuthentication()

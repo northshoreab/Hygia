@@ -8,7 +8,7 @@ namespace Hygia.API.Controllers.FaultManagement
 {
     [DefaultHttpRouteConvention]
     [RoutePrefix("api/faultmanagement")]
-    //[ApiAuthorize]
+    [ApiAuthorize]
     public class FaultManagementController : ApiController
     {
         public ResponseMetaData GetAll()
