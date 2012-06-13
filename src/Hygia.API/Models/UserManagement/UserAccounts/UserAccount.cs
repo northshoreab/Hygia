@@ -18,5 +18,7 @@ namespace Hygia.API.Models.UserManagement.UserAccounts
         public string Email { get; set; }
 
         public string GravatarId { get; set; }
+
+        public string GithubAccessToken { get; set; }
     }
 }

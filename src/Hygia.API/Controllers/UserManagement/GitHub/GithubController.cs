@@ -77,7 +77,8 @@ namespace Hygia.API.Controllers.UserManagement.GitHub
                 SignedUpAt = DateTime.UtcNow,
                 Status = UserAccountStatus.Verified,
                 GithubUserId = githubUserId,
-                GravatarId = response.Data.gravatar_id
+                GravatarId = response.Data.gravatar_id,
+                GithubAccessToken = accessToken
             };
 
             _session.Store(account);

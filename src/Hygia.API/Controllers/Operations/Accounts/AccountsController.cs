@@ -28,6 +28,7 @@ namespace Hygia.API.Controllers.Operations.Accounts
             return new AccountInputModel();
         }
 
+        //todo: this was old spike code, remove!
         public ResponseItem<Account> Post(AccountInputModel inputModel)
         {
             var account = _session.Query<Account>().FirstOrDefault(t => t.Name == inputModel.Name);
