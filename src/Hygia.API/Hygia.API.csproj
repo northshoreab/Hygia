@@ -331,6 +331,7 @@
     </Compile>
     <Compile Include="Mutators\SetEnviromentIdOnSendMutator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RavenSessionHandlerHandler.cs" />
     <Compile Include="ResponseItem.cs" />
     <Compile Include="StructureMapResolver.cs" />
     <Compile Include="StructureMapScope.cs" />

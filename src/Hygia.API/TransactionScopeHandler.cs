@@ -4,7 +4,6 @@ namespace Hygia.API
     using System.Threading;
     using System.Threading.Tasks;
     using System.Transactions;
-    using StructureMap;
 
     internal class TransactionScopeHandler : DelegatingHandler
     {
