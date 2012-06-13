@@ -15,7 +15,6 @@ namespace Hygia.API.Controllers.Operations
                        {
                            Links = new List<Link>
                                        {
-                                           new Link {Href = "/api/operations/accounts", Rel = "Accounts"},
                                            new Link {Href = "/api/operations/launchpad", Rel = "LaunchPad"},
                                            new Link {Href = "/api/operations/uploads", Rel = "Uploads"}
                                        }

@@ -5,13 +5,10 @@
     using System.Net;
     using System.Web;
     using System.Web.Http;
-    using Accounts;
     using AttributeRouting;
     using AttributeRouting.Web.Http;
-    using Models.Operations.Accounts;
     using Models.UserManagement.UserAccounts;
     using Raven.Client;
-    using Raven.Client.Linq;
     using RestSharp;
     using UserManagement.GitHub;
     using HttpCookie = System.Web.HttpCookie;

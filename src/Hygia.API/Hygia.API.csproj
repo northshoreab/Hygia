@@ -160,6 +160,7 @@
       <HintPath>..\..\packages\Microsoft.Net.Http.2.0.20505.0\lib\net40\System.Net.Http.WebRequest.dll</HintPath>
     </Reference>
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -256,6 +257,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiBootstrapper.cs" />
+    <Compile Include="ApiRequest.cs" />
+    <Compile Include="ApiRequestHandler.cs" />
     <Compile Include="App_Start\AttributeRoutingHttp.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\SecurityConfig.cs" />
@@ -263,6 +266,7 @@
     <Compile Include="Authentication\Constants.cs" />
     <Compile Include="Authentication\ClaimsTransformer.cs" />
     <Compile Include="Authentication\AuthorizationManager.cs" />
+    <Compile Include="CommandsToPickUpHandler.cs" />
     <Compile Include="Controllers\FaultManagement\FaultManagementController.cs" />
     <Compile Include="Controllers\FaultManagement\Faults\Commands\ArchiveController.cs" />
     <Compile Include="Controllers\FaultManagement\Faults\Commands\RetriedController.cs" />
@@ -272,6 +276,8 @@
     <Compile Include="Controllers\Operations\LaunchPad\LaunchPadController.cs" />
     <Compile Include="Controllers\Operations\Authentication\GithubLoginController.cs" />
     <Compile Include="Controllers\RootController.cs" />
+    <Compile Include="HttpRequestMessageExtensions.cs" />
+    <Compile Include="IApiRequest.cs" />
     <Compile Include="Models\FaultManagement\Faults\Fault.cs" />
     <Compile Include="Models\FaultManagement\Faults\FaultExtensions.cs" />
     <Compile Include="Controllers\FaultManagement\Faults\FaultsController.cs" />
@@ -301,7 +307,6 @@
     <Compile Include="Models\UserManagement\UserAccounts\UserAccountExtensions.cs" />
     <Compile Include="RavenRegistry.cs" />
     <Compile Include="Models\Operations\Accounts\Account.cs" />
-    <Compile Include="Controllers\Operations\Accounts\AccountsController.cs" />
     <Compile Include="Controllers\Version\VersionController.cs" />
     <Compile Include="Features\Funnel.cs" />
     <Compile Include="Features\HighChartsLineChart.cs" />
@@ -327,6 +332,9 @@
     <Compile Include="Mutators\SetEnviromentIdOnSendMutator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResponseItem.cs" />
+    <Compile Include="StructureMapResolver.cs" />
+    <Compile Include="StructureMapScope.cs" />
+    <Compile Include="TransactionScopeHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">
