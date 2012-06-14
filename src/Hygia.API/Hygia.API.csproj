@@ -64,6 +64,9 @@
     <Reference Include="ICSharpCode.NRefactory">
       <HintPath>..\..\packages\RavenDB.Database.1.2.2016-Unstable\lib\net40\ICSharpCode.NRefactory.dll</HintPath>
     </Reference>
+    <Reference Include="Ionic.Zip">
+      <HintPath>..\..\packages\DotNetZip.1.9.1.8\lib\net20\Ionic.Zip.dll</HintPath>
+    </Reference>
     <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
       <HintPath>..\..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
     </Reference>
@@ -273,6 +276,7 @@
     <Compile Include="Controllers\FaultManagement\Faults\Commands\RetryController.cs" />
     <Compile Include="Controllers\FaultManagement\Statistics\NumberOfFaultsPerIntervalController.cs" />
     <Compile Include="Controllers\FaultManagement\Statistics\StatisticsController.cs" />
+    <Compile Include="Controllers\Operations\LaunchPad\DownloadController.cs" />
     <Compile Include="Controllers\Operations\LaunchPad\LaunchPadController.cs" />
     <Compile Include="Controllers\Operations\Authentication\GithubLoginController.cs" />
     <Compile Include="Controllers\RootController.cs" />
@@ -408,7 +412,9 @@
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <ProjectExtensions>
