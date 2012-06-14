@@ -280,6 +280,7 @@
     <Compile Include="Controllers\Operations\LaunchPad\LaunchPadController.cs" />
     <Compile Include="Controllers\Operations\Authentication\GithubLoginController.cs" />
     <Compile Include="Controllers\RootController.cs" />
+    <Compile Include="GitHubLoginHandler.cs" />
     <Compile Include="HttpRequestMessageExtensions.cs" />
     <Compile Include="IApiRequest.cs" />
     <Compile Include="Models\FaultManagement\Faults\Fault.cs" />

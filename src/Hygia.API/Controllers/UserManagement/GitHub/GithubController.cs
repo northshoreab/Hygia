@@ -1,11 +1,13 @@
 using System;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Web.Http;
 using AttributeRouting;
 using AttributeRouting.Web.Http;
 using Hygia.Core;
 using Hygia.UserManagement.Domain;
+using Microsoft.IdentityModel.Claims;
 using Raven.Client;
 using RestSharp;
 using UserAccount = Hygia.API.Models.UserManagement.UserAccounts.UserAccount;
@@ -35,6 +37,12 @@ namespace Hygia.API.Controllers.UserManagement.GitHub
             //get user details so that we can auto suggest repos etc
             var userDetailsRequest = new RestRequest("/user", Method.GET) { RequestFormat = DataFormat.Json };
 
+//            var user = User.Identity as IClaimsIdentity;
+
+//            if(user == null)
+//                throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.MethodNotAllowed));
+
+//            Claim accessToken = user.Claims.Single(x => x.ClaimType == "GitHubAccessToken");
             userDetailsRequest.AddParameter("access_token", accessToken);
 
             var client = new RestClient("https://api.github.com");
