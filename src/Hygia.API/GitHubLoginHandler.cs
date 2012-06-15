@@ -116,10 +116,10 @@ namespace Hygia.API
         private Action GetAction(Uri requestUri)
         {
             string lastSegment = requestUri.Segments.Last().ToLower();
-            if(lastSegment == "withgithub")
+            if(lastSegment == "withgithub" && requestUri.Segments.Select(x => x.ToLower()).Contains("login"))
                 return Action.Login;
 
-            if(lastSegment == "withgithub")
+            if(lastSegment == "withgithub" && requestUri.Segments.Select(x => x.ToLower()).Contains("signup"))
                 return Action.SignUp;
 
             return Action.NotAuthentication;
