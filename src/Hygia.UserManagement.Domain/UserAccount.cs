@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Hygia.UserManagement.Domain
 {
@@ -12,10 +13,15 @@ namespace Hygia.UserManagement.Domain
 
         public UserAccountStatus Status { get; set; }
 
-        public string GithubUserId { get; set; }
-
         public string Email { get; set; }
-
         public string GravatarId { get; set; }
+
+        public IList<IdentityProvider> IdentityProviders { get; set; }
+    }
+
+    public class IdentityProvider
+    {
+        public string UserId { get; set; }
+        public string Issuer { get; set; }
     }
 }

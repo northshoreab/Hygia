@@ -266,9 +266,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\SecurityConfig.cs" />
     <Compile Include="Authentication\AuthorizeByAttributeConvention.cs" />
+    <Compile Include="Authentication\ClaimsIdentityExtensions.cs" />
     <Compile Include="Authentication\Constants.cs" />
     <Compile Include="Authentication\ClaimsTransformer.cs" />
     <Compile Include="Authentication\AuthorizationManager.cs" />
+    <Compile Include="Authentication\GithubHelper.cs" />
     <Compile Include="CommandsToPickUpHandler.cs" />
     <Compile Include="Controllers\FaultManagement\FaultManagementController.cs" />
     <Compile Include="Controllers\FaultManagement\Faults\Commands\ArchiveController.cs" />
@@ -280,6 +282,8 @@
     <Compile Include="Controllers\Operations\LaunchPad\LaunchPadController.cs" />
     <Compile Include="Controllers\Operations\Authentication\GithubLoginController.cs" />
     <Compile Include="Controllers\RootController.cs" />
+    <Compile Include="Controllers\Operations\Authentication\LoginWithGithubController.cs" />
+    <Compile Include="Controllers\Operations\Authentication\SignupWithGithubController.cs" />
     <Compile Include="GitHubLoginHandler.cs" />
     <Compile Include="HttpRequestMessageExtensions.cs" />
     <Compile Include="IApiRequest.cs" />

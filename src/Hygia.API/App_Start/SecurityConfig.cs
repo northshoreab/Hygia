@@ -11,9 +11,16 @@ namespace Hygia.API.App_Start
 {
     public static class SecurityConfig
     {
+        public static AuthenticationConfiguration AuthenticationConfiguration { get; set; } 
+
+        static SecurityConfig()
+        {
+            AuthenticationConfiguration = ConfigureAuthentication();
+        }
+
         public static void ConfigureGlobal(HttpConfiguration globalConfig)
         {
-            globalConfig.MessageHandlers.Add(new AuthenticationHandler(ConfigureAuthentication()));
+            globalConfig.MessageHandlers.Add(new AuthenticationHandler(AuthenticationConfiguration));
             globalConfig.SetAuthorizationManager(new AuthorizationManager());
         }
 
@@ -27,13 +34,13 @@ namespace Hygia.API.App_Start
         public static AuthenticationConfiguration ConfigureAuthentication()
         {
             var config = new AuthenticationConfiguration
-                             {
-                                 // sample claims transformation for consultants sample, comment out to see raw claims
-                                 ClaimsAuthenticationManager = new ClaimsTransformer(),
+                                              {
+                                                  // sample claims transformation for consultants sample, comment out to see raw claims
+                                                  ClaimsAuthenticationManager = new ClaimsTransformer(),
 
-                                 // value of the www-authenticate header, if not set, the first scheme added to the handler collection is used
-                                 DefaultAuthenticationScheme = "Basic"                                 
-                             };
+                                                  // value of the www-authenticate header, if not set, the first scheme added to the handler collection is used
+                                                  DefaultAuthenticationScheme = "Basic"
+                                              };
 
             #region Basic Authentication
 

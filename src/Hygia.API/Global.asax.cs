@@ -17,18 +17,16 @@ namespace Hygia.API
             Configure(GlobalConfiguration.Configuration);
         }
 
-        protected void Application_EndRequest(object sender, EventArgs e)
-        {
-
-        }
-
         void Configure(HttpConfiguration configuration)
         {
             configuration.DependencyResolver = new StructureMapResolver(ObjectFactory.Container);
             configuration.MessageHandlers.Add(new CommandsToPickUpHandler(ObjectFactory.Container));
             configuration.MessageHandlers.Add(new ApiRequestHandler(ObjectFactory.Container));
-
             configuration.MessageHandlers.Add(new RavenSessionHandlerHandler(ObjectFactory.Container));
+
+            //this needs to be registered after the securityconfig AuthenticationHandler in order to be invoked before it.
+            configuration.MessageHandlers.Add(new GitHubLoginHandler(SecurityConfig.AuthenticationConfiguration));
+
             //this one needs to be registered last in order to be invoked first
             configuration.MessageHandlers.Add(new TransactionScopeHandler());
         }

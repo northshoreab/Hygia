@@ -16,11 +16,15 @@ namespace Hygia.API.Models.UserManagement.UserAccounts
                        {
                            Email = domainUserAccount.Email,
                            Id = domainUserAccount.Id,
-                           GithubUserId = domainUserAccount.GithubUserId,
                            GravatarId = domainUserAccount.GravatarId,
                            SignedUpAt = domainUserAccount.SignedUpAt,
                            Status = domainUserAccount.Status,
-                           UserName = domainUserAccount.UserName
+                           UserName = domainUserAccount.UserName,
+                           IdentityProviders = domainUserAccount.IdentityProviders.Select(x => new IdentityProvider
+                                                                                                   {
+                                                                                                       UserId = x.UserId,
+                                                                                                       Issuer = x.Issuer
+                                                                                                   }).ToList()
                        };
         }
     }
