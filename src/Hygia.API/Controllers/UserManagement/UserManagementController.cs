@@ -15,7 +15,7 @@ namespace Hygia.API.Controllers.UserManagement
                        {
                            Links = new List<Link>
                                        {
-                                           new Link {Href = "/api/usermanagement/github", Rel = "GitHub"},
+                                           new Link {Href = "/api/usermanagement/me", Rel = "Me"},
                                            new Link {Href = "/api/usermanagement/useraccounts", Rel = "UserAccounts"},
                                        }
                        };
