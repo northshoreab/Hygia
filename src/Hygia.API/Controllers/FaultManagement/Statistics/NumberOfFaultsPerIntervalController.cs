@@ -69,7 +69,7 @@ namespace Hygia.API.Controllers.FaultManagement.Statistics
             this.session = session;
         }
 
-        public ResponseItem<IEnumerable<FaultsPerInterval>> Get(IntervalInputModel model)
+        public IQueryable<FaultsPerInterval> Get(IntervalInputModel model)
         {
             IList<DateTime> starts = new List<DateTime>();
 
@@ -99,9 +99,7 @@ namespace Hygia.API.Controllers.FaultManagement.Statistics
                 counter ++;
             }
 
-            IList<FaultsPerInterval> faultsPerIntervals;
-
-            var test = session.Query<FaultsPerInterval, NumberOfFaultsPerHour>();
+            IQueryable<FaultsPerInterval> faultsPerIntervals;
 
             if (model.Interval == Interval.Hour)
                 faultsPerIntervals = session.Query<FaultsPerInterval, NumberOfFaultsPerHour>()
@@ -114,7 +112,7 @@ namespace Hygia.API.Controllers.FaultManagement.Statistics
                                          To = GetToDateTime(x.Key, model.Interval),
                                          NumberOfFaults = x.Count()
                                      })
-                    .ToList();
+                    .AsQueryable();
             else
                 faultsPerIntervals = session.Query<FaultsPerInterval, NumberOfFaultsPerDay>()
                     .Where(x => x.From >= model.From && x.From <= starts.Max())
@@ -126,9 +124,9 @@ namespace Hygia.API.Controllers.FaultManagement.Statistics
                                          To = GetToDateTime(x.Key, model.Interval),
                                          NumberOfFaults = x.Count()
                                      })
-                    .ToList();
+                    .AsQueryable();
 
-            return faultsPerIntervals.AsEnumerable().AsResponseItem();
+            return faultsPerIntervals;
         }
 
         private DateTime GetToDateTime(DateTime start, Interval interval)

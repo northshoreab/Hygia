@@ -23,6 +23,7 @@ namespace Hygia.API
             configuration.MessageHandlers.Add(new CommandsToPickUpHandler(ObjectFactory.Container));
             configuration.MessageHandlers.Add(new ApiRequestHandler(ObjectFactory.Container));
             configuration.MessageHandlers.Add(new RavenSessionHandlerHandler(ObjectFactory.Container));
+            configuration.MessageHandlers.Add(new MetadataHandler());
 
             //this needs to be registered after the securityconfig AuthenticationHandler in order to be invoked before it.
             configuration.MessageHandlers.Add(new GitHubLoginHandler(SecurityConfig.AuthenticationConfiguration));

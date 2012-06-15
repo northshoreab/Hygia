@@ -162,6 +162,7 @@
     <Reference Include="System.Net.Http.WebRequest, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.Net.Http.2.0.20505.0\lib\net40\System.Net.Http.WebRequest.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Web.DynamicData" />
@@ -280,7 +281,6 @@
     <Compile Include="Controllers\FaultManagement\Statistics\StatisticsController.cs" />
     <Compile Include="Controllers\Operations\LaunchPad\DownloadController.cs" />
     <Compile Include="Controllers\Operations\LaunchPad\LaunchPadController.cs" />
-    <Compile Include="Controllers\Operations\Authentication\GithubLoginController.cs" />
     <Compile Include="Controllers\RootController.cs" />
     <Compile Include="Controllers\Operations\Authentication\LoginWithGithubController.cs" />
     <Compile Include="Controllers\Operations\Authentication\SignupWithGithubController.cs" />
@@ -288,6 +288,8 @@
     <Compile Include="GitHubLoginHandler.cs" />
     <Compile Include="HttpRequestMessageExtensions.cs" />
     <Compile Include="IApiRequest.cs" />
+    <Compile Include="MetadataHandler.cs" />
+    <Compile Include="Models\CustomQueryableAttribute.cs" />
     <Compile Include="Models\FaultManagement\Faults\Fault.cs" />
     <Compile Include="Models\FaultManagement\Faults\FaultExtensions.cs" />
     <Compile Include="Controllers\FaultManagement\Faults\FaultsController.cs" />
@@ -296,6 +298,7 @@
     <Compile Include="Models\LogicalMonitoring\MessageType\MessageTypeExtensions.cs" />
     <Compile Include="Models\LogicalMonitoring\MessageType\MessageType.cs" />
     <Compile Include="Controllers\LogicalMonitoring\MessageTypes\MessageTypesController.cs" />
+    <Compile Include="Models\Metadata.cs" />
     <Compile Include="Models\Operations\Accounts\Environment.cs" />
     <Compile Include="Controllers\Operations\LaunchPad\HeartbeatController.cs" />
     <Compile Include="Controllers\Operations\LaunchPad\ErrorController.cs" />
@@ -308,7 +311,6 @@
     <Compile Include="Models\Operations\Uploads\FaultMessages\FaultMessage.cs" />
     <Compile Include="Controllers\Operations\Uploads\UploadsController.cs" />
     <Compile Include="Controllers\UserManagement\UserAccounts\Commands\VerifyController.cs" />
-    <Compile Include="Controllers\UserManagement\GitHub\GithubController.cs" />
     <Compile Include="Controllers\UserManagement\UserAccounts\UserAccountsController.cs" />
     <Compile Include="Controllers\UserManagement\UserManagementController.cs" />
     <Compile Include="Models\Operations\LaunchPad\LaunchPadStatus.cs" />

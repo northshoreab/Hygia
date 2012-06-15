@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web.Http;
 using AttributeRouting;
 using AttributeRouting.Web.Http;
+using Hygia.API.Models;
 using Hygia.API.Models.FaultManagement.Faults;
 using Raven.Client;
 using Hygia.FaultManagement.Domain;
@@ -42,14 +43,15 @@ namespace Hygia.API.Controllers.FaultManagement.Faults
 
         private readonly Func<Fault, IEnumerable<Link>> links;
 
-        public IEnumerable<ResponseItem<Fault>> GetAll()
+        [CustomQueryable]
+        public IQueryable<ResponseItem<Fault>> GetAll()
         {
             return _session.Query<Hygia.FaultManagement.Domain.Fault>()
                 .Where(f => f.Status != FaultStatus.Archived && f.Status != FaultStatus.Resolved && f.Status != FaultStatus.RetryPerformed)
                 .OrderByDescending(f=>f.TimeOfFailure)
-                .ToList()
                 .ToOutputModels()
-                .Select(x => x.AsResponseItem().AddLinks(links));
+                .Select(x => x.AsResponseItem().AddLinks(links))
+                .AsQueryable();
         }
         
         public ResponseItem<Fault> Get(Guid id)

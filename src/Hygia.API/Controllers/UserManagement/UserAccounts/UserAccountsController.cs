@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web.Http;
 using AttributeRouting;
 using AttributeRouting.Web.Http;
+using Hygia.API.Models;
 using Hygia.API.Models.UserManagement.UserAccounts;
 using Hygia.Core;
 using Hygia.UserManagement.Domain;
@@ -47,11 +48,13 @@ namespace Hygia.API.Controllers.UserManagement.UserAccounts
             return outputUserAccount.AsResponseItem().AddLinks(links);
         }
 
-        public IEnumerable<ResponseItem<UserAccount>> GetAll()
+        [CustomQueryable]
+        public IQueryable<ResponseItem<UserAccount>> GetAll()
         {
             return _session.Query<Hygia.UserManagement.Domain.UserAccount>()
                 .ToOutputModel()
-                .Select(x => x.AsResponseItem().AddLinks(links));
+                .Select(x => x.AsResponseItem().AddLinks(links))
+                .AsQueryable();
         }
 
         public ResponseItem<UserAccount> Post(UserAccountInputModel model)
