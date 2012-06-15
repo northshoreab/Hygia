@@ -284,6 +284,7 @@
     <Compile Include="Controllers\RootController.cs" />
     <Compile Include="Controllers\Operations\Authentication\LoginWithGithubController.cs" />
     <Compile Include="Controllers\Operations\Authentication\SignupWithGithubController.cs" />
+    <Compile Include="Controllers\UserManagement\UserAccounts\MeController.cs" />
     <Compile Include="GitHubLoginHandler.cs" />
     <Compile Include="HttpRequestMessageExtensions.cs" />
     <Compile Include="IApiRequest.cs" />
@@ -312,6 +313,7 @@
     <Compile Include="Controllers\UserManagement\UserManagementController.cs" />
     <Compile Include="Models\Operations\LaunchPad\LaunchPadStatus.cs" />
     <Compile Include="Models\Operations\LaunchPad\LaunchPadStatusExtensions.cs" />
+    <Compile Include="Models\UserManagement\UserAccounts\Me.cs" />
     <Compile Include="Models\UserManagement\UserAccounts\UserAccount.cs" />
     <Compile Include="Models\UserManagement\UserAccounts\UserAccountExtensions.cs" />
     <Compile Include="RavenRegistry.cs" />
