@@ -1,14 +1,16 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web.Http;
 using Hygia.API.Authentication;
-using Microsoft.IdentityModel.Tokens;
+using Microsoft.IdentityModel.Claims;
+using Newtonsoft.Json;
 using Raven.Client;
 using Raven.Client.Linq;
 using StructureMap;
+using Thinktecture.IdentityModel.Claims;
+using Thinktecture.IdentityModel.Tokens;
 using Thinktecture.IdentityModel.Tokens.Http;
 
 namespace Hygia.API.App_Start
@@ -101,11 +103,28 @@ namespace Hygia.API.App_Start
                                                   DefaultAuthenticationScheme = "Basic"
                                               };
 
+
             #region Basic Authentication
 
             config.AddBasicAuthentication(ValidateUser);
 
             #endregion
+
+            var handler = new SimpleSecurityTokenHandler(Constants.GithubScheme, token =>
+                                                                                     {
+                                                                                         var githubToken = JsonConvert.DeserializeObject<GithubLoginToken>(token);
+                                                                                         if (githubToken.LoginKey == Constants.GithubLoginKey)
+                                                                                         {
+                                                                                             return IdentityFactory.Create("Github",
+                                                                                                                           new Claim(Constants.ClaimTypes.GithubAccessToken, githubToken.AccessToken),
+                                                                                                                           new Claim(ClaimTypes.Name, githubToken.UserName),
+                                                                                                                           AuthenticationInstantClaim.Now);
+                                                                                        }
+
+                                                                                         return null;
+                                                                                     });
+
+            config.AddAccessKey(handler, AuthenticationOptions.ForAuthorizationHeader("github"));
 
             //#region IdSrv Simple Web Tokens
             //config.Handler.AddSimpleWebToken(

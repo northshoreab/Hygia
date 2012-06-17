@@ -1,22 +1,28 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Security;
 using Hygia.API.Authentication;
 using Hygia.UserManagement.Domain;
 using Microsoft.IdentityModel.Claims;
+using Newtonsoft.Json;
 using Raven.Client;
-using RestSharp;
 using StructureMap;
-using Thinktecture.IdentityModel.Claims;
 using Thinktecture.IdentityModel.Tokens.Http;
 
 namespace Hygia.API
 {
+    public class GithubLoginToken
+    {
+        public string AccessToken { get; set; }
+        public string UserName { get; set; }
+        public string LoginKey { get; set; }
+    }
     //TODO: Work in progress, maybe this would be enough to handle github login.
     public class GitHubLoginHandler : DelegatingHandler
     {
@@ -40,13 +46,6 @@ namespace Hygia.API
 
                 string userName = githubUser.name;
 
-                var claims = new List<Claim>
-                                 {
-                                     new Claim(ClaimTypes.AuthenticationMethod, AuthenticationMethods.Password),
-                                     new Claim(Constants.ClaimTypes.GithubAccessToken, accessToken),
-                                     AuthenticationInstantClaim.Now
-                                 };
-
                 if(action == Action.Login)
                 {
                     var session = ObjectFactory.GetInstance<IDocumentStore>().OpenSession();
@@ -57,24 +56,61 @@ namespace Hygia.API
                         throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.Unauthorized));
 
                     userName = account.UserName;
-                    claims.Add(new Claim(Constants.ClaimTypes.UserAccountId, account.Id.ToString()));
                 }
 
-                claims.Add(new Claim(ClaimTypes.Name, userName));
+                var githubLoginToken = new GithubLoginToken
+                                           {
+                                               AccessToken = accessToken,
+                                               LoginKey = Constants.GithubLoginKey,
+                                               UserName = userName
+                                           };
 
-                var identity = new ClaimsIdentity(claims, "Basic");
+                string token = JsonConvert.SerializeObject(githubLoginToken);
 
-                IClaimsPrincipal principal = new ClaimsPrincipal(new ClaimsIdentityCollection {identity});
-
-                if (_configuration.ClaimsAuthenticationManager != null)
+                request.Headers.Authorization = new AuthenticationHeaderValue(Constants.GithubScheme, token);
+            }
+            else
+            {
+                var ticket = request.Headers.GetCookies().SelectMany(x => x.Cookies).SingleOrDefault(x => x.Name == "ticket");
+                
+                if(ticket != null)
                 {
-                    principal = _configuration.ClaimsAuthenticationManager.Authenticate(request.RequestUri.AbsoluteUri, principal);
-                }
+                    var ticketValue = ticket.Value;
+                    var encTicket = FormsAuthentication.Decrypt(ticketValue);
 
-                Thread.CurrentPrincipal = principal;
+                    var githubLoginToken = new GithubLoginToken
+                                               {
+                                                   AccessToken = encTicket.UserData,
+                                                   LoginKey = Constants.GithubLoginKey,
+                                                   UserName = encTicket.Name
+                                               };
+
+                    string token = JsonConvert.SerializeObject(githubLoginToken);
+
+                    request.Headers.Authorization = new AuthenticationHeaderValue(Constants.GithubScheme, token);
+                }
             }
 
-            return base.SendAsync(request, cancellationToken);
+            return base.SendAsync(request, cancellationToken)
+                .ContinueWith(task =>
+                                  {
+                                      HttpResponseMessage response = task.Result;
+
+                                      if (action != Action.NotAuthentication)
+                                      {
+                                          var user = Thread.CurrentPrincipal.Identity as IClaimsIdentity;
+
+                                          var ticket = new FormsAuthenticationTicket(1, user.Name, DateTime.Now,
+                                                                                     DateTime.Now.AddMinutes(60), true,
+                                                                                     user.GetClaimValue(Constants.ClaimTypes.GithubAccessToken),"/");
+                                          
+                                          // Encrypt the ticket.
+                                          string encTicket = FormsAuthentication.Encrypt(ticket);
+                                          response.Headers.AddCookies(new [] {new CookieHeaderValue("ticket",encTicket){Expires=new DateTimeOffset(new DateTime(2022,1,1)), Path = "/", Secure = false}, });
+                                      }
+
+                                      return response;
+                                  });
         }
 
         private Action GetAction(Uri requestUri)

@@ -5,6 +5,11 @@ namespace Hygia.UserManagement.Domain
 {
     public class UserAccount
     {
+        public UserAccount()
+        {
+            IdentityProviders = new List<IdentityProvider>();
+        }
+
         public Guid Id { get; set; }
 
         public string UserName { get; set; }
