@@ -47,13 +47,13 @@ namespace Hygia.API.Authentication
             //                 };
             //}
 
-            var claims = new List<Claim>
-                             {
-                                 new Claim(ClaimTypes.Name, id.Name),
-                                 new Claim(ClaimTypes.Role, "Users"),
-                                 new Claim(ClaimTypes.Email, id.Name + "@thinktecture.com"),
-                                 authMethod
-                             };
+            var claims = id.Claims;
+            claims.AddRange(new List<Claim>
+                                {
+                                    new Claim(ClaimTypes.Name, id.Name),
+                                    new Claim(ClaimTypes.Role, "Users"),
+                                    authMethod
+                                }.Where(x => !claims.Any(c => x.ClaimType == c.ClaimType)));
 
             var claimsIdentity = new ClaimsIdentity(claims, "Federation");
             return ClaimsPrincipal.CreateFromIdentity(claimsIdentity);

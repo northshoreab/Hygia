@@ -6,6 +6,15 @@ using System.Web.Http.Filters;
 
 namespace Hygia.API.Models
 {
+    //public class ActionFilterTest : ActionFilterAttribute
+    //{
+    //    public override void OnActionExecuted(HttpActionExecutedContext actionExecutedContext)
+    //    {
+    //        actionExecutedContext.ActionContext.ControllerContext.Controller.
+    //        base.OnActionExecuted(actionExecutedContext);
+    //    }
+    //}
+
     public class CustomQueryableAttribute : QueryableAttribute
     {
         protected override IQueryable ApplyResultLimit(HttpActionExecutedContext actionExecutedContext, IQueryable query)

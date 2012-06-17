@@ -13,7 +13,7 @@ using Raven.Client;
 using RestSharp;
 using StructureMap;
 using Thinktecture.IdentityModel.Claims;
-using Thinktecture.IdentityModel.Http;
+using Thinktecture.IdentityModel.Tokens.Http;
 
 namespace Hygia.API
 {
@@ -31,11 +31,12 @@ namespace Hygia.API
         {
             Action action = GetAction(request.RequestUri);
 
-            if(request.Method == HttpMethod.Post && action != Action.NotAuthentication)
+            if(action != Action.NotAuthentication)
             {
-                var accessToken = GetAccessToken(request.GetRouteData().Values["code"] as string);
+                string code = request.RequestUri.ParseQueryString()["code"];
+                var accessToken = GithubHelper.GetAccessToken(code);
 
-                var githubUser = GetGithubUser(accessToken);
+                var githubUser = GithubHelper.GetGithubUser(accessToken);
 
                 string userName = githubUser.name;
 
@@ -76,50 +77,13 @@ namespace Hygia.API
             return base.SendAsync(request, cancellationToken);
         }
 
-        private string GetAccessToken(string code)
-        {
-            var client = new RestClient("https://github.com");
-
-            var accessTokenRequest = new RestRequest("/login/oauth/access_token", Method.POST) { RequestFormat = DataFormat.Json };
-
-            accessTokenRequest.AddParameter("client_id", "933251074a0f47066f44");
-            accessTokenRequest.AddParameter("client_secret", "11c5684e3f03e9efd49d3c7b663dcc0d36cf6bda");
-            accessTokenRequest.AddParameter("code", code);
-
-            var response = client.Execute<AccessTokenResponse>(accessTokenRequest);
-
-            if (response.StatusCode != HttpStatusCode.OK)
-                throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.Unauthorized));
-
-            if (response.Data.access_token == null)
-                throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.Unauthorized));
-
-            return response.Data.access_token;
-        }
-
-        private GithubUserResponse GetGithubUser(string accessToken)
-        {
-            var userDetailsRequest = new RestRequest("/user", Method.GET) { RequestFormat = DataFormat.Json };
-
-            userDetailsRequest.AddParameter("access_token", accessToken);
-
-            var githubApiClient = new RestClient("https://api.github.com");
-
-            var userResponse = githubApiClient.Execute<GithubUserResponse>(userDetailsRequest);
-
-            if (userResponse.StatusCode != HttpStatusCode.OK)
-                throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.Unauthorized));
-
-            return userResponse.Data;
-        }
-
         private Action GetAction(Uri requestUri)
         {
             string lastSegment = requestUri.Segments.Last().ToLower();
-            if(lastSegment == "withgithub" && requestUri.Segments.Select(x => x.ToLower()).Contains("login"))
+            if(lastSegment == "withgithub" && requestUri.Segments.Select(x => x.ToLower()).Contains("login/"))
                 return Action.Login;
 
-            if(lastSegment == "withgithub" && requestUri.Segments.Select(x => x.ToLower()).Contains("signup"))
+            if(lastSegment == "withgithub" && requestUri.Segments.Select(x => x.ToLower()).Contains("signup/"))
                 return Action.SignUp;
 
             return Action.NotAuthentication;

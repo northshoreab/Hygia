@@ -2,15 +2,15 @@
 using System.Web.Http;
 using AttributeRouting;
 using AttributeRouting.Web.Http;
-using Thinktecture.IdentityModel.Http;
 
 namespace Hygia.API.Controllers.FaultManagement
 {
     [DefaultHttpRouteConvention]
     [RoutePrefix("api/faultmanagement")]
-    [ApiAuthorize]
+    [Authorize]
     public class FaultManagementController : ApiController
     {
+        
         public ResponseMetaData GetAll()
         {
             return new ResponseMetaData

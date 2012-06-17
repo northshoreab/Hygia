@@ -43,7 +43,7 @@ namespace Hygia.APITests
     [Subject("Api")]
     public class NumberOfFaultsPerInterval_Filters_Faults_Correctly : ApiContext
     {
-        private static ResponseItem<IEnumerable<FaultsPerInterval>> faultsPerInterval;
+        private static IQueryable<FaultsPerInterval> faultsPerInterval;
         private static NumberOfFaultsPerIntervalController controller;
 
         Establish context = () =>
@@ -78,8 +78,8 @@ namespace Hygia.APITests
                                                    });
         };
 
-        It should_return_two_intervals = () => faultsPerInterval.Data.Count().ShouldEqual(2);
+        It should_return_two_intervals = () => faultsPerInterval.Count().ShouldEqual(2);
 
-        It should_return_one_fault_per_interval = () => faultsPerInterval.Data.Where(x => x.NumberOfFaults == 1).Count().ShouldEqual(2);
+        It should_return_one_fault_per_interval = () => faultsPerInterval.Where(x => x.NumberOfFaults == 1).Count().ShouldEqual(2);
     }
 }

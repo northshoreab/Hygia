@@ -20,7 +20,7 @@ namespace Hygia.API.Controllers.Operations.Authentication
             _session = session;
         }
 
-        public Models.UserManagement.UserAccounts.UserAccount Post()
+        public Models.UserManagement.UserAccounts.UserAccount Get()
         {
             var user = User as IClaimsIdentity;
 

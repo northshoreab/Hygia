@@ -25,9 +25,9 @@ namespace Hygia.API.Controllers.Operations.Authentication
             _session = session;
         }
 
-        public Models.UserManagement.UserAccounts.UserAccount Post()
+        public Models.UserManagement.UserAccounts.UserAccount Get()
         {
-            var user = User as IClaimsIdentity;
+            var user = User.Identity as IClaimsIdentity;
             var githubUserResponse = GithubHelper.GetGithubUser(user.GetClaimValue(Constants.ClaimTypes.GithubAccessToken));
 
             var userId = githubUserResponse.id.ToGuid();
