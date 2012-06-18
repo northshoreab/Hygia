@@ -3,7 +3,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace Hygia.API.App_Start
+namespace Hygia.API.Infrastructure.Authentication
 {
     public class AuthenticationUser
     {
