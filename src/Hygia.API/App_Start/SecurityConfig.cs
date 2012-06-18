@@ -31,9 +31,16 @@ namespace Hygia.API.App_Start
 
 
             config.AddBasicAuthentication(AuthenticationHelper.ValidateUser);
-            config.AddAccessKey(AuthenticationHelper.GetGithubTokenHandler(), AuthenticationOptions.ForAuthorizationHeader("github"));
+
+            //config.AddAccessKey(AuthenticationHelper.GetGithubTokenHandler(), AuthenticationOptions.ForAuthorizationHeader("github"));
+
             config.AddAccessKey(AuthenticationHelper.GetApiKeyIdentity, AuthenticationOptions.ForHeader("apikey"));
-            config.AddAccessKey(AuthenticationHelper.GetTicketIdentity, AuthenticationOptions.ForCookie("ticket"));
+
+            config.AddJsonWebToken(
+                issuer: "http://watchr.com",
+                audience: Constants.Realm,
+                signingKey: Constants.JWTKeyEncoded,
+                options: AuthenticationOptions.ForAuthorizationHeader("JWT"));
 
             //#region IdSrv Simple Web Tokens
             //config.Handler.AddSimpleWebToken(

@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Security;
 using Hygia.API.App_Start;
@@ -6,6 +8,7 @@ using Newtonsoft.Json;
 using Raven.Client;
 using StructureMap;
 using Thinktecture.IdentityModel.Claims;
+using Thinktecture.IdentityModel.Constants;
 using Thinktecture.IdentityModel.Tokens;
 
 namespace Hygia.API.Infrastructure.Authentication
@@ -29,36 +32,30 @@ namespace Hygia.API.Infrastructure.Authentication
             return null;
         }
 
-        public static ClaimsIdentity GetTicketIdentity(string ticket)
+        public static string CreateJsonWebToken(string username, string accessToken)
         {
-            if (ticket != null)
+            var jsonWebToken = new JsonWebToken
             {
-                var encTicket = FormsAuthentication.Decrypt(ticket);
+                Header = new JwtHeader
+                {
+                    SignatureAlgorithm = JwtConstants.SignatureAlgorithms.HMACSHA256,
+                    SigningCredentials =
+                        new HmacSigningCredentials(Constants.JWTKeyEncoded)
+                },
 
-                return IdentityFactory.Create("Github",
-                                              new Claim(Constants.ClaimTypes.GithubAccessToken, encTicket.UserData),
-                                              new Claim(ClaimTypes.Name, encTicket.Name),
-                                              AuthenticationInstantClaim.Now);
-            }
+                Issuer = "http://watchr.com",
+                Audience = new Uri(Constants.Realm),
 
-            return null;
-        }
+                Claims = new List<Claim>
+                                                        {
+                                                            new Claim(ClaimTypes.Name, username),
+                                                            new Claim(Constants.ClaimTypes.GithubAccessToken,
+                                                                      accessToken),
+                                                        }
+            };
 
-        public static SimpleSecurityTokenHandler GetGithubTokenHandler()
-        {
-            return new SimpleSecurityTokenHandler(Constants.GithubScheme, token =>
-                                                                              {
-                                                                                  var githubToken = JsonConvert.DeserializeObject<GithubLoginToken>(token);
-                                                                                  if (githubToken.LoginKey == Constants.GithubLoginKey)
-                                                                                  {
-                                                                                      return IdentityFactory.Create("Github",
-                                                                                                                    new Claim(Constants.ClaimTypes.GithubAccessToken, githubToken.AccessToken),
-                                                                                                                    new Claim(ClaimTypes.Name, githubToken.UserName),
-                                                                                                                    AuthenticationInstantClaim.Now);
-                                                                                  }
-
-                                                                                  return null;
-                                                                              });
+            var handler = new JsonWebTokenHandler();
+            return handler.WriteToken(jsonWebToken);
         }
     }
 }

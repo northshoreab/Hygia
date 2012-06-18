@@ -6,10 +6,8 @@ using System.Net.Http.Headers;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Http;
-using System.Web.Security;
 using Hygia.UserManagement.Domain;
 using Microsoft.IdentityModel.Claims;
-using Newtonsoft.Json;
 using Raven.Client;
 using StructureMap;
 
@@ -43,38 +41,20 @@ namespace Hygia.API.Infrastructure.Authentication
                     userName = account.UserName;
                 }
 
-                var githubLoginToken = new GithubLoginToken
-                                           {
-                                               AccessToken = accessToken,
-                                               LoginKey = Constants.GithubLoginKey,
-                                               UserName = userName
-                                           };
+                var jwt = AuthenticationHelper.CreateJsonWebToken(userName, accessToken);
 
-                string token = JsonConvert.SerializeObject(githubLoginToken);
-
-                request.Headers.Authorization = new AuthenticationHeaderValue(Constants.GithubScheme, token);
+                request.Headers.Authorization = new AuthenticationHeaderValue("JWT", jwt);
             }
-            //else
-            //{
-            //    var ticket = request.Headers.GetCookies().SelectMany(x => x.Cookies).SingleOrDefault(x => x.Name == "ticket");
-                
-            //    if(ticket != null)
-            //    {
-            //        var ticketValue = ticket.Value;
-            //        var encTicket = FormsAuthentication.Decrypt(ticketValue);
+            else
+            {
+                if(request.Headers.Authorization == null)
+                {
+                    var jwt = request.Headers.GetCookies().SelectMany(x => x.Cookies).SingleOrDefault(x => x.Name == "jwt");
 
-            //        var githubLoginToken = new GithubLoginToken
-            //                                   {
-            //                                       AccessToken = encTicket.UserData,
-            //                                       LoginKey = Constants.GithubLoginKey,
-            //                                       UserName = encTicket.Name
-            //                                   };
-
-            //        string token = JsonConvert.SerializeObject(githubLoginToken);
-
-            //        request.Headers.Authorization = new AuthenticationHeaderValue(Constants.GithubScheme, token);
-            //    }
-            //}
+                    if (jwt != null)
+                        request.Headers.Authorization = new AuthenticationHeaderValue("JWT", jwt.Value);                    
+                }
+            }
 
             return base.SendAsync(request, cancellationToken)
                 .ContinueWith(task =>
@@ -85,16 +65,12 @@ namespace Hygia.API.Infrastructure.Authentication
                                       {
                                           var user = Thread.CurrentPrincipal.Identity as IClaimsIdentity;
 
-                                          if (user == null)
+                                          var authorizationHeader = response.RequestMessage.Headers.Authorization;
+
+                                          if (user == null || authorizationHeader.Scheme != "JWT")
                                               return response;
 
-                                          var ticket = new FormsAuthenticationTicket(1, user.Name, DateTime.Now,
-                                                                                     DateTime.Now.AddMinutes(60), true,
-                                                                                     user.GetClaimValue(Constants.ClaimTypes.GithubAccessToken),"/");
-                                          
-                                          // Encrypt the ticket.
-                                          string encTicket = FormsAuthentication.Encrypt(ticket);
-                                          response.Headers.AddCookies(new [] {new CookieHeaderValue("ticket",encTicket){Expires=new DateTimeOffset(new DateTime(2022,1,1)), Path = "/", Secure = false} });
+                                          response.Headers.AddCookies(new[] { new CookieHeaderValue("jwt", authorizationHeader.Parameter) { Expires = new DateTimeOffset(new DateTime(2022, 1, 1)), Path = "/", Secure = false } });
                                       }
 
                                       return response;
@@ -103,7 +79,8 @@ namespace Hygia.API.Infrastructure.Authentication
 
         private Action GetAction(Uri requestUri)
         {
-            string lastSegment = requestUri.Segments.Last().ToLower();
+            string lastSegment = requestUri.Segments.Last().ToLower().Replace("/", "");
+            
             if(lastSegment == "withgithub" && requestUri.Segments.Select(x => x.ToLower()).Contains("login/"))
                 return Action.Login;
 

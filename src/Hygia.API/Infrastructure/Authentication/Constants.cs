@@ -7,6 +7,12 @@ namespace Hygia.API.Infrastructure.Authentication
 
         public const string ApiKey = "327951bf-bae4-46a4-93a0-71f61dfbe801";
 
+        public const string JWTKeyEncoded = "fiImsGGK06mEG7lMb7FC3/zV/IQZRClmMwYjjMGuKu4=";
+
+        public const string JWTKey = "thisisasecuretokenforwatchrandcanneverbeencryptedordecrypted";
+
+        public const string Realm = "https://watchr.com/api/";
+
         public static class ClaimTypes
         {
             public const string WatchRRole = "http://watchr.se/claims/watchrrole";

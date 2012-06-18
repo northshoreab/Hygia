@@ -39,7 +39,6 @@ namespace Hygia.API.Controllers.UserManagement.UserAccounts
 
         private readonly Func<UserAccount, IEnumerable<Link>> links;
 
-
         public ResponseItem<UserAccount> Get(Guid id)
         {
             var userAccount = _session.Load<Hygia.UserManagement.Domain.UserAccount>(id);

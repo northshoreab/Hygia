@@ -22,39 +22,20 @@ namespace Hygia.API.Infrastructure.Authentication
             var authMethod = id.Claims.SingleOrDefault(c => c.ClaimType == ClaimTypes.AuthenticationMethod) ??
                              new Claim(ClaimTypes.AuthenticationMethod, AuthenticationMethods.Unspecified);
 
-            // hard coded for demo purposes
-            //if (id.Name == "dominick")
-            //{
-            //    claims = new List<Claim>
-            //                 {
-            //                     new Claim(ClaimTypes.Name, id.Name),
-            //                     new Claim(ClaimTypes.Role, "Users"),
-            //                     new Claim(Constants.ClaimTypes.ReportsTo, "christian"),
-            //                     new Claim(ClaimTypes.Email, id.Name + "@thinktecture.com"),
-            //                     authMethod
-            //                 };
-            //}
-            //else
-            //{
-            //    claims = new List<Claim>
-            //                 {
-            //                     new Claim(ClaimTypes.Name, id.Name),
-            //                     new Claim(ClaimTypes.Role, "Users"),
-            //                     new Claim(ClaimTypes.Email, id.Name + "@thinktecture.com"),
-            //                     authMethod
-            //                 };
-            //}
+            var claims = new List<Claim>
+                             {
+                                new Claim(ClaimTypes.Name, id.Name),
+                                new Claim(ClaimTypes.Role, "Users"),
+                                authMethod
+                             };
 
-            var claims = id.Claims;
-            claims.AddRange(new List<Claim>
-                                {
-                                    new Claim(ClaimTypes.Name, id.Name),
-                                    new Claim(ClaimTypes.Role, "Users"),
-                                    authMethod
-                                }.Where(x => !claims.Any(c => x.ClaimType == c.ClaimType)));
+            var accessToken = id.GetClaimValue(Constants.ClaimTypes.GithubAccessToken);
 
-            var claimsIdentity = new ClaimsIdentity(claims, "Federation");
-            return ClaimsPrincipal.CreateFromIdentity(claimsIdentity);
+            if(!string.IsNullOrEmpty(accessToken))
+                claims.Add(new Claim(Constants.ClaimTypes.GithubAccessToken, accessToken));
+
+            var claimsIdentity = new ClaimsIdentity(claims, "Local");
+            return new ClaimsPrincipal(new IClaimsIdentity[] { claimsIdentity });
         }
     }
 }
