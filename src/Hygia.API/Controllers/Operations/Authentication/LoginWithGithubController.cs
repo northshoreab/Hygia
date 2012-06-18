@@ -20,11 +20,12 @@ namespace Hygia.API.Controllers.Operations.Authentication
             _session = session;
         }
 
-        public Models.UserManagement.UserAccounts.UserAccount Get()
+        public string Get()
         {
-            var user = User as IClaimsIdentity;
+            return Request.Headers.Authorization.Parameter;
+            //var user = User as IClaimsIdentity;
 
-            return _session.Load<UserAccount>(user.GetClaimValue(Constants.ClaimTypes.UserAccountId)).ToOutputModel();
+            //return _session.Load<UserAccount>(user.GetClaimValue(Constants.ClaimTypes.UserAccountId)).ToOutputModel();
         }
     }
 }

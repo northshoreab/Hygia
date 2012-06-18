@@ -4,7 +4,6 @@ using System.Web.Http;
 using AttributeRouting;
 using AttributeRouting.Web.Http;
 using Hygia.API.Infrastructure.Authentication;
-using Hygia.API.Models.UserManagement.UserAccounts;
 using Hygia.Core;
 using Hygia.UserManagement.Domain;
 using Microsoft.IdentityModel.Claims;
@@ -25,7 +24,7 @@ namespace Hygia.API.Controllers.Operations.Authentication
             _session = session;
         }
 
-        public Models.UserManagement.UserAccounts.UserAccount Get()
+        public string Get()
         {
             var user = User.Identity as IClaimsIdentity;
             var githubUserResponse = GithubHelper.GetGithubUser(user.GetClaimValue(Constants.ClaimTypes.GithubAccessToken));
@@ -48,7 +47,7 @@ namespace Hygia.API.Controllers.Operations.Authentication
 
             _session.Store(account);
 
-            return account.ToOutputModel();
+            return Request.Headers.Authorization.Parameter;
         }
     }
 }
