@@ -1,5 +1,3 @@
-using System;
-using Hygia.API.Authentication;
 using Hygia.Operations;
 using Raven.Client;
 using Raven.Client.Document;
@@ -7,7 +5,7 @@ using StructureMap;
 using StructureMap.Configuration.DSL;
 using StructureMap.Graph;
 
-namespace Hygia.API
+namespace Hygia.API.Infrastructure
 {
     public class RavenRegistry : Registry 
     {

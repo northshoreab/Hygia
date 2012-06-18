@@ -1,10 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.IdentityModel.Claims;
-using Claim = Microsoft.IdentityModel.Claims.Claim;
-using ClaimTypes = Microsoft.IdentityModel.Claims.ClaimTypes;
 
-namespace Hygia.API.Authentication
+namespace Hygia.API.Infrastructure.Authentication
 {
     public class ClaimsTransformer : ClaimsAuthenticationManager
     {

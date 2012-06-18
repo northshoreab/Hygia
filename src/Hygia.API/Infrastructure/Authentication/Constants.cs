@@ -1,9 +1,12 @@
-namespace Hygia.API.Authentication
+namespace Hygia.API.Infrastructure.Authentication
 {
     public static class Constants
     {
         public const string GithubLoginKey = "18c137f1-af1a-4ec0-8f26-2bb808de7f35";
         public const string GithubScheme = "github";
+
+        public const string ApiKey = "327951bf-bae4-46a4-93a0-71f61dfbe801";
+
         public static class ClaimTypes
         {
             public const string WatchRRole = "http://watchr.se/claims/watchrrole";

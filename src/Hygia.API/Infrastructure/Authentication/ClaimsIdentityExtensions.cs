@@ -1,7 +1,7 @@
 using System.Linq;
 using Microsoft.IdentityModel.Claims;
 
-namespace Hygia.API.Authentication
+namespace Hygia.API.Infrastructure.Authentication
 {
     public static class ClaimsIdentityExtensions
     {

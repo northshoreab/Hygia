@@ -1,4 +1,5 @@
 using System.Web;
+using Hygia.API.Infrastructure;
 using NServiceBus;
 using StructureMap;
 

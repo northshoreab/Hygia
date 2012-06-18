@@ -7,32 +7,17 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Security;
-using Hygia.API.Authentication;
 using Hygia.UserManagement.Domain;
 using Microsoft.IdentityModel.Claims;
 using Newtonsoft.Json;
 using Raven.Client;
 using StructureMap;
-using Thinktecture.IdentityModel.Tokens.Http;
 
-namespace Hygia.API
+namespace Hygia.API.Infrastructure.Authentication
 {
-    public class GithubLoginToken
-    {
-        public string AccessToken { get; set; }
-        public string UserName { get; set; }
-        public string LoginKey { get; set; }
-    }
     //TODO: Work in progress, maybe this would be enough to handle github login.
     public class GitHubLoginHandler : DelegatingHandler
     {
-        private readonly AuthenticationConfiguration _configuration;
-
-        public GitHubLoginHandler(AuthenticationConfiguration configuration)
-        {
-            _configuration = configuration;
-        }
-
         protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
             Action action = GetAction(request.RequestUri);
@@ -69,27 +54,27 @@ namespace Hygia.API
 
                 request.Headers.Authorization = new AuthenticationHeaderValue(Constants.GithubScheme, token);
             }
-            else
-            {
-                var ticket = request.Headers.GetCookies().SelectMany(x => x.Cookies).SingleOrDefault(x => x.Name == "ticket");
+            //else
+            //{
+            //    var ticket = request.Headers.GetCookies().SelectMany(x => x.Cookies).SingleOrDefault(x => x.Name == "ticket");
                 
-                if(ticket != null)
-                {
-                    var ticketValue = ticket.Value;
-                    var encTicket = FormsAuthentication.Decrypt(ticketValue);
+            //    if(ticket != null)
+            //    {
+            //        var ticketValue = ticket.Value;
+            //        var encTicket = FormsAuthentication.Decrypt(ticketValue);
 
-                    var githubLoginToken = new GithubLoginToken
-                                               {
-                                                   AccessToken = encTicket.UserData,
-                                                   LoginKey = Constants.GithubLoginKey,
-                                                   UserName = encTicket.Name
-                                               };
+            //        var githubLoginToken = new GithubLoginToken
+            //                                   {
+            //                                       AccessToken = encTicket.UserData,
+            //                                       LoginKey = Constants.GithubLoginKey,
+            //                                       UserName = encTicket.Name
+            //                                   };
 
-                    string token = JsonConvert.SerializeObject(githubLoginToken);
+            //        string token = JsonConvert.SerializeObject(githubLoginToken);
 
-                    request.Headers.Authorization = new AuthenticationHeaderValue(Constants.GithubScheme, token);
-                }
-            }
+            //        request.Headers.Authorization = new AuthenticationHeaderValue(Constants.GithubScheme, token);
+            //    }
+            //}
 
             return base.SendAsync(request, cancellationToken)
                 .ContinueWith(task =>
@@ -100,13 +85,16 @@ namespace Hygia.API
                                       {
                                           var user = Thread.CurrentPrincipal.Identity as IClaimsIdentity;
 
+                                          if (user == null)
+                                              return response;
+
                                           var ticket = new FormsAuthenticationTicket(1, user.Name, DateTime.Now,
                                                                                      DateTime.Now.AddMinutes(60), true,
                                                                                      user.GetClaimValue(Constants.ClaimTypes.GithubAccessToken),"/");
                                           
                                           // Encrypt the ticket.
                                           string encTicket = FormsAuthentication.Encrypt(ticket);
-                                          response.Headers.AddCookies(new [] {new CookieHeaderValue("ticket",encTicket){Expires=new DateTimeOffset(new DateTime(2022,1,1)), Path = "/", Secure = false}, });
+                                          response.Headers.AddCookies(new [] {new CookieHeaderValue("ticket",encTicket){Expires=new DateTimeOffset(new DateTime(2022,1,1)), Path = "/", Secure = false} });
                                       }
 
                                       return response;

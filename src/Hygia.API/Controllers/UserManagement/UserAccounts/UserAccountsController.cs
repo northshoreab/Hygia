@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web.Http;
 using AttributeRouting;
 using AttributeRouting.Web.Http;
+using Hygia.API.Infrastructure;
 using Hygia.API.Models;
 using Hygia.API.Models.UserManagement.UserAccounts;
 using Hygia.Core;

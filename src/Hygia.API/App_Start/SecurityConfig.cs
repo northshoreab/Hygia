@@ -1,75 +1,9 @@
-using System;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
 using System.Web.Http;
-using Hygia.API.Authentication;
-using Microsoft.IdentityModel.Claims;
-using Newtonsoft.Json;
-using Raven.Client;
-using Raven.Client.Linq;
-using StructureMap;
-using Thinktecture.IdentityModel.Claims;
-using Thinktecture.IdentityModel.Tokens;
+using Hygia.API.Infrastructure.Authentication;
 using Thinktecture.IdentityModel.Tokens.Http;
 
 namespace Hygia.API.App_Start
 {
-    public class UserDatabaseAccess
-    {
-        public bool ReadOnly { get; set; }
-        public bool Admin { get; set; }
-        public string Name { get; set; }
-    }
-
-    public class AuthenticationUser
-    {
-        public string Name { get; set; }
-        public string Id { get; set; }
-        public bool Admin { get; set; }
-        public string[] AllowedDatabases { get; set; }
-
-        public UserDatabaseAccess[] Databases { get; set; }
-
-        protected string HashedPassword { get; private set; }
-
-        private Guid passwordSalt;
-
-        protected Guid PasswordSalt
-        {
-            get
-            {
-                if (passwordSalt == Guid.Empty)
-                    passwordSalt = Guid.NewGuid();
-                return passwordSalt;
-            }
-            set { passwordSalt = value; }
-        }
-
-
-        public AuthenticationUser SetPassword(string pwd)
-        {
-            HashedPassword = GetHashedPassword(pwd);
-            return this;
-        }
-
-        private string GetHashedPassword(string pwd)
-        {
-            using (var sha = SHA256.Create())
-            {
-                var bytes = PasswordSalt.ToByteArray().Concat(Encoding.Unicode.GetBytes(pwd)).ToArray();
-
-                return Convert.ToBase64String(sha.ComputeHash(bytes));
-            }
-        }
-
-        public bool ValidatePassword(string maybePwd)
-        {
-            return HashedPassword == GetHashedPassword(maybePwd);
-        }
-
-    }
-
     public static class SecurityConfig
     {
         public static AuthenticationConfiguration AuthenticationConfiguration { get; set; } 
@@ -82,14 +16,6 @@ namespace Hygia.API.App_Start
         public static void ConfigureGlobal(HttpConfiguration globalConfig)
         {
             globalConfig.MessageHandlers.Add(new AuthenticationHandler(AuthenticationConfiguration));
-            //globalConfig.SetAuthorizationManager(new AuthorizationManager());
-        }
-
-        public static bool ValidateUser(string userName, string password)
-        {
-            var session = ObjectFactory.GetInstance<IDocumentStore>().OpenSession();
-
-            return session.Query<AuthenticationUser>().Where(x => x.Name == userName).Single().ValidatePassword(password);
         }
 
         public static AuthenticationConfiguration ConfigureAuthentication()
@@ -104,27 +30,10 @@ namespace Hygia.API.App_Start
                                               };
 
 
-            #region Basic Authentication
-
-            config.AddBasicAuthentication(ValidateUser);
-
-            #endregion
-
-            var handler = new SimpleSecurityTokenHandler(Constants.GithubScheme, token =>
-                                                                                     {
-                                                                                         var githubToken = JsonConvert.DeserializeObject<GithubLoginToken>(token);
-                                                                                         if (githubToken.LoginKey == Constants.GithubLoginKey)
-                                                                                         {
-                                                                                             return IdentityFactory.Create("Github",
-                                                                                                                           new Claim(Constants.ClaimTypes.GithubAccessToken, githubToken.AccessToken),
-                                                                                                                           new Claim(ClaimTypes.Name, githubToken.UserName),
-                                                                                                                           AuthenticationInstantClaim.Now);
-                                                                                        }
-
-                                                                                         return null;
-                                                                                     });
-
-            config.AddAccessKey(handler, AuthenticationOptions.ForAuthorizationHeader("github"));
+            config.AddBasicAuthentication(AuthenticationHelper.ValidateUser);
+            config.AddAccessKey(AuthenticationHelper.GetGithubTokenHandler(), AuthenticationOptions.ForAuthorizationHeader("github"));
+            config.AddAccessKey(AuthenticationHelper.GetApiKeyIdentity, AuthenticationOptions.ForHeader("apikey"));
+            config.AddAccessKey(AuthenticationHelper.GetTicketIdentity, AuthenticationOptions.ForCookie("ticket"));
 
             //#region IdSrv Simple Web Tokens
             //config.Handler.AddSimpleWebToken(

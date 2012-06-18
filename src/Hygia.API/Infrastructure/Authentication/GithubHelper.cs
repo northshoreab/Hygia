@@ -3,7 +3,7 @@ using System.Net.Http;
 using System.Web.Http;
 using RestSharp;
 
-namespace Hygia.API.Authentication
+namespace Hygia.API.Infrastructure.Authentication
 {
     public static class GithubHelper
     {

@@ -1,11 +1,11 @@
-namespace Hygia.API
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web.Http.Dependencies;
-    using StructureMap;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Http.Dependencies;
+using StructureMap;
 
+namespace Hygia.API.Infrastructure
+{
     public class StructureMapScope : IDependencyScope
     {
         protected IContainer Container;

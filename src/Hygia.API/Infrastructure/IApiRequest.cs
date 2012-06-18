@@ -1,4 +1,4 @@
-namespace Hygia.API
+namespace Hygia.API.Infrastructure
 {
     public interface IApiRequest
     {

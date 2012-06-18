@@ -1,8 +1,8 @@
-namespace Hygia.API
-{
-    using System.Web.Http.Dependencies;
-    using StructureMap;
+using System.Web.Http.Dependencies;
+using StructureMap;
 
+namespace Hygia.API.Infrastructure
+{
     public class StructureMapResolver : StructureMapScope, IDependencyResolver
     {
         public StructureMapResolver(IContainer container) : base(container) { }

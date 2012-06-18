@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Web.Http;
 using AttributeRouting;
 using AttributeRouting.Web.Http;
-using Hygia.API.Authentication;
+using Hygia.API.Infrastructure.Authentication;
 using Hygia.API.Models.UserManagement.UserAccounts;
 using Hygia.Core;
 using Hygia.UserManagement.Domain;

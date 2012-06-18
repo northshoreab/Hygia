@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using Hygia.API.Models;
 
-namespace Hygia.API
+namespace Hygia.API.Infrastructure
 {
     public class MetadataHandler : DelegatingHandler
     {

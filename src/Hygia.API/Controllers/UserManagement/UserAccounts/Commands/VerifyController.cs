@@ -2,6 +2,7 @@
 using System.Web.Http;
 using AttributeRouting;
 using AttributeRouting.Web.Http;
+using Hygia.API.Infrastructure;
 using Hygia.UserManagement.Domain;
 using Raven.Client;
 using UserAccount = Hygia.API.Models.UserManagement.UserAccounts.UserAccount;

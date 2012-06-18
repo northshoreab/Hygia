@@ -2,6 +2,7 @@
 using System.Web.Http;
 using AttributeRouting;
 using AttributeRouting.Web.Http;
+using Hygia.API.Infrastructure;
 
 namespace Hygia.API.Controllers.Operations
 {
