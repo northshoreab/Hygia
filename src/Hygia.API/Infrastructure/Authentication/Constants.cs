@@ -11,7 +11,7 @@ namespace Hygia.API.Infrastructure.Authentication
 
         public const string JWTKey = "thisisasecuretokenforwatchrandcanneverbeencryptedordecrypted";
 
-        public const string Realm = "https://watchr.com/api/";
+        public const string Realm = "https://watchr.se/api/";
 
         public static class ClaimTypes
         {

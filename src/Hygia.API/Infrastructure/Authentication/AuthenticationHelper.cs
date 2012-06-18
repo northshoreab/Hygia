@@ -38,19 +38,15 @@ namespace Hygia.API.Infrastructure.Authentication
                                        Header = new JwtHeader
                                                     {
                                                         SignatureAlgorithm = JwtConstants.SignatureAlgorithms.HMACSHA256,
-                                                        SigningCredentials =
-                                                            new HmacSigningCredentials(Constants.JWTKeyEncoded)
+                                                        SigningCredentials = new HmacSigningCredentials(Constants.JWTKeyEncoded),
                                                     },
-
-                                       Issuer = "http://watchr.com",
+                                       Issuer = "http://watchr.se",
                                        Audience = new Uri(Constants.Realm),
-
                                        Claims = new List<Claim>
                                                     {
                                                         new Claim(ClaimTypes.Name, username),
-                                                        new Claim(Constants.ClaimTypes.GithubAccessToken,
-                                                                  accessToken),
-                                                    }
+                                                        new Claim(Constants.ClaimTypes.GithubAccessToken, accessToken),
+                                                    },
                                    };
 
             return new JsonWebTokenHandler().WriteToken(jsonWebToken);
