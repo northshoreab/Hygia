@@ -9,6 +9,7 @@ namespace Hygia.API.Controllers.Operations.LaunchPad
 {
     [DefaultHttpRouteConvention]
     [RoutePrefix("api/operations/launchpad/error")]
+    [Authorize]
     public class ErrorController : ApiController
     {
         private readonly IDocumentSession _session;

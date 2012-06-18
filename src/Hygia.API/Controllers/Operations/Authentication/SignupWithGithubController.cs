@@ -15,6 +15,7 @@ namespace Hygia.API.Controllers.Operations.Authentication
 {
     [DefaultHttpRouteConvention]
     [RoutePrefix("api/signup/withgithub")]
+    [Authorize]
     public class SignupWithGithubController : ApiController
     {
         private readonly IDocumentSession _session;

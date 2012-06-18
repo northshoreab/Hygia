@@ -9,6 +9,7 @@ namespace Hygia.API.Controllers.Operations.Uploads.FaultMessages
 {
     [DefaultHttpRouteConvention]
     [RoutePrefix("api/operations/uploads/faultmessages")]
+    [Authorize]
     public class FaultMessagesController : ApiController
     {
         private readonly IBus _bus;

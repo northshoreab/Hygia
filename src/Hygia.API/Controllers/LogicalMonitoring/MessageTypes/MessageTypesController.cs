@@ -13,6 +13,7 @@ namespace Hygia.API.Controllers.LogicalMonitoring.MessageTypes
 {
     [DefaultHttpRouteConvention]
     [RoutePrefix("api/logicalmonitoring/messagetypes")]
+    [Authorize]
     public class MessageTypesController : ApiController
     {
         private readonly IDocumentSession _session;

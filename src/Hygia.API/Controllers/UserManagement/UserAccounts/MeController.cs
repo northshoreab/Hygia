@@ -11,6 +11,7 @@ namespace Hygia.API.Controllers.UserManagement.UserAccounts
 {
     [DefaultHttpRouteConvention]
     [RoutePrefix("api/usermanagement/me")]
+    [Authorize]
     public class MeController : ApiController
     {
         public Me Get()

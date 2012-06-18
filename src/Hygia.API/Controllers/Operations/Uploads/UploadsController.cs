@@ -8,6 +8,7 @@ namespace Hygia.API.Controllers.Operations.Uploads
 {
     [DefaultHttpRouteConvention]
     [RoutePrefix("api/operations/uploads")]
+    [Authorize]
     public class UploadsController : ApiController
     {
         public ResponseMetaData GetAll()

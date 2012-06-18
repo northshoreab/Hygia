@@ -8,6 +8,7 @@ namespace Hygia.API.Controllers.Operations.LaunchPad
 {
     [DefaultHttpRouteConvention]
     [RoutePrefix("api/operations/launchpad")]
+    [Authorize]
     public class LaunchPadController : ApiController
     {
         public ResponseMetaData GetAll()

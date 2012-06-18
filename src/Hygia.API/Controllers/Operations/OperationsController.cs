@@ -8,6 +8,7 @@ namespace Hygia.API.Controllers.Operations
 {
     [DefaultHttpRouteConvention]
     [RoutePrefix("api/operations")]
+    [Authorize]
     public class OperationsController : ApiController
     {
         public ResponseMetaData GetAll()

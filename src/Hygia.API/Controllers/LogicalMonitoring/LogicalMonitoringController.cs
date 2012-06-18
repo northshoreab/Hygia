@@ -8,6 +8,7 @@ namespace Hygia.API.Controllers.LogicalMonitoring
 {
     [DefaultHttpRouteConvention]
     [RoutePrefix("api/logicalmonitoring")]
+    [Authorize]
     public class LogicalMonitoringController : ApiController
     {
         public ResponseMetaData GetAll()

@@ -18,6 +18,7 @@ namespace Hygia.API.Controllers.UserManagement.UserAccounts
 {
     [DefaultHttpRouteConvention]
     [RoutePrefix("api/usermanagement/useraccounts")]
+    [Authorize]
     public class UserAccountsController : ApiController
     {
         private readonly IDocumentSession _session;

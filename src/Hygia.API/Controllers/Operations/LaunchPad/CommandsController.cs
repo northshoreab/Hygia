@@ -12,6 +12,7 @@ namespace Hygia.API.Controllers.Operations.LaunchPad
 {
     [DefaultHttpRouteConvention]
     [RoutePrefix("api/operations/launchpad/commands")]
+    [Authorize]
     public class CommandsController : ApiController
     {
         private readonly IDocumentSession _session;

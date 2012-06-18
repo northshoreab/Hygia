@@ -11,6 +11,7 @@ namespace Hygia.API.Controllers.UserManagement.UserAccounts.Commands
 {
     [DefaultHttpRouteConvention]
     [RoutePrefix("api/usermanagement/useraccounts/{id:guid}/verify")]
+    [Authorize]
     public class VerifyController : ApiController
     {
         private readonly IDocumentSession session;

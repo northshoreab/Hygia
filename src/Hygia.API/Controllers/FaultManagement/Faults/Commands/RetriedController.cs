@@ -9,6 +9,7 @@ namespace Hygia.API.Controllers.FaultManagement.Faults.Commands
 {
     [DefaultHttpRouteConvention]
     [RoutePrefix("api/faultmanagement/faults/{id:guid}/retried")]
+    [Authorize]
     public class RetriedController : ApiController
     {
         private readonly IBus bus;

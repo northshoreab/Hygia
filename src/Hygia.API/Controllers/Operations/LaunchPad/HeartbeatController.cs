@@ -10,6 +10,7 @@ namespace Hygia.API.Controllers.Operations.LaunchPad
 {
     [DefaultHttpRouteConvention]
     [RoutePrefix("api/operations/launchpad/heartbeat")]
+    [Authorize]
     public class HeartbeatController : ApiController
     {
         private readonly IDocumentSession _session;

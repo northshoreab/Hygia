@@ -60,6 +60,7 @@ namespace Hygia.API.Controllers.FaultManagement.Statistics
 
     [DefaultHttpRouteConvention]
     [RoutePrefix("api/faultmanagement/statistics/numberoffaultsperinterval")]
+    [Authorize]
     public class NumberOfFaultsPerIntervalController : ApiController
     {
         private readonly IDocumentSession session;

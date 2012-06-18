@@ -15,6 +15,7 @@ namespace Hygia.API.Controllers.FaultManagement.Faults
 {
     [DefaultHttpRouteConvention]
     [RoutePrefix("api/faultmanagement/faults")]
+    [Authorize]
     public class FaultsController : ApiController
     {
         private readonly IDocumentSession _session;

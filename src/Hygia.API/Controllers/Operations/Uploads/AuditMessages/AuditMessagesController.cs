@@ -9,6 +9,7 @@ namespace Hygia.API.Controllers.Operations.Uploads.AuditMessages
 {
     [DefaultHttpRouteConvention]
     [RoutePrefix("api/operations/uploads/auditmessages")]
+    [Authorize]
     public class AuditMessagesController : ApiController
     {
         private readonly IBus _bus;

@@ -8,6 +8,7 @@ namespace Hygia.API.Controllers.FaultManagement.Statistics
 {
     [DefaultHttpRouteConvention]
     [RoutePrefix("api/faultmanagement/statistics")]
+    [Authorize]
     public class StatisticsController : ApiController
     {
         public ResponseMetaData GetAll()

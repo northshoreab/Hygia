@@ -9,6 +9,7 @@ namespace Hygia.API.Controllers.FaultManagement.Faults.Commands
 {
     [DefaultHttpRouteConvention]
     [RoutePrefix("api/faultmanagement/faults/{id:guid}/archive")]
+    [Authorize]
     public class ArchiveController : ApiController
     {
         private readonly IBus bus;

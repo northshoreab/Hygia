@@ -12,6 +12,7 @@ namespace Hygia.API.Controllers.Operations.LaunchPad
 {
     [DefaultHttpRouteConvention]
     [RoutePrefix("api/operations/launchpad/status/{id:guid}")]
+    [Authorize]
     public class StatusController : ApiController
     {
         private readonly IDocumentSession _session;

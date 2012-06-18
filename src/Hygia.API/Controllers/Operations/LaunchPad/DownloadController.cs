@@ -11,6 +11,7 @@ namespace Hygia.API.Controllers.Operations.LaunchPad
 
     [DefaultHttpRouteConvention]
     [RoutePrefix("api/operations/launchpad/download")]
+    [Authorize]
     public class DownloadController : ApiController
     {
         static string configTemplate = @"<?xml version='1.0' encoding='utf-8' ?>
