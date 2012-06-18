@@ -1,10 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web.Security;
+using System.Net.Http.Headers;
 using Hygia.API.App_Start;
 using Microsoft.IdentityModel.Claims;
-using Newtonsoft.Json;
 using Raven.Client;
 using StructureMap;
 using Thinktecture.IdentityModel.Claims;
@@ -35,27 +34,26 @@ namespace Hygia.API.Infrastructure.Authentication
         public static string CreateJsonWebToken(string username, string accessToken)
         {
             var jsonWebToken = new JsonWebToken
-            {
-                Header = new JwtHeader
-                {
-                    SignatureAlgorithm = JwtConstants.SignatureAlgorithms.HMACSHA256,
-                    SigningCredentials =
-                        new HmacSigningCredentials(Constants.JWTKeyEncoded)
-                },
+                                   {
+                                       Header = new JwtHeader
+                                                    {
+                                                        SignatureAlgorithm = JwtConstants.SignatureAlgorithms.HMACSHA256,
+                                                        SigningCredentials =
+                                                            new HmacSigningCredentials(Constants.JWTKeyEncoded)
+                                                    },
 
-                Issuer = "http://watchr.com",
-                Audience = new Uri(Constants.Realm),
+                                       Issuer = "http://watchr.com",
+                                       Audience = new Uri(Constants.Realm),
 
-                Claims = new List<Claim>
-                                                        {
-                                                            new Claim(ClaimTypes.Name, username),
-                                                            new Claim(Constants.ClaimTypes.GithubAccessToken,
-                                                                      accessToken),
-                                                        }
-            };
+                                       Claims = new List<Claim>
+                                                    {
+                                                        new Claim(ClaimTypes.Name, username),
+                                                        new Claim(Constants.ClaimTypes.GithubAccessToken,
+                                                                  accessToken),
+                                                    }
+                                   };
 
-            var handler = new JsonWebTokenHandler();
-            return handler.WriteToken(jsonWebToken);
+            return new JsonWebTokenHandler().WriteToken(jsonWebToken);
         }
     }
 }
