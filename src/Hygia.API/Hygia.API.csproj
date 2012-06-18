@@ -220,9 +220,9 @@
     <Compile Include="Infrastructure\ApiRequest.cs" />
     <Compile Include="Infrastructure\ApiRequestHandler.cs" />
     <Compile Include="App_Start\AttributeRoutingHttp.cs" />
-    <Compile Include="App_Start\AuthenticationUser.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\SecurityConfig.cs" />
+    <Compile Include="Infrastructure\Authentication\AuthenticationUser.cs" />
     <Compile Include="Infrastructure\Authentication\ClaimsIdentityExtensions.cs" />
     <Compile Include="Infrastructure\Authentication\Constants.cs" />
     <Compile Include="Infrastructure\Authentication\ClaimsTransformer.cs" />
