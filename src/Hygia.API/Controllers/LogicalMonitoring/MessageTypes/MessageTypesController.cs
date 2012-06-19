@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 using AttributeRouting;
@@ -7,26 +6,18 @@ using AttributeRouting.Web.Http;
 using Hygia.API.Infrastructure;
 using Hygia.API.Models;
 using Hygia.API.Models.LogicalMonitoring.MessageType;
-using Raven.Client;
 
 namespace Hygia.API.Controllers.LogicalMonitoring.MessageTypes
 {
     [DefaultHttpRouteConvention]
-    [RoutePrefix("api/logicalmonitoring/messagetypes")]
+    [RoutePrefix("api/{environment}/logicalmonitoring/messagetypes")]
     [Authorize]
-    public class MessageTypesController : ApiController
+    public class MessageTypesController : EnvironmentController
     {
-        private readonly IDocumentSession _session;
-
-        public MessageTypesController(IDocumentSession session)
-        {
-            _session = session;
-        }
-
         [CustomQueryable]
         public IQueryable<ResponseItem<MessageType>> GetAll()
         {
-            return _session.Query<Hygia.LogicalMonitoring.Handlers.MessageType>()
+            return Session.Query<Hygia.LogicalMonitoring.Handlers.MessageType>()
                 .ToOutputModels()
                 .Select(x => x.AsResponseItem())
                 .AsQueryable();
@@ -34,7 +25,7 @@ namespace Hygia.API.Controllers.LogicalMonitoring.MessageTypes
 
         public ResponseItem<MessageType> Get(Guid id)
         {
-            return _session.Load<Hygia.LogicalMonitoring.Handlers.MessageType>(id)
+            return Session.Load<Hygia.LogicalMonitoring.Handlers.MessageType>(id)
                 .ToOutputModel()
                 .AsResponseItem();
         }

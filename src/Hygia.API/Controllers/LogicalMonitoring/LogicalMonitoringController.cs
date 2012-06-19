@@ -7,9 +7,9 @@ using Hygia.API.Infrastructure;
 namespace Hygia.API.Controllers.LogicalMonitoring
 {
     [DefaultHttpRouteConvention]
-    [RoutePrefix("api/logicalmonitoring")]
+    [RoutePrefix("api/{environment}/logicalmonitoring")]
     [Authorize]
-    public class LogicalMonitoringController : ApiController
+    public class LogicalMonitoringController : EnvironmentController
     {
         public ResponseMetaData GetAll()
         {
@@ -17,7 +17,7 @@ namespace Hygia.API.Controllers.LogicalMonitoring
                        {
                            Links = new List<Link>
                                        {
-                                           new Link {Href = "/api/logicalmonitoring/messagetypes", Rel = "MessageTypes"}
+                                           new Link {Href = "/api/" + Environment + "/logicalmonitoring/messagetypes", Rel = "MessageTypes"}
                                        }
                        };
         }

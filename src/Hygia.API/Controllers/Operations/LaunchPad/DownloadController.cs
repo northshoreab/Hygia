@@ -10,9 +10,9 @@ namespace Hygia.API.Controllers.Operations.LaunchPad
     using AttributeRouting.Web.Http;
 
     [DefaultHttpRouteConvention]
-    [RoutePrefix("api/operations/launchpad/download")]
+    [RoutePrefix("api/{environment}/operations/launchpad/download")]
     [Authorize]
-    public class DownloadController : ApiController
+    public class DownloadController : EnvironmentController
     {
         static string configTemplate = @"<?xml version='1.0' encoding='utf-8' ?>
 <configuration>
@@ -24,7 +24,7 @@ namespace Hygia.API.Controllers.Operations.LaunchPad
   </appSettings>
 </configuration>
 ";
-        public HttpResponseMessage Get(Guid environmentId)
+        public HttpResponseMessage Get()
         {
             var baseDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "App_data");
 
@@ -46,7 +46,7 @@ namespace Hygia.API.Controllers.Operations.LaunchPad
 
             File.WriteAllText(configFile,configTemplate
                 .Replace("'", str)
-                .Replace("{environment}",environmentId.ToString()));
+                .Replace("{environment}", Environment.ToString()));
 
             //template.UpdateFile("Hygia.LaunchPad.dll.config");
             var memoryStream = new MemoryStream();

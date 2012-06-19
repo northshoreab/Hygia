@@ -1,4 +1,5 @@
 using Hygia.Operations;
+using NServiceBus;
 using Raven.Client;
 using Raven.Client.Document;
 using StructureMap;
@@ -27,8 +28,6 @@ namespace Hygia.API.Infrastructure
                                             c.For<IDocumentSession>()
                                                 .HybridHttpOrThreadLocalScoped()
                                                 .Use(OpenSession);
-
-                                            PluginCache.AddFilledType(typeof (IDocumentSession));
                                         });
         }
 

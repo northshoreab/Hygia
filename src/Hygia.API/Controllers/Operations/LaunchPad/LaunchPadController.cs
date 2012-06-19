@@ -7,9 +7,9 @@ using Hygia.API.Infrastructure;
 namespace Hygia.API.Controllers.Operations.LaunchPad
 {
     [DefaultHttpRouteConvention]
-    [RoutePrefix("api/operations/launchpad")]
+    [RoutePrefix("api/{environment}/operations/launchpad")]
     [Authorize]
-    public class LaunchPadController : ApiController
+    public class LaunchPadController : EnvironmentController
     {
         public ResponseMetaData GetAll()
         {
@@ -17,10 +17,10 @@ namespace Hygia.API.Controllers.Operations.LaunchPad
                        {
                            Links = new List<Link>
                                        {
-                                           new Link {Href = "/api/operations/launchpad/status", Rel = "Status"},
-                                           new Link {Href = "/api/operations/launchpad/commands", Rel = "Commands"},
-                                           new Link {Href = "/api/operations/launchpad/heartbeat", Rel = "Heartbeat"},
-                                           new Link {Href = "/api/operations/launchpad/error", Rel = "Error"}
+                                           new Link {Href = "/api/" + Environment + "/operations/launchpad/status", Rel = "Status"},
+                                           new Link {Href = "/api/" + Environment + "/operations/launchpad/commands", Rel = "Commands"},
+                                           new Link {Href = "/api/" + Environment + "/operations/launchpad/heartbeat", Rel = "Heartbeat"},
+                                           new Link {Href = "/api/" + Environment + "/operations/launchpad/error", Rel = "Error"}
                                        }
                        };
         }

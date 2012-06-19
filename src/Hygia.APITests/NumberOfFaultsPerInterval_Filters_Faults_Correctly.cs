@@ -1,15 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading;
-using System.Threading.Tasks;
-using Hygia.API;
 using Hygia.API.Controllers.FaultManagement.Statistics;
+using Hygia.API.Infrastructure.Authentication;
 using Hygia.API.Models.FaultManagement.Statistics;
 using Hygia.FaultManagement.Domain;
 using Machine.Specifications;
-using Raven.Bundles.Authentication;
 using Raven.Client.Document;
 using Raven.Client.Embedded;
 using Thinktecture.IdentityModel.Constants;
@@ -18,6 +16,42 @@ using AuthenticationUser = Hygia.API.Infrastructure.Authentication.Authenticatio
 
 namespace Hygia.APITests
 {
+    [Subject("ApiSigning")]
+    public class SigninTest
+    {
+        private Establish context = () => { };
+
+        private Because of = () =>
+                                 {
+                                     var jwt = CreateJsonWebToken();
+                                     var client = new HttpClient {BaseAddress = new Uri("https://localhost/watchr/")};
+                                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("JWT", jwt);
+
+                                     var response = client.GetAsync("api/faultmanagement").Result;
+                                     response.EnsureSuccessStatusCode();
+                                 };
+
+        It should = () => { };
+
+        private static string CreateJsonWebToken()
+        {
+
+            var jwt = new JsonWebToken
+            {
+                Header = new JwtHeader
+                {
+                    SignatureAlgorithm = JwtConstants.SignatureAlgorithms.HMACSHA256,
+                    SigningCredentials = new HmacSigningCredentials(Constants.JWTKeyEncoded)
+                },
+
+                Issuer = "http://selfissued.test",
+                Audience = new Uri(Constants.Realm),
+            };
+
+            var handler = new JsonWebTokenHandler();
+            return handler.WriteToken(jwt);
+        }
+    }
     [Subject("Api")]
     public class AddUser
     {
@@ -61,10 +95,13 @@ namespace Hygia.APITests
                                     session.SaveChanges();
 
                                     //TODO: Finns nåt bättre sätt att hantera det här i test?
-                                    //while (((EmbeddableDocumentStore)DocumentStore).DocumentDatabase.Statistics.StaleIndexes.Length != 0)
-                                    //    Thread.Sleep(10);
+                                    while (((EmbeddableDocumentStore)DocumentStore).DocumentDatabase.Statistics.StaleIndexes.Length != 0)
+                                        Thread.Sleep(10);
 
-                                    controller = new NumberOfFaultsPerIntervalController(session);
+                                    controller = new NumberOfFaultsPerIntervalController
+                                                     {
+                                                         Session = session
+                                                     };
 
                                     controller.Request = new HttpRequestMessage(HttpMethod.Post, "http://localhost:61000/api/faultmanagement/statistics/numberoffaultsperinterval");
 

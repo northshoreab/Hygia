@@ -91,7 +91,7 @@
       <HintPath>..\..\packages\NServiceBus.StructureMap-CI.3.2.2275\lib\net40\NServiceBus.ObjectBuilder.StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="Raven.Abstractions, Version=1.2.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\RavenDB.Database.1.2.2016-Unstable\lib\net40\Raven.Abstractions.dll</HintPath>
+      <HintPath>..\..\packages\RavenDB.Database.1.2.2017-Unstable\lib\net40\Raven.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="Raven.Client.Lightweight, Version=1.2.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
       <HintPath>..\..\packages\RavenDB.Client.1.2.2011-Unstable\lib\net40\Raven.Client.Lightweight.dll</HintPath>
@@ -217,8 +217,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiBootstrapper.cs" />
+    <Compile Include="Controllers\EnvironmentController.cs" />
     <Compile Include="Infrastructure\ApiRequest.cs" />
-    <Compile Include="Infrastructure\ApiRequestHandler.cs" />
     <Compile Include="App_Start\AttributeRoutingHttp.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\SecurityConfig.cs" />
@@ -246,6 +246,7 @@
     <Compile Include="Extensions\HttpRequestMessageExtensions.cs" />
     <Compile Include="Infrastructure\IApiRequest.cs" />
     <Compile Include="Infrastructure\MetadataHandler.cs" />
+    <Compile Include="Infrastructure\EnvironmentFilter.cs" />
     <Compile Include="Models\CustomQueryableAttribute.cs" />
     <Compile Include="Models\FaultManagement\Faults\Fault.cs" />
     <Compile Include="Models\FaultManagement\Faults\FaultExtensions.cs" />

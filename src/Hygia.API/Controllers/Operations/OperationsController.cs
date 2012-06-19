@@ -7,9 +7,9 @@ using Hygia.API.Infrastructure;
 namespace Hygia.API.Controllers.Operations
 {
     [DefaultHttpRouteConvention]
-    [RoutePrefix("api/operations")]
+    [RoutePrefix("api/{environment}/operations")]
     [Authorize]
-    public class OperationsController : ApiController
+    public class OperationsController : EnvironmentController
     {
         public ResponseMetaData GetAll()
         {
@@ -17,11 +17,9 @@ namespace Hygia.API.Controllers.Operations
                        {
                            Links = new List<Link>
                                        {
-                                           new Link {Href = "/api/operations/launchpad", Rel = "LaunchPad"},
-                                           new Link {Href = "/api/operations/uploads", Rel = "Uploads"},
-                                           new Link {Href = "/api/login/withgithub", Rel = "LoginWithGithub"},
-                                           new Link {Href = "/api/signup/withgithub", Rel = "SignupWithGithub"},
-                                           new Link {Href = "/api/operations/launchpad/download", Rel = "DownloadLaunchpad"},                                           
+                                           new Link {Href = "/api/" + Environment + "/operations/launchpad", Rel = "LaunchPad"},
+                                           new Link {Href = "/api/" + Environment + "/operations/uploads", Rel = "Uploads"},
+                                           new Link {Href = "/api/" + Environment + "/operations/launchpad/download", Rel = "DownloadLaunchpad"},                                           
                                        }
                        };
         }

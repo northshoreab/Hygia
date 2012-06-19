@@ -7,9 +7,9 @@ using Hygia.API.Infrastructure;
 namespace Hygia.API.Controllers.Operations.Uploads
 {
     [DefaultHttpRouteConvention]
-    [RoutePrefix("api/operations/uploads")]
+    [RoutePrefix("api/{environment}/operations/uploads")]
     [Authorize]
-    public class UploadsController : ApiController
+    public class UploadsController : EnvironmentController
     {
         public ResponseMetaData GetAll()
         {
@@ -17,8 +17,8 @@ namespace Hygia.API.Controllers.Operations.Uploads
                        {
                            Links = new List<Link>
                                        {
-                                           new Link {Href = "/api/operations/uploads/auditmessages", Rel = "AuditMessages"},
-                                           new Link {Href = "/api/operations/uploads/faultmessages", Rel = "FaultMessages"},
+                                           new Link {Href = "/api/" + Environment + "/operations/uploads/auditmessages", Rel = "AuditMessages"},
+                                           new Link {Href = "/api/" + Environment + "/operations/uploads/faultmessages", Rel = "FaultMessages"},
                                        }
                        };
         }

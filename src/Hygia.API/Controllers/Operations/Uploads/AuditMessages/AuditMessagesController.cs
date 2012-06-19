@@ -3,22 +3,14 @@ using AttributeRouting;
 using AttributeRouting.Web.Http;
 using Hygia.API.Models.Operations.Uploads.AuditMessages;
 using Hygia.Operations.AuditUploads.Commands;
-using NServiceBus;
 
 namespace Hygia.API.Controllers.Operations.Uploads.AuditMessages
 {
     [DefaultHttpRouteConvention]
-    [RoutePrefix("api/operations/uploads/auditmessages")]
+    [RoutePrefix("api/{environment}/operations/uploads/auditmessages")]
     [Authorize]
-    public class AuditMessagesController : ApiController
+    public class AuditMessagesController : EnvironmentController
     {
-        private readonly IBus _bus;
-
-        public AuditMessagesController(IBus bus)
-        {
-            _bus = bus;
-        }
-
         public AuditMessage GetAll()
         {
             return new AuditMessage();
@@ -34,7 +26,7 @@ namespace Hygia.API.Controllers.Operations.Uploads.AuditMessages
                                   Body = input.Body
                               };
                          
-            _bus.Send(command);
+            Bus.Send(command);
             return "ok";
         }
     }

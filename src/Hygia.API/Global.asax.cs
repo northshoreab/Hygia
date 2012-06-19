@@ -21,9 +21,10 @@ namespace Hygia.API
 
         void Configure(HttpConfiguration configuration)
         {
+            configuration.Filters.Add(new EnvironmentFilter(ObjectFactory.Container));
+
             configuration.DependencyResolver = new StructureMapResolver(ObjectFactory.Container);
             configuration.MessageHandlers.Add(new CommandsToPickUpHandler(ObjectFactory.Container));
-            configuration.MessageHandlers.Add(new ApiRequestHandler(ObjectFactory.Container));
             configuration.MessageHandlers.Add(new RavenSessionHandler(ObjectFactory.Container));
             configuration.MessageHandlers.Add(new MetadataHandler());
 

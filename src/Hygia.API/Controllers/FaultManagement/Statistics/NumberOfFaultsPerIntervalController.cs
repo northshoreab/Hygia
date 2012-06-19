@@ -59,17 +59,10 @@ namespace Hygia.API.Controllers.FaultManagement.Statistics
     }
 
     [DefaultHttpRouteConvention]
-    [RoutePrefix("api/faultmanagement/statistics/numberoffaultsperinterval")]
+    [RoutePrefix("api/{environment}/faultmanagement/statistics/numberoffaultsperinterval")]
     [Authorize]
-    public class NumberOfFaultsPerIntervalController : ApiController
+    public class NumberOfFaultsPerIntervalController : EnvironmentController
     {
-        private readonly IDocumentSession session;
-
-        public NumberOfFaultsPerIntervalController(IDocumentSession session)
-        {
-            this.session = session;
-        }
-
         public IQueryable<FaultsPerInterval> Get(IntervalInputModel model)
         {
             IList<DateTime> starts = new List<DateTime>();
@@ -103,7 +96,7 @@ namespace Hygia.API.Controllers.FaultManagement.Statistics
             IQueryable<FaultsPerInterval> faultsPerIntervals;
 
             if (model.Interval == Interval.Hour)
-                faultsPerIntervals = session.Query<FaultsPerInterval, NumberOfFaultsPerHour>()
+                faultsPerIntervals = Session.Query<FaultsPerInterval, NumberOfFaultsPerHour>()
                     .Where(x => x.From >= model.From && x.From <= starts.Max())
                     .ToList()
                     .GroupBy(x => x.From)
@@ -115,7 +108,7 @@ namespace Hygia.API.Controllers.FaultManagement.Statistics
                                      })
                     .AsQueryable();
             else
-                faultsPerIntervals = session.Query<FaultsPerInterval, NumberOfFaultsPerDay>()
+                faultsPerIntervals = Session.Query<FaultsPerInterval, NumberOfFaultsPerDay>()
                     .Where(x => x.From >= model.From && x.From <= starts.Max())
                     .ToList()
                     .GroupBy(x => x.From)

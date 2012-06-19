@@ -7,19 +7,18 @@ using Hygia.API.Infrastructure;
 namespace Hygia.API.Controllers.FaultManagement
 {
     [DefaultHttpRouteConvention]
-    [RoutePrefix("api/faultmanagement")]
+    [RoutePrefix("api/{environment}/faultmanagement")]
     [Authorize]
-    public class FaultManagementController : ApiController
-    {
-        
+    public class FaultManagementController : EnvironmentController
+    {        
         public ResponseMetaData GetAll()
         {
             return new ResponseMetaData
                        {
                            Links = new List<Link>
                                        {
-                                           new Link{ Href = "/api/faultmanagement/faults", Rel = "Faults"},
-                                           new Link{ Href = "/api/faultmanagement/statistics", Rel = "Statistics"}
+                                           new Link{ Href = "/api/" + Environment + "/faultmanagement/faults", Rel = "Faults"},
+                                           new Link{ Href = "/api/" + Environment + "/faultmanagement/statistics", Rel = "Statistics"}
                                        },
                        };
         }

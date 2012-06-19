@@ -27,7 +27,7 @@ namespace Hygia.API.Mutators
            //if (environment == null)
            //    environment = HttpContext.Current.Request.Headers["apikey"];
 
-            string environment = _apiRequest.EnvironmentId ?? _apiRequest.ApiKey;
+            string environment = _apiRequest.EnvironmentId;
 
             if (!string.IsNullOrEmpty(environment))
                 transportMessage.Headers["EnvironmentId"] = environment;

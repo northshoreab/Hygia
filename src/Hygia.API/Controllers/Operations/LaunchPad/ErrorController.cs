@@ -8,17 +8,10 @@ using Raven.Client;
 namespace Hygia.API.Controllers.Operations.LaunchPad
 {
     [DefaultHttpRouteConvention]
-    [RoutePrefix("api/operations/launchpad/error")]
+    [RoutePrefix("api/{environment}/operations/launchpad/error")]
     [Authorize]
-    public class ErrorController : ApiController
+    public class ErrorController : EnvironmentController
     {
-        private readonly IDocumentSession _session;
-
-        public ErrorController(IDocumentSession session)
-        {
-            _session = session;
-        }
-
         public ErrorInputModel GetAll()
         {
             return new ErrorInputModel();
@@ -26,7 +19,7 @@ namespace Hygia.API.Controllers.Operations.LaunchPad
 
         public string Post(ErrorInputModel model)
         {
-            _session.Store(new LaunchPadError
+            Session.Store(new LaunchPadError
                                {
                                    TimeOfReport = DateTime.UtcNow,
                                    StackTrace = model.StackTrace,

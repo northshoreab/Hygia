@@ -3,22 +3,14 @@ using AttributeRouting;
 using AttributeRouting.Web.Http;
 using Hygia.API.Models.Operations.Uploads.FaultMessages;
 using Hygia.Operations.Faults.Commands;
-using NServiceBus;
 
 namespace Hygia.API.Controllers.Operations.Uploads.FaultMessages
 {
     [DefaultHttpRouteConvention]
-    [RoutePrefix("api/operations/uploads/faultmessages")]
+    [RoutePrefix("api/{environment}/operations/uploads/faultmessages")]
     [Authorize]
-    public class FaultMessagesController : ApiController
+    public class FaultMessagesController : EnvironmentController
     {
-        private readonly IBus _bus;
-
-        public FaultMessagesController(IBus bus)
-        {
-            _bus = bus;
-        }
-
         public FaultMessage GetAll()
         {
             return new FaultMessage();
@@ -33,7 +25,7 @@ namespace Hygia.API.Controllers.Operations.Uploads.FaultMessages
                                   Body = input.Body
                               };
 
-            _bus.Send(command);
+            Bus.Send(command);
             return "ok";
         }
     }
