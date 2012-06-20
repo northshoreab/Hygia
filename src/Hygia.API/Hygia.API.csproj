@@ -217,7 +217,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiBootstrapper.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\EnvironmentController.cs" />
+    <Compile Include="Controllers\AccountManagement\Environments\EnvironmentsController.cs" />
+    <Compile Include="Infrastructure\AccountFilter.cs" />
     <Compile Include="Infrastructure\ApiRequest.cs" />
     <Compile Include="App_Start\AttributeRoutingHttp.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />

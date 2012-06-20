@@ -11,13 +11,13 @@ using StructureMap;
 
 namespace Hygia.API.Infrastructure
 {
-    public class EnvironmentFilter : ActionFilterAttribute
+    public class AccountFilter : ActionFilterAttribute
     {
         private readonly IContainer _container;
         readonly IDocumentStore _documentStore;
         readonly IBus _bus;
 
-        public EnvironmentFilter(IContainer container)
+        public AccountFilter(IContainer container)
         {
             _container = container;
             _documentStore = container.GetInstance<IDocumentStore>();
@@ -26,23 +26,23 @@ namespace Hygia.API.Infrastructure
 
         public override void OnActionExecuting(HttpActionContext actionContext)
         {
-            var controller = actionContext.ControllerContext.Controller as EnvironmentController;
+            var controller = actionContext.ControllerContext.Controller as AccountController;
 
             if (controller == null)
                 return;
 
-            Guid environment;
+            Guid account;
 
-            if (!Guid.TryParse(actionContext.ActionArguments["environment"] as string, out environment))
+            if (!Guid.TryParse(actionContext.ActionArguments["account"] as string, out account))
                 throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.BadRequest));
 
-            controller.Environment = environment;
+            controller.Account = account;
 
             var apiRequest = _container.GetInstance<IApiRequest>();
 
-            apiRequest.EnvironmentId = controller.Environment.ToString();
+            apiRequest.EnvironmentId = controller.Account.ToString();
 
-            controller.Session = _documentStore.OpenSession(environment.ToString());
+            controller.Session = _documentStore.OpenSession(account.ToString());
             controller.Bus = _bus;
         }
 
