@@ -10,7 +10,7 @@ namespace Hygia.API.Controllers.Operations.LaunchPad
     using AttributeRouting.Web.Http;
 
     [DefaultHttpRouteConvention]
-    [RoutePrefix("api/{environment}/operations/launchpad/download")]
+    [RoutePrefix("api/environments/{environment:guid}/operations/launchpad/download")]
     [Authorize]
     public class DownloadController : EnvironmentController
     {

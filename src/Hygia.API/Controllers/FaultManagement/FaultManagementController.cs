@@ -7,7 +7,7 @@ using Hygia.API.Infrastructure;
 namespace Hygia.API.Controllers.FaultManagement
 {
     [DefaultHttpRouteConvention]
-    [RoutePrefix("api/{environment}/faultmanagement")]
+    [RoutePrefix("api/environments/{environment:guid}/faultmanagement")]
     [Authorize]
     public class FaultManagementController : EnvironmentController
     {        
@@ -17,8 +17,8 @@ namespace Hygia.API.Controllers.FaultManagement
                        {
                            Links = new List<Link>
                                        {
-                                           new Link{ Href = "/api/" + Environment + "/faultmanagement/faults", Rel = "Faults"},
-                                           new Link{ Href = "/api/" + Environment + "/faultmanagement/statistics", Rel = "Statistics"}
+                                           new Link{ Href = "/api/environments/" + Environment + "/faultmanagement/faults", Rel = "Faults"},
+                                           new Link{ Href = "/api/environments/" + Environment + "/faultmanagement/statistics", Rel = "Statistics"}
                                        },
                        };
         }

@@ -8,7 +8,7 @@ using Hygia.API.Models.Operations.LaunchPad;
 namespace Hygia.API.Controllers.Operations.LaunchPad
 {
     [DefaultHttpRouteConvention]
-    [RoutePrefix("api/{environment}/operations/launchpad/status/{id:guid}")]
+    [RoutePrefix("api/environments/{environment:guid}/operations/launchpad/status/{id:guid}")]
     [Authorize]
     public class StatusController : EnvironmentController
     {

@@ -7,7 +7,7 @@ using Hygia.API.Infrastructure;
 namespace Hygia.API.Controllers.Operations.Uploads
 {
     [DefaultHttpRouteConvention]
-    [RoutePrefix("api/{environment}/operations/uploads")]
+    [RoutePrefix("api/environments/{environment:guid}/operations/uploads")]
     [Authorize]
     public class UploadsController : EnvironmentController
     {

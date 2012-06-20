@@ -7,7 +7,7 @@ using Hygia.API.Infrastructure;
 namespace Hygia.API.Controllers.Operations.LaunchPad
 {
     [DefaultHttpRouteConvention]
-    [RoutePrefix("api/{environment}/operations/launchpad")]
+    [RoutePrefix("api/environments/{environment:guid}/operations/launchpad")]
     [Authorize]
     public class LaunchPadController : EnvironmentController
     {

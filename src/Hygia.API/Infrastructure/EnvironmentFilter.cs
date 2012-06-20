@@ -26,9 +26,9 @@ namespace Hygia.API.Infrastructure
 
         public override void OnActionExecuting(HttpActionContext actionContext)
         {
-            var environment = actionContext.ActionArguments["environment"] as string;
+            Guid environment;
 
-            if(environment == null)
+            if (!Guid.TryParse(actionContext.ActionArguments["environment"] as string, out environment))
                 throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.BadRequest));
 
             var controller = actionContext.ControllerContext.Controller as EnvironmentController;
@@ -36,16 +36,14 @@ namespace Hygia.API.Infrastructure
             if (controller == null)
                 return;
 
-            controller.Environment = Guid.Parse(environment);
+            controller.Environment = environment;
 
             var apiRequest = _container.GetInstance<IApiRequest>();
 
             apiRequest.EnvironmentId = controller.Environment.ToString();
 
-            controller.Session = _documentStore.OpenSession(environment);
+            controller.Session = _documentStore.OpenSession(environment.ToString());
             controller.Bus = _bus;
-
-            _bus.SetHeader("EnvironmentId", controller.Environment.ToString());
         }
 
         public override void OnActionExecuted(HttpActionExecutedContext actionExecutedContext)

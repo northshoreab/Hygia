@@ -7,7 +7,7 @@ using Hygia.Operations.Faults.Commands;
 namespace Hygia.API.Controllers.Operations.Uploads.FaultMessages
 {
     [DefaultHttpRouteConvention]
-    [RoutePrefix("api/{environment}/operations/uploads/faultmessages")]
+    [RoutePrefix("api/environments/{environment:guid}/operations/uploads/faultmessages")]
     [Authorize]
     public class FaultMessagesController : EnvironmentController
     {

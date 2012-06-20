@@ -7,7 +7,7 @@ using Hygia.API.Infrastructure;
 namespace Hygia.API.Controllers.Operations
 {
     [DefaultHttpRouteConvention]
-    [RoutePrefix("api/{environment}/operations")]
+    [RoutePrefix("api/environments/{environment:guid}/operations")]
     [Authorize]
     public class OperationsController : EnvironmentController
     {

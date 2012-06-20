@@ -7,7 +7,7 @@ using Hygia.FaultManagement.Commands;
 namespace Hygia.API.Controllers.FaultManagement.Faults.Commands
 {
     [DefaultHttpRouteConvention]
-    [RoutePrefix("api/{environment}/faultmanagement/faults/{id:guid}/retry")]
+    [RoutePrefix("api/environments/{environment:guid}/faultmanagement/faults/{id:guid}/retry")]
     [Authorize]
     public class RetryController : EnvironmentController
     {

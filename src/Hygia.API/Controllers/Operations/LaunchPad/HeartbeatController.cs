@@ -8,7 +8,7 @@ using Hygia.Operations.Communication.Domain;
 namespace Hygia.API.Controllers.Operations.LaunchPad
 {
     [DefaultHttpRouteConvention]
-    [RoutePrefix("api/{environment}/operations/launchpad/heartbeat")]
+    [RoutePrefix("api/environments/{environment:guid}/operations/launchpad/heartbeat")]
     [Authorize]
     public class HeartbeatController : EnvironmentController
     {

@@ -7,7 +7,7 @@ using Hygia.API.Infrastructure;
 namespace Hygia.API.Controllers.LogicalMonitoring
 {
     [DefaultHttpRouteConvention]
-    [RoutePrefix("api/{environment}/logicalmonitoring")]
+    [RoutePrefix("api/environments/{environment:guid}/logicalmonitoring")]
     [Authorize]
     public class LogicalMonitoringController : EnvironmentController
     {

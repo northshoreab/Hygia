@@ -8,7 +8,7 @@ using Raven.Client;
 namespace Hygia.API.Controllers.Operations.LaunchPad
 {
     [DefaultHttpRouteConvention]
-    [RoutePrefix("api/{environment}/operations/launchpad/error")]
+    [RoutePrefix("api/environments/{environment:guid}/operations/launchpad/error")]
     [Authorize]
     public class ErrorController : EnvironmentController
     {

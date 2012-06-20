@@ -10,7 +10,7 @@ using Hygia.Operations.Communication.Domain;
 namespace Hygia.API.Controllers.Operations.LaunchPad
 {
     [DefaultHttpRouteConvention]
-    [RoutePrefix("api/{environment}/operations/launchpad/commands")]
+    [RoutePrefix("api/environments/{environment:guid}/operations/launchpad/commands")]
     [Authorize]
     public class CommandsController : EnvironmentController
     {

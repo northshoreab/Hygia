@@ -59,7 +59,7 @@ namespace Hygia.API.Controllers.FaultManagement.Statistics
     }
 
     [DefaultHttpRouteConvention]
-    [RoutePrefix("api/{environment}/faultmanagement/statistics/numberoffaultsperinterval")]
+    [RoutePrefix("api/environments/{environment:guid}/faultmanagement/statistics/numberoffaultsperinterval")]
     [Authorize]
     public class NumberOfFaultsPerIntervalController : EnvironmentController
     {

@@ -13,7 +13,7 @@ using Fault = Hygia.API.Models.FaultManagement.Faults.Fault;
 namespace Hygia.API.Controllers.FaultManagement.Faults
 {
     [DefaultHttpRouteConvention]
-    [RoutePrefix("api/{environment}/faultmanagement/faults")]
+    [RoutePrefix("api/environments/{environment:guid}/faultmanagement/faults")]
     [Authorize]
     public class FaultsController : EnvironmentController
     {
@@ -23,17 +23,17 @@ namespace Hygia.API.Controllers.FaultManagement.Faults
                                  {
                                      new Link
                                          {
-                                             Href = "/api/" + Environment + "/faultmanagement/faults/" + fault.FaultId + "/archive", 
+                                             Href = "/api/environments/" + Environment + "/faultmanagement/faults/" + fault.FaultId + "/archive", 
                                              Rel = "archive"
                                          },
                                      new Link
                                          {
-                                             Href = "/api/" + Environment + "/faultmanagement/faults/" + fault.FaultId + "/retry",
+                                             Href = "/api/environments/" + Environment + "/faultmanagement/faults/" + fault.FaultId + "/retry",
                                              Rel = "retry"
                                          },
                                      new Link
                                          {
-                                             Href = "/api/" + Environment + "/faultmanagement/faults/" + fault.FaultId + "/retried",
+                                             Href = "/api/environments/" + Environment + "/faultmanagement/faults/" + fault.FaultId + "/retried",
                                              Rel = "retried"
                                          },
                                  };

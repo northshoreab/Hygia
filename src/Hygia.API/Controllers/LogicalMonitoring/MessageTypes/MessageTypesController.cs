@@ -10,7 +10,7 @@ using Hygia.API.Models.LogicalMonitoring.MessageType;
 namespace Hygia.API.Controllers.LogicalMonitoring.MessageTypes
 {
     [DefaultHttpRouteConvention]
-    [RoutePrefix("api/{environment}/logicalmonitoring/messagetypes")]
+    [RoutePrefix("api/environments/{environment:guid}/logicalmonitoring/messagetypes")]
     [Authorize]
     public class MessageTypesController : EnvironmentController
     {

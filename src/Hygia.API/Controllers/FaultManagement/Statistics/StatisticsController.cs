@@ -7,7 +7,7 @@ using Hygia.API.Infrastructure;
 namespace Hygia.API.Controllers.FaultManagement.Statistics
 {
     [DefaultHttpRouteConvention]
-    [RoutePrefix("api/{environment}/faultmanagement/statistics")]
+    [RoutePrefix("api/environments/{environment:guid}/faultmanagement/statistics")]
     [Authorize]
     public class StatisticsController : EnvironmentController
     {
@@ -17,7 +17,7 @@ namespace Hygia.API.Controllers.FaultManagement.Statistics
             {
                 Links = new List<Link>
                                        {
-                                           new Link {Href = "/api/" + Environment + "/faultmanagement/statistics/numberoffaultsperinterval", Rel = "NumberOfFaultsPerInterval"}
+                                           new Link {Href = "/api/environments/" + Environment + "/faultmanagement/statistics/numberoffaultsperinterval", Rel = "NumberOfFaultsPerInterval"}
                                        }
             };
         }
