@@ -11,46 +11,40 @@ using StructureMap;
 
 namespace Hygia.API.Infrastructure
 {
-    public class EnvironmentFilter : ActionFilterAttribute
+    public class UserAccountFilter : ActionFilterAttribute
     {
-        private readonly IContainer _container;
         readonly IDocumentStore _documentStore;
         readonly IBus _bus;
 
-        public EnvironmentFilter(IContainer container)
+        public UserAccountFilter(IContainer container)
         {
-            _container = container;
             _documentStore = container.GetInstance<IDocumentStore>();
             _bus = container.GetInstance<IBus>();
         }
 
         public override void OnActionExecuting(HttpActionContext actionContext)
         {
-            var controller = actionContext.ControllerContext.Controller as EnvironmentController;
+            var controller = actionContext.ControllerContext.Controller as UserAccountController;
 
             if (controller == null)
                 return;
 
-            Guid environment;
+            Guid userAccountId;
 
-            if (!Guid.TryParse(actionContext.ActionArguments["environment"] as string, out environment))
+            if (!Guid.TryParse(actionContext.ActionArguments["user"] as string, out userAccountId))
                 throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.BadRequest));
 
-            controller.Environment = environment;
+            controller.UserAccountId = userAccountId;
 
-            var apiRequest = _container.GetInstance<IApiRequest>();
-
-            apiRequest.EnvironmentId = controller.Environment.ToString();
-
-            controller.Session = _documentStore.OpenSession(environment.ToString());
+            controller.Session = _documentStore.OpenSession();
             controller.Bus = _bus;
 
-            //TODO: Add authorization environment
+            //TODO: Add authorization for user
         }
 
         public override void OnActionExecuted(HttpActionExecutedContext actionExecutedContext)
         {
-            var controller = actionExecutedContext.ActionContext.ControllerContext.Controller as EnvironmentController;
+            var controller = actionExecutedContext.ActionContext.ControllerContext.Controller as UserAccountController;
 
             if (controller == null)
                 return;

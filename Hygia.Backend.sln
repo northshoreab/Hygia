@@ -109,6 +109,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hygia.Operations.Accounts.C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hygia.Operations.Accounts", "src\Hygia.Operations.Accounts\Hygia.Operations.Accounts.csproj", "{53849238-3D85-423C-974B-344111C2F303}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hygia.Operations.Accounts.Domain", "src\Hygia.Operations.Accounts.Domain\Hygia.Operations.Accounts.Domain.csproj", "{D5DA8A0F-0621-492B-BD1E-BAC590FE143B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -255,6 +257,10 @@ Global
 		{53849238-3D85-423C-974B-344111C2F303}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{53849238-3D85-423C-974B-344111C2F303}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{53849238-3D85-423C-974B-344111C2F303}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5DA8A0F-0621-492B-BD1E-BAC590FE143B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5DA8A0F-0621-492B-BD1E-BAC590FE143B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5DA8A0F-0621-492B-BD1E-BAC590FE143B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5DA8A0F-0621-492B-BD1E-BAC590FE143B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -301,5 +307,6 @@ Global
 		{E271A72E-C6BF-4313-99A2-85D4C79154CF} = {B4EAF6B9-5206-4BB0-A637-6DEA24D39F64}
 		{B5EAE06C-EBD5-4078-9CFE-0699E0E31931} = {D5DDD972-EE32-4DE4-8DC4-B439A7686200}
 		{53849238-3D85-423C-974B-344111C2F303} = {D5DDD972-EE32-4DE4-8DC4-B439A7686200}
+		{D5DA8A0F-0621-492B-BD1E-BAC590FE143B} = {D5DDD972-EE32-4DE4-8DC4-B439A7686200}
 	EndGlobalSection
 EndGlobal

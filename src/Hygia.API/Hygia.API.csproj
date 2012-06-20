@@ -218,8 +218,13 @@
   <ItemGroup>
     <Compile Include="ApiBootstrapper.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AccountManagement\AccountsController.cs" />
+    <Compile Include="Controllers\AccountManagement\Systems\SystemsController.cs" />
     <Compile Include="Controllers\EnvironmentController.cs" />
-    <Compile Include="Controllers\AccountManagement\Environments\EnvironmentsController.cs" />
+    <Compile Include="Controllers\AccountManagement\Systems\Environments\EnvironmentsController.cs" />
+    <Compile Include="Controllers\UserAccountController.cs" />
+    <Compile Include="Controllers\UserManagement\Users\Accounts\AccountsAccountController.cs" />
+    <Compile Include="Controllers\WatchRController.cs" />
     <Compile Include="Infrastructure\AccountFilter.cs" />
     <Compile Include="Infrastructure\ApiRequest.cs" />
     <Compile Include="App_Start\AttributeRoutingHttp.cs" />
@@ -244,12 +249,13 @@
     <Compile Include="Controllers\RootController.cs" />
     <Compile Include="Controllers\Operations\Authentication\LoginWithGithubController.cs" />
     <Compile Include="Controllers\Operations\Authentication\SignupWithGithubController.cs" />
-    <Compile Include="Controllers\UserManagement\UserAccounts\MeController.cs" />
+    <Compile Include="Controllers\UserManagement\Users\MeController.cs" />
     <Compile Include="Infrastructure\Authentication\GitHubLoginHandler.cs" />
     <Compile Include="Extensions\HttpRequestMessageExtensions.cs" />
     <Compile Include="Infrastructure\IApiRequest.cs" />
     <Compile Include="Infrastructure\MetadataHandler.cs" />
     <Compile Include="Infrastructure\EnvironmentFilter.cs" />
+    <Compile Include="Infrastructure\UserAccountFilter.cs" />
     <Compile Include="Models\CustomQueryableAttribute.cs" />
     <Compile Include="Models\FaultManagement\Faults\Fault.cs" />
     <Compile Include="Models\FaultManagement\Faults\FaultExtensions.cs" />
@@ -260,7 +266,6 @@
     <Compile Include="Models\LogicalMonitoring\MessageType\MessageType.cs" />
     <Compile Include="Controllers\LogicalMonitoring\MessageTypes\MessageTypesController.cs" />
     <Compile Include="Models\Metadata.cs" />
-    <Compile Include="Models\Operations\Accounts\Environment.cs" />
     <Compile Include="Controllers\Operations\LaunchPad\HeartbeatController.cs" />
     <Compile Include="Controllers\Operations\LaunchPad\ErrorController.cs" />
     <Compile Include="Controllers\Operations\OperationsController.cs" />
@@ -280,7 +285,6 @@
     <Compile Include="Models\UserManagement\UserAccounts\UserAccount.cs" />
     <Compile Include="Models\UserManagement\UserAccounts\UserAccountExtensions.cs" />
     <Compile Include="Infrastructure\RavenRegistry.cs" />
-    <Compile Include="Models\Operations\Accounts\Account.cs" />
     <Compile Include="Controllers\Version\VersionController.cs" />
     <Compile Include="Features\Funnel.cs" />
     <Compile Include="Features\HighChartsLineChart.cs" />
@@ -340,6 +344,10 @@
     <ProjectReference Include="..\Hygia.Operations.Accounts.Commands\Hygia.Operations.Accounts.Commands.csproj">
       <Project>{B5EAE06C-EBD5-4078-9CFE-0699E0E31931}</Project>
       <Name>Hygia.Operations.Accounts.Commands</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hygia.Operations.Accounts.Domain\Hygia.Operations.Accounts.Domain.csproj">
+      <Project>{D5DA8A0F-0621-492B-BD1E-BAC590FE143B}</Project>
+      <Name>Hygia.Operations.Accounts.Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\Hygia.Operations.AuditUploads.Commands\Hygia.Operations.AuditUploads.Commands.csproj">
       <Project>{F69BC5DB-C4E2-4AA0-A622-AA0C20CB2E3F}</Project>

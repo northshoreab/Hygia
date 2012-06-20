@@ -13,13 +13,11 @@ namespace Hygia.API.Infrastructure
 {
     public class AccountFilter : ActionFilterAttribute
     {
-        private readonly IContainer _container;
         readonly IDocumentStore _documentStore;
         readonly IBus _bus;
 
         public AccountFilter(IContainer container)
         {
-            _container = container;
             _documentStore = container.GetInstance<IDocumentStore>();
             _bus = container.GetInstance<IBus>();
         }
@@ -32,23 +30,25 @@ namespace Hygia.API.Infrastructure
                 return;
 
             Guid account;
+            Guid system;
 
             if (!Guid.TryParse(actionContext.ActionArguments["account"] as string, out account))
                 throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.BadRequest));
 
+            Guid.TryParse(actionContext.ActionArguments["system"] as string, out system);
+
             controller.Account = account;
+            controller.System = system;
 
-            var apiRequest = _container.GetInstance<IApiRequest>();
-
-            apiRequest.EnvironmentId = controller.Account.ToString();
-
-            controller.Session = _documentStore.OpenSession(account.ToString());
+            controller.Session = _documentStore.OpenSession();
             controller.Bus = _bus;
+
+            //TODO: Add authorization for account and system
         }
 
         public override void OnActionExecuted(HttpActionExecutedContext actionExecutedContext)
         {
-            var controller = actionExecutedContext.ActionContext.ControllerContext.Controller as EnvironmentController;
+            var controller = actionExecutedContext.ActionContext.ControllerContext.Controller as AccountController;
 
             if (controller == null)
                 return;

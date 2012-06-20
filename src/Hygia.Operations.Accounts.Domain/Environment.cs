@@ -1,6 +1,6 @@
-using System;
+﻿using System;
 
-namespace Hygia.API.Models.Operations.Accounts
+namespace Hygia.Operations.Accounts.Domain
 {
     public class Environment
     {

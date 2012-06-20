@@ -1,16 +1,17 @@
 ﻿using System;
+using System.Linq;
 using System.Web.Http;
 using AttributeRouting;
 using AttributeRouting.Web.Http;
 using Hygia.API.Infrastructure;
-using Hygia.API.Models.Operations.Accounts;
 using Hygia.Operations.Accounts.Commands;
-using Environment = Hygia.API.Models.Operations.Accounts.Environment;
+using Hygia.Operations.Accounts.Domain;
+using Environment = Hygia.Operations.Accounts.Domain.Environment;
 
-namespace Hygia.API.Controllers.AccountManagement.Environments
+namespace Hygia.API.Controllers.AccountManagement.Systems.Environments
 {
     [DefaultHttpRouteConvention]
-    [RoutePrefix("api/accounts/{account}/environments")]
+    [RoutePrefix("api/accounts/{account:guid}/systems/{system:guid}/environments")]
     [Authorize]
     public class EnvironmentsController : AccountController
     {
@@ -25,11 +26,16 @@ namespace Hygia.API.Controllers.AccountManagement.Environments
                                       Name = name
                                   };
 
-            account.Environments.Add(environment);
+            account.Systems.Single(x => x.Id == System).Environments.Add(environment);
 
             Session.Store(account);
 
-            Bus.Send(new EnvironmentCreated {Environment = environment.Id});
+            Bus.Send(new EnvironmentCreated
+                         {
+                             Account = Account,
+                             System = System,
+                             Environment = environment.Id
+                         });
 
             return environment.AsResponseItem();
         }

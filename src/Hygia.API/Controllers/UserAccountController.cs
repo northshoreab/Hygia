@@ -5,11 +5,10 @@ using Raven.Client;
 
 namespace Hygia.API.Controllers
 {
-    public abstract class AccountController : ApiController
+    public abstract class UserAccountController : ApiController
     {
         public IDocumentSession Session { get; set; }
         public IBus Bus { get; set; }
-        public Guid Account { get; set; }
-        public Guid System { get; set; }
+        public Guid UserAccountId { get; set; }        
     }
 }

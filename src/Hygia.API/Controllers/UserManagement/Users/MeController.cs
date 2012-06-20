@@ -7,10 +7,10 @@ using Hygia.API.Infrastructure.Authentication;
 using Hygia.API.Models.UserManagement.UserAccounts;
 using Microsoft.IdentityModel.Claims;
 
-namespace Hygia.API.Controllers.UserManagement.UserAccounts
+namespace Hygia.API.Controllers.UserManagement.Users
 {
     [DefaultHttpRouteConvention]
-    [RoutePrefix("api/usermanagement/me")]
+    [RoutePrefix("api/users/me")]
     [Authorize]
     public class MeController : ApiController
     {

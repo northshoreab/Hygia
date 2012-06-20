@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 
 namespace Hygia.Operations.Accounts.Commands
 {
-    public class AccountCreated
+    public class SystemCreated
     {
-        public Guid UserAccountId { get; set; }
         public Guid AccountId { get; set; }
+        public Guid SystemId { get; set; }
     }
 }
