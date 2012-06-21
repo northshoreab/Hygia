@@ -12,7 +12,8 @@ namespace Hygia.API.Controllers.Version
     public class VersionController : ApiController
     {
         public string GetAll()
-        {            
+        {
+            var user = this.CurrentUser.UserId;
             var version = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location);
             return string.Format("{0}.{1}.{2}", version.FileMajorPart, version.FileMinorPart, version.FileBuildPart);
         }

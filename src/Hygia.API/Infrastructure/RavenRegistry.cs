@@ -4,7 +4,6 @@ using Raven.Client;
 using Raven.Client.Document;
 using StructureMap;
 using StructureMap.Configuration.DSL;
-using StructureMap.Graph;
 
 namespace Hygia.API.Infrastructure
 {
@@ -31,6 +30,7 @@ namespace Hygia.API.Infrastructure
                                         });
         }
 
+      
         static IDocumentSession OpenSession(IContext ctx)
         {
             var currentStore = ctx.GetInstance<IDocumentStore>();

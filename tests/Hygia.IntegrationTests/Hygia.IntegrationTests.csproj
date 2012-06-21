@@ -101,6 +101,10 @@
       <Project>{C4F880A3-653F-4CC9-9333-DBE2CB4EFEF9}</Project>
       <Name>Hygia.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\src\Hygia.UserManagement.Domain\Hygia.UserManagement.Domain.csproj">
+      <Project>{E271A72E-C6BF-4313-99A2-85D4C79154CF}</Project>
+      <Name>Hygia.UserManagement.Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Hygia.Drivers.NServiceBus\Hygia.Drivers.NServiceBus.csproj">
       <Project>{0336B64B-3535-4D62-A70A-ED6284945BAC}</Project>
       <Name>Hygia.Drivers.NServiceBus</Name>

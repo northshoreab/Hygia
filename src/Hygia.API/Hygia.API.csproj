@@ -225,7 +225,7 @@
     <Compile Include="App_Start\AttributeRoutingHttp.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\SecurityConfig.cs" />
-    <Compile Include="Infrastructure\Authentication\AuthenticationUser.cs" />
+    <Compile Include="Infrastructure\Authentication\BasicAuthenticationCredentials.cs" />
     <Compile Include="Infrastructure\Authentication\ClaimsIdentityExtensions.cs" />
     <Compile Include="Infrastructure\Authentication\Constants.cs" />
     <Compile Include="Infrastructure\Authentication\ClaimsTransformer.cs" />
@@ -251,6 +251,7 @@
     <Compile Include="Infrastructure\MetadataHandler.cs" />
     <Compile Include="Infrastructure\EnvironmentFilter.cs" />
     <Compile Include="Infrastructure\UserAccountFilter.cs" />
+    <Compile Include="Infrastructure\UserContextRegistry.cs" />
     <Compile Include="Models\CustomQueryableAttribute.cs" />
     <Compile Include="Models\FaultManagement\Faults\Fault.cs" />
     <Compile Include="Models\FaultManagement\Faults\FaultExtensions.cs" />

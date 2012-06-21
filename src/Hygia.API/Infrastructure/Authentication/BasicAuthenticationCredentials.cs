@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Hygia.API.Infrastructure.Authentication
 {
-    public class AuthenticationUser
+    public class BasicAuthenticationCredentials
     {
         public string Name { get; set; }
         public string Id { get; set; }
@@ -30,7 +30,7 @@ namespace Hygia.API.Infrastructure.Authentication
         }
 
 
-        public AuthenticationUser SetPassword(string pwd)
+        public BasicAuthenticationCredentials SetPassword(string pwd)
         {
             HashedPassword = GetHashedPassword(pwd);
             return this;

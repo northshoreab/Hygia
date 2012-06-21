@@ -12,7 +12,6 @@ using Raven.Client.Document;
 using Raven.Client.Embedded;
 using Thinktecture.IdentityModel.Constants;
 using Thinktecture.IdentityModel.Tokens;
-using AuthenticationUser = Hygia.API.Infrastructure.Authentication.AuthenticationUser;
 
 namespace Hygia.APITests
 {
@@ -63,7 +62,7 @@ namespace Hygia.APITests
 
                                      var session = store.OpenSession();
 
-                                     var user = new AuthenticationUser
+                                     var user = new BasicAuthenticationCredentials
                                                     {
                                                         Admin = false,
                                                         AllowedDatabases = new[] {"*"},

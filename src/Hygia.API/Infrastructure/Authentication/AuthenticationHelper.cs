@@ -18,7 +18,7 @@ namespace Hygia.API.Infrastructure.Authentication
         {
             var session = ObjectFactory.GetInstance<IDocumentStore>().OpenSession();
 
-            return session.Query<AuthenticationUser>().Single(x => x.Name == userName).ValidatePassword(password);
+            return session.Query<BasicAuthenticationCredentials>().Single(x => x.Name == userName).ValidatePassword(password);
         }
 
         public static ClaimsIdentity GetApiKeyIdentity(string key)
@@ -31,23 +31,26 @@ namespace Hygia.API.Infrastructure.Authentication
             return null;
         }
 
-        public static string CreateJsonWebToken(string username, string accessToken)
+      
+        
+        public static string CreateJsonWebToken(UserManagement.Domain.UserAccount user,string accessToken)
         {
             var jsonWebToken = new JsonWebToken
-                                   {
-                                       Header = new JwtHeader
+            {
+                Header = new JwtHeader
+                {
+                    SignatureAlgorithm = JwtConstants.SignatureAlgorithms.HMACSHA256,
+                    SigningCredentials = new HmacSigningCredentials(Constants.JWTKeyEncoded),
+                },
+                Issuer = "http://watchr.se",
+                Audience = new Uri(Constants.Realm),
+                Claims = new List<Claim>
                                                     {
-                                                        SignatureAlgorithm = JwtConstants.SignatureAlgorithms.HMACSHA256,
-                                                        SigningCredentials = new HmacSigningCredentials(Constants.JWTKeyEncoded),
-                                                    },
-                                       Issuer = "http://watchr.se",
-                                       Audience = new Uri(Constants.Realm),
-                                       Claims = new List<Claim>
-                                                    {
-                                                        new Claim(ClaimTypes.Name, username),
+                                                        new Claim(ClaimTypes.Name, user.Id.ToString()),
+                                                        new Claim(ClaimTypes.PrimarySid, user.Id.ToString()),
                                                         new Claim(Constants.ClaimTypes.GithubAccessToken, accessToken),
                                                     },
-                                   };
+            };
 
             return new JsonWebTokenHandler().WriteToken(jsonWebToken);
         }

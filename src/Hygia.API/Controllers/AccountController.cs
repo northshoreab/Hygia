@@ -5,6 +5,8 @@ using Raven.Client;
 
 namespace Hygia.API.Controllers
 {
+    using Microsoft.IdentityModel.Claims;
+
     public abstract class AccountController : ApiController
     {
         public Guid Account { get; set; }
@@ -16,11 +18,13 @@ namespace Hygia.API.Controllers
     {
         public IDocumentSession Session { get; set; }
         public IBus Bus { get; set; }
-        public IUserContext CurrentUser { get; set; }
+        public UserContext CurrentUser { get; set; }
     }
 
-    public interface IUserContext
+    public class UserContext
     {
-        Guid UserId { get; set; }
+        public Guid UserId { get; set; }
+
+        public IClaimsIdentity ClaimsIdentity { get; set; }
     }
 }

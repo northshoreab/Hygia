@@ -23,14 +23,16 @@ namespace Hygia.API.Infrastructure.Authentication
          
             if(action != Action.NotAuthentication)
             {
-                string userName;
-                string accessToken;
-
+                UserAccount userAccount;
+                string accessToken = "";
                 //todo - get rid of this
                 if(action == Action.Backdoor)
                 {
-                    userName = "administrator";
-                    accessToken = "";
+                    userAccount = new UserAccount
+                                      {
+                                          Id = Guid.NewGuid(),
+                                          UserName = "backdoor"
+                                      };
                 }
                 else
                 {
@@ -39,24 +41,30 @@ namespace Hygia.API.Infrastructure.Authentication
 
                     var githubUser = GithubHelper.GetGithubUser(accessToken);
 
-                    userName = githubUser.name;
-
+                  
                     if (action == Action.Login)
                     {
                         var session = ObjectFactory.GetInstance<IDocumentStore>().OpenSession();
 
-                        var account = session.Query<UserAccount>().SingleOrDefault(u => u.IdentityProviders.Any(x => x.Issuer == "github.com" && x.UserId == githubUser.id));
+                        userAccount = session.Query<UserAccount>().SingleOrDefault(u => u.IdentityProviders.Any(x => x.Issuer == "github.com" && x.UserId == githubUser.id));
 
-                        if (account == null)
+                        if (userAccount == null)
                             throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.Unauthorized));
-
-                        userName = account.UserName;
+                    }
+                    else
+                    {
+                        userAccount = new UserAccount
+                                          {
+                                              Id = Guid.Empty,
+                                              UserName = githubUser.login
+                                          };
                     }
 
                    
                     
                 }
-                var jwt = AuthenticationHelper.CreateJsonWebToken(userName, accessToken);
+                var jwt = AuthenticationHelper.CreateJsonWebToken(userAccount, accessToken);
+
 
                 request.Headers.Authorization = new AuthenticationHeaderValue("JWT", jwt);
             }
