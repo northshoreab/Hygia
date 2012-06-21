@@ -16,7 +16,7 @@ namespace Hygia.IntegrationTests.Authentication
                                  {
 
                                      var jwt = AuthenticationHelper.CreateJsonWebToken("test", "test");
-                                     var client = new HttpClient {BaseAddress = new Uri("http://localhost/watchr/")};
+                                     var client = new HttpClient { BaseAddress = new Uri("http://localhost:38105/") };
                                      client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("JWT", jwt);
 
                                      response = client.GetAsync("api/faultmanagement").Result;

@@ -13,10 +13,10 @@
     <RootNamespace>Hygia.API</RootNamespace>
     <AssemblyName>Hygia.API</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <UseIISExpress>false</UseIISExpress>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\hygia\</SolutionDir>
     <RestorePackages>true</RestorePackages>
+    <UseIISExpress>false</UseIISExpress>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -215,12 +215,10 @@
   <ItemGroup>
     <Compile Include="ApiBootstrapper.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\AccountManagement\AccountsController.cs" />
-    <Compile Include="Controllers\AccountManagement\Systems\SystemsController.cs" />
+    <Compile Include="Controllers\Systems\SystemsController.cs" />
     <Compile Include="Controllers\EnvironmentController.cs" />
-    <Compile Include="Controllers\AccountManagement\Systems\Environments\EnvironmentsController.cs" />
+    <Compile Include="Controllers\Systems\Environments\CreateEnvironmentController.cs" />
     <Compile Include="Controllers\UserAccountController.cs" />
-    <Compile Include="Controllers\UserManagement\Users\Accounts\AccountsAccountController.cs" />
     <Compile Include="Controllers\WatchRController.cs" />
     <Compile Include="Infrastructure\AccountFilter.cs" />
     <Compile Include="Infrastructure\ApiRequest.cs" />
@@ -246,7 +244,7 @@
     <Compile Include="Controllers\RootController.cs" />
     <Compile Include="Controllers\Operations\Authentication\LoginWithGithubController.cs" />
     <Compile Include="Controllers\Operations\Authentication\SignupWithGithubController.cs" />
-    <Compile Include="Controllers\UserManagement\Users\MeController.cs" />
+    <Compile Include="Controllers\UserManagement\UserAccounts\MeController.cs" />
     <Compile Include="Infrastructure\Authentication\GitHubLoginHandler.cs" />
     <Compile Include="Extensions\HttpRequestMessageExtensions.cs" />
     <Compile Include="Infrastructure\IApiRequest.cs" />
@@ -395,11 +393,12 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
-          <AutoAssignPort>False</AutoAssignPort>
-          <DevelopmentServerPort>61000</DevelopmentServerPort>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>38105</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>https://localhost/watchr</IISUrl>
+          <IISUrl>
+          </IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

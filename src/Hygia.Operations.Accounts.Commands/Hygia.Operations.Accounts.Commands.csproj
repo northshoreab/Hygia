@@ -40,7 +40,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccountCreated.cs" />
     <Compile Include="EnvironmentCreated.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SystemCreated.cs" />

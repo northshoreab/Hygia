@@ -1,14 +1,14 @@
-﻿using System.Net;
-using System.Net.Http;
-using System.Web.Http;
-using AttributeRouting;
-using AttributeRouting.Web.Http;
-using Hygia.API.Infrastructure.Authentication;
-using Hygia.API.Models.UserManagement.UserAccounts;
-using Microsoft.IdentityModel.Claims;
-
-namespace Hygia.API.Controllers.UserManagement.Users
+﻿namespace Hygia.API.Controllers.UserManagement.UserAccounts
 {
+    using System.Net;
+    using System.Net.Http;
+    using System.Web.Http;
+    using AttributeRouting;
+    using AttributeRouting.Web.Http;
+    using Hygia.API.Infrastructure.Authentication;
+    using Hygia.API.Models.UserManagement.UserAccounts;
+    using Microsoft.IdentityModel.Claims;
+
     [DefaultHttpRouteConvention]
     [RoutePrefix("api/users/me")]
     [Authorize]

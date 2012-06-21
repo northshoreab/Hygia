@@ -14,4 +14,15 @@ namespace Hygia.API.Controllers.Operations.Authentication
             return Request.Headers.Authorization.Parameter;
         }
     }
+
+    [DefaultHttpRouteConvention]
+    [RoutePrefix("api/login/backdoor")]
+    [Authorize]
+    public class LoginWithBackdoorController : ApiController
+    {
+        public string Get()
+        {
+            return Request.Headers.Authorization.Parameter;
+        }
+    }
 }
