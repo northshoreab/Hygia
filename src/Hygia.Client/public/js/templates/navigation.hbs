@@ -1,0 +1,32 @@
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <a class="brand" href="#">{{projectName}}</a>
+      <div class="nav-collapse">
+        <ul class="nav">
+          {{#each links}}
+            <li class="active"><a href="/{{this}}">{{this}}</a></li>
+          {{/each}}                        
+        </ul>
+        <ul class="nav pull-right">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <a href="#">Action</a>
+              <a href="#">Action</a>
+              <a href="#">Action</a>
+              <a href="#">Action</a>
+              <a href="#">Action</a>
+              <a href="#">Action</a>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
