@@ -1,17 +1,16 @@
 ﻿<div data-bind="with: fault">
     <div class="row">
-        <h4 class="span7">
-            <span>Fault: </span>
-            <span data-bind="text: title"></span>
-        </h4>
-
-        <div class="btn-group">            
-            <a class="btn" href="#">Retry</a>
-            <a class="btn" href="#">Archive</a>
-        </div>          
+        <span class="muted span8" data-bind="text: timeSentFull"></span>
+        <div class="btn-group span4">
+            <a class="btn btn-primary" href="#"><i class="icon-repeat icon-white"></i> Retry</a>
+            <a class="btn btn-primary" href="#"><i class="icon-briefcase icon-white"></i> Archive</a>
+        </div>  
     </div>
     <div class="row">
-        <div class="span6">
+        <h4 class="span12" data-bind="text: title"></h4>     
+    </div>
+    <div class="row">
+        <div class="span12">
             <span data-bind="if: enclosedMessageTypes().length">
                 <span class="label label-info" data-bind="text: enclosedMessageTypes"></span>
             </span>
@@ -25,14 +24,10 @@
     </div>
     <div class="row">
         <strong class="span2">Fault number</strong>
-        <span class="span5" data-bind="text: faultNumber"></span>
+        <span class="span5" data-bind="text: faultNumber"></span>            
     </div>
     <div class="row">
         <strong class="span2">Description</strong>
         <span class="span5" data-bind="text: exceptionMessage"></span>
-    </div>
-    <div class="row">
-        <strong class="span2">Time sent</strong>
-        <time class="span5" data-bind="text: timeSent"></time>
     </div>
 </div>

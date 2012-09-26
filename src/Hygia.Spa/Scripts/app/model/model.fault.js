@@ -11,10 +11,13 @@
                 self.title = ko.observable();
                 self.exceptionMessage = ko.observable();
                 self.timeSent = ko.observable();
+                self.timeSentFull = ko.computed(function() {
+                    return self.timeSent() ? moment(self.timeSent()).format('YYYY-MM-DD H:mm:ss') : '';
+                });
                 self.retries = ko.observable();
                 self.enclosedMessageTypes = ko.observable();
                 self.bussinessService = ko.observable();
-                self.url = ko.computed(function() {
+                self.url = ko.computed(function () {
                     return '#/faults/' + self.id();
                 });
                 return self;

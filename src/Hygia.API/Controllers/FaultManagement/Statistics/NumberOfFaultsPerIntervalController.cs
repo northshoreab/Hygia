@@ -6,7 +6,6 @@ using AttributeRouting;
 using AttributeRouting.Web.Http;
 using Hygia.API.Models.FaultManagement.Statistics;
 using Hygia.FaultManagement.Domain;
-using Raven.Client;
 using Raven.Client.Indexes;
 using Raven.Client.Linq;
 

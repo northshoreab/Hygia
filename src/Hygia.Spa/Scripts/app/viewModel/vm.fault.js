@@ -4,6 +4,7 @@
         var fault = ko.observable(),
             currentFaultId = ko.observable(),
             faultTemplate = 'fault.view',
+            
             canLeave = function () {
                 return true;
             },
