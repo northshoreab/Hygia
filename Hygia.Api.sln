@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hygia.API", "src\Hygia.Api\Hygia.API.csproj", "{68A2EDA5-D69B-49E9-B965-F2F5BAE69618}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hygia.API", "src\Hygia.API\Hygia.API.csproj", "{68A2EDA5-D69B-49E9-B965-F2F5BAE69618}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hygia.Operations", "src\Hygia.Operations\Hygia.Operations.csproj", "{5C10F8AE-3AFE-4B51-B6A3-79AEE26A166F}"
 EndProject
@@ -63,6 +63,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{433A03
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hygia.Operations.Accounts.Domain", "src\Hygia.Operations.Accounts.Domain\Hygia.Operations.Accounts.Domain.csproj", "{D5DA8A0F-0621-492B-BD1E-BAC590FE143B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hygia.Spa", "src\Hygia.Spa\Hygia.Spa.csproj", "{BE7C3F5B-EFB9-4979-A7A2-1369B3D2A96F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -154,6 +156,10 @@ Global
 		{D5DA8A0F-0621-492B-BD1E-BAC590FE143B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D5DA8A0F-0621-492B-BD1E-BAC590FE143B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D5DA8A0F-0621-492B-BD1E-BAC590FE143B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE7C3F5B-EFB9-4979-A7A2-1369B3D2A96F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE7C3F5B-EFB9-4979-A7A2-1369B3D2A96F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE7C3F5B-EFB9-4979-A7A2-1369B3D2A96F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE7C3F5B-EFB9-4979-A7A2-1369B3D2A96F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
