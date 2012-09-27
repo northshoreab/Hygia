@@ -24,6 +24,20 @@
                     callback: vm.fault.activate,
                     group: '.route-top'
                 },
+                {
+                    view: config.viewIds.signUp,
+                    route: config.hashes.signUp,
+                    title: 'Sign Up',
+                    callback: vm.signUp.activate,
+                    group: '.route-top'
+                },
+                {
+                    view: config.viewIds.faultOverview,
+                    route: config.hashes.faultOverview,
+                    title: 'Fault Overview',
+                    callback: vm.faultOverview.activate,
+                    group: '.route-top'
+                },                       
                 // Session details routes
 
 

@@ -8,6 +8,8 @@
                 ko.applyBindings(vm.shell, getView(ids.shellTop));
                 ko.applyBindings(vm.faults, getView(ids.faults));
                 ko.applyBindings(vm.fault, getView(ids.fault));
+                ko.applyBindings(vm.signUp, getView(ids.signUp));
+                ko.applyBindings(vm.faultOverview, getView(ids.faultOverview));
             },
 
             getView = function (viewName) {

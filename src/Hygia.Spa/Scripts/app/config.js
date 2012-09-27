@@ -8,10 +8,8 @@
 
             hashes = {
                 faults: '#/faults',
-//                favorites: '#/favorites',
-//                favoritesByDate: '#/favorites/date',
-//                sessions: '#/sessions',
-//                speakers: '#/speakers'
+                signUp: '#/signup',
+                faultOverview: '#/faultoverview'
             },
             //logger = toastr, // use toastr for the logger
             messages = {
@@ -38,12 +36,9 @@
             viewIds = {
                 faults: '#faults-view',
                 fault: '#fault-view',
-//                favorites: '#favorites-view',
-//                session: '#session-view',
-//                sessions: '#sessions-view',
-                shellTop: '#shellTop-view'
-//                speaker: '#speaker-view',
-//                speakers: '#speakers-view'
+                signUp: '#signup-view',
+                shellTop: '#shellTop-view',
+                faultOverview: '#faultoverview-view'
             },
 
 //            toasts = {

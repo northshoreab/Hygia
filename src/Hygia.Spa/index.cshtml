@@ -40,7 +40,9 @@
                     <div class="nav-collapse">
                         <ul class="nav">
                             <li><a href="#">Home</a></li>
-                            <li><a href="#/faults">Faults</a></li>                            
+                            <li><a href="#/faults">Faults</a></li>
+                            <li><a href="#/faultoverview">Fault Overview</a></li>
+                            <li><a href="#/signup">Sign Up</a></li>
                         </ul>
                     </div>
                 </div>
@@ -50,6 +52,8 @@
     <section class="main">
         @RenderPage("Views/faults.cshtml")
         @RenderPage("Views/fault.cshtml")
+        @RenderPage("Views/signup.cshtml")
+        @RenderPage("Views/faultoverview.cshtml")
     </section>
 
     @Scripts.Render(

@@ -47,7 +47,7 @@ namespace Hygia.Spa.App_Start
                     "~/Scripts/lib/knockout.validation.js",
                     "~/Scripts/lib/koExternalTemplateEngine.js",
                     "~/Scripts/lib/bootstrap.js",
-
+                    "~/Scripts/lib/highcharts.js",
                     // Other 3rd party libraries
                     "~/Scripts/lib/underscore.js",
                     "~/Scripts/lib/moment.js",
