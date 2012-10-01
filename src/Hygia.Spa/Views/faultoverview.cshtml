@@ -1,3 +1,16 @@
 <section id="faultoverview-view" class="view">
-    <div data-bind="template: {name: faultOverviewTemplate}"></div> 
+    <div class="row">
+        <div class="well well-small span2" data-bind="template: {name: faultSummaryTemplate}" style="height: 300px; min-width: 200px;"></div>
+        <div id="wijbarchart" class="well well-small span5" data-bind="wijbarchart: {stacked: stacked, seriesList: seriesList}" style="height: 300px; min-width: 400px;" ></div>
+        <div id="wijlinechart" class="well well-small span5" data-bind="wijlinechart: {seriesList: seriesList}" style="height: 300px; min-width: 400px;"></div>
+    </div>
+    <div class="row">
+        <div class="well well-small span12">
+            <div data-bind="template: {name: 'faults.view', foreach: visibleFaults}"></div>
+            <ul class="pager">
+                <li class="previous" data-bind="css: {disabled: !canMovePrevious()}"><a href="#" data-bind="click: previousPage">Previous</a></li>
+                <li class="next" data-bind="css: {disabled: !canMoveNext()}"><a href="#" data-bind="click: nextPage">Next</a></li>
+            </ul>
+        </div>
+    </div>
 </section>

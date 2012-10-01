@@ -18,7 +18,6 @@
         define('sammy', [], function () { return root.Sammy; });
         //define('toastr', [], function () { return root.toastr; });
         define('underscore', [], function () { return root._; });
-        define('highcharts', [], function () { return root.Highcharts; });
     }
 
     function loadPluginsAndBoot() {

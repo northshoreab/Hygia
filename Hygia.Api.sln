@@ -1,13 +1,30 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hygia.API", "src\Hygia.API\Hygia.API.csproj", "{68A2EDA5-D69B-49E9-B965-F2F5BAE69618}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hygia.Operations", "src\Hygia.Operations\Hygia.Operations.csproj", "{5C10F8AE-3AFE-4B51-B6A3-79AEE26A166F}"
-EndProject
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Operations", "Operations", "{BB5B542D-8B5D-46E3-897D-EF7F3D4BE59F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FaultManagement", "FaultManagement", "{FBAA2A34-3446-46E5-8DDA-6964D4D2786B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{B795DA21-88A7-4BEA-8165-069CE3A6F41A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Notifications", "Notifications", "{7B1CCC27-74D9-44EB-8C80-8F919F82D49A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Communication", "Communication", "{B8929125-8C51-4737-BE04-62DDD3A67B60}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LogicalMonitoring", "LogicalMonitoring", "{6549891B-C70E-48C7-972F-859701194CF7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".Core", ".Core", "{5C6738C2-3561-4D7F-AADC-6CBF4B94E68D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UserManagement", "UserManagement", "{8675B6C7-CAE8-4A26-9C57-A922F68786EB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{433A0316-1B0D-45E0-8331-7F4C58381066}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\packages.config = .nuget\packages.config
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hygia.API", "src\Hygia.API\Hygia.API.csproj", "{68A2EDA5-D69B-49E9-B965-F2F5BAE69618}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hygia.Operations", "src\Hygia.Operations\Hygia.Operations.csproj", "{5C10F8AE-3AFE-4B51-B6A3-79AEE26A166F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hygia.FaultManagement.Domain", "src\Hygia.FaultManagement.Domain\Hygia.FaultManagement.Domain.csproj", "{FE5A6411-D13A-4252-9E95-BE775D172560}"
 EndProject
@@ -15,21 +32,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hygia.IntegrationTests", "t
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hygia.Drivers.NServiceBus", "tests\Hygia.Drivers.NServiceBus\Hygia.Drivers.NServiceBus.csproj", "{0336B64B-3535-4D62-A70A-ED6284945BAC}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{B795DA21-88A7-4BEA-8165-069CE3A6F41A}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Notifications", "Notifications", "{7B1CCC27-74D9-44EB-8C80-8F919F82D49A}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hygia.Notifications.Domain", "src\Hygia.Notifications.Domain\Hygia.Notifications.Domain.csproj", "{90281B60-6D3F-479D-8449-1F25E81B4991}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Communication", "Communication", "{B8929125-8C51-4737-BE04-62DDD3A67B60}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hygia.Operations.Communication.Domain", "src\Hygia.Operations.Communication.Domain\Hygia.Operations.Communication.Domain.csproj", "{BD2F02FB-8605-42CF-B974-1907CE54C8CE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hygia.Operations.Communication", "src\Hygia.Operations.Communication\Hygia.Operations.Communication.csproj", "{7DC1D128-B3F6-400B-9271-B40821DC9FE3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hygia.FaultManagement.Commands", "src\Hygia.FaultManagement.Commands\Hygia.FaultManagement.Commands.csproj", "{A18663E7-36E5-4BCC-B8F3-1E4A62EA6306}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LogicalMonitoring", "LogicalMonitoring", "{6549891B-C70E-48C7-972F-859701194CF7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hygia.LogicalMonitoring", "src\Hygia.LogicalMonitoring\Hygia.LogicalMonitoring.csproj", "{ACD5D3D1-675A-49EF-8CF4-7E27528CFAC1}"
 EndProject
@@ -41,26 +50,17 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hygia.Operations.AuditUploa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hygia.Operations.Events", "src\Hygia.Operations.Events\Hygia.Operations.Events.csproj", "{A1BD8BAC-28CC-4169-B73E-B13C22132DFB}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".Core", ".Core", "{5C6738C2-3561-4D7F-AADC-6CBF4B94E68D}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hygia.Operations.Email.Commands", "src\Hygia.Operations.Email.Commands\Hygia.Operations.Email.Commands.csproj", "{8C8975BF-302A-4462-9EDF-1CBA03270C57}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hygia.Operations.AuditUploads.Commands", "src\Hygia.Operations.AuditUploads.Commands\Hygia.Operations.AuditUploads.Commands.csproj", "{F69BC5DB-C4E2-4AA0-A622-AA0C20CB2E3F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hygia.Operations.Faults.Commands", "src\Hygia.Operations.Faults.Commands\Hygia.Operations.Faults.Commands.csproj", "{C3E15AE4-E527-48FB-B653-EA403FF01F25}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UserManagement", "UserManagement", "{8675B6C7-CAE8-4A26-9C57-A922F68786EB}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hygia.UserManagement.Domain", "src\Hygia.UserManagement.Domain\Hygia.UserManagement.Domain.csproj", "{E271A72E-C6BF-4313-99A2-85D4C79154CF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hygia.Operations.Accounts.Commands", "src\Hygia.Operations.Accounts.Commands\Hygia.Operations.Accounts.Commands.csproj", "{B5EAE06C-EBD5-4078-9CFE-0699E0E31931}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hygia.ApiTests", "src\Hygia.APITests\Hygia.ApiTests.csproj", "{DA19ACB7-F8A6-491A-9BE1-D1B0F5244CFB}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{433A0316-1B0D-45E0-8331-7F4C58381066}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\packages.config = .nuget\packages.config
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hygia.Operations.Accounts.Domain", "src\Hygia.Operations.Accounts.Domain\Hygia.Operations.Accounts.Domain.csproj", "{D5DA8A0F-0621-492B-BD1E-BAC590FE143B}"
 EndProject
@@ -165,8 +165,8 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{5C10F8AE-3AFE-4B51-B6A3-79AEE26A166F} = {BB5B542D-8B5D-46E3-897D-EF7F3D4BE59F}
 		{B8929125-8C51-4737-BE04-62DDD3A67B60} = {BB5B542D-8B5D-46E3-897D-EF7F3D4BE59F}
+		{5C10F8AE-3AFE-4B51-B6A3-79AEE26A166F} = {BB5B542D-8B5D-46E3-897D-EF7F3D4BE59F}
 		{0913F8B5-DA27-4B5C-9E13-682A8555BCE3} = {BB5B542D-8B5D-46E3-897D-EF7F3D4BE59F}
 		{A1BD8BAC-28CC-4169-B73E-B13C22132DFB} = {BB5B542D-8B5D-46E3-897D-EF7F3D4BE59F}
 		{8C8975BF-302A-4462-9EDF-1CBA03270C57} = {BB5B542D-8B5D-46E3-897D-EF7F3D4BE59F}
@@ -176,8 +176,8 @@ Global
 		{D5DA8A0F-0621-492B-BD1E-BAC590FE143B} = {BB5B542D-8B5D-46E3-897D-EF7F3D4BE59F}
 		{FE5A6411-D13A-4252-9E95-BE775D172560} = {FBAA2A34-3446-46E5-8DDA-6964D4D2786B}
 		{A18663E7-36E5-4BCC-B8F3-1E4A62EA6306} = {FBAA2A34-3446-46E5-8DDA-6964D4D2786B}
-		{0336B64B-3535-4D62-A70A-ED6284945BAC} = {B795DA21-88A7-4BEA-8165-069CE3A6F41A}
 		{09DE4E5E-4672-4FEF-AB52-11B65536819A} = {B795DA21-88A7-4BEA-8165-069CE3A6F41A}
+		{0336B64B-3535-4D62-A70A-ED6284945BAC} = {B795DA21-88A7-4BEA-8165-069CE3A6F41A}
 		{DA19ACB7-F8A6-491A-9BE1-D1B0F5244CFB} = {B795DA21-88A7-4BEA-8165-069CE3A6F41A}
 		{90281B60-6D3F-479D-8449-1F25E81B4991} = {7B1CCC27-74D9-44EB-8C80-8F919F82D49A}
 		{6AEE8B0C-ED5D-4B25-B863-FB4A47B507CC} = {7B1CCC27-74D9-44EB-8C80-8F919F82D49A}
