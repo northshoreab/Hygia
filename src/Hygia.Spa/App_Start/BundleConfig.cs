@@ -27,6 +27,24 @@ namespace Hygia.Spa.App_Start
                 "//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js")
                 .Include("~/Scripts/lib/jquery-{version}.js"));
 
+            // jQuery UI
+            bundles.Add(new ScriptBundle("~/bundles/jqueryui",
+                "//ajax.aspnetcdn.com/ajax/jquery.ui/1.8.23/jquery-ui.min.js")
+                .Include("~/Scripts/lib/jquery-ui-{version}.js"));
+
+            // Wijmo
+            bundles.Add(new ScriptBundle("~/bundles/wijmocomplete",
+                "http://cdn.wijmo.com/jquery.wijmo-complete.all.2.2.1.min.js")
+                .Include("~/Scripts/lib/jquery.wijmo-complete.all.2.2.1.min.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/wijmoopen",
+                "http://cdn.wijmo.com/jquery.wijmo-open.all.2.2.1.min.js")
+                .Include("~/Scripts/lib/jquery.wijmo-open.all.2.2.1.min.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/wijmoknockout",
+                "http://cdn.wijmo.com/external/knockout.wijmo.js")
+                .Include("~/Scripts/lib/knockout.wijmo.js"));
+
             // 3rd Party JavaScript files
             bundles.Add(new ScriptBundle("~/bundles/jsextlibs")
                 //.IncludeDirectory("~/Scripts/lib", "*.js", searchSubdirectories: false));
@@ -48,6 +66,7 @@ namespace Hygia.Spa.App_Start
                     "~/Scripts/lib/koExternalTemplateEngine.js",
                     "~/Scripts/lib/bootstrap.js",
                     "~/Scripts/lib/highcharts.js",
+                    "~/Scripts/lib/jqPlot/jquery.jqplot.min.js",
                     // Other 3rd party libraries
                     "~/Scripts/lib/underscore.js",
                     "~/Scripts/lib/moment.js",
@@ -70,10 +89,19 @@ namespace Hygia.Spa.App_Start
                 "~/Content/main.css",
                 "~/Content/normalize.css",
                 "~/Content/bootstrap.css",
-                "~/Content/bootstrap-resonsive.css"
+                "~/Content/bootstrap-resonsive.css",
+                "~/Scripts/lib/jqPlot/jquery.jqplot.css"
                 //"~/Content/toastr.css",
                 //"~/Content/toastr-responsive.css"
                 ));
+
+            bundles.Add(new StyleBundle("~/Content/css/wijmocomplete",
+                "http://cdn.wijmo.com/jquery.wijmo-complete.all.2.2.1.min.css")
+                .Include("~/Content/jquery.wijmo-complete.all.2.2.1.min.css"));
+
+            bundles.Add(new StyleBundle("~/Content/css/wijmoaristo",
+                "http://cdn.wijmo.com/themes/aristo/jquery-wijmo.css")
+                .Include("~/Content/jquery-wijmo.css"));
 
             // Custom LESS files
             //bundles.Add(new Bundle("~/Content/Less", new LessTransform(), new CssMinify())

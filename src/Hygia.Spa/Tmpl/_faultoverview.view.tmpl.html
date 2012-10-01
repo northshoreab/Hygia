@@ -9,193 +9,195 @@
         <strong>Average fault lead time:</strong><span>2 mins</span>
         <p />           
     </div>
-    <div id="line" class="span8" style="width: 400px; height: 300px"></div>
-    <div id="container" class="span8" style="width: 400px; height: 300px;"></div>
+    <div id="wijbarchart" class="well span4" data-bind="wijbarchart: {stacked: stacked, seriesList: seriesList}" style="width: 400px; height: 300px" ></div>
+    <div id="wijlinechart" class="well span4" data-bind="wijlinechart: {seriesList: seriesList}" style="width: 400px; height: 300px" ></div>
+<!--    <div id="line" class="span8" style="width: 400px; height: 300px" ></div>
+    <div id="container" class="span8" style="width: 400px; height: 300px;"></div>-->
 </div>
 <!--<script>
-$(function () {
-    var chart;
-    $(document).ready(function() {
-        chart = new Highcharts.Chart({
-            chart: {
-                renderTo: 'line',
-                type: 'line'
-            },
-            title: null,
-            xAxis: {
-                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-            },
-            yAxis: {
-                title: {
-                    text: 'Messages per month'
-                }
-            },
-            tooltip: {
-                enabled: false,
-                formatter: function() {
-                    return '<b>'+ this.series.name +'</b><br/>'+
-                        this.x +': '+ this.y +'°C';
-                }
-            },
-            plotOptions: {
-                line: {
-                    dataLabels: {
-                        enabled: true
+        $(function () {
+            var chart;
+            $(document).ready(function() {
+                chart = new Highcharts.Chart({
+                    chart: {
+                        renderTo: 'line',
+                        type: 'line'
                     },
-                    enableMouseTracking: false
-                }
-            },
-            series: [{
-                name: 'OrderPlace',
-                data: [7.0, 6.9, 9.5, 14.5, 18.4, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
-            }, {
-                name: 'SignUp',
-                data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
-            }]
+                    title: null,
+                    xAxis: {
+                        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'Messages per month'
+                        }
+                    },
+                    tooltip: {
+                        enabled: false,
+                        formatter: function() {
+                            return '<b>'+ this.series.name +'</b><br/>'+
+                                this.x +': '+ this.y +'°C';
+                        }
+                    },
+                    plotOptions: {
+                        line: {
+                            dataLabels: {
+                                enabled: true
+                            },
+                            enableMouseTracking: false
+                        }
+                    },
+                    series: [{
+                            name: 'OrderPlace',
+                            data: [7.0, 6.9, 9.5, 14.5, 18.4, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+                        }, {
+                            name: 'SignUp',
+                            data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
+                        }]
+                });
+            });
+    
         });
-    });
-    
-});
 
-$(function () {
-    var chart;
-    $(document).ready(function() {
+        $(function () {
+            var chart;
+            $(document).ready(function() {
     
-        var colors = Highcharts.getOptions().colors,
-            categories = ['OrderPlace', 'SignUp', 'Chrome', 'Safari', 'Opera'],
-            name = 'Browser brands',
-            data = [{
-                    y: 55.11,
-                    color: colors[0],
-                    drilldown: {
-                        name: 'MSIE versions',
-                        categories: ['MSIE 6.0', 'MSIE 7.0', 'MSIE 8.0', 'MSIE 9.0'],
-                        data: [10.85, 7.35, 33.06, 2.81],
-                        color: colors[0]
-                    }
-                }, {
-                    y: 21.63,
-                    color: colors[1],
-                    drilldown: {
-                        name: 'Firefox versions',
-                        categories: ['Firefox 2.0', 'Firefox 3.0', 'Firefox 3.5', 'Firefox 3.6', 'Firefox 4.0'],
-                        data: [0.20, 0.83, 1.58, 13.12, 5.43],
-                        color: colors[1]
-                    }
-                }, {
-                    y: 11.94,
-                    color: colors[2],
-                    drilldown: {
-                        name: 'Chrome versions',
-                        categories: ['Chrome 5.0', 'Chrome 6.0', 'Chrome 7.0', 'Chrome 8.0', 'Chrome 9.0',
-                            'Chrome 10.0', 'Chrome 11.0', 'Chrome 12.0'],
-                        data: [0.12, 0.19, 0.12, 0.36, 0.32, 9.91, 0.50, 0.22],
-                        color: colors[2]
-                    }
-                }, {
-                    y: 7.15,
-                    color: colors[3],
-                    drilldown: {
-                        name: 'Safari versions',
-                        categories: ['Safari 5.0', 'Safari 4.0', 'Safari Win 5.0', 'Safari 4.1', 'Safari/Maxthon',
-                            'Safari 3.1', 'Safari 4.1'],
-                        data: [4.55, 1.42, 0.23, 0.21, 0.20, 0.19, 0.14],
-                        color: colors[3]
-                    }
-                }, {
-                    y: 2.14,
-                    color: colors[4],
-                    drilldown: {
-                        name: 'Opera versions',
-                        categories: ['Opera 9.x', 'Opera 10.x', 'Opera 11.x'],
-                        data: [ 0.12, 0.37, 1.65],
-                        color: colors[4]
-                    }
-                }];
+                var colors = Highcharts.getOptions().colors,
+                    categories = ['OrderPlace', 'SignUp', 'Chrome', 'Safari', 'Opera'],
+                    name = 'Browser brands',
+                    data = [{
+                            y: 55.11,
+                            color: colors[0],
+                            drilldown: {
+                                name: 'MSIE versions',
+                                categories: ['MSIE 6.0', 'MSIE 7.0', 'MSIE 8.0', 'MSIE 9.0'],
+                                data: [10.85, 7.35, 33.06, 2.81],
+                                color: colors[0]
+                            }
+                        }, {
+                            y: 21.63,
+                            color: colors[1],
+                            drilldown: {
+                                name: 'Firefox versions',
+                                categories: ['Firefox 2.0', 'Firefox 3.0', 'Firefox 3.5', 'Firefox 3.6', 'Firefox 4.0'],
+                                data: [0.20, 0.83, 1.58, 13.12, 5.43],
+                                color: colors[1]
+                            }
+                        }, {
+                            y: 11.94,
+                            color: colors[2],
+                            drilldown: {
+                                name: 'Chrome versions',
+                                categories: ['Chrome 5.0', 'Chrome 6.0', 'Chrome 7.0', 'Chrome 8.0', 'Chrome 9.0',
+                                    'Chrome 10.0', 'Chrome 11.0', 'Chrome 12.0'],
+                                data: [0.12, 0.19, 0.12, 0.36, 0.32, 9.91, 0.50, 0.22],
+                                color: colors[2]
+                            }
+                        }, {
+                            y: 7.15,
+                            color: colors[3],
+                            drilldown: {
+                                name: 'Safari versions',
+                                categories: ['Safari 5.0', 'Safari 4.0', 'Safari Win 5.0', 'Safari 4.1', 'Safari/Maxthon',
+                                    'Safari 3.1', 'Safari 4.1'],
+                                data: [4.55, 1.42, 0.23, 0.21, 0.20, 0.19, 0.14],
+                                color: colors[3]
+                            }
+                        }, {
+                            y: 2.14,
+                            color: colors[4],
+                            drilldown: {
+                                name: 'Opera versions',
+                                categories: ['Opera 9.x', 'Opera 10.x', 'Opera 11.x'],
+                                data: [ 0.12, 0.37, 1.65],
+                                color: colors[4]
+                            }
+                        }];
     
-        function setChart(name, categories, data, color) {
-            chart.xAxis[0].setCategories(categories, false);
-            chart.series[0].remove(false);
-            chart.addSeries({
-                name: name,
-                data: data,
-                color: color || 'white'
-            }, false);
-            chart.redraw();
-        }
-    
-        chart = new Highcharts.Chart({
-            chart: {
-                renderTo: 'container',
-                type: 'column'
-            },
-            title: {
-                text: 'Browser market share, April, 2011'
-            },
-            subtitle: {
-                text: 'Click the columns to view versions. Click again to view brands.'
-            },
-            xAxis: {
-                categories: categories
-            },
-            yAxis: {
-                title: {
-                    text: 'Total percent market share'
+                function setChart(name, categories, data, color) {
+                    chart.xAxis[0].setCategories(categories, false);
+                    chart.series[0].remove(false);
+                    chart.addSeries({
+                        name: name,
+                        data: data,
+                        color: color || 'white'
+                    }, false);
+                    chart.redraw();
                 }
-            },
-            plotOptions: {
-                column: {
-                    cursor: 'pointer',
-                    point: {
-                        events: {
-                            click: function() {
-                                var drilldown = this.drilldown;
-                                if (drilldown) { // drill down
-                                    setChart(drilldown.name, drilldown.categories, drilldown.data, drilldown.color);
-                                } else { // restore
-                                    setChart(name, categories, data);
+    
+                chart = new Highcharts.Chart({
+                    chart: {
+                        renderTo: 'container',
+                        type: 'column'
+                    },
+                    title: {
+                        text: 'Browser market share, April, 2011'
+                    },
+                    subtitle: {
+                        text: 'Click the columns to view versions. Click again to view brands.'
+                    },
+                    xAxis: {
+                        categories: categories
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'Total percent market share'
+                        }
+                    },
+                    plotOptions: {
+                        column: {
+                            cursor: 'pointer',
+                            point: {
+                                events: {
+                                    click: function() {
+                                        var drilldown = this.drilldown;
+                                        if (drilldown) { // drill down
+                                            setChart(drilldown.name, drilldown.categories, drilldown.data, drilldown.color);
+                                        } else { // restore
+                                            setChart(name, categories, data);
+                                        }
+                                    }
+                                }
+                            },
+                            dataLabels: {
+                                enabled: true,
+                                color: colors[0],
+                                style: {
+                                    fontWeight: 'bold'
+                                },
+                                formatter: function() {
+                                    return this.y +'%';
                                 }
                             }
                         }
                     },
-                    dataLabels: {
-                        enabled: true,
-                        color: colors[0],
-                        style: {
-                            fontWeight: 'bold'
-                        },
+                    tooltip: {
                         formatter: function() {
-                            return this.y +'%';
+                            var point = this.point,
+                                s = this.x +':<b>'+ this.y +'% market share</b><br/>';
+                            if (point.drilldown) {
+                                s += 'Click to view '+ point.category +' versions';
+                            } else {
+                                s += 'Click to return to browser brands';
+                            }
+                            return s;
                         }
-                    }
-                }
-            },
-            tooltip: {
-                formatter: function() {
-                    var point = this.point,
-                        s = this.x +':<b>'+ this.y +'% market share</b><br/>';
-                    if (point.drilldown) {
-                        s += 'Click to view '+ point.category +' versions';
-                    } else {
-                        s += 'Click to return to browser brands';
-                    }
-                    return s;
-                }
-            },
-            series: [{
-                name: name,
-                data: data,
-                color: 'white'
-            }],
-            exporting: {
-                enabled: false
-            },
-            title: null
-        });
-    });    
+                    },
+                    series: [{
+                        name: name,
+                        data: data,
+                        color: 'white'
+                    }],
+                    exporting: {
+                        enabled: false
+                    },
+                    title: null
+                });
+            });    
 
         
-});
+        });
 
     
-</script>-->
+    </script>-->

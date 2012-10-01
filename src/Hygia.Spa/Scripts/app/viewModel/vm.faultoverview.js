@@ -1,19 +1,24 @@
 ﻿define('vm.faultoverview',
-    ['ko', 'datacontext', 'config', 'router', 'messenger', 'utils', 'highcharts'],
-    function (ko, datacontext, config, router, messenger, utils, highcharts) {
+    ['jquery','ko', 'datacontext', 'config', 'router', 'messenger', 'utils', 'highcharts'],
+    function ($, ko, datacontext, config, router, messenger, utils, highcharts) {
         var faultOverviewTemplate = 'faultoverview.view',
-            canLeave = function () {
+            canLeave = function() {
                 return true;
             },
-            activate = function (routeData, callback) {
+            activate = function(routeData, callback) {
                 messenger.publish.viewModelActivated({ canleaveCallback: canLeave });
-                renderCharts();
             },
-            renderCharts = function () {
-                //TODO
-            };
-
-        return {
+            stacked = ko.observable(true),
+            seriesList = ko.observableArray([{
+                label: 'Fault messages',
+                legendEntry: true,
+                data: {
+                    x: ['UserSignedUp', 'SomeMessage', 'SomeOtherMessage'],
+                    y: [35, 15, 19]
+                }
+            }]);        return {
+            stacked: stacked,
+            seriesList: seriesList,
             activate: activate,
             canLeave: canLeave,
             faultOverviewTemplate: faultOverviewTemplate

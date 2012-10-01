@@ -25,8 +25,7 @@
         // Plugins must be loaded after jQuery and Knockout, 
         // since they depend on them.
         requirejs([
-                //'ko.bindingHandlers'
-                //'ko.debug.helpers'
+                'ko.debug.helpers'
         ], boot);
     }
 
