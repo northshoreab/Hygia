@@ -1,3 +1,5 @@
+using NServiceBus.Unicast;
+
 namespace Hygia.Operations.Faults.Feed
 {
     using System.Configuration;
@@ -10,8 +12,7 @@ namespace Hygia.Operations.Faults.Feed
     using NServiceBus.Unicast.Queuing;
     using NServiceBus.Unicast.Transport;
     using log4net;
-    using IWantToRunWhenTheBusStarts = NServiceBus.IWantToRunWhenTheBusStarts;
-
+    
     public class Uploader : INeedInitialization, IWantToRunWhenTheBusStarts
     {
         public TransportFactory TransportFactory { get; set; }

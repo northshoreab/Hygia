@@ -1,3 +1,5 @@
+using NServiceBus.Unicast;
+
 namespace Hygia.Operations.AuditUploads.Feed
 {
     using System.Collections.Generic;

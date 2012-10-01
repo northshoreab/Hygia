@@ -16,7 +16,7 @@ namespace Hygia.Operations.Accounts
 
         public void Handle(EnvironmentCreated message)
         {
-            store.DatabaseCommands.EnsureDatabaseExists(message.Environment.ToString());
+            store.DatabaseCommands.EnsureDatabaseExists(message.EnvironmentId.ToString());
 
             //TODO: Create authorization roles needed and make sure all admins of the system has authorization to this environment
         }
