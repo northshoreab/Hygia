@@ -22,6 +22,8 @@ namespace Hygia.API
             ApiBootstrapper.Bootstrap();
 
             Configure(GlobalConfiguration.Configuration);
+
+            AuthConfig.RegisterAuth();
         }
 
         void Configure(HttpConfiguration configuration)
