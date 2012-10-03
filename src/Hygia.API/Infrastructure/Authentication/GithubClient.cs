@@ -100,6 +100,7 @@ namespace Hygia.API.Infrastructure.Authentication
             userData.AddItemIfNotEmpty("username", gitHubUser.Email);
             userData.AddItemIfNotEmpty("name", gitHubUser.Name);
             userData.AddItemIfNotEmpty("link", gitHubUser.Url);
+            userData.AddItemIfNotEmpty("accessToken", accessToken);
 
             /*
                         userData.Add("login", (string)json["login"]);

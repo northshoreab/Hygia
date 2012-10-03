@@ -164,14 +164,12 @@
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Global.asax" />
-    <Content Include="Scripts\app\infrastructure\dataservice.login.js" />
     <Content Include="Scripts\app\infrastructure\ko.debug.helpers.js" />
     <Content Include="Scripts\app\model\model.fault.js" />
     <Content Include="Scripts\app\infrastructure\dataservice.fault.js" />
     <Content Include="Scripts\app\mock\mock.dataservice.fault.js" />
     <Content Include="Scripts\app\mock\mock.generator.js" />
     <Content Include="Scripts\app\mock\mock.js" />
-    <Content Include="Scripts\app\viewModel\vm.login.js" />
     <Content Include="Scripts\app\viewModel\vm.faultoverview.js" />
     <Content Include="Scripts\app\viewModel\vm.signup.js" />
     <Content Include="Scripts\app\viewModel\vm.fault.js" />
@@ -333,7 +331,6 @@
     <Content Include="Views\fault.cshtml" />
     <Content Include="Views\signup.cshtml" />
     <Content Include="Views\faultoverview.cshtml" />
-    <Content Include="Views\login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />

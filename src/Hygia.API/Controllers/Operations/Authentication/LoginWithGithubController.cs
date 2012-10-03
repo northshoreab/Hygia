@@ -1,6 +1,7 @@
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Web;
 using System.Web.Security;
 using System.Web.Http;
@@ -9,8 +10,12 @@ using System.Threading;
 using AttributeRouting;
 using AttributeRouting.Web.Http;
 using DotNetOpenAuth.AspNet;
+using Hygia.API.Infrastructure.Authentication;
+using Hygia.UserManagement.Domain;
 using Microsoft.Web.WebPages.OAuth;
 using System;
+using Raven.Client;
+using StructureMap;
 
 namespace Hygia.API.Controllers.Operations.Authentication
 {
@@ -62,7 +67,20 @@ namespace Hygia.API.Controllers.Operations.Authentication
                 //var email = userDataFromProvider["email"];
                 //var gender = userDataFromProvider["gender"];
 
-                return new HttpResponseMessage(HttpStatusCode.Accepted);
+                var response = new HttpResponseMessage(HttpStatusCode.Accepted);
+                var session = ObjectFactory.GetInstance<IDocumentStore>().OpenSession();
+
+                var userAccount = session.Query<UserAccount>().SingleOrDefault(
+                        u => u.IdentityProviders.Any(x => x.Issuer == "github.com" && x.UserId == result.ProviderUserId)) ??
+                    new UserAccount
+                    {
+                        Id = Guid.Empty,
+                        UserName = userDataFromProvider["username"]
+                    };
+
+                response.Headers.AddCookies(new[] { new CookieHeaderValue("jwt", AuthenticationHelper.CreateJsonWebToken(userAccount, userDataFromProvider["accessToken"])) { Expires = new DateTimeOffset(new DateTime(2022, 1, 1)), Path = "/", Secure = false } });
+
+                return response;
             }
 
             return new HttpResponseMessage(HttpStatusCode.Unauthorized);

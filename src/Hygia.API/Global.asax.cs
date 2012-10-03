@@ -18,7 +18,7 @@ namespace Hygia.API
     {
         protected void Application_Start(object sender, EventArgs e)
         {
-            //SecurityConfig.ConfigureGlobal(GlobalConfiguration.Configuration);
+            SecurityConfig.ConfigureGlobal(GlobalConfiguration.Configuration);
 
             ApiBootstrapper.Bootstrap();
 
@@ -37,7 +37,7 @@ namespace Hygia.API
             configuration.DependencyResolver = new StructureMapResolver(ObjectFactory.Container);
             configuration.MessageHandlers.Add(new CommandsToPickUpHandler(ObjectFactory.Container));
             configuration.MessageHandlers.Add(new RavenSessionHandler(ObjectFactory.Container));
-            //configuration.MessageHandlers.Add(new MetadataHandler());
+            configuration.MessageHandlers.Add(new MetadataHandler());
 
 
 
@@ -45,9 +45,9 @@ namespace Hygia.API
             //configuration.MessageHandlers.Add(new GitHubLoginHandler());
 
             //this one needs to be registered last in order to be invoked first
-            //configuration.MessageHandlers.Add(new TransactionScopeHandler());
+            configuration.MessageHandlers.Add(new TransactionScopeHandler());
 
-            //configuration.Services.Add(typeof(IHttpControllerActivator),new CustomHttpControllerFactory(configuration));
+            configuration.Services.Add(typeof(IHttpControllerActivator),new CustomHttpControllerFactory(configuration));
         }
     }
 
