@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
+using System.Net.Http;
 using System.Text.RegularExpressions;
 using DotNetOpenAuth.AspNet.Clients;
 using Hygia.API.Extensions;
@@ -34,8 +35,10 @@ namespace Hygia.API.Infrastructure.Authentication
 
         protected override Uri GetServiceLoginUrl(Uri returnUrl)
         {
+            var queryString = returnUrl.ParseQueryString();
+
             return new Uri(
-                string.Format(AuthorizationEndpoint, applicationId_, returnUrl.AbsoluteUri, returnUrl.Query.Replace("?__provider__=github&__sid__=", ""))
+                string.Format(AuthorizationEndpoint, applicationId_, returnUrl.AbsoluteUri, queryString.Get("__sid__"))
                 );
         }
 
@@ -101,6 +104,7 @@ namespace Hygia.API.Infrastructure.Authentication
             userData.AddItemIfNotEmpty("name", gitHubUser.Name);
             userData.AddItemIfNotEmpty("link", gitHubUser.Url);
             userData.AddItemIfNotEmpty("accessToken", accessToken);
+
 
             /*
                         userData.Add("login", (string)json["login"]);
