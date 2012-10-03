@@ -5,6 +5,7 @@ bin
 .nu
 _ReSharper.*
 _UpgradeReport.*
+_TeamCity.*
 *.csproj.user
 *.resharper.user
 *.resharper
