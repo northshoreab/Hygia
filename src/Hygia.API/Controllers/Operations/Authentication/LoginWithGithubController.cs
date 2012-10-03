@@ -14,22 +14,20 @@ using System;
 
 namespace Hygia.API.Controllers.Operations.Authentication
 {
-    [DefaultHttpRouteConvention]
-    [RoutePrefix("api")]
-    [Authorize]
+    //[DefaultHttpRouteConvention]
+    [RoutePrefix("api/login")]
     public class LoginController : ApiController
     {
-        [HttpPost]
         [AllowAnonymous]
-        [POST("login")]
+        [GET(""), HttpGet]
         //[ValidateAntiForgeryToken]
         public void Login(string provider, string returnUrl)
         {
-            OAuthWebSecurity.RequestAuthentication(provider, "http://localhost/api/login/authenticationcallback");
+            OAuthWebSecurity.RequestAuthentication(provider, "http://localhost:38105/api/login/authenticationcallback");
         }
 
         [AllowAnonymous]
-        [POST("authenticationcallback")]
+        [GET("authenticationcallback"), HttpGet]
         public HttpResponseMessage AuthenticationCallback()
         {
             var queryString = ControllerContext.Request.RequestUri.ParseQueryString();
@@ -61,8 +59,8 @@ namespace Hygia.API.Controllers.Operations.Authentication
 
                 // dictionary of values from identity provider
                 var userDataFromProvider = result.ExtraData;
-                var email = userDataFromProvider["email"];
-                var gender = userDataFromProvider["gender"];
+                //var email = userDataFromProvider["email"];
+                //var gender = userDataFromProvider["gender"];
 
                 return new HttpResponseMessage(HttpStatusCode.Accepted);
             }

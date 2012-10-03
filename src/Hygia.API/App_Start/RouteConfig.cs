@@ -7,6 +7,7 @@ namespace Hygia.API.App_Start
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
+            /*
             routes.MapHttpRoute(
                 name: "DefaultArea",
                 routeTemplate: "api/{controller}/{id}",
@@ -24,6 +25,7 @@ namespace Hygia.API.App_Start
                 routeTemplate: "api/{area}/{domain}/{id}/{controller}",
                 defaults: new {id = RouteParameter.Optional}
                 );
+             * */
         }
     }
 }
