@@ -42,7 +42,7 @@ namespace Hygia.API
 
 
             //this needs to be registered after the securityconfig AuthenticationHandler in order to be invoked before it.
-            //configuration.MessageHandlers.Add(new GitHubLoginHandler());
+            configuration.MessageHandlers.Add(new GitHubLoginHandler());
 
             //this one needs to be registered last in order to be invoked first
             configuration.MessageHandlers.Add(new TransactionScopeHandler());

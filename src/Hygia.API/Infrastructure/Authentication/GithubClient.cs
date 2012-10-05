@@ -37,9 +37,10 @@ namespace Hygia.API.Infrastructure.Authentication
         {
             var queryString = returnUrl.ParseQueryString();
 
-            return new Uri(
-                string.Format(AuthorizationEndpoint, applicationId_, returnUrl.AbsoluteUri, queryString.Get("__sid__"))
+            var uri = new Uri(
+                string.Format(AuthorizationEndpoint, applicationId_, returnUrl.AbsoluteUri, queryString.Get("__sid__") + "," + queryString.Get("__provider__"))
                 );
+            return uri;
         }
 
         protected override string QueryAccessToken(Uri returnUrl, string authorizationCode)

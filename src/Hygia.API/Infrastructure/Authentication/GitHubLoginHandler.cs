@@ -18,8 +18,15 @@ namespace Hygia.API.Infrastructure.Authentication
     {
         protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
-            Action action = GetAction(request.RequestUri);
+            if (request.Headers.Authorization == null)
+            {
+                var jwt = request.Headers.GetCookies().SelectMany(x => x.Cookies).SingleOrDefault(x => x.Name == "jwt");
 
+                if (jwt != null)
+                    request.Headers.Authorization = new AuthenticationHeaderValue("JWT", jwt.Value);
+            }
+            /*
+            Action action = GetAction(request.RequestUri);
          
             if(action != Action.NotAuthentication)
             {
@@ -78,10 +85,12 @@ namespace Hygia.API.Infrastructure.Authentication
                         request.Headers.Authorization = new AuthenticationHeaderValue("JWT", jwt.Value);                    
                 }
             }
-
+            */
             return base.SendAsync(request, cancellationToken)
                 .ContinueWith(task =>
                                   {
+                                      return task.Result;
+/*
                                       HttpResponseMessage response = task.Result;
 
                                       if (action != Action.NotAuthentication)
@@ -97,6 +106,7 @@ namespace Hygia.API.Infrastructure.Authentication
                                       }
 
                                       return response;
+*/
                                   });
         }
 

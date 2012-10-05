@@ -1,3 +1,4 @@
+using System.Collections.Specialized;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -21,6 +22,7 @@ namespace Hygia.API.Controllers.Operations.Authentication
 {
     //[DefaultHttpRouteConvention]
     [RoutePrefix("api/login")]
+    [Authorize]
     public class LoginController : ApiController
     {
         [AllowAnonymous]
@@ -28,26 +30,35 @@ namespace Hygia.API.Controllers.Operations.Authentication
         //[ValidateAntiForgeryToken]
         public void Login(string provider, string returnUrl)
         {
-            OAuthWebSecurity.RequestAuthentication(provider, "http://localhost:38105/api/login/authenticationcallback?returnUrl=" + "http://localhost:38105/api/login/test");
+            var url = "http://localhost:38105/api/login/authenticationcallback?returnUrl=" + returnUrl;
+
+            OAuthWebSecurity.RequestAuthentication(provider, url);
         }
 
-        [AllowAnonymous]
         [GET("test"), HttpGet]
         public string Test()
         {
-            return "test";
+            return "You have access";
         }
 
         [AllowAnonymous]
         [GET("authenticationcallback"), HttpGet]
-        public HttpResponseMessage AuthenticationCallback()
+        public HttpResponseMessage AuthenticationCallback(string returnUrl)
         {
-            var queryString = ControllerContext.Request.RequestUri.ParseQueryString();
+            NameValueCollection queryString = ControllerContext.Request.RequestUri.ParseQueryString();
             
             if (queryString.AllKeys.All(x => x != "__sid__") && ControllerContext.Request.RequestUri != null && queryString.AllKeys.Any(x => x == "state"))
             {
-                var response = ControllerContext.Request.CreateResponse(HttpStatusCode.RedirectKeepVerb);
-                response.Headers.Location = new Uri(ControllerContext.Request.RequestUri.AbsoluteUri + "&__sid__=" + queryString.Get("state"));
+                var response = ControllerContext.Request.CreateResponse(HttpStatusCode.TemporaryRedirect);
+                var stateData = queryString.Get("state").Split(',');
+                
+                if(stateData.Count() != 2)
+                    return new HttpResponseMessage(HttpStatusCode.Unauthorized);
+
+                response.Headers.Location =
+                    new Uri(ControllerContext.Request.RequestUri.AbsoluteUri + "&__sid__=" + stateData[0] +
+                            "&__provider__=" + stateData[1]);
+
                 return response;
             }
 
@@ -55,26 +66,9 @@ namespace Hygia.API.Controllers.Operations.Authentication
 
             if (result.IsSuccessful)
             {
-                // name of the provider we just used
-                var provider = result.Provider;
-                // provider's unique ID for the user
-                var uniqueUserID = result.ProviderUserId;
-                // since we might use multiple identity providers, then 
-                // our app uniquely identifies the user by combination of 
-                // provider name and provider user id
-                var uniqueID = provider + "/" + uniqueUserID;
-
-                // we then log the user into our application
-                // we could have done a database lookup for a 
-                // more user-friendly username for our app
-                FormsAuthentication.SetAuthCookie(uniqueID, false);
-
-                // dictionary of values from identity provider
                 var userDataFromProvider = result.ExtraData;
-                //var email = userDataFromProvider["email"];
-                //var gender = userDataFromProvider["gender"];
 
-                var response = new HttpResponseMessage(HttpStatusCode.Accepted);
+                var response = new HttpResponseMessage(HttpStatusCode.Redirect);
                 var session = ObjectFactory.GetInstance<IDocumentStore>().OpenSession();
 
                 var userAccount = session.Query<UserAccount>().SingleOrDefault(
@@ -86,6 +80,7 @@ namespace Hygia.API.Controllers.Operations.Authentication
                     };
 
                 response.Headers.AddCookies(new[] { new CookieHeaderValue("jwt", AuthenticationHelper.CreateJsonWebToken(userAccount, userDataFromProvider["accessToken"])) { Expires = new DateTimeOffset(new DateTime(2022, 1, 1)), Path = "/", Secure = false } });
+                response.Headers.Location = new Uri(returnUrl);
 
                 return response;
             }
