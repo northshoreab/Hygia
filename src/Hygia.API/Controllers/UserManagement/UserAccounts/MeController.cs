@@ -16,15 +16,15 @@
     {
         public Me Get()
         {
-            var user = User as IClaimsIdentity;
+            var identity = User.Identity as IClaimsIdentity;
 
-            if(user == null)
+            if (identity == null)
                 throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.Unauthorized));
 
             return new Me
                        {
-                           AccessToken = user.GetClaimValue(Constants.ClaimTypes.GithubAccessToken),
-                           Name = user.Name
+                           AccessToken = identity.GetClaimValue(Constants.ClaimTypes.GithubAccessToken),
+                           Name = identity.Name
                        };
         }
     }

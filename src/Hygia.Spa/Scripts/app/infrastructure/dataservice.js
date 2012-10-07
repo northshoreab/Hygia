@@ -1,9 +1,11 @@
 ﻿define('dataservice',
     [
-        'dataservice.fault'
+        'dataservice.fault',
+        'dataservice.user'
     ],
-    function (fault) {
+    function (fault, user) {
         return {
-            fault: fault
+            fault: fault,
+            user: user
         };
     });

@@ -1,15 +1,18 @@
 ﻿define('model',
     [
-        'model.fault'
+        'model.fault',
+        'model.user'
     ],
-    function (fault) {
+    function (fault, user) {
         var 
             model = {
-                Fault: fault
+                Fault: fault,
+                User: user
             };
 
             model.setDataContext = function (dc) {
-            model.Fault.datacontext(dc);
+                model.Fault.datacontext(dc);
+                model.User.datacontext(dc);
             // Model's that have navigation properties 
             // need a reference to the datacontext.
             //            model.Attendance.datacontext(dc);

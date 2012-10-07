@@ -1,18 +1,21 @@
-﻿define('dataservice.fault',
+﻿define('dataservice.user',
     ['amplify'],
     function (amplify) {
         var init = function() {
 
-            amplify.request.define('faults', 'ajax', {
-                url: '/api/faults',
+            amplify.request.define('me', 'ajax', {
+                url: 'http://localhost:38105/api/users/me',
                 dataType: 'json',
-                type: 'GET'
+                type: 'GET',
+                xhrFields: {
+                    withCredentials: true
+                }
                 //cache:
             });
         },
-            getFaults = function(callbacks) {
+            getMe = function(callbacks) {
                 return amplify.request({
-                    resourceId: 'faults',   
+                    resourceId: 'me',
                     success: callbacks.success,
                     error: callbacks.error
                 });
@@ -21,7 +24,7 @@
         init();
 
         return {
-            getFaults: getFaults
+            getMe: getMe
         };
     });
 

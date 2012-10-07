@@ -10,6 +10,7 @@
                 ko.applyBindings(vm.fault, getView(ids.fault));
                 ko.applyBindings(vm.signUp, getView(ids.signUp));
                 ko.applyBindings(vm.faultOverview, getView(ids.faultOverview));
+                ko.applyBindings(vm.login, getView(ids.login));
             },
 
             getView = function (viewName) {

@@ -37,7 +37,14 @@
                     title: 'Fault Overview',
                     callback: vm.faultOverview.activate,
                     group: '.route-top'
-                },                       
+                },
+                {
+                    view: config.viewIds.login,
+                    route: config.hashes.login,
+                    title: 'Login',
+                    callback: vm.login.activate,
+                    group: '.route-top'
+                },
                 // Session details routes
 
 

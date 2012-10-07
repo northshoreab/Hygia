@@ -46,7 +46,7 @@ namespace Hygia.API.Infrastructure.Authentication
                 Audience = new Uri(Constants.Realm),
                 Claims = new List<Claim>
                                                     {
-                                                        new Claim(ClaimTypes.Name, user.Id.ToString()),
+                                                        new Claim(ClaimTypes.Name, user.UserName),
                                                         new Claim(ClaimTypes.PrimarySid, user.Id.ToString()),
                                                         new Claim(Constants.ClaimTypes.GithubAccessToken, accessToken),
                                                     },

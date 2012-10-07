@@ -2,14 +2,15 @@
     ['infuser','ko','mock/mock'],
     function (infuser, ko, mock) {
 
-        var 
+        var user = ko.observable(),
         // properties
         //-----------------
 
             hashes = {
                 faults: '#/faults',
                 signUp: '#/signup',
-                faultOverview: '#/faultoverview'
+                faultOverview: '#/faultoverview',
+                login: '#/login'
             },
             //logger = toastr, // use toastr for the logger
             messages = {
@@ -38,7 +39,8 @@
                 fault: '#fault-view',
                 signUp: '#signup-view',
                 shellTop: '#shellTop-view',
-                faultOverview: '#faultoverview-view'
+                faultOverview: '#faultoverview-view',
+                login: '#login-view'
             },
 
 //            toasts = {
@@ -88,7 +90,8 @@
 
         return {
 //            currentUserId: currentUserId,
-//            currentUser: currentUser,
+            //            currentUser: currentUser,
+            user: user,
             dataserviceInit: dataserviceInit,
             hashes: hashes,
             //logger: logger,

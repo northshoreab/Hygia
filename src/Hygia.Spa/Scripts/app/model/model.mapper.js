@@ -2,20 +2,31 @@
 ['model'],
     function (model) {
         var fault = {
-            getDtoId: function (dto) { return dto.id; },
-            fromDto: function (dto, item) {
+            getDtoId: function(dto) { return dto.id; },
+            fromDto: function(dto, item) {
                 item = item || new model.Fault().id(dto.id);
                 item.faultNumber(dto.faultNumber)
                     .title(dto.title)
                     .exceptionMessage(dto.exceptionMessage)
                     .timeSent(dto.timeSent)
                     .retries(dto.retries)
-                    .enclosedMessageTypes(dto.enclosedMessageTypes)                
+                    .enclosedMessageTypes(dto.enclosedMessageTypes)
                     .bussinessService(dto.bussinessService);
 
                 return item;
             }
+        },
+        user = {
+            getDtoId: function(dto) { return dto.id; },
+            fromDto: function(dto, item) {
+                item = item || new model.User().id(dto.id);
+                item.name(dto.name)
+                    .accessToken(dto.accessToken);
+
+                return item;
+            }
         };
+        
 
         //        var 
         //            attendance = {
@@ -97,7 +108,8 @@
         //            };
 
         return {
-            fault: fault
+            fault: fault,
+            user: user
             //            attendance: attendance,
             //            room: room,
             //            session: session,
