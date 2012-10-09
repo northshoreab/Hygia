@@ -22,6 +22,8 @@ namespace Hygia.API.Controllers
                                            new Link{ Href = "/api/operations", Rel = "Operations"},
                                            new Link{ Href = "/api/usermanagement", Rel = "UserManagement"},
                                            new Link{ Href = "/api/version", Rel = "Version"},
+                                           new Link{ Href = "/api/login{?provider,returnUrl}", Rel = "Login", Templated = true},
+                                           new Link{ Href = "/api/signup", Rel = "Signup"}
                                        },
             };
         }

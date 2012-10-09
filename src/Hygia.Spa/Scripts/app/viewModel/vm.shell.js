@@ -1,11 +1,11 @@
 ﻿define('vm.shell',
     ['ko', 'config'],
     function (ko, config) {
-        var 
-            menuHashes = config.hashes,
-
+        var menuHashes = config.hashes,
+            loginUrl = ko.observable("http://localhost:38105/api/login?provider=github&returnUrl=http://localhost:62691/index.cshtml#/login"),
             activate = function (routeData) {
-                //No-Op for now
+                //TODO: Check if logged in
+                //TODO: Call API to get what user initially can do and apply navigation accordingly (urls should be loaded from api)
             },
 
             init = function () {
@@ -16,6 +16,7 @@
 
         return {
             activate: activate,
-            menuHashes: menuHashes
+            menuHashes: menuHashes,
+            loginUrl: loginUrl
         };
     });

@@ -22,6 +22,8 @@ namespace Hygia.API.Infrastructure.Authentication
             var authMethod = id.Claims.SingleOrDefault(c => c.ClaimType == ClaimTypes.AuthenticationMethod) ??
                              new Claim(ClaimTypes.AuthenticationMethod, AuthenticationMethods.Unspecified);
 
+            Claim issuer = id.Claims.SingleOrDefault(c => x.ClaimType == Constants.ClaimTypes.AuthenticationProvider) ?? new Claim(Constants.ClaimTypes.AuthenticationProvider, Constants.Issuers.Unknown);
+
             var claims = new List<Claim>
                              {
                                 new Claim(ClaimTypes.Name, id.Name),
@@ -29,11 +31,23 @@ namespace Hygia.API.Infrastructure.Authentication
                                 authMethod
                              };
 
+            if(issuer.Value == Constants.Issuers.Github)
+            {
+                //TODO add claims for github users
+                claims.Add(id.Claims.Single(c => c.ClaimType == Constants.ClaimTypes.GithubAccessToken));
+            }
+
+            if (issuer.Value == Constants.Issuers.ApiKey)
+            {
+                //TODO add claims for apikey users
+            }
+
+/*
             var accessToken = id.GetClaimValue(Constants.ClaimTypes.GithubAccessToken);
 
             if(!string.IsNullOrEmpty(accessToken))
                 claims.Add(new Claim(Constants.ClaimTypes.GithubAccessToken, accessToken));
-
+*/
             var claimsIdentity = new ClaimsIdentity(claims, "Local");
             return new ClaimsPrincipal(new IClaimsIdentity[] { claimsIdentity });
         }

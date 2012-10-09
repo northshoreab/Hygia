@@ -29,7 +29,7 @@ namespace Hygia.API.App_Start
                                                   DefaultAuthenticationScheme = "Basic"
                                               };
 
-            config.AddBasicAuthentication(AuthenticationHelper.ValidateUser);
+            //config.AddBasicAuthentication(AuthenticationHelper.ValidateUser);
 
             config.AddAccessKey(AuthenticationHelper.GetApiKeyIdentity, AuthenticationOptions.ForHeader("apikey"));
 
@@ -38,6 +38,12 @@ namespace Hygia.API.App_Start
                 audience: Constants.Realm,
                 signingKey: Constants.JWTKeyEncoded,
                 options: AuthenticationOptions.ForAuthorizationHeader("JWT"));
+
+            config.AddJsonWebToken(
+                issuer: "http://watchr.se",
+                audience: Constants.Realm,
+                signingKey: Constants.JWTKeyEncoded,
+                options: AuthenticationOptions.ForCookie("JWT"));
 
             return config;
         }

@@ -143,7 +143,7 @@
         //  model mapper
         //----------------------------------
             faults = new EntitySet(dataservice.fault.getFaults, modelmapper.fault, model.Fault.Nullo);
-
+            users = new EntitySet(null, modelmapper.user, model.User.Nullo);
         //            attendance = new EntitySet(dataservice.attendance.getAttendance, modelmapper.attendance, model.Attendance.Nullo),
         //            rooms = new EntitySet(dataservice.lookup.getRooms, modelmapper.room, model.Room.Nullo),
         //            sessions = new EntitySet(dataservice.session.getSessionBriefs, modelmapper.session, model.Session.Nullo, dataservice.session.updateSession),
@@ -151,7 +151,23 @@
         //            timeslots = new EntitySet(dataservice.lookup.getTimeslots, modelmapper.timeSlot, model.TimeSlot.Nullo),
         //            tracks = new EntitySet(dataservice.lookup.getTracks, modelmapper.track, model.Track.Nullo),
         //            speakerSessions = new SpeakerSessions.SpeakerSessions(persons, sessions);
+            
+            users.getMe = function (user, callbacks) {
+                return $.Deferred(function (def) {
+                    dataservice.user.getMe({
+                        success: function (dto) {
+                            user = modelmapper.user.fromDto(dto, user);
+                            callbacks.success(user);
+                            def.resolve(dto);
+                        },
+                        error: function (response) {
+                            if (callbacks && callbacks.error) { callbacks.error(response); }
+                            def.reject(response);
+                        }
+                    });
 
+                }).promise();
+            };
         // Attendance extensions
         //        attendance.addData = function (sessionModel, callbacks) {
         //            var attendanceModel = new model.Attendance()

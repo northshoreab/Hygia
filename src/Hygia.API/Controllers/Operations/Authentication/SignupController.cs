@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Web.Http;
+using System.Net.Http;
+using System.Net;
 using AttributeRouting;
 using AttributeRouting.Web.Http;
 using Hygia.API.Infrastructure.Authentication;
@@ -14,22 +16,23 @@ using UserAccount = Hygia.UserManagement.Domain.UserAccount;
 namespace Hygia.API.Controllers.Operations.Authentication
 {
     [DefaultHttpRouteConvention]
-    [RoutePrefix("api/signup/withgithub")]
+    [RoutePrefix("api/signup")]
     [Authorize]
-    public class SignupWithGithubController : ApiController
+    public class SignupController : ApiController
     {
         private readonly IDocumentSession _session;
 
-        public SignupWithGithubController(IDocumentSession session)
+        public SignupController(IDocumentSession session)
         {
             _session = session;
         }
 
-        public string Get()
+        public HttpResponseMessage Put()
         {
             var user = User.Identity as IClaimsIdentity;
-            var githubUserResponse = GithubHelper.GetGithubUser(user.GetClaimValue(Constants.ClaimTypes.GithubAccessToken));
 
+            //TODO: get user info from claims instead
+            var githubUserResponse = GithubHelper.GetGithubUser(user.GetClaimValue(Constants.ClaimTypes.GithubAccessToken));
             var userId = githubUserResponse.id.ToGuid();
 
             var account = new UserAccount
@@ -48,7 +51,11 @@ namespace Hygia.API.Controllers.Operations.Authentication
 
             _session.Store(account);
 
-            return Request.Headers.Authorization.Parameter;
+            var response = new HttpResponseMessage(HttpStatusCode.OK);
+
+            response.Headers.Location = new Uri("/api/users/" + account.Id);
+
+            return response;
         }
     }
 }

@@ -19,6 +19,5 @@ namespace Hygia.API.Infrastructure
                 return response;
             }
         }
-
     }
 }

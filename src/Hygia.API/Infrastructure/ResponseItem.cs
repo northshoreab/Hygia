@@ -8,6 +8,7 @@ namespace Hygia.API.Infrastructure
     {
         public string Rel { get; set; }
         public string Href { get; set; }
+        public bool Templated { get; set; }
     }
 
     public class MetaData
@@ -17,9 +18,13 @@ namespace Hygia.API.Infrastructure
 
     public class ResponseMetaData
     {
-        public ResponseMetaData()
+        //TODO: require selfUrl
+        public ResponseMetaData(string selfUrl = "/")
         {
-            Links = new List<Link>();
+            Links = new List<Link> 
+            { 
+                new Link { Href = selfUrl, Rel = "self" }
+            };
         }
 
         public IEnumerable<Link> Links { get; set; }

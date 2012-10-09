@@ -19,7 +19,7 @@ namespace Hygia.API.Controllers.Operations
                                        {
                                            new Link {Href = "/api/" + Environment + "/operations/launchpad", Rel = "LaunchPad"},
                                            new Link {Href = "/api/" + Environment + "/operations/uploads", Rel = "Uploads"},
-                                           new Link {Href = "/api/" + Environment + "/operations/launchpad/download", Rel = "DownloadLaunchpad"},                                           
+                                           new Link {Href = "/api/" + Environment + "/operations/launchpad/download", Rel = "DownloadLaunchpad"},
                                        }
                        };
         }

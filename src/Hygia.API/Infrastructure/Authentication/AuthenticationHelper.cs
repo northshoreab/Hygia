@@ -26,7 +26,8 @@ namespace Hygia.API.Infrastructure.Authentication
             if (key == Constants.ApiKey)
                 return IdentityFactory.Create(AuthenticationTypes.Signature,
                                               new Claim(ClaimTypes.Name, "ApiKey"),
-                                              AuthenticationInstantClaim.Now);
+                                              AuthenticationInstantClaim.Now, 
+                                              new Claim(Constants.ClaimTypes.AuthenticationProvider, Constants.Issuers.ApiKey));
 
             return null;
         }
@@ -49,6 +50,8 @@ namespace Hygia.API.Infrastructure.Authentication
                                                         new Claim(ClaimTypes.Name, user.UserName),
                                                         new Claim(ClaimTypes.PrimarySid, user.Id.ToString()),
                                                         new Claim(Constants.ClaimTypes.GithubAccessToken, accessToken),
+                                                        new Claim(ClaimTypes.AuthenticationMethod, AuthenticationMethods.Password),
+                                                        new Claim(Constants.ClaimTypes.AuthenticationProvider, Constants.Issuers.Github)
                                                     },
             };
 

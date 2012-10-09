@@ -3,6 +3,7 @@
     function (infuser, ko, mock) {
 
         var user = ko.observable(),
+            isLoggedIn = ko.observable(),
         // properties
         //-----------------
 
