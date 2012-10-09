@@ -1,0 +1,29 @@
+﻿<div class="row">
+    <div class="span9">
+        <span class="lead" data-bind="text: faultNumber"></span>
+        <a class="lead" data-bind="attr: {href: url, alt: exceptionMessage}, text: title">
+        </a>                  
+        <p><small class="muted" data-bind="text: timeSentFull"></small></p>
+    </div>
+    <div class="span2">
+        <span data-bind="if: enclosedMessageTypes().length">
+            <span class="label label-info" data-bind="text: enclosedMessageTypes"></span>
+        </span>
+        <span data-bind="if: retries">
+            <span class="label label-important">Repeated failures</span>
+        </span>
+        <span data-bind="if: bussinessService().length">
+            <span class="label" data-bind="text: bussinessService"></span>
+        </span>
+    </div>
+
+    <div class="span1">
+        <div class="btn-group right">
+            <a class="btn btn-primary btn-mini dropdown-toggle" data-toggle="dropdown" href="#">Action <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <li><a class="action-retry-fault" href="#">Retry</a></li>
+                <li><a class="action-archive-fault" href="#">Archive</a></li>
+            </ul>
+        </div>  
+    </div>    
+</div>

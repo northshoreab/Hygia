@@ -2,9 +2,11 @@
 using System.Net.Http.Formatting;
 using System.Web;
 using System.Web.Http;
+using System.Web.Optimization;
 using Hygia.API.App_Start;
 using Hygia.API.Infrastructure;
 using Hygia.API.Infrastructure.Authentication;
+using Hygia.Spa.App_Start;
 using StructureMap;
 
 namespace Hygia.API
@@ -25,6 +27,7 @@ namespace Hygia.API
             Configure(GlobalConfiguration.Configuration);
 
             AuthConfig.RegisterAuth();
+            BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
 
         void Configure(HttpConfiguration configuration)
@@ -38,7 +41,7 @@ namespace Hygia.API
             configuration.MessageHandlers.Add(new CommandsToPickUpHandler(ObjectFactory.Container));
             configuration.MessageHandlers.Add(new RavenSessionHandler(ObjectFactory.Container));
             configuration.MessageHandlers.Add(new MetadataHandler());
-
+            configuration.MessageHandlers.Add(new CorsHandler());
 
 
             //this needs to be registered after the securityconfig AuthenticationHandler in order to be invoked before it.

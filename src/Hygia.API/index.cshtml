@@ -1,0 +1,81 @@
+@using System.Web.Optimization
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<!-- <html lang="en"> -->
+    <head>
+        <meta charset="utf-8">
+        @*<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">*@
+        <meta name="viewport" content="width=device-width">
+
+        <title>WatchR</title>
+
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+@*        
+        <link rel="stylesheet" href="Content/normalize.css">
+        <link rel="stylesheet" href="Content/main.css">
+        <link rel="stylesheet" href="Content/bootstrap.css">
+        <link rel="stylesheet" href="Content/bootstrap-responsive.css">
+*@        
+        @Styles.Render("~/Content/css")
+        @Styles.Render("~/Content/css/wijmocomplete")
+        @Styles.Render("~/Content/css/wijmoaristo")
+        @Scripts.Render("~/bundles/modernizr")
+    </head>
+<body>
+    <!--[if lt IE 7]>
+        <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+    <![endif]-->
+
+    <!-- Add your site or application content here -->
+    <div id="busyindicator"></div>
+    <header>
+        <div id="shellTop-view" class="navbar navbar-inverse">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    
+                    <a class="brand" href="#">WatchR</a>
+                    <div class="nav-collapse">
+                        <ul class="nav">
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#/faults">Faults</a></li>
+                            <li><a href="#/faultoverview">Fault Overview</a></li>
+                            <li><a href="#/signup">Sign Up</a></li>
+                            <li><a data-bind="attr: {href: loginUrl}">Login</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section class="main">
+        @RenderPage("Views/faults.cshtml")
+        @RenderPage("Views/fault.cshtml")
+        @RenderPage("Views/signup.cshtml")
+        @RenderPage("Views/faultoverview.cshtml")
+        @RenderPage("Views/login.cshtml")
+    </section>
+
+    @Scripts.Render(
+        "~/bundles/jquery",
+        "~/bundles/jqueryui",
+        "~/bundles/jsextlibs", 
+        "~/Scripts/lib/require.js", 
+        "~/bundles/jsapplibs",
+        "~/bundles/jsmocks", // remove mocks for release
+        "~/bundles/wijmocomplete",
+        "~/bundles/wijmoopen",
+        "~/bundles/wijmoknockout",
+        "~/Scripts/main.js"
+         )
+        
+</body>
+</html>

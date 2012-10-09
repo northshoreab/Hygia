@@ -22,7 +22,7 @@ namespace Hygia.API.Infrastructure.Authentication
             var authMethod = id.Claims.SingleOrDefault(c => c.ClaimType == ClaimTypes.AuthenticationMethod) ??
                              new Claim(ClaimTypes.AuthenticationMethod, AuthenticationMethods.Unspecified);
 
-            Claim issuer = id.Claims.SingleOrDefault(c => x.ClaimType == Constants.ClaimTypes.AuthenticationProvider) ?? new Claim(Constants.ClaimTypes.AuthenticationProvider, Constants.Issuers.Unknown);
+            Claim issuer = id.Claims.SingleOrDefault(c => c.ClaimType == Constants.ClaimTypes.AuthenticationProvider) ?? new Claim(Constants.ClaimTypes.AuthenticationProvider, Constants.Issuers.Unknown);
 
             var claims = new List<Claim>
                              {

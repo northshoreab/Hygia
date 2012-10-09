@@ -30,7 +30,7 @@ namespace Hygia.API.Controllers.Operations.Authentication
         //[ValidateAntiForgeryToken]
         public void Login(string provider, string returnUrl)
         {
-            var url = "http://localhost:38105/api/login/authenticationcallback?returnUrl=" + returnUrl;
+            var url = "http://localhost:8088/Hygia.API/api/login/authenticationcallback?returnUrl=" + returnUrl;
 
             OAuthWebSecurity.RequestAuthentication(provider, url);
         }

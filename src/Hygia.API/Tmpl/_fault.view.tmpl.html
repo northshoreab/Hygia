@@ -1,0 +1,33 @@
+﻿<div data-bind="with: fault">
+    <div class="row">
+        <span class="muted span8" data-bind="text: timeSentFull"></span>
+        <div class="btn-group span4">
+            <a class="btn btn-primary" href="#"><i class="icon-repeat icon-white"></i> Retry</a>
+            <a class="btn btn-primary" href="#"><i class="icon-briefcase icon-white"></i> Archive</a>
+        </div>  
+    </div>
+    <div class="row">
+        <h4 class="span12" data-bind="text: title"></h4>     
+    </div>
+    <div class="row">
+        <div class="span12">
+            <span data-bind="if: enclosedMessageTypes().length">
+                <span class="label label-info" data-bind="text: enclosedMessageTypes"></span>
+            </span>
+            <span data-bind="if: retries">
+                <span class="label label-important">Repeated failures</span>
+            </span>
+            <span data-bind="if: bussinessService().length">
+                <span class="label" data-bind="text: bussinessService"></span>
+            </span>                    
+        </div>
+    </div>
+    <div class="row">
+        <strong class="span2">Fault number</strong>
+        <span class="span5" data-bind="text: faultNumber"></span>            
+    </div>
+    <div class="row">
+        <strong class="span2">Description</strong>
+        <span class="span5" data-bind="text: exceptionMessage"></span>
+    </div>
+</div>
