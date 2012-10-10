@@ -13,7 +13,7 @@
     [Authorize]
     public class SystemsController : ApiController
     {
-        public ResponseItem<Hygia.Operations.Accounts.Domain.System> Post(Guid systemId,string name)
+        public Resource<Hygia.Operations.Accounts.Domain.System> Post(Guid systemId,string name)
         {
             var system = new Hygia.Operations.Accounts.Domain.System
                               {

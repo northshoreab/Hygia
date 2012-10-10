@@ -26,7 +26,7 @@ namespace Hygia.API.Controllers.UserManagement.UserAccounts.Commands
             return "{ \"id\"" + " : " + "\"\" }";
         }
 
-        public ResponseItem<UserAccount> Post(Guid id)
+        public Resource<UserAccount> Post(Guid id)
         {
             var account = session.Load<UserAccount>(id);
 

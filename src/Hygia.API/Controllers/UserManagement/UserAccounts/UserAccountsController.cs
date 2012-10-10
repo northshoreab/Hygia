@@ -40,7 +40,7 @@ namespace Hygia.API.Controllers.UserManagement.UserAccounts
 
         private readonly Func<UserAccount, IEnumerable<Link>> links;
 
-        public ResponseItem<UserAccount> Get(Guid id)
+        public Resource<UserAccount> Get(Guid id)
         {
             var userAccount = _session.Load<Hygia.UserManagement.Domain.UserAccount>(id);
 
@@ -50,7 +50,7 @@ namespace Hygia.API.Controllers.UserManagement.UserAccounts
         }
 
         [CustomQueryable]
-        public IQueryable<ResponseItem<UserAccount>> GetAll()
+        public IQueryable<Resource<UserAccount>> GetAll()
         {
             return _session.Query<Hygia.UserManagement.Domain.UserAccount>()
                 .ToOutputModel()
@@ -58,7 +58,7 @@ namespace Hygia.API.Controllers.UserManagement.UserAccounts
                 .AsQueryable();
         }
 
-        public ResponseItem<UserAccount> Post(UserAccountInputModel model)
+        public Resource<UserAccount> Post(UserAccountInputModel model)
         {
             var userId = model.Email.ToGuid();
 

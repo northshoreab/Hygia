@@ -23,15 +23,17 @@
         },
             generateFaults = function() {
                 var data = $.mockJSON.generateFromTemplate({
-                    'faults|10-20': [{
-                        'id|+1': 1,
-                        'faultNumber|+1': 1,
-                        title: '@TITLE',
-                        exceptionMessage: '@LOREM_IPSUM',
-                        timeSent: '@DATE_FULL',
-                        retries: 0,
-                        enclosedMessageTypes: "messagetype",
-                        bussinessService: "service"
+                    'results|10-20': [{
+                        data: {
+                            'id|+1': 1,
+                            'faultNumber|+1': 1,
+                            title: '@TITLE',
+                            exceptionMessage: '@LOREM_IPSUM',
+                            timeSent: '@DATE_FULL',
+                            retries: 0,
+                            enclosedMessageTypes: "messagetype",
+                            bussinessService: "service"
+                        }
                     }]
                 });
 

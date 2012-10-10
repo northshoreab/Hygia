@@ -557,7 +557,7 @@
     <Compile Include="Mutators\SetEnviromentIdOnSendMutator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Infrastructure\RavenSessionHandler.cs" />
-    <Compile Include="Infrastructure\ResponseItem.cs" />
+    <Compile Include="Infrastructure\Resource.cs" />
     <Compile Include="Infrastructure\StructureMapResolver.cs" />
     <Compile Include="Infrastructure\StructureMapScope.cs" />
     <Compile Include="Infrastructure\TransactionScopeHandler.cs" />

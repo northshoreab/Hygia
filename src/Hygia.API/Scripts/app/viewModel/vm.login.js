@@ -3,7 +3,7 @@
     function ($, ko, datacontext, config, router, messenger, utils, modelmapper) {
         var canLeave = function () {
                 return true;
-        },
+            },
             user = ko.observable(),
             activate = function (routeData, callback) {
                 messenger.publish.viewModelActivated({ canleaveCallback: canLeave });

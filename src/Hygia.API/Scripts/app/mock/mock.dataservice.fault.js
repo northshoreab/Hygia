@@ -5,7 +5,7 @@
             defineApi = function (model) {
 
                 amplify.request.define('faults', function (settings) {
-                    settings.success(model.generateFaults().faults);
+                    settings.success(model.generateFaults());
                 });
             };
 

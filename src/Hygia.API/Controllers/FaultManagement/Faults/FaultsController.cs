@@ -42,7 +42,7 @@ namespace Hygia.API.Controllers.FaultManagement.Faults
         private readonly Func<Fault, IEnumerable<Link>> _links;
 
         [CustomQueryable]
-        public IQueryable<ResponseItem<Fault>> GetAll()
+        public IQueryable<Resource<Fault>> GetAll()
         {
             return Session.Query<Hygia.FaultManagement.Domain.Fault>()
                 .Where(f => f.Status != FaultStatus.Archived && f.Status != FaultStatus.Resolved && f.Status != FaultStatus.RetryPerformed)
@@ -52,7 +52,7 @@ namespace Hygia.API.Controllers.FaultManagement.Faults
                 .AsQueryable();
         }
         
-        public ResponseItem<Fault> Get(Guid id)
+        public Resource<Fault> Get(Guid id)
         {
             return Session.Load<Hygia.FaultManagement.Domain.Fault>(id)
                 .ToOutputModel()

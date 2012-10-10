@@ -15,7 +15,7 @@ namespace Hygia.API.Controllers.AccountManagement.Systems.Environments
     [Authorize]
     public class CreateEnvironmentController : ApiController
     {
-        public ResponseItem<Environment> Post(Guid systemId,Guid environmentId, string name)
+        public Resource<Environment> Post(Guid systemId,Guid environmentId, string name)
         {
             var system = Session.Load<Hygia.Operations.Accounts.Domain.System>(systemId);
 

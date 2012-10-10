@@ -27,16 +27,19 @@
             },
             mapToContext = function (dtoList, items, results, mapper, filter, sortFunction) {
                 // Loop through the raw dto list and populate a dictionary of the items
+
                 items = _.reduce(dtoList, function (memo, dto) {
                     var id = mapper.getDtoId(dto);
                     var existingItem = items[id];
                     memo[id] = mapper.fromDto(dto, existingItem);
                     return memo;
                 }, {});
+                A = _.
                 itemsToArray(items, results, filter, sortFunction);
                 //logger.success('received with ' + dtoList.length + ' elements');
                 return items; // must return these
             },
+            
             EntitySet = function (getFunction, mapper, nullo, updateFunction) {
                 var items = {},
                 // returns the model item produced by merging dto into context
@@ -76,7 +79,7 @@
                             if (forceRefresh || !items || !utils.hasProperties(items)) {
                                 getFunction({
                                     success: function (dtoList) {
-                                        items = mapToContext(dtoList, items, results, mapper, filter, sortFunction);
+                                        items = mapToContext(dtoList.results, items, results, mapper, filter, sortFunction);
                                         def.resolve(results);
                                     },
                                     error: function (response) {
@@ -152,6 +155,30 @@
         //            tracks = new EntitySet(dataservice.lookup.getTracks, modelmapper.track, model.Track.Nullo),
         //            speakerSessions = new SpeakerSessions.SpeakerSessions(persons, sessions);
             
+
+            faults.getFaults = function (callbacks) {
+                return $.Deferred(function (def) {
+                    var items = [];
+
+                    dataservice.fault.getFaults({
+                        success: function (dto) {
+                            //faults = mapToContext(dto.results, faults, results, mapper, filter, sortFunction);
+                            for (var i in dto.results) {
+                                items[i] = modelmapper.fault.fromDto(dto.results[i], null);
+                            }
+                            callbacks.success(items);
+                            def.resolve(dto);
+                        },
+                        error: function (response) {
+                            if (callbacks && callbacks.error) {
+                                callbacks.error(response);
+                            }
+                            def.reject(response);
+                        }
+                    });
+
+                }).promise();
+            },
             users.getMe = function (callbacks) {
                 return $.Deferred(function (def) {
                     var user;

@@ -15,7 +15,7 @@ namespace Hygia.API.Controllers.LogicalMonitoring.MessageTypes
     public class MessageTypesController : EnvironmentController
     {
         [CustomQueryable]
-        public IQueryable<ResponseItem<MessageType>> GetAll()
+        public IQueryable<Resource<MessageType>> GetAll()
         {
             return Session.Query<Hygia.LogicalMonitoring.Handlers.MessageType>()
                 .ToOutputModels()
@@ -23,7 +23,7 @@ namespace Hygia.API.Controllers.LogicalMonitoring.MessageTypes
                 .AsQueryable();
         }
 
-        public ResponseItem<MessageType> Get(Guid id)
+        public Resource<MessageType> Get(Guid id)
         {
             return Session.Load<Hygia.LogicalMonitoring.Handlers.MessageType>(id)
                 .ToOutputModel()

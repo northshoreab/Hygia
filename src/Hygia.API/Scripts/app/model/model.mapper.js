@@ -2,16 +2,16 @@
 ['model'],
     function (model) {
         var fault = {
-            getDtoId: function(dto) { return dto.id; },
+            getDtoId: function(dto) { return dto.data.id; },
             fromDto: function(dto, item) {
-                item = item || new model.Fault().id(dto.id);
-                item.faultNumber(dto.faultNumber)
-                    .title(dto.title)
-                    .exceptionMessage(dto.exceptionMessage)
-                    .timeSent(dto.timeSent)
-                    .retries(dto.retries)
-                    .enclosedMessageTypes(dto.enclosedMessageTypes)
-                    .bussinessService(dto.bussinessService);
+                item = item || new model.Fault().id(dto.data.id);
+                item.faultNumber(dto.data.faultNumber)
+                    .title(dto.data.title)
+                    .exceptionMessage(dto.data.exceptionMessage)
+                    .timeSent(dto.data.timeSent)
+                    .retries(dto.data.retries)
+                    .enclosedMessageTypes(dto.data.enclosedMessageTypes)
+                    .bussinessService(dto.data.bussinessService);
 
                 return item;
             }

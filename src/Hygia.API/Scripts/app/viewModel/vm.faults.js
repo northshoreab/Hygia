@@ -1,12 +1,9 @@
 ﻿define('vm.faults',
-    ['ko', 'datacontext', 'config', 'router', 'messenger', 'utils'],
-    function (ko, datacontext, config, router, messenger, utils) {
+    ['ko', 'datacontext', 'config', 'router', 'messenger'],
+    function (ko, datacontext, config, router, messenger) {
         var faults = ko.observableArray(),
             faulsPerPage = 10,
             faultTemplate = 'faults.view',
-            canLeave = function () {
-                return true;
-            },
             pageIndex = ko.observable(0),
             visibleFaults = ko.computed(function () {
                 return faults.slice(pageIndex() * faulsPerPage, (pageIndex() * faulsPerPage) + faulsPerPage);
@@ -34,9 +31,16 @@
                 });
                 getFaults(callback);
             },
-            getFaults = function (callback) {
-                $.when(datacontext.faults.getData({ results: faults, forceRefresh: false }))
-                    .always(utils.invokeFunctionIfExists(callback));
+            getFaults = function (completeCallback) {
+                var callback = completeCallback || function () { };
+
+                datacontext.faults.getFaults({
+                    success: function (faultsDto) {
+                        faults(faultsDto);
+                        callback();
+                    },
+                    error: function () { callback(); }
+                });
             };
         
         return {

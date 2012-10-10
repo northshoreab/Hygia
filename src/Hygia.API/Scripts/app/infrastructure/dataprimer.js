@@ -17,7 +17,7 @@
                     };
 
                     $.when(
-                        datacontext.faults.getData({ results: data.faults })
+//                        datacontext.faults.getData({ results: data.faults })
 //                        datacontext.rooms.getData({ results: data.rooms }),
 //                        datacontext.timeslots.getData({ results: data.timeslots }),
 //                        datacontext.tracks.getData({ results: data.tracks }),

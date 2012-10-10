@@ -31,27 +31,27 @@ namespace Hygia.API.Infrastructure
         public MetaData MetaData { get; set; }        
     }
 
-    public class ResponseItem<T> : ResponseMetaData
+    public class Resource<T> : ResponseMetaData
     {
         public T Data { get; set; }
     }
 
     public static class ResponseItemExtensions
     {
-        public static ResponseItem<T> AsResponseItem<T>(this T item, IEnumerable<Link> links = null)
+        public static Resource<T> AsResponseItem<T>(this T item, IEnumerable<Link> links = null)
         {
-            return new ResponseItem<T>
+            return new Resource<T>
                        {
                            Data = item,
                            Links = links ?? new List<Link>()
                        };
         }
 
-        public static ResponseItem<T> AddLinks<T>(this ResponseItem<T> responseItem, Func<T, IEnumerable<Link>> links)
+        public static Resource<T> AddLinks<T>(this Resource<T> resource, Func<T, IEnumerable<Link>> links)
         {
-            responseItem.Links = responseItem.Links.Union(links(responseItem.Data));
+            resource.Links = resource.Links.Union(links(resource.Data));
 
-            return responseItem;
+            return resource;
         }
     }
 }

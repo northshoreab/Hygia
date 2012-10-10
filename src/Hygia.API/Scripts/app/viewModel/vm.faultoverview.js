@@ -24,9 +24,16 @@
                 getFaults(callback);
             },
             stacked = ko.observable(true),
-            getFaults = function (callback) {
-                $.when(datacontext.faults.getData({ results: faults, forceRefresh: false }))
-                    .always(utils.invokeFunctionIfExists(callback));
+            getFaults = function (completeCallback) {
+                var callback = completeCallback || function () { };
+
+                datacontext.faults.getFaults({
+                    success: function (faultsDto) {
+                        faults(faultsDto);
+                        callback();
+                    },
+                    error: function () { callback(); }
+                });
             },
             seriesList = ko.observableArray([{
                 label: 'Fault messages',
