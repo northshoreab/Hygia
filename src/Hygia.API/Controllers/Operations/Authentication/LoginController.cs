@@ -1,4 +1,5 @@
 using System.Collections.Specialized;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -71,13 +72,26 @@ namespace Hygia.API.Controllers.Operations.Authentication
                 var response = new HttpResponseMessage(HttpStatusCode.Redirect);
                 var session = ObjectFactory.GetInstance<IDocumentStore>().OpenSession();
 
-                var userAccount = session.Query<UserAccount>().SingleOrDefault(
-                        u => u.IdentityProviders.Any(x => x.Issuer == "github.com" && x.UserId == result.ProviderUserId)) ??
-                    new UserAccount
+                var userAccount = session.Query<UserAccount>().SingleOrDefault(u => u.IdentityProviders.Any(x => x.Issuer == "github.com" && x.UserId == result.ProviderUserId));
+
+                if (userAccount == null)
+                {
+                    userAccount = new UserAccount
                     {
-                        Id = Guid.Empty,
-                        UserName = userDataFromProvider["username"]
+                        Id = Guid.Parse(result.ProviderUserId),
+                        UserName = userDataFromProvider["username"],
+                        Email = userDataFromProvider["email"],
+                        SignedUpAt = DateTime.UtcNow,
+                        Status = UserAccountStatus.Verified,
+                        GravatarId = userDataFromProvider["gravatarId"],
+                        IdentityProviders = new List<IdentityProvider>
+                                                {
+                                                    new IdentityProvider{Issuer = Constants.Issuers.Github, UserId = userDataFromProvider["id"]}
+                                                }
                     };
+
+                    session.Store(userAccount);
+                }
 
                 response.Headers.AddCookies(new[] { new CookieHeaderValue("jwt", AuthenticationHelper.CreateJsonWebToken(userAccount, userDataFromProvider["accessToken"])) { Expires = new DateTimeOffset(new DateTime(2022, 1, 1)), Path = "/", Secure = false } });
                 response.Headers.Location = new Uri(returnUrl);

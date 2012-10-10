@@ -15,6 +15,7 @@
                 datacontext.users.getMe({
                     success: function (u) {
                         user(u);
+                        config.user(u);
                         callback();
                     },
                     error: function () { callback(); }

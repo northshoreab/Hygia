@@ -84,7 +84,6 @@ namespace Hygia.API.Infrastructure.Authentication
         protected override IDictionary<string, string> GetUserData(string accessToken)
         {
             var request = WebRequest.Create("https://api.github.com/user?access_token=" + accessToken);
-            JObject json = null;
             GitHubUser gitHubUser;
 
             using (var response = request.GetResponse())
@@ -94,7 +93,6 @@ namespace Hygia.API.Infrastructure.Authentication
                     var reader = new StreamReader(responseStream);
                     var jsonString = reader.ReadToEnd();
                     gitHubUser = Newtonsoft.Json.JsonConvert.DeserializeObject<GitHubUser>(jsonString);
-                    //json = JObject.Parse(reader.ReadToEnd());
                 }
             }
 
@@ -104,39 +102,10 @@ namespace Hygia.API.Infrastructure.Authentication
             userData.AddItemIfNotEmpty("username", gitHubUser.Email);
             userData.AddItemIfNotEmpty("name", gitHubUser.Name);
             userData.AddItemIfNotEmpty("link", gitHubUser.Url);
+            userData.AddItemIfNotEmpty("email", gitHubUser.Email);
             userData.AddItemIfNotEmpty("accessToken", accessToken);
+            userData.AddItemIfNotEmpty("gravatarId",gitHubUser.Gravatar_Id);
 
-
-            /*
-                        userData.Add("login", (string)json["login"]);
-                        userData.Add("id", ((int)json["id"]).ToString());
-                        userData.Add("avatar_url", (string)json["avatar_url"]);
-                        userData.Add("gravatar_id", (string)json["gravatar_id"]);
-                        userData.Add("url", (string)json["url"]);
-                        userData.Add("name", (string)json["name"]);
-                        userData.Add("company", (string)json["company"]);
-                        userData.Add("blog", (string)json["blog"]);
-                        userData.Add("location", (string)json["location"]);
-                        userData.Add("email", (string)json["email"]);
-                        userData.Add("hireable", (string)json["hireable"]);
-                        userData.Add("bio", (string)json["bio"]);
-                        userData.Add("public_repos", (string)json["public_repos"]);
-                        userData.Add("public_gists", (string)json["public_gists"]);
-                        userData.Add("followers", (string)json["followers"]);
-                        userData.Add("following", (string)json["following"]);
-                        userData.Add("html_url", (string)json["html_url"]);
-                        userData.Add("created_at", (string)json["created_at"]);
-                        userData.Add("type", (string)json["type"]);
-                        userData.Add("total_private_repos", (string)json["total_private_repos"]);
-                        userData.Add("owned_private_repos", (string)json["owned_private_repos"]);
-                        userData.Add("private_gists", (string)json["private_gists"]);
-                        userData.Add("disk_usage", (string)json["disk_usage"]);
-                        userData.Add("collaborators", (string)json["collaborators"]);
-                        userData.Add("plan_name", (string)json["plan"]["name"]);
-                        userData.Add("plan_space", (string)json["plan"]["space"]);
-                        userData.Add("plan_collaborators", (string)json["plan"]["collaborators"]);
-                        userData.Add("plan_private_repos", (string)json["plan"]["private_repos"]);
-            */
             return userData;
         }
     }
