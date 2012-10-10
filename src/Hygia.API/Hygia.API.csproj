@@ -626,9 +626,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="default.html">
-      <SubType>Designer</SubType>
-    </Content>
     <None Include="Hygia.API.nuspec">
       <SubType>Designer</SubType>
     </None>
