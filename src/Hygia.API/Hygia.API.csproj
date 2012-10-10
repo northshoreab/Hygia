@@ -494,7 +494,6 @@
     <Compile Include="Controllers\Operations\LaunchPad\LaunchPadController.cs" />
     <Compile Include="Controllers\RootController.cs" />
     <Compile Include="Controllers\Operations\Authentication\LoginController.cs" />
-    <Compile Include="Controllers\Operations\Authentication\SignupController.cs" />
     <Compile Include="Controllers\UserManagement\UserAccounts\MeController.cs" />
     <Compile Include="Infrastructure\Authentication\GitHubLoginHandler.cs" />
     <Compile Include="Extensions\HttpRequestMessageExtensions.cs" />
