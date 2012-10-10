@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -22,23 +23,11 @@ namespace Hygia.API.Infrastructure
                             object responseObject;
                             task.Result.TryGetContentValue(out responseObject);
 
-                            //uncomment this if you wish to use DataContractSerializer, as it cannot serialize <object> types
-                            /*if (responseObject is Blog)
-                      {
-                          var blog = new List<Blog>();
-                          blog.Add(responseObject as Blog);
-                          ProcessObject<Blog>(blog as IEnumerable<Blog>, task.Result, false);
-                      }
-                      else if (responseObject is IQueryable<Blog>)
-                      {
-                          ProcessObject<Blog>(responseObject as IQueryable<Blog>, task.Result, true);
-                      }*/
-
                             if (responseObject is IQueryable)
                             {
                                 ProcessObject(responseObject as IQueryable<object>, task.Result, true);
                             }
-                            else
+                            else if (responseObject is IEnumerable)
                             {
                                 ProcessObject(responseObject as IEnumerable<object>, task.Result, false);
                             }

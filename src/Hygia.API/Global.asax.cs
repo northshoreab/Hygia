@@ -8,6 +8,7 @@ using Hygia.API.Infrastructure;
 using Hygia.API.Infrastructure.Authentication;
 using Hygia.Spa.App_Start;
 using StructureMap;
+using Newtonsoft.Json.Serialization;
 
 namespace Hygia.API
 {
@@ -40,7 +41,7 @@ namespace Hygia.API
             configuration.DependencyResolver = new StructureMapResolver(ObjectFactory.Container);
             configuration.MessageHandlers.Add(new CommandsToPickUpHandler(ObjectFactory.Container));
             configuration.MessageHandlers.Add(new RavenSessionHandler(ObjectFactory.Container));
-            configuration.MessageHandlers.Add(new MetadataHandler());
+            //configuration.MessageHandlers.Add(new MetadataHandler());
             configuration.MessageHandlers.Add(new CorsHandler());
 
 
@@ -51,6 +52,10 @@ namespace Hygia.API
             configuration.MessageHandlers.Add(new TransactionScopeHandler());
 
             configuration.Services.Add(typeof(IHttpControllerActivator),new CustomHttpControllerFactory(configuration));
+
+            var json = configuration.Formatters.JsonFormatter;
+            json.SerializerSettings.ContractResolver =
+                new CamelCasePropertyNamesContractResolver();
         }
     }
 

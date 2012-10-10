@@ -23,6 +23,7 @@
 
             return new Me
                        {
+
                            AccessToken = identity.GetClaimValue(Constants.ClaimTypes.GithubAccessToken),
                            Name = identity.Name
                        };

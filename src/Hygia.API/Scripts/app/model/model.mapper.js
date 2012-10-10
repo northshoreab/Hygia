@@ -19,9 +19,9 @@
         user = {
             getDtoId: function(dto) { return dto.id; },
             fromDto: function(dto, item) {
-                item = item || new model.User().id(dto.Results[0].Id);
-                item.name(dto.Results[0].Name)
-                    .accessToken(dto.Results[0].AccessToken);
+                item = item || new model.User().id(dto.id);
+                item.name(dto.name)
+                    .accessToken(dto.accessToken);
 
                 return item;
             }
