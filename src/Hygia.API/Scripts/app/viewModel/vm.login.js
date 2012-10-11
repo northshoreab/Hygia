@@ -7,7 +7,16 @@
             user = ko.observable(),
             activate = function (routeData, callback) {
                 messenger.publish.viewModelActivated({ canleaveCallback: canLeave });
-                getMe(callback);
+                if (routeData.loginStatus) {
+                    if (routeData.loginStatus == "success")
+                        getMe(callback);
+                }
+                else {
+                    login(callback);
+                }
+            },
+            login = function (completeCallback) {
+                window.location.href = "http://localhost:8088/Hygia.API/api/login?provider=github&returnUrl=http://localhost:8088/Hygia.API/#/login?loginStatus=success";
             },
             getMe = function (completeCallback) {
                 var callback = completeCallback || function () { };

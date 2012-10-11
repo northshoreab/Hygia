@@ -311,7 +311,7 @@
     <Content Include="Scripts\app\viewModel\vm.js" />
     <Content Include="Scripts\app\viewModel\vm.login.js" />
     <Content Include="Scripts\app\viewModel\vm.shell.js" />
-    <Content Include="Scripts\app\viewModel\vm.signup.js" />
+    <Content Include="Scripts\app\viewModel\vm.home.js" />
     <Content Include="index.cshtml" />
     <None Include="Scripts\lib\amplify-vsdoc.js" />
     <Content Include="Scripts\lib\amplify.js" />
@@ -441,7 +441,6 @@
     <Content Include="Tmpl\_fault.view.tmpl.html" />
     <Content Include="Tmpl\_faults.view.tmpl.html" />
     <Content Include="Tmpl\_faultsummary.view.tmpl.html" />
-    <Content Include="Tmpl\_signup.view.tmpl.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -455,7 +454,7 @@
     <Content Include="Views\faultoverview.cshtml" />
     <Content Include="Views\faults.cshtml" />
     <Content Include="Views\login.cshtml" />
-    <Content Include="Views\signup.cshtml" />
+    <Content Include="Views\home.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiBootstrapper.cs" />

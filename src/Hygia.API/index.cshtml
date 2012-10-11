@@ -49,7 +49,7 @@
                             <li data-bind="if: isLoggedIn"><a href="#/faultoverview">Fault Overview</a></li>
                         </ul>
                         <ul class="nav pull-right">
-                            <li><a data-bind="attr: {href: loginUrl}">Login</a></li>
+                            <li><a href="#/login">Login</a></li>
                         </ul>
                         
                     </div>
@@ -60,7 +60,7 @@
     <section class="main">
         @RenderPage("Views/faults.cshtml")
         @RenderPage("Views/fault.cshtml")
-        @RenderPage("Views/signup.cshtml")
+        @RenderPage("Views/home.cshtml")
         @RenderPage("Views/faultoverview.cshtml")
         @RenderPage("Views/login.cshtml")
     </section>

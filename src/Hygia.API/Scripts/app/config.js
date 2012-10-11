@@ -9,7 +9,7 @@
 
             hashes = {
                 faults: '#/faults',
-                signUp: '#/signup',
+                home: '#/home',
                 faultOverview: '#/faultoverview',
                 login: '#/login'
             },
@@ -38,7 +38,7 @@
             viewIds = {
                 faults: '#faults-view',
                 fault: '#fault-view',
-                signUp: '#signup-view',
+                home: '#home-view',
                 shellTop: '#shellTop-view',
                 faultOverview: '#faultoverview-view',
                 login: '#login-view'

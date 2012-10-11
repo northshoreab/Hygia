@@ -11,7 +11,6 @@
                 // Faults routes
                 {
                     view: config.viewIds.faults,
-                    isDefault: true,
                     route: config.hashes.faults,
                     title: 'Faults',
                     callback: vm.faults.activate,
@@ -25,10 +24,11 @@
                     group: '.route-top'
                 },
                 {
-                    view: config.viewIds.signUp,
-                    route: config.hashes.signUp,
-                    title: 'Sign Up',
-                    callback: vm.signUp.activate,
+                    isDefault: true,
+                    view: config.viewIds.home,
+                    route: config.hashes.home,
+                    title: 'Home',
+                    callback: vm.home.activate,
                     group: '.route-top'
                 },
                 {
