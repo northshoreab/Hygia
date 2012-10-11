@@ -46,9 +46,8 @@
                     <div class="nav-collapse">
                         <ul class="nav">
                             <li><a href="#">Home</a></li>
-                            <li><a href="#/faults">Faults</a></li>
-                            <li><a href="#/faultoverview">Fault Overview</a></li>
-                            <li><a href="#/signup">Sign Up</a></li>
+                            <li data-bind="if: isLoggedIn"><a href="#/faults">Faults</a></li>
+                            <li data-bind="if: isLoggedIn"><a href="#/faultoverview">Fault Overview</a></li>
                             <li><a data-bind="attr: {href: loginUrl}">Login</a></li>
                         </ul>
                     </div>

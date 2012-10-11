@@ -17,6 +17,7 @@
         return {
             activate: activate,
             menuHashes: menuHashes,
-            loginUrl: loginUrl
+            loginUrl: loginUrl,
+            isLoggedIn: config.isLoggedIn
         };
     });

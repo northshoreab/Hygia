@@ -3,7 +3,7 @@
     function (infuser, ko, mock) {
 
         var user = ko.observable(),
-            isLoggedIn = ko.observable(),
+            isLoggedIn = ko.observable(false),
         // properties
         //-----------------
 
@@ -89,10 +89,18 @@
 
         init();
 
+        user.subscribe(function (newValue) {
+            if (newValue)
+                isLoggedIn(true);
+            else
+                isLoggedIn(false);
+        });
+
         return {
 //            currentUserId: currentUserId,
             //            currentUser: currentUser,
             user: user,
+            isLoggedIn: isLoggedIn,
             dataserviceInit: dataserviceInit,
             hashes: hashes,
             //logger: logger,
