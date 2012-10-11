@@ -15,7 +15,6 @@ namespace Hygia.API
     using System.Net.Http;
     using System.Web.Http.Controllers;
     using System.Web.Http.Dispatcher;
-    using Controllers.AccountManagement;
 
     public class Global : HttpApplication
     {

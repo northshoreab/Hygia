@@ -38,13 +38,22 @@ namespace Hygia.API.Infrastructure
 
     public static class ResponseItemExtensions
     {
-        public static Resource<T> AsResponseItem<T>(this T item, IEnumerable<Link> links = null)
+        public static Resource<T> AsResponseItem<T>(this T item, IEnumerable<Link> links)
         {
             return new Resource<T>
                        {
                            Data = item,
-                           Links = links ?? new List<Link>()
+                           Links = links
                        };
+        }
+
+        public static Resource<T> AsResponseItem<T>(this T item)
+        {
+            return new Resource<T>
+            {
+                Data = item,
+                Links = new List<Link>()
+            };
         }
 
         public static Resource<T> AddLinks<T>(this Resource<T> resource, Func<T, IEnumerable<Link>> links)

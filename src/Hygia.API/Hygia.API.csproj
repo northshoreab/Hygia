@@ -438,6 +438,7 @@
     <Content Include="Scripts\lib\underscore.min.js" />
     <Content Include="Scripts\main.js" />
     <Content Include="Scripts\plugins.js" />
+    <Content Include="Tmpl\_environmentlist.view.tmpl.html" />
     <Content Include="Tmpl\_fault.view.tmpl.html" />
     <Content Include="Tmpl\_faults.view.tmpl.html" />
     <Content Include="Tmpl\_faultsummary.view.tmpl.html" />
@@ -461,9 +462,10 @@
     <Compile Include="App_Start\AuthConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Systems\Environments\Commands\AddUserController.cs" />
     <Compile Include="Controllers\Systems\SystemsController.cs" />
     <Compile Include="Controllers\EnvironmentController.cs" />
-    <Compile Include="Controllers\Systems\Environments\CreateEnvironmentController.cs" />
+    <Compile Include="Controllers\Systems\Environments\EnvironmentController.cs" />
     <Compile Include="Controllers\UserAccountController.cs" />
     <Compile Include="Controllers\WatchRController.cs" />
     <Compile Include="Extensions\DictionaryExtensions.cs" />
