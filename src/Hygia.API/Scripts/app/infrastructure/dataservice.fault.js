@@ -4,7 +4,7 @@
         var init = function() {
 
             amplify.request.define('faults', 'ajax', {
-                url: '/Hygia.API/api/faults',
+                url: '/api/faults',
                 dataType: 'json',
                 type: 'GET'
                 //cache:

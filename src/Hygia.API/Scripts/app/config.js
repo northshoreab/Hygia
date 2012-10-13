@@ -4,6 +4,7 @@
 
         var user = ko.observable(),
             isLoggedIn = ko.observable(false),
+            environment = ko.observable(),
         // properties
         //-----------------
 
@@ -73,7 +74,7 @@
             configureExternalTemplates = function () {
                 infuser.defaults.templatePrefix = "_";
                 infuser.defaults.templateSuffix = ".tmpl.html";
-                infuser.defaults.templateUrl = "/Hygia.API/Tmpl";
+                infuser.defaults.templateUrl = "/Tmpl";
             },
 
             init = function () {

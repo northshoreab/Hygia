@@ -16,7 +16,7 @@
                 }
             },
             login = function (completeCallback) {
-                window.location.href = "http://localhost:8088/Hygia.API/api/login?provider=github&returnUrl=http://localhost:8088/Hygia.API/#/login?loginStatus=success";
+                window.location.href = "http://localhost:8088/api/login?provider=github&returnUrl=http://localhost:8088/#/login?loginStatus=success";
             },
             getMe = function (completeCallback) {
                 var callback = completeCallback || function () { };

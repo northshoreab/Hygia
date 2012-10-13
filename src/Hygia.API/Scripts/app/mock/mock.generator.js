@@ -4,8 +4,8 @@
         var init = function() {
             $.mockJSON.random = true;
             $.mockJSON.log = false;
-            $.mockJSON.data.SPEAKER_FIRST_NAME = ['John', 'Dan', 'Scott', 'Hans', 'Ward', 'Jim', 'Ryan', 'Steve', 'Ella', 'Landon', 'Haley', 'Madelyn'];
-            $.mockJSON.data.SPEAKER_LAST_NAME = ['Papa', 'Wahlin', 'Guthrie', 'Fjällemark', 'Bell', 'Cowart', 'Niemeyer', 'Sanderson'];
+            $.mockJSON.data.FIRST_NAME = ['John', 'Dan', 'Scott', 'Hans', 'Ward', 'Jim', 'Ryan', 'Steve', 'Ella', 'Landon', 'Haley', 'Madelyn'];
+            $.mockJSON.data.LAST_NAME = ['Papa', 'Wahlin', 'Guthrie', 'Fjällemark', 'Bell', 'Cowart', 'Niemeyer', 'Sanderson'];
             $.mockJSON.data.IMAGE_SOURCE = ['john_papa.jpg', 'dan_wahlin.jpg', 'scott_guthrie.jpg', 'hans_fjallemark.jpg', 'ward_bell.jpg', 'jim_cowart.jpg', 'ryan_niemeyer.jpg', 'steve_sanderson.jpg'];
             $.mockJSON.data.DATE_TODAY = [moment().format('MMMM DD YYYY')];
             $.mockJSON.data.DATE_FULL = [new Date()];
@@ -35,6 +35,27 @@
                             bussinessService: "service"
                         }
                     }]
+                });
+
+                return data;
+            },
+            generateMyEnvironments = function () {
+                var data = $.mockJSON.generateFromTemplate({
+                    'results|2-5' : [{
+                        data: {
+                            'id|+1': 1,
+                            'name|1': 'Environment' + 1,
+                            users: []
+                        }
+                    }]
+                });
+
+                return data;
+            },
+            generateMe = function () {
+                var data = $.mockJSON.generateFromTemplate({
+                    'id|+1': 1,
+                    name: '@FIRST_NAME'
                 });
 
                 return data;
@@ -133,7 +154,9 @@
 
         return {
             model: {
-                generateFaults: generateFaults
+                generateFaults: generateFaults,
+                generateMe: generateMe,
+                generateMyEnvironments: generateMyEnvironments
                 //                generateAttendance: generateAttendance,
                 //                generateRooms: generateRooms,
                 //                generateSessions: generateSessions,

@@ -1,18 +1,18 @@
-﻿define('dataservice.user',
+﻿define('dataservice.environment',
     ['amplify'],
     function (amplify) {
         var init = function() {
 
-            amplify.request.define('me', 'ajax', {
-                url: '/api/users/me',
+            amplify.request.define('myEnvironments', 'ajax', {
+                url: '/api/environment',
                 dataType: 'json',
                 type: 'GET'
                 //cache:
             });
         },
-            getMe = function (callbacks) {
+            getMyEnvironments = function (callbacks) {
                 return amplify.request({
-                    resourceId: 'me',
+                    resourceId: 'myEnvironments',
                     success: callbacks.success,
                     error: callbacks.error
                 });
@@ -21,7 +21,7 @@
         init();
 
         return {
-            getMe: getMe
+            getMyEnvironments: getMyEnvironments
         };
     });
 

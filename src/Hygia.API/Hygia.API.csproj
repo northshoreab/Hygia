@@ -17,7 +17,7 @@
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\hygia\</SolutionDir>
     <RestorePackages>true</RestorePackages>
-    <UseIISExpress>false</UseIISExpress>
+    <UseIISExpress>true</UseIISExpress>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <UpgradeBackupLocation>
@@ -285,6 +285,7 @@
     <Content Include="Scripts\app\bootstrapper.js" />
     <Content Include="Scripts\app\config.js" />
     <Content Include="Scripts\app\infrastructure\binder.js" />
+    <Content Include="Scripts\app\infrastructure\dataservice.environment.js" />
     <Content Include="Scripts\app\infrastructure\datacontext.js" />
     <Content Include="Scripts\app\infrastructure\dataprimer.js" />
     <Content Include="Scripts\app\infrastructure\dataservice.fault.js" />
@@ -297,9 +298,12 @@
     <Content Include="Scripts\app\infrastructure\route-mediator.js" />
     <Content Include="Scripts\app\infrastructure\router.js" />
     <Content Include="Scripts\app\infrastructure\store.js" />
+    <Content Include="Scripts\app\mock\mock.dataservice.environment.js" />
+    <Content Include="Scripts\app\mock\mock.dataservice.user.js" />
     <Content Include="Scripts\app\mock\mock.dataservice.fault.js" />
     <Content Include="Scripts\app\mock\mock.generator.js" />
     <Content Include="Scripts\app\mock\mock.js" />
+    <Content Include="Scripts\app\model\model.environment.js" />
     <Content Include="Scripts\app\model\model.fault.js" />
     <Content Include="Scripts\app\model\model.js" />
     <Content Include="Scripts\app\model\model.mapper.js" />
@@ -652,7 +656,7 @@
           <AutoAssignPort>False</AutoAssignPort>
           <DevelopmentServerPort>38105</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:8088/Hygia.API</IISUrl>
+          <IISUrl>http://localhost:8088/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
