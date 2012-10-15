@@ -7,11 +7,11 @@
             user = ko.observable(),
             activate = function (routeData, callback) {
                 messenger.publish.viewModelActivated({ canleaveCallback: canLeave });
-                if (routeData.loginStatus) {
-                    if (routeData.loginStatus == "success")
-                        getMe(callback);
+                
+                if (routeData.loginStatus || !config.isLoggedIn()) {
+                    getMe(callback);
                 }
-                else {
+                else if(!config.isLoggedIn()) {
                     login(callback);
                 }
             },

@@ -1,6 +1,6 @@
 ﻿define('vm.faults',
-    ['ko', 'datacontext', 'config', 'router', 'messenger'],
-    function (ko, datacontext, config, router, messenger) {
+    ['ko', 'datacontext', 'config', 'router', 'messenger','utils'],
+    function (ko, datacontext, config, router, messenger, utils) {
         var faults = ko.observableArray(),
             faulsPerPage = 10,
             faultTemplate = 'faults.view',
@@ -34,6 +34,9 @@
             getFaults = function (completeCallback) {
                 var callback = completeCallback || function () { };
 
+                $.when(datacontext.faults.getData({ results: faults }))
+                    .always(utils.invokeFunctionIfExists(callback));
+                /*
                 datacontext.faults.getFaults({
                     success: function (faultsDto) {
                         faults(faultsDto);
@@ -41,6 +44,7 @@
                     },
                     error: function () { callback(); }
                 });
+                */
             };
         
         return {

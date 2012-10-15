@@ -34,7 +34,7 @@
                     memo[id] = mapper.fromDto(dto, existingItem);
                     return memo;
                 }, {});
-                A = _.
+                
                 itemsToArray(items, results, filter, sortFunction);
                 //logger.success('received with ' + dtoList.length + ' elements');
                 return items; // must return these

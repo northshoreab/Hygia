@@ -17,21 +17,21 @@
             }
         },
         user = {
-            getDtoId: function(dto) { return dto.id; },
+            getDtoId: function(dto) { return dto.data.id; },
             fromDto: function(dto, item) {
-                item = item || new model.User().id(dto.id);
-                item.name(dto.name)
-                    .accessToken(dto.accessToken);
+                item = item || new model.User().id(dto.data.id);
+                item.name(dto.data.name)
+                    .accessToken(dto.data.accessToken);
 
                 return item;
             }
         },
         environment = {
-            getDtoId: function (dto) { return dto.id; },
+            getDtoId: function (dto) { return dto.data.id; },
             fromDto: function (dto, item) {
-                item = item || new model.Environment().id(dto.id);
-                item.name(dto.name)
-                    .users(dto.users);
+                item = item || new model.Environment().id(dto.data.id);
+                item.name(dto.data.name)
+                    .users(dto.data.users);
 
                 return item;
             }

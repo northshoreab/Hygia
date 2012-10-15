@@ -15,6 +15,7 @@
                 'Unknown error',
                 'Argument exception'
             ];
+            $.mockJSON.data.ENVIRONMENTS = ['WatchR', 'Test','Production', 'BigCompanyEnv', 'AnotherEnv'];
             $.mockJSON.data.LEVEL = ["Beginner", "Intermediate", "Advanced"];
             $.mockJSON.data.TWITTER = ['john_papa', 'danwahlin', 'ifthenelse', 'scottgu', 'wardbell'];
             $.mockJSON.data.URL = ['http://www.johnpapa.net', 'http://www.pluralsight.com'];
@@ -44,7 +45,7 @@
                     'results|2-5' : [{
                         data: {
                             'id|+1': 1,
-                            'name|1': 'Environment' + 1,
+                            name: '@ENVIRONMENTS',
                             users: []
                         }
                     }]
@@ -54,8 +55,10 @@
             },
             generateMe = function () {
                 var data = $.mockJSON.generateFromTemplate({
-                    'id|+1': 1,
-                    name: '@FIRST_NAME'
+                    data: {
+                        'id|+1': 1,
+                        name: '@FIRST_NAME'
+                    }
                 });
 
                 return data;

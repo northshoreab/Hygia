@@ -1,20 +1,20 @@
 <section id="home-view" class="view">
     <h2>Welcome to WatchR</h2>
     <div class="row">
-        <div class="span4 well">
-            <a href="/#/login">Sign up!</a>
+        <div class="span8" data-bind="ifnot: isLoggedIn">
+            <div class="row">
+                <div class="span4">
+                    <a href="/#/login">Sign up!</a>
+                </div>
+                <div class="span4">
+                    <a href="/#/login">Login!</a>
+                </div>                
+                    
+            </div>
         </div>
-        <div class="span4 well">
-            <a href="/#/login">Login!</a>
-        </div>
+        <div class="span4" data-bind="if: isLoggedIn">
+            <div data-bind="template: {name: environmentTemplate}"></div>
+        </div>  
+         
     </div>
-<!--
-    <div class="container">
-        <div class="span8">
-            
-        </div>
-        <div class="span4" data-bind="template: {name: environmentTemplate}">            
-        </div>
-    </div>
-    -->
 </section>

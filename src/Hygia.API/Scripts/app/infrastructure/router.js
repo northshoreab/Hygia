@@ -79,7 +79,7 @@
                 }
 
                 sammy.get(options.route, function (context) { //context is 'this'
-                    store.save(config.stateKeys.lastView, context.path);
+                    //store.save(config.stateKeys.lastView, context.path);
                     options.callback(context.params); // Activate the viewmodel
                     $('.view').hide();
                     presenter.transitionTo(
@@ -100,7 +100,8 @@
                 // 2) otherwise, use the url i grabbed from storage
                 // 3) otherwise use the default route
                 //startupUrl = sammy.getLocation() || url || defaultRoute;
-                startupUrl = sammy.getLocation() || defaultRoute;
+                //startupUrl = sammy.getLocation() || defaultRoute;
+                startupUrl = defaultRoute;
 
                 if (!startupUrl) {
                     logger.error('No route was indicated.');

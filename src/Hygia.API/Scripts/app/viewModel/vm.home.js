@@ -8,7 +8,7 @@
             environmentTemplate = 'environmentlist.view',
             activate = function (routeData, callback) {
                 messenger.publish.viewModelActivated({ canleaveCallback: canLeave });
-                //getMyEnvironments();
+                getMyEnvironments();
             },
             getMyEnvironments = function (callback) {
                 $.when(datacontext.environments.getData({ results: environments }))
@@ -16,13 +16,17 @@
             },
             selectEnvironment = function () {
                 //set selected environment to config
-            };
+            },
+            isLoggedIn = ko.computed(function () {
+                return config.isLoggedIn();
+            });
 
         return {
             activate: activate,
             canLeave: canLeave,
             environments: environments,
             selectEnvironment: selectEnvironment,
-            environmentTemplate: environmentTemplate
+            environmentTemplate: environmentTemplate,
+            isLoggedIn: isLoggedIn
         };
     });

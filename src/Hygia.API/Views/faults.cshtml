@@ -1,9 +1,7 @@
 <section id="faults-view" class="view">
-    <div class="well span12">
-        <div data-bind="template: {name: faultTemplate, foreach: visibleFaults}"></div>
-        <ul class="pager">
-            <li class="previous" data-bind="css: {disabled: !canMovePrevious()}"><a href="#" data-bind="click: previousPage">Previous</a></li>
-            <li class="next" data-bind="css: {disabled: !canMoveNext()}"><a href="#" data-bind="click: nextPage">Next</a></li>
-        </ul>
-    </div>
+    <div data-bind="template: {name: faultTemplate, foreach: visibleFaults}"></div>
+    <ul class="pager">
+        <li class="previous" data-bind="css: {disabled: !canMovePrevious()}"><a href="#" data-bind="click: previousPage">Previous</a></li>
+        <li class="next" data-bind="css: {disabled: !canMoveNext()}"><a href="#" data-bind="click: nextPage">Next</a></li>
+    </ul>        
 </section>
