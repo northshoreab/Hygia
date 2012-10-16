@@ -19,11 +19,6 @@
             canLeave = function() {
                 return true;
             },
-            activate = function(routeData, callback) {
-                messenger.publish.viewModelActivated({ canleaveCallback: canLeave });
-                getFaults(callback);
-            },
-            stacked = ko.observable(true),
             getFaults = function (completeCallback) {
                 var callback = completeCallback || function () { };
 
@@ -35,6 +30,11 @@
                     error: function () { callback(); }
                 });
             },
+            activate = function(routeData, callback) {
+                messenger.publish.viewModelActivated({ canleaveCallback: canLeave });
+                getFaults(callback);
+            },
+            stacked = ko.observable(true),
             seriesList = ko.observableArray([{
                 label: 'Fault messages',
                 legendEntry: true,

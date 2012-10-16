@@ -1,6 +1,6 @@
 ﻿define('vm.faults',
-    ['ko', 'datacontext', 'config', 'router', 'messenger','utils'],
-    function (ko, datacontext, config, router, messenger, utils) {
+    ['ko', 'datacontext', 'config', 'router', 'messenger','utils', jQuery],
+    function (ko, datacontext, config, router, messenger, utils, $) {
         var faults = ko.observableArray(),
             faulsPerPage = 10,
             faultTemplate = 'faults.view',
@@ -25,26 +25,17 @@
             canLeave = function () {
                 return true;
             },
-            activate = function (routeData, callback) {
-                messenger.publish.viewModelActivated({
-                    canleaveCallback: canLeave
-                });
-                getFaults(callback);
-            },
             getFaults = function (completeCallback) {
                 var callback = completeCallback || function () { };
 
                 $.when(datacontext.faults.getData({ results: faults }))
                     .always(utils.invokeFunctionIfExists(callback));
-                /*
-                datacontext.faults.getFaults({
-                    success: function (faultsDto) {
-                        faults(faultsDto);
-                        callback();
-                    },
-                    error: function () { callback(); }
+            },
+            activate = function (routeData, callback) {
+                messenger.publish.viewModelActivated({
+                    canleaveCallback: canLeave
                 });
-                */
+                getFaults(callback);
             };
         
         return {

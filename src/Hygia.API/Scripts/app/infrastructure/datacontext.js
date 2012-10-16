@@ -149,6 +149,34 @@
             environments = new EntitySet(dataservice.environment.getMyEnvironments, modelmapper.environment, model.Environment.Nullo);
             users = new EntitySet(null, modelmapper.user, model.User.Nullo);         
 
+            environments.addData = function (model, callbacks) {
+                var environmentModel = new model.Environment()
+                        .id(model.id())
+                        .name(modelname()),
+                    environmentModelJson = ko.toJSON(environmentModel);
+
+                return $.Deferred(function (def) {
+                    dataservice.environment.addEnvironment({
+                        success: function (dto) {
+                            if (!dto) {
+                                if (callbacks && callbacks.error) { callbacks.error(); }
+                                def.reject();
+                                return;
+                            }
+                            var newEnv = modelmapper.environment.fromDto(dto); // Map DTO to Model
+                            environments.add(newEnv); // Add to the datacontext
+
+                            if (callbacks && callbacks.success) { callbacks.success(newEnv); }
+                            def.resolve(dto);
+                        },
+                        error: function (response) {
+                            if (callbacks && callbacks.error) { callbacks.error(); }
+                            def.reject(response);
+                            return;
+                        }
+                    }, environmentModelJson);
+                }).promise();
+            },
             faults.getFaults = function (callbacks) {
                 return $.Deferred(function (def) {
                     var items = [];
