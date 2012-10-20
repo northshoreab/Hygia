@@ -1,5 +1,5 @@
 ﻿define('vm.home',
-    ['ko', 'datacontext', 'config', 'router', 'messenger', 'utils', 'jQuery'],
+    ['ko', 'datacontext', 'config', 'router', 'messenger', 'utils', 'jquery'],
     function (ko, datacontext, config, router, messenger, utils, $) {
         var canLeave = function () {
                 return true;

@@ -25,14 +25,14 @@ namespace Hygia.API.Controllers.Systems.Environments
             return environments.Select(x => x.AsResponseItem()).AsQueryable();
         }
 
-        public Resource<Environment> Post(Guid environmentId, string name)
+        public Resource<Environment> Post(string name)
         {
             var claimsIdentity = User.Identity as IClaimsIdentity;
 
             var environment = new Environment
                                   {
                                       ApiKey = Guid.NewGuid(),
-                                      Id = environmentId,
+                                      Id = Guid.NewGuid(),
                                       Name = name,
                                       Users = new List<Guid>{ Guid.Parse(claimsIdentity.Claims.Single(x => x.ClaimType == Constants.ClaimTypes.UserAccountId).Value) }
                                   };

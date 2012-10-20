@@ -1,5 +1,5 @@
 ﻿define('vm.faults',
-    ['ko', 'datacontext', 'config', 'router', 'messenger','utils', jQuery],
+    ['ko', 'datacontext', 'config', 'router', 'messenger','utils', 'jquery'],
     function (ko, datacontext, config, router, messenger, utils, $) {
         var faults = ko.observableArray(),
             faulsPerPage = 10,

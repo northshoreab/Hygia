@@ -1,5 +1,5 @@
 ﻿define('dataprimer',
-    ['ko', 'datacontext', 'config','jQuery'],
+    ['ko', 'datacontext', 'config','jquery'],
     function (ko, datacontext, config, $) {
 
         var fetch = function () {

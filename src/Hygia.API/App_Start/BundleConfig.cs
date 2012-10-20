@@ -87,7 +87,7 @@ namespace Hygia.Spa.App_Start
                 "~/Content/main.css",
                 "~/Content/normalize.css",
                 "~/Content/bootstrap.css",
-                "~/Content/bootstrap-resonsive.css",
+                "~/Content/bootstrap-resonsive.css"
                 //"~/Content/toastr.css",
                 //"~/Content/toastr-responsive.css"
                 ));
