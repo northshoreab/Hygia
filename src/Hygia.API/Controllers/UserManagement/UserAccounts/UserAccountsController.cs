@@ -19,7 +19,7 @@ namespace Hygia.API.Controllers.UserManagement.UserAccounts
     [DefaultHttpRouteConvention]
     [RoutePrefix("api/usermanagement/useraccounts")]
     [Authorize]
-    public class UserAccountsController : ApiController
+    public class UserAccountsController : WatchRApiController
     {
         private readonly IDocumentSession _session;
         private readonly IBus _bus;
@@ -46,7 +46,7 @@ namespace Hygia.API.Controllers.UserManagement.UserAccounts
 
             var outputUserAccount = userAccount.ToOutputModel();
 
-            return outputUserAccount.AsResponseItem().AddLinks(links);
+            return outputUserAccount.AsResourceItem().AddLinks(links);
         }
 
         [CustomQueryable]
@@ -54,7 +54,7 @@ namespace Hygia.API.Controllers.UserManagement.UserAccounts
         {
             return _session.Query<Hygia.UserManagement.Domain.UserAccount>()
                 .ToOutputModel()
-                .Select(x => x.AsResponseItem().AddLinks(links))
+                .Select(x => x.AsResourceItem().AddLinks(links))
                 .AsQueryable();
         }
 
@@ -88,7 +88,7 @@ namespace Hygia.API.Controllers.UserManagement.UserAccounts
                              Parameters = userId.ToString()
                          });
 
-            return account.ToOutputModel().AsResponseItem().AddLinks(links);
+            return account.ToOutputModel().AsResourceItem().AddLinks(links);
         }
     }
 

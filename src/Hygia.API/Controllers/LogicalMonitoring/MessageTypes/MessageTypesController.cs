@@ -19,7 +19,7 @@ namespace Hygia.API.Controllers.LogicalMonitoring.MessageTypes
         {
             return Session.Query<Hygia.LogicalMonitoring.Handlers.MessageType>()
                 .ToOutputModels()
-                .Select(x => x.AsResponseItem())
+                .Select(x => x.AsResourceItem())
                 .AsQueryable();
         }
 
@@ -27,7 +27,7 @@ namespace Hygia.API.Controllers.LogicalMonitoring.MessageTypes
         {
             return Session.Load<Hygia.LogicalMonitoring.Handlers.MessageType>(id)
                 .ToOutputModel()
-                .AsResponseItem();
+                .AsResourceItem();
         }
     }
 }

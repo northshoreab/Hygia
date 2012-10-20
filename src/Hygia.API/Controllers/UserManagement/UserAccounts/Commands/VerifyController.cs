@@ -12,7 +12,7 @@ namespace Hygia.API.Controllers.UserManagement.UserAccounts.Commands
     [DefaultHttpRouteConvention]
     [RoutePrefix("api/usermanagement/useraccounts/{id:guid}/verify")]
     [Authorize]
-    public class VerifyController : ApiController
+    public class VerifyController : WatchRApiController
     {
         private readonly IDocumentSession session;
 
@@ -35,7 +35,7 @@ namespace Hygia.API.Controllers.UserManagement.UserAccounts.Commands
 
             account.Status = UserAccountStatus.Verified;
 
-            return account.AsResponseItem();
+            return account.AsResourceItem();
         }
     }
 }

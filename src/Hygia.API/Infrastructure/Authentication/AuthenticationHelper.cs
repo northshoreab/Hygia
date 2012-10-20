@@ -50,6 +50,7 @@ namespace Hygia.API.Infrastructure.Authentication
                                                         new Claim(ClaimTypes.Name, user.UserName),
                                                         new Claim(ClaimTypes.PrimarySid, user.Id.ToString()),
                                                         new Claim(Constants.ClaimTypes.GithubAccessToken, accessToken),
+                                                        new Claim(Constants.ClaimTypes.UserAccountId, user.Id.ToString()),
                                                         new Claim(ClaimTypes.AuthenticationMethod, AuthenticationMethods.Password),
                                                         new Claim(Constants.ClaimTypes.AuthenticationProvider, Constants.Issuers.Github)
                                                     },

@@ -15,26 +15,33 @@ namespace Hygia.API.Controllers.Systems.Environments
     [DefaultHttpRouteConvention]
     [RoutePrefix("api/environments")]
     [Authorize]
-    public class EnvironmentController : ApiController
+    public class EnvironmentController : WatchRApiController
     {
         public IQueryable<Resource<Environment>> Get()
         {
             var claimsIdentity = User.Identity as IClaimsIdentity;
-            var environments = Session.Query<Environment>().Where(x => x.Users.Contains(Guid.Parse(claimsIdentity.Claims.Single(c => c.ClaimType == Constants.ClaimTypes.UserAccountId).Value)));
 
-            return environments.Select(x => x.AsResponseItem()).AsQueryable();
+            var userId = Guid.Parse(claimsIdentity.Claims.Single(c => c.ClaimType == Constants.ClaimTypes.UserAccountId).Value);
+
+            var environments = Session.Query<Environment>().ToList();
+            
+            var myEnvs = environments.Where(x => x.Users.Contains(userId));
+
+            return myEnvs.Select(x => x.AsResourceItem()).AsQueryable();
         }
 
-        public Resource<Environment> Post(string name)
+        public Resource<Environment> Post(Environment env)
         {
             var claimsIdentity = User.Identity as IClaimsIdentity;
+
+            var userId = Guid.Parse(claimsIdentity.Claims.Single(c => c.ClaimType == Constants.ClaimTypes.UserAccountId).Value);
 
             var environment = new Environment
                                   {
                                       ApiKey = Guid.NewGuid(),
                                       Id = Guid.NewGuid(),
-                                      Name = name,
-                                      Users = new List<Guid>{ Guid.Parse(claimsIdentity.Claims.Single(x => x.ClaimType == Constants.ClaimTypes.UserAccountId).Value) }
+                                      Name = env.Name,
+                                      Users = new List<Guid>{ userId }
                                   };
 
             Session.Store(environment);
@@ -44,7 +51,7 @@ namespace Hygia.API.Controllers.Systems.Environments
                              EnvironmentId = environment.Id
                          });
 
-            return environment.AsResponseItem(new List<Link>
+            return environment.AsResourceItem(new List<Link>
                                                   {
                                                      new Link { Href = "/api/environments/{?environmentid}/adduser", Rel = "addUser", Templated = true }
                                                   });

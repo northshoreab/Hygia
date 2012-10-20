@@ -3,14 +3,14 @@
     function (amplify) {
         var init = function() {
                 amplify.request.define('myEnvironments', 'ajax', {
-                    url: '/api/environment',
+                    url: '/api/environments',
                     dataType: 'json',
                     type: 'GET'
                     //cache:
                 });
 
                 amplify.request.define('environmentsAdd', 'ajax', {
-                    url: '/api/environment',
+                    url: '/api/environments',
                     dataType: 'json',
                     type: 'POST',
                     contentType: 'application/json; charset=utf-8'
@@ -36,7 +36,8 @@
         init();
 
         return {
-            getMyEnvironments: getMyEnvironments
+            getMyEnvironments: getMyEnvironments,
+            addEnvironment: addEnvironment
         };
     });
 

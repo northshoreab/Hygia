@@ -9,7 +9,7 @@ namespace Hygia.API.Controllers.Version
     [DefaultHttpRouteConvention]
     [RoutePrefix("api/version")]
     [Authorize]
-    public class VersionController : ApiController
+    public class VersionController : WatchRApiController
     {
         public string GetAll()
         {

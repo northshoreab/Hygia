@@ -9,7 +9,7 @@ namespace Hygia.API.Controllers.UserManagement
     [DefaultHttpRouteConvention]
     [RoutePrefix("api/usermanagement")]
     [Authorize]
-    public class UserManagementController : ApiController
+    public class UserManagementController : WatchRApiController
     {
         public ResponseMetaData GetAll()
         {

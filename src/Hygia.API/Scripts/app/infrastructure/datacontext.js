@@ -149,10 +149,10 @@
             environments = new EntitySet(dataservice.environment.getMyEnvironments, modelmapper.environment, model.Environment.Nullo);
             users = new EntitySet(null, modelmapper.user, model.User.Nullo);         
 
-            environments.addData = function (model, callbacks) {
+            environments.addData = function (envModel, callbacks) {
                 var environmentModel = new model.Environment()
-                        .id(model.id())
-                        .name(modelname()),
+                        .id(envModel.id)
+                        .name(envModel.name),
                     environmentModelJson = ko.toJSON(environmentModel);
 
                 return $.Deferred(function (def) {

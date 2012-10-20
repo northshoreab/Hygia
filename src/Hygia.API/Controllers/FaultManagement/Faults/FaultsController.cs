@@ -48,7 +48,7 @@ namespace Hygia.API.Controllers.FaultManagement.Faults
                 .Where(f => f.Status != FaultStatus.Archived && f.Status != FaultStatus.Resolved && f.Status != FaultStatus.RetryPerformed)
                 .OrderByDescending(f=>f.TimeOfFailure)
                 .ToOutputModels()
-                .Select(x => x.AsResponseItem().AddLinks(_links))
+                .Select(x => x.AsResourceItem().AddLinks(_links))
                 .AsQueryable();
         }
         
@@ -56,7 +56,7 @@ namespace Hygia.API.Controllers.FaultManagement.Faults
         {
             return Session.Load<Hygia.FaultManagement.Domain.Fault>(id)
                 .ToOutputModel()
-                .AsResponseItem()
+                .AsResourceItem()
                 .AddLinks(_links);
         }
     }

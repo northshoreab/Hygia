@@ -9,7 +9,7 @@ namespace Hygia.API.Controllers
     [DefaultHttpRouteConvention]
     [RoutePrefix("api")]
     [Authorize]
-    public class RootController : ApiController
+    public class RootController : WatchRApiController
     {
         public ResponseMetaData GetAll()
         {

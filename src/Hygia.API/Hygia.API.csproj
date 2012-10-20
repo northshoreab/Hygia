@@ -396,6 +396,7 @@
     <Compile Include="Controllers\EnvironmentController.cs" />
     <Compile Include="Controllers\Systems\Environments\EnvironmentController.cs" />
     <Compile Include="Controllers\UserAccountController.cs" />
+    <Compile Include="Controllers\WatchRApiController.cs" />
     <Compile Include="Controllers\WatchRController.cs" />
     <Compile Include="Extensions\DictionaryExtensions.cs" />
     <Compile Include="Infrastructure\AccountFilter.cs" />
@@ -427,12 +428,12 @@
     <Compile Include="Controllers\UserManagement\UserAccounts\MeController.cs" />
     <Compile Include="Infrastructure\Authentication\GitHubLoginHandler.cs" />
     <Compile Include="Extensions\HttpRequestMessageExtensions.cs" />
-    <Compile Include="Infrastructure\CorsHandler.cs" />
     <Compile Include="Infrastructure\IApiRequest.cs" />
     <Compile Include="Infrastructure\MetadataHandler.cs" />
     <Compile Include="Infrastructure\EnvironmentFilter.cs" />
     <Compile Include="Infrastructure\UserAccountFilter.cs" />
     <Compile Include="Infrastructure\UserContextRegistry.cs" />
+    <Compile Include="Infrastructure\WatchRApiFilter.cs" />
     <Compile Include="Models\CustomQueryableAttribute.cs" />
     <Compile Include="Models\FaultManagement\Faults\Fault.cs" />
     <Compile Include="Models\FaultManagement\Faults\FaultExtensions.cs" />

@@ -25,7 +25,7 @@ namespace Hygia.API.Controllers.Operations.Authentication
     //[DefaultHttpRouteConvention]
     [RoutePrefix("api/login")]
     [Authorize]
-    public class LoginController : ApiController
+    public class LoginController : WatchRApiController
     {
         [AllowAnonymous]
         [GET(""), HttpGet]
@@ -107,7 +107,7 @@ namespace Hygia.API.Controllers.Operations.Authentication
     [DefaultHttpRouteConvention]
     [RoutePrefix("api/login/withgithub")]
     [Authorize]
-    public class LoginWithGithubController : ApiController
+    public class LoginWithGithubController : WatchRApiController
     {
         public string Get()
         {
@@ -118,7 +118,7 @@ namespace Hygia.API.Controllers.Operations.Authentication
     [DefaultHttpRouteConvention]
     [RoutePrefix("api/login/backdoor")]
     [Authorize]
-    public class LoginWithBackdoorController : ApiController
+    public class LoginWithBackdoorController : WatchRApiController
     {
         public string Get()
         {

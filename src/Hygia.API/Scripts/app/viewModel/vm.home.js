@@ -5,10 +5,12 @@
                 return true;
             },
             environments = ko.observableArray(),
+            newEnvName = ko.observable(),
             environmentTemplate = 'environmentlist.view',
             activate = function (routeData, callback) {
                 messenger.publish.viewModelActivated({ canleaveCallback: canLeave });
-                getMyEnvironments();
+                if(config.isLoggedIn())
+                    getMyEnvironments();
             },
             getMyEnvironments = function (callback) {
                 $.when(datacontext.environments.getData({ results: environments }))
@@ -19,7 +21,18 @@
             },
             isLoggedIn = ko.computed(function () {
                 return config.isLoggedIn();
-            });
+            }),
+            createEnvironment = function () {
+                datacontext.environments.addData(
+                {
+                    id: null,
+                    name: newEnvName()
+                },
+                {
+                    success: function (data) { /*environments().add(data);*/ },
+                    error: function() { }
+                });
+            };
 
         return {
             activate: activate,
@@ -27,6 +40,8 @@
             environments: environments,
             selectEnvironment: selectEnvironment,
             environmentTemplate: environmentTemplate,
-            isLoggedIn: isLoggedIn
+            isLoggedIn: isLoggedIn,
+            createEnvironment: createEnvironment,
+            newEnvName: newEnvName
         };
     });

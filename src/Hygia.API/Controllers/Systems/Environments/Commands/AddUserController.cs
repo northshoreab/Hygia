@@ -27,7 +27,7 @@ namespace Hygia.API.Controllers.Systems.Environments.Commands
 
             Session.Store(environment);
 
-            return environment.AsResponseItem();
+            return environment.AsResourceItem();
         }
     }
 }

@@ -38,7 +38,7 @@ namespace Hygia.API.Infrastructure
 
     public static class ResponseItemExtensions
     {
-        public static Resource<T> AsResponseItem<T>(this T item, IEnumerable<Link> links)
+        public static Resource<T> AsResourceItem<T>(this T item, IEnumerable<Link> links)
         {
             return new Resource<T>
                        {
@@ -47,7 +47,7 @@ namespace Hygia.API.Infrastructure
                        };
         }
 
-        public static Resource<T> AsResponseItem<T>(this T item)
+        public static Resource<T> AsResourceItem<T>(this T item)
         {
             return new Resource<T>
             {

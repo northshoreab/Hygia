@@ -4,7 +4,7 @@ using Raven.Client;
 
 namespace Hygia.API.Controllers
 {
-    public abstract class WatchRController : ApiController
+    public abstract class WatchRController : WatchRApiController
     {
         public IDocumentSession Session { get; set; }
         public IBus Bus { get; set; }        

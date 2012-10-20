@@ -6,12 +6,11 @@
     using AttributeRouting.Web.Http;
     using Infrastructure;
     using Hygia.Operations.Accounts.Commands;
-    using ApiController = ApiController;
 
     [DefaultHttpRouteConvention]
     [RoutePrefix("api/systems")]
     [Authorize]
-    public class SystemsController : ApiController
+    public class SystemsController : WatchRApiController
     {
         public Resource<Hygia.Operations.Accounts.Domain.System> Post(Guid systemId,string name)
         {
@@ -27,7 +26,7 @@
 
             Bus.Publish(new SystemCreated { UserAccountId = CurrentUser.UserId, SystemId = system.Id });
 
-            return system.AsResponseItem();
+            return system.AsResourceItem();
         }
     }
 }

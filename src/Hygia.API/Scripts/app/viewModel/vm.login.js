@@ -8,7 +8,7 @@
             activate = function (routeData, callback) {
                 messenger.publish.viewModelActivated({ canleaveCallback: canLeave });
                 
-                if (routeData.loginStatus || !config.isLoggedIn()) {
+                if (routeData.loginStatus || config.isLoggedIn()) {
                     getMe(callback);
                 }
                 else if(!config.isLoggedIn()) {

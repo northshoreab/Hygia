@@ -35,14 +35,13 @@ namespace Hygia.API
             configuration.Filters.Add(new EnvironmentFilter(ObjectFactory.Container));
             configuration.Filters.Add(new AccountFilter(ObjectFactory.Container));
             configuration.Filters.Add(new UserAccountFilter(ObjectFactory.Container));
+            configuration.Filters.Add(new WatchRApiFilter(ObjectFactory.Container));
 
             configuration.Formatters.Remove(configuration.Formatters.XmlFormatter);
             configuration.DependencyResolver = new StructureMapResolver(ObjectFactory.Container);
             configuration.MessageHandlers.Add(new CommandsToPickUpHandler(ObjectFactory.Container));
             configuration.MessageHandlers.Add(new RavenSessionHandler(ObjectFactory.Container));
-            //configuration.MessageHandlers.Add(new MetadataHandler());
-            configuration.MessageHandlers.Add(new CorsHandler());
-
+            configuration.MessageHandlers.Add(new MetadataHandler());
 
             //this needs to be registered after the securityconfig AuthenticationHandler in order to be invoked before it.
             configuration.MessageHandlers.Add(new GitHubLoginHandler());

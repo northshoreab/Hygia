@@ -1,12 +1,15 @@
-﻿namespace Hygia.API.Controllers.UserManagement.UserAccounts
+﻿using System;
+using Hygia.API.Infrastructure;
+
+namespace Hygia.API.Controllers.UserManagement.UserAccounts
 {
     using System.Net;
     using System.Net.Http;
     using System.Web.Http;
     using AttributeRouting;
     using AttributeRouting.Web.Http;
-    using Hygia.API.Infrastructure.Authentication;
-    using Hygia.API.Models.UserManagement.UserAccounts;
+    using Infrastructure.Authentication;
+    using Models.UserManagement.UserAccounts;
     using Microsoft.IdentityModel.Claims;
 
     [DefaultHttpRouteConvention]
@@ -14,7 +17,7 @@
     [Authorize]
     public class MeController : ApiController
     {
-        public Me Get()
+        public Resource<Me> Get()
         {
             var identity = User.Identity as IClaimsIdentity;
 
@@ -23,10 +26,10 @@
 
             return new Me
                        {
-
+                           Id = Guid.Parse(identity.GetClaimValue(Constants.ClaimTypes.UserAccountId)),
                            AccessToken = identity.GetClaimValue(Constants.ClaimTypes.GithubAccessToken),
                            Name = identity.Name
-                       };
+                       }.AsResourceItem();
         }
     }
 }

@@ -11,7 +11,7 @@ namespace Hygia.API.Controllers.Operations.LaunchPad
     [DefaultHttpRouteConvention]
     [RoutePrefix("api/launchpads")]
     [Authorize]
-    public class LaunchPadController : ApiController
+    public class LaunchPadController : WatchRApiController
     {
         public ResponseMetaData Get(Guid launchPadId)
         {

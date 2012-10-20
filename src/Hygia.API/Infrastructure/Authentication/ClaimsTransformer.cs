@@ -35,6 +35,7 @@ namespace Hygia.API.Infrastructure.Authentication
             {
                 //TODO add claims for github users
                 claims.Add(id.Claims.Single(c => c.ClaimType == Constants.ClaimTypes.GithubAccessToken));
+                claims.Add(id.Claims.Single(c => c.ClaimType == Constants.ClaimTypes.UserAccountId));
             }
 
             if (issuer.Value == Constants.Issuers.ApiKey)
