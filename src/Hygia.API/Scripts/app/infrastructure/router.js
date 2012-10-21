@@ -94,14 +94,14 @@
             },
 
             run = function () {
-                var url = store.fetch(config.stateKeys.lastView);
+                //var url = store.fetch(config.stateKeys.lastView);
 
                 // 1) if i browse to a location, use it
                 // 2) otherwise, use the url i grabbed from storage
                 // 3) otherwise use the default route
                 //startupUrl = sammy.getLocation() || url || defaultRoute;
-                //startupUrl = sammy.getLocation() || defaultRoute;
-                startupUrl = defaultRoute;
+                startupUrl = sammy.getLocation() || defaultRoute;
+                //startupUrl = defaultRoute;
 
                 if (!startupUrl) {
                     logger.error('No route was indicated.');

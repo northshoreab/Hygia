@@ -13,7 +13,7 @@ using Fault = Hygia.API.Models.FaultManagement.Faults.Fault;
 namespace Hygia.API.Controllers.FaultManagement.Faults
 {
     [DefaultHttpRouteConvention]
-    [RoutePrefix("api/environments/{environment:guid}/faultmanagement/faults")]
+    [RoutePrefix("api/environments/{environment:guid}/faults")]
     [Authorize]
     public class FaultsController : EnvironmentController
     {
@@ -41,12 +41,13 @@ namespace Hygia.API.Controllers.FaultManagement.Faults
 
         private readonly Func<Fault, IEnumerable<Link>> _links;
 
-        [CustomQueryable]
+        //[CustomQueryable]
         public IQueryable<Resource<Fault>> GetAll()
         {
             return Session.Query<Hygia.FaultManagement.Domain.Fault>()
                 .Where(f => f.Status != FaultStatus.Archived && f.Status != FaultStatus.Resolved && f.Status != FaultStatus.RetryPerformed)
                 .OrderByDescending(f=>f.TimeOfFailure)
+                .ToList()
                 .ToOutputModels()
                 .Select(x => x.AsResourceItem().AddLinks(_links))
                 .AsQueryable();

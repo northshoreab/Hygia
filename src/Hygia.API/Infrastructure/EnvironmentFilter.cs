@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
@@ -31,18 +32,19 @@ namespace Hygia.API.Infrastructure
             if (controller == null)
                 return;
 
-            Guid environment;
+            HttpRequestMessage request = actionContext.ControllerContext.Request;
+            var segments = request.RequestUri.Segments.ToList();
 
-            if (!Guid.TryParse(actionContext.ActionArguments["environment"] as string, out environment))
+            if (segments.All(x => x != "environments/") || segments.IndexOf("environments/") > segments.Count)
                 throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.BadRequest));
 
-            controller.Environment = environment;
+            controller.Environment = Guid.Parse(segments[segments.IndexOf("environments/") + 1].Replace("/",""));
 
             var apiRequest = _container.GetInstance<IApiRequest>();
 
             apiRequest.EnvironmentId = controller.Environment.ToString();
 
-            controller.Session = _documentStore.OpenSession(environment.ToString());
+            controller.Session = _documentStore.OpenSession(controller.Environment.ToString());
             controller.Bus = _bus;
 
             //TODO: Add authorization environment

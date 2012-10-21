@@ -4,7 +4,7 @@
 
         var user = ko.observable(),
             isLoggedIn = ko.observable(false),
-            environment = ko.observable(),
+            selectedEnvironment = ko.observable(),
         // properties
         //-----------------
 
@@ -21,8 +21,8 @@
             stateKeys = {
                 lastView: 'state.active-hash'
             },
-            storeExpirationMs = (1000 * 60 * 60 * 24), // 1 day
-        //storeExpirationMs = (1000 * 5), // 5 seconds
+            //storeExpirationMs = (1000 * 60 * 60 * 24), // 1 day
+            storeExpirationMs = (1000 * 5), // 5 seconds
             throttle = 400,
             title = 'WatchR > ',
             //toastrTimeout = 2000,
@@ -113,6 +113,7 @@
             //toasts: toasts,
             useMocks: useMocks,
             viewIds: viewIds,
-            window: window
+            window: window,
+            selectedEnvironment: selectedEnvironment
         };
     });

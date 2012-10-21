@@ -3,6 +3,11 @@
     <a class="btn btn-mini pull-right" href="#addEnv" role="button" data-toggle="modal">New environment</a>
 </h4>
 
+<div data-bind="foreach: environments">
+    <a class="environment" href="#" data-bind="text: name"></a>
+    <br/>
+</div>
+
 <div class="modal hide" id="addEnv" tabindex="-1"  role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -17,12 +22,5 @@
         <a href="#addEnv" data-toggle="modal" data-bind="click: createEnvironment" class="btn btn-primary">Create environment</a>
     </div>    
 </div>
-
-<div data-bind="foreach: environments">
-    <a href="#" data-bind="text: name"></a>
-    <br/>
-</div>
-
-
 
 

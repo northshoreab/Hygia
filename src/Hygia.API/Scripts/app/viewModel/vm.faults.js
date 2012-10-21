@@ -28,7 +28,7 @@
             getFaults = function (completeCallback) {
                 var callback = completeCallback || function () { };
 
-                $.when(datacontext.faults.getData({ results: faults }))
+                $.when(datacontext.faults.getData({ results: faults, param: config.selectedEnvironment().id() }))
                     .always(utils.invokeFunctionIfExists(callback));
             },
             activate = function (routeData, callback) {

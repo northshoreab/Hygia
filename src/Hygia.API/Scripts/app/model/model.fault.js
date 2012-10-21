@@ -16,7 +16,7 @@
                 });
                 self.retries = ko.observable();
                 self.enclosedMessageTypes = ko.observable();
-                self.bussinessService = ko.observable();
+                self.businessService = ko.observable();
                 self.url = ko.computed(function () {
                     return '#/faults/' + self.id();
                 });
@@ -31,7 +31,7 @@
             .timeSent('')
             .retries(0)
             .enclosedMessageTypes('')
-            .bussinessService('');
+            .businessService('');
 
         // static member
         Fault.datacontext = function (dc) {

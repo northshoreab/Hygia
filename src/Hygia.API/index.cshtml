@@ -34,27 +34,49 @@
     <div class="container">
         <div id="busyindicator"></div>
         <header>
-            <div id="shellTop-view" class="navbar navbar-inverse">
-                <div class="navbar-inner">
-                    <div class="container">
-                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </a>
+            <div id="shellTop-view">
+                <div class="navbar navbar-inverse">
+                    <div class="navbar-inner">
+                        <div class="container">
+                            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </a>
                     
-                        <a class="brand" href="#">WatchR</a>
-                        <div class="nav-collapse">
-                            <ul class="nav">
-                                <li data-bind="if: isLoggedIn"><a href="#/faults">Faults</a></li>
-                                <li data-bind="if: isLoggedIn"><a href="#/faultoverview">Fault Overview</a></li>
-                            </ul>
-                            <ul class="nav pull-right">
-                                <li data-bind="ifnot: isLoggedIn"><a href="#/login">Login</a></li>
-                                <li data-bind="if: isLoggedIn"><a data-bind="text: userName" href="#/login"></a></li>
-                            </ul>                        
+                            <a class="brand" href="#/home">WatchR</a>
+                            <div class="nav-collapse">
+                                <ul class="nav pull-right">
+                                    <li data-bind="ifnot: isLoggedIn"><a href="#/login">Login</a></li>
+                                    <li data-bind="if: isLoggedIn"><a data-bind="text: userName" href="#/login"></a></li>
+                                </ul>                        
+                            </div>
                         </div>
-                    </div>
+                    </div>                    
+                </div>
+                <div data-bind="if: environmentSelected">
+                    <ul class="breadcrumb">
+                        <li class="active"><a href="#" data-bind="text: selectedEnvironmentName"></a></li>
+                        <!--<span class="divider">/</span>-->
+                    </ul>
+                    <div class="navbar">
+                        <div class="navbar-inner">
+                            <div class="container">
+                                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </a>
+                                                   
+                                <div class="nav-collapse">
+                                    <ul class="nav">
+                                        <li data-bind="if: isLoggedIn"><a href="#/faults">Faults</a></li>
+                                        <li data-bind="if: isLoggedIn"><a href="#/faultoverview">Fault Overview</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>                    
+                    </div>                    
                 </div>
             </div>
         </header>

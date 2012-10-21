@@ -1,6 +1,6 @@
 ﻿define('vm.home',
-    ['ko', 'datacontext', 'config', 'router', 'messenger', 'utils', 'jquery'],
-    function (ko, datacontext, config, router, messenger, utils, $) {
+    ['ko', 'datacontext', 'config', 'router', 'messenger', 'utils', 'jquery', 'event.delegates'],
+    function (ko, datacontext, config, router, messenger, utils, $, eventDelegates) {
         var canLeave = function () {
                 return true;
             },
@@ -16,8 +16,8 @@
                 $.when(datacontext.environments.getData({ results: environments }))
                     .always(utils.invokeFunctionIfExists(callback));
             },
-            selectEnvironment = function () {
-                //set selected environment to config
+            selectEnvironment = function (selectedEnvironment) {
+                config.selectedEnvironment(selectedEnvironment);
             },
             isLoggedIn = ko.computed(function () {
                 return config.isLoggedIn();
@@ -32,7 +32,12 @@
                     success: function (data) { /*environments().add(data);*/ },
                     error: function() { }
                 });
+            },
+            init = function () {
+                eventDelegates.environmentListItem(selectEnvironment);
             };
+
+        init();
 
         return {
             activate: activate,

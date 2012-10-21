@@ -8,6 +8,9 @@ using Hygia.API.Infrastructure;
 using Hygia.API.Infrastructure.Authentication;
 using Hygia.Operations.Accounts.Commands;
 using Microsoft.IdentityModel.Claims;
+using Raven.Client;
+using Raven.Client.Extensions;
+using StructureMap;
 using Environment = Hygia.Operations.Accounts.Domain.Environment;
 
 namespace Hygia.API.Controllers.Systems.Environments
@@ -45,6 +48,10 @@ namespace Hygia.API.Controllers.Systems.Environments
                                   };
 
             Session.Store(environment);
+
+            var store = ObjectFactory.GetInstance<IDocumentStore>();
+
+            store.DatabaseCommands.EnsureDatabaseExists(environment.Id.ToString());
 
             Bus.Send(new EnvironmentCreated
                          {

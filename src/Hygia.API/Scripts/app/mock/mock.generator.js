@@ -33,7 +33,7 @@
                             timeSent: '@DATE_FULL',
                             retries: 0,
                             enclosedMessageTypes: "messagetype",
-                            bussinessService: "service"
+                            businessService: "service"
                         }
                     }]
                 });

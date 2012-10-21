@@ -4,15 +4,16 @@
         var init = function() {
 
             amplify.request.define('faults', 'ajax', {
-                url: '/api/faults',
+                url: '/api/environments/{environmentId}/faults',
                 dataType: 'json',
                 type: 'GET'
                 //cache:
             });
         },
-            getFaults = function(callbacks) {
+            getFaults = function(callbacks, environmentId) {
                 return amplify.request({
-                    resourceId: 'faults',   
+                    resourceId: 'faults',
+                    data: {environmentId: environmentId},
                     success: callbacks.success,
                     error: callbacks.error
                 });

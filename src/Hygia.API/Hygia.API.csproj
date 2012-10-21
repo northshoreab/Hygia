@@ -291,6 +291,7 @@
     <Content Include="Scripts\app\infrastructure\dataservice.fault.js" />
     <Content Include="Scripts\app\infrastructure\dataservice.js" />
     <Content Include="Scripts\app\infrastructure\dataservice.user.js" />
+    <Content Include="Scripts\app\infrastructure\event.delegates.js" />
     <Content Include="Scripts\app\infrastructure\ko.debug.helpers.js" />
     <Content Include="Scripts\app\infrastructure\messenger.js" />
     <Content Include="Scripts\app\infrastructure\presenter.js" />
