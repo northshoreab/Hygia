@@ -32,6 +32,23 @@
                 }
                 return underlyingArray;
             },
+            getCookie = function (name) {
+                var dc = document.cookie;
+                var prefix = name + "=";
+                var begin = dc.indexOf("; " + prefix);
+                if (begin == -1) {
+                    begin = dc.indexOf(prefix);
+                    if (begin != 0) return null;
+                }
+                else {
+                    begin += 2;
+                    var end = document.cookie.indexOf(";", begin);
+                    if (end == -1) {
+                        end = dc.length;
+                    }
+                }
+                return unescape(dc.substring(begin + prefix.length, end));
+            },
             regExEscape = function(text) {
                 // Removes regEx characters from search filter boxes in our app
                 return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
@@ -76,6 +93,7 @@
             invokeFunctionIfExists: invokeFunctionIfExists,
             mapMemoToArray: mapMemoToArray,
             regExEscape: regExEscape,
+            getCookie: getCookie
 //            restoreFilter: restoreFilter
         };
     });

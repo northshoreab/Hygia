@@ -86,6 +86,7 @@
                 //toastr.options.timeOut = toastrTimeout;
                 configureExternalTemplates();
                 validationInit();
+                
             };
 
         init();

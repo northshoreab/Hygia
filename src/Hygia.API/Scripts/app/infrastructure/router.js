@@ -1,6 +1,6 @@
 ﻿define('router',
-    ['jquery', 'underscore', 'sammy', 'presenter', 'config', 'route-mediator', 'store'],
-    function ($, _, Sammy, presenter, config, routeMediator, store) {
+    ['jquery', 'underscore', 'sammy', 'presenter', 'config', 'route-mediator', 'store', 'utils'],
+    function ($, _, Sammy, presenter, config, routeMediator, store, utils) {
         var 
             currentHash = '',
             defaultRoute = '',
@@ -109,7 +109,11 @@
                 }
                 sammy.run();
                 registerBeforeLeaving();
-                navigateTo(startupUrl);
+                
+                if (config.isLoggedIn() == false && startupUrl.toLowerCase().substring(0, 7) != '#/login' && utils.getCookie('jwt'))
+                    navigateTo('#/login');
+                else
+                    navigateTo(startupUrl);
             };
 
         return {
