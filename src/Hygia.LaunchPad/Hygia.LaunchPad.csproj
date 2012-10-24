@@ -130,5 +130,6 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
-  <Import Project="$(SolutionDir)\.octopack\OctoPack.targets" />
+  <!--<Import Project="$(SolutionDir)\.octopack\OctoPack.targets" />-->
+  <Import Project="..\..\packages\OctoPack.1.0.109\targets\OctoPack.targets" />
 </Project>
