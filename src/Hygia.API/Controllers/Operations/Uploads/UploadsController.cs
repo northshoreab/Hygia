@@ -17,8 +17,8 @@ namespace Hygia.API.Controllers.Operations.Uploads
                        {
                            Links = new List<Link>
                                        {
-                                           new Link {Href = "/api/" + Environment + "/operations/uploads/auditmessages", Rel = "AuditMessages"},
-                                           new Link {Href = "/api/" + Environment + "/operations/uploads/faultmessages", Rel = "FaultMessages"},
+                                           new Link {Href = "/api/" + Environment + "/operations/uploads/processauditmessage", Rel = "AuditMessages"},
+                                           new Link {Href = "/api/" + Environment + "/operations/uploads/processfaultmessage", Rel = "FaultMessages"},
                                        }
                        };
         }

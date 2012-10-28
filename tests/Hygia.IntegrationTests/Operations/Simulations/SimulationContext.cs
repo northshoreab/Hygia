@@ -10,7 +10,7 @@ namespace Hygia.IntegrationTests.Operations.Simulations
         protected static Func<TimeSpan> GetSleepTime = () => TimeSpan.FromSeconds(1);
 
 
-        protected static Func<int,NServiceBusMessage> GetMessage = (iteration) =>
+        protected static Func<int,NServiceBusMessage> GetMessage = iteration =>
                                                                    {
                                                                        throw new NotImplementedException(
                                                                            "You need to set the get message func");
@@ -25,22 +25,20 @@ namespace Hygia.IntegrationTests.Operations.Simulations
         protected static Func<string> TargetQueue = ()=>"audit";
 
 
-        Because of = () =>
-        {
-            while (!Done())
-            {
-          
-                injector.Inject(GetMessage(iteration),TargetQueue());
+        private Because of = () =>
+                                 {
+                                     while (!Done())
+                                     {
 
-                Thread.Sleep(GetSleepTime());
-            }
-        };
+                                         injector.Inject(GetMessage(iteration), TargetQueue());
 
+                                         Thread.Sleep(GetSleepTime());
+                                     }
+                                 };
 
         static bool Done()
         {
             return iteration++ >= iterations;
         }
-
     }
 }

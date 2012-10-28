@@ -1,3 +1,5 @@
+using Raven.Client.Extensions;
+
 namespace Hygia.IntegrationTests.Operations.Communication
 {
     using System;
@@ -9,7 +11,7 @@ namespace Hygia.IntegrationTests.Operations.Communication
     {
         Establish context = () =>
                                 {
-                                    request = new RestRequest("api/operations/launchpad/commands/", Method.GET) { RequestFormat = DataFormat.Json };
+                                    request = new RestRequest("api/environments/" + apiKey.ToString() + "/operations/launchpad/commands/", Method.GET) { RequestFormat = DataFormat.Json };
 
                                     request.AddHeader("apikey", apiKey.ToString());
 
@@ -27,7 +29,7 @@ namespace Hygia.IntegrationTests.Operations.Communication
     {
         Establish context = () =>
         {
-            request = new RestRequest("api/operations/launchpad/commands", Method.POST) { RequestFormat = DataFormat.Json };
+            request = new RestRequest("api/environments/" + apiKey.ToString() + "operations/launchpad/commands", Method.POST) { RequestFormat = DataFormat.Json };
 
             request.AddHeader("apikey", apiKey.ToString());
             request.AddBody(new
@@ -51,7 +53,8 @@ namespace Hygia.IntegrationTests.Operations.Communication
 
         protected static void StoreCommand()
         {
-            using (var session = Store.OpenSession())
+            Store.DatabaseCommands.EnsureDatabaseExists(apiKey.ToString());
+            using (var session = Store.OpenSession(apiKey.ToString()))
             {
                 var command = new { Delivered = false };
                 session.Store(command, "LaunchPadCommands/" + commandId.ToString());
@@ -64,6 +67,5 @@ namespace Hygia.IntegrationTests.Operations.Communication
                 session.SaveChanges();
             }
         }
-
     }
 }

@@ -12,8 +12,8 @@ namespace Hygia.IntegrationTests.Operations.Simulations
                                 {
                                     GetSleepTime = ()=> TimeSpan.FromSeconds(1);
 
-                                    GetMessage = (iteration) => new NServiceBusMessage()
-                                                                    .AddMessage("Sales.OrderPlaced, Sales.Events", "1.0.0.0");
+                                    GetMessage = iteration => new NServiceBusMessage()
+                                                                  .AddMessage("Sales.OrderPlaced, Sales.Events", "1.0.0.0");
                                     iterations = 1;
                                 };
 

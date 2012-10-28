@@ -7,9 +7,9 @@ using Hygia.Operations.AuditUploads.Commands;
 namespace Hygia.API.Controllers.Operations.Uploads.AuditMessages
 {
     [DefaultHttpRouteConvention]
-    [RoutePrefix("api/environments/{environment:guid}/operations/uploads/auditmessages")]
+    [RoutePrefix("api/environments/{environment:guid}/operations/uploads/processauditmessage")]
     [Authorize]
-    public class AuditMessagesController : EnvironmentController
+    public class ProcessAuditMessagesController : EnvironmentController
     {
         public AuditMessage GetAll()
         {

@@ -102,7 +102,7 @@ namespace Hygia.APITests
                                                          Session = session
                                                      };
 
-                                    controller.Request = new HttpRequestMessage(HttpMethod.Post, "http://localhost:61000/api/faultmanagement/statistics/numberoffaultsperinterval");
+                                    controller.Request = new HttpRequestMessage(HttpMethod.Post, "http://localhost:8088/api/faultmanagement/statistics/numberoffaultsperinterval");
 
                                     controller.Configuration = new System.Web.Http.HttpConfiguration(new System.Web.Http.HttpRouteCollection());
                                 };

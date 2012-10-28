@@ -1,4 +1,6 @@
-﻿using System.Web.Http;
+﻿using System.Net;
+using System.Net.Http;
+using System.Web.Http;
 using AttributeRouting;
 using AttributeRouting.Web.Http;
 using Hygia.API.Models.Operations.Uploads.FaultMessages;
@@ -7,16 +9,16 @@ using Hygia.Operations.Faults.Commands;
 namespace Hygia.API.Controllers.Operations.Uploads.FaultMessages
 {
     [DefaultHttpRouteConvention]
-    [RoutePrefix("api/environments/{environment:guid}/operations/uploads/faultmessages")]
+    [RoutePrefix("api/environments/{environment:guid}/operations/uploads/processfaultmessage")]
     [Authorize]
-    public class FaultMessagesController : EnvironmentController
+    public class ProcessFaultMessagesController : EnvironmentController
     {
         public FaultMessage GetAll()
         {
             return new FaultMessage();
         }
 
-        public string Post(FaultMessage input)
+        public HttpResponseMessage Post(FaultMessage input)
         {
             var command = new ProcessFaultMessage
                               {
@@ -26,7 +28,7 @@ namespace Hygia.API.Controllers.Operations.Uploads.FaultMessages
                               };
 
             Bus.Send(command);
-            return "ok";
+            return new HttpResponseMessage(HttpStatusCode.OK);
         }
     }
 }

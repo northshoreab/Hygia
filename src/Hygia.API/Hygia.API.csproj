@@ -445,11 +445,11 @@
     <Compile Include="Controllers\Operations\LaunchPad\HeartbeatController.cs" />
     <Compile Include="Controllers\Operations\LaunchPad\ErrorController.cs" />
     <Compile Include="Controllers\Operations\OperationsController.cs" />
-    <Compile Include="Controllers\Operations\Uploads\AuditMessages\AuditMessagesController.cs" />
+    <Compile Include="Controllers\Operations\Uploads\AuditMessages\ProcessAuditMessagesController.cs" />
     <Compile Include="Models\Operations\Uploads\AuditMessages\AuditMessage.cs" />
     <Compile Include="Controllers\Operations\LaunchPad\CommandsController.cs" />
     <Compile Include="Controllers\Operations\LaunchPad\StatusController.cs" />
-    <Compile Include="Controllers\Operations\Uploads\FaultMessages\FaultMessagesController.cs" />
+    <Compile Include="Controllers\Operations\Uploads\FaultMessages\ProcessFaultMessagesController.cs" />
     <Compile Include="Models\Operations\Uploads\FaultMessages\FaultMessage.cs" />
     <Compile Include="Controllers\Operations\Uploads\UploadsController.cs" />
     <Compile Include="Controllers\UserManagement\UserAccounts\Commands\VerifyController.cs" />

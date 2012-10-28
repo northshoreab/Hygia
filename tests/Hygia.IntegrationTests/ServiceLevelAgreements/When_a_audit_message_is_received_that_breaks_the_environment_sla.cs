@@ -48,31 +48,29 @@
     {
 
         Establish context = () =>
-        {
-            request = new RestRequest("api/operations/uploads/auditmessages", Method.POST) { RequestFormat = DataFormat.Json };
+                                {
+                                    string apiKey = Guid.Parse("327951bf-bae4-46a4-93a0-71f61dfbe801").ToString();
+                                    request = new RestRequest("api/environments/" + apiKey + "/operations/uploads/processauditmessage", Method.POST) { RequestFormat = DataFormat.Json };
 
-            var timeSent = DateTime.UtcNow;
-            var started = timeSent + TimeSpan.FromSeconds(1);
-            var ended = timeSent + TimeSpan.FromMinutes(31);
-            request.AddBody(new
-            {
-                MessageId = Guid.Parse("8ec1ce07-36c6-4043-98ed-7cd106239153").ToString(),
-                ApiKey = Guid.Parse("327951bf-bae4-46a4-93a0-71f61dfbe801").ToString(),
-                 Headers = new Dictionary<string, string>
+                                    var timeSent = DateTime.UtcNow;
+                                    var started = timeSent + TimeSpan.FromSeconds(1);
+                                    var ended = timeSent + TimeSpan.FromMinutes(31);
+                                    request.AddBody(new
+                                    {
+                                        MessageId = Guid.Parse("8ec1ce07-36c6-4043-98ed-7cd106239153").ToString(),
+                                        ApiKey = apiKey,
+                                        Headers = new Dictionary<string, string>
                                                   {
                                                       { "NServiceBus.TimeSent",timeSent.ToWireFormattedString() },
                                                       { "NServiceBus.ProcessingStarted",started.ToWireFormattedString() },
                                                       { "NServiceBus.ProcessingEnded",ended.ToWireFormattedString() },
                                                       { "NServiceBus.EnclosedMessageTypes", "OrderPlaced, Version=1.0.0.0" }                                                  
                                                   },
-                AdditionalInformation = new Dictionary<string, string> { { "A1", "1" }, { "A2", "2" } },
-                //Body = new byte[0]
+                                        AdditionalInformation = new Dictionary<string, string> { { "A1", "1" }, { "A2", "2" } },
+                                        //Body = new byte[0]
 
-            });
-
-        };
-
-
+                                    });
+                                };
 
         It should_send_a_command_for_backend_processing = () => response.StatusCode.ShouldEqual(HttpStatusCode.OK);
     }

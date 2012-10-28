@@ -1,6 +1,5 @@
 namespace Hygia.IntegrationTests
 {
-    using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
@@ -29,7 +28,7 @@ namespace Hygia.IntegrationTests
                                                     DefaultDatabase = "WatchR"
                                                 };
                                     Store.Initialize();
-                                    client = new RestClient("http://localhost:61000/");
+                                    client = new RestClient("http://localhost:8088/");
 
                                     //purge the input queues
                                     backendQ = new MessageQueue(MsmqUtilities.GetFullPath(backendAddress));

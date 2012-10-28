@@ -12,11 +12,11 @@ namespace Hygia.IntegrationTests.Operations.Provisioning
 
         Establish context = () =>
                                 {
-                                    request = new RestRequest("environments/create", Method.POST) { RequestFormat = DataFormat.Json };
+                                    request = new RestRequest("api/environments", Method.POST) { RequestFormat = DataFormat.Json };
 
                                     request.AddBody(new
                                                         {
-                                                            AccountId = Guid.Parse("8ec1ce07-36c6-4043-98ed-7cd106239153"),
+                                                            ApiKey = Guid.Parse("8ec1ce07-36c6-4043-98ed-7cd106239153"),
                                                             Name = "Production"
                                                         });
 

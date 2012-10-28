@@ -30,7 +30,9 @@ namespace Hygia.Operations.Communication.LaunchPad
 
 
 
-            Configure.Instance.Configurer.ConfigureComponent<CloudUploader>(DependencyLifecycle.SingleInstance);
+            Configure.Instance.Configurer.ConfigureComponent<CloudUploader>(DependencyLifecycle.SingleInstance)
+                .ConfigureProperty(p => p.ApiKey, apikey);
+
             Configure.Instance.Configurer.ConfigureComponent<RestSharpApiCall>(DependencyLifecycle.SingleInstance)
                 .ConfigureProperty(p => p.ApiUrl, apiUrl)
                 .ConfigureProperty(p => p.ApiKey, apikey);

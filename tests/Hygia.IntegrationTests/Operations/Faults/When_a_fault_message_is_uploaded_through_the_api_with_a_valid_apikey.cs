@@ -12,14 +12,15 @@
         static string originalId = Guid.NewGuid().ToString();
 
         Establish context = () =>
-        {
-            request = new RestRequest("api/operations/uploads/faultmessages", Method.POST) { RequestFormat = DataFormat.Json };
-
-            request.AddHeader("apikey", Guid.Parse("327951bf-bae4-46a4-93a0-71f61dfbe801").ToString());
-            request.AddBody(new
                                 {
-                                    FaultEnvelopeId = Guid.Parse("8ec1ce07-36c6-4043-98ed-7cd106239153").ToString(),
-                                    Headers = new Dictionary<string, string>
+                                    string apiKey = Guid.Parse("327951bf-bae4-46a4-93a0-71f61dfbe801").ToString();
+                                    request = new RestRequest("api/environments/" + apiKey + "/operations/uploads/processfaultmessage", Method.POST) { RequestFormat = DataFormat.Json };
+
+                                    request.AddHeader("apikey", apiKey);
+                                    request.AddBody(new
+                                                        {
+                                                            FaultEnvelopeId = Guid.Parse("8ec1ce07-36c6-4043-98ed-7cd106239153").ToString(),
+                                                            Headers = new Dictionary<string, string>
                                                   {
                                                       { "NServiceBus.OriginalId", originalId }, 
                                                       { "NServiceBus.TimeSent", "2012-02-21 21:38:57:236209 Z" },
@@ -32,10 +33,10 @@
                                                       { "NServiceBus.ExceptionInfo.StackTrace", "A stacktrace" }
                                                      
                                                   },
-                                    Body = "<xml><testar><att><bygga><enxml /></bygga></att></testar></xml>"
-                                });
-            
-        };
+                                                            Body = "<xml><testar><att><bygga><enxml /></bygga></att></testar></xml>"
+                                                        });
+
+                                };
 
 
 
