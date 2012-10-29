@@ -51,7 +51,7 @@
                                 {
                                     string apiKey = Guid.Parse("327951bf-bae4-46a4-93a0-71f61dfbe801").ToString();
                                     request = new RestRequest("api/environments/" + apiKey + "/operations/uploads/processauditmessage", Method.POST) { RequestFormat = DataFormat.Json };
-
+                                    request.AddHeader("apikey", apiKey);
                                     var timeSent = DateTime.UtcNow;
                                     var started = timeSent + TimeSpan.FromSeconds(1);
                                     var ended = timeSent + TimeSpan.FromMinutes(31);

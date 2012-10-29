@@ -31,6 +31,8 @@ namespace Hygia.API.App_Start
 
             //config.AddBasicAuthentication(AuthenticationHelper.ValidateUser);
 
+            config.AddAccessKey(AuthenticationHelper.GetApiKeyIdentity, AuthenticationOptions.ForAuthorizationHeader("apikey"));
+
             config.AddAccessKey(AuthenticationHelper.GetApiKeyIdentity, AuthenticationOptions.ForHeader("apikey"));
 
             config.AddJsonWebToken(

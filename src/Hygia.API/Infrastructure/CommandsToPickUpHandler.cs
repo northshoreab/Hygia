@@ -37,7 +37,7 @@ namespace Hygia.API.Infrastructure
             string apiKey = null;
 
             if (request.Headers.Contains("apikey"))
-                apiKey = request.Headers.SingleOrDefault(x => x.Key == "apikey").Value.FirstOrDefault();
+                apiKey = request.Headers.SingleOrDefault(x => x.Key.ToLower() == "apikey").Value.FirstOrDefault();
 
             //for now assume that an api call always means that the request is coming from a launchpad
             if (apiKey != null && request.RequestUri.AbsolutePath.ToLower().StartsWith("/api/commands/"))
