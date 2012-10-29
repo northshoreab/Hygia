@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{5EB6F2E5-235D-4EF4-AEDD-FC5E14A4285B}"
 	ProjectSection(SolutionItems) = preProject
 		.nuget\NuGet.exe = .nuget\NuGet.exe
@@ -110,6 +110,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hygia.Operations.Accounts", "src\Hygia.Operations.Accounts\Hygia.Operations.Accounts.csproj", "{53849238-3D85-423C-974B-344111C2F303}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hygia.Operations.Accounts.Domain", "src\Hygia.Operations.Accounts.Domain\Hygia.Operations.Accounts.Domain.csproj", "{D5DA8A0F-0621-492B-BD1E-BAC590FE143B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hygia.Operations.AuditUploads.Messages", "src\Hygia.Operations.AuditUploads.Messages\Hygia.Operations.AuditUploads.Messages.csproj", "{E62BCFF0-B9A6-4E53-BE25-CE9706490B29}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -261,6 +263,10 @@ Global
 		{D5DA8A0F-0621-492B-BD1E-BAC590FE143B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D5DA8A0F-0621-492B-BD1E-BAC590FE143B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D5DA8A0F-0621-492B-BD1E-BAC590FE143B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E62BCFF0-B9A6-4E53-BE25-CE9706490B29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E62BCFF0-B9A6-4E53-BE25-CE9706490B29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E62BCFF0-B9A6-4E53-BE25-CE9706490B29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E62BCFF0-B9A6-4E53-BE25-CE9706490B29}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -280,6 +286,7 @@ Global
 		{09427EF8-67F9-426D-8030-85AAE6274310} = {3E095456-4A91-41D0-8D57-6F0C0982FE63}
 		{0913F8B5-DA27-4B5C-9E13-682A8555BCE3} = {35AAE028-91F3-43F3-B01D-760FEA17C82B}
 		{F69BC5DB-C4E2-4AA0-A622-AA0C20CB2E3F} = {35AAE028-91F3-43F3-B01D-760FEA17C82B}
+		{E62BCFF0-B9A6-4E53-BE25-CE9706490B29} = {35AAE028-91F3-43F3-B01D-760FEA17C82B}
 		{A69B2E6E-9E40-40B4-BFD8-3164DF393744} = {D07E79F1-C499-4017-8A22-52B145BABFBA}
 		{B1589498-379C-47EC-A20C-4460894A3497} = {D07E79F1-C499-4017-8A22-52B145BABFBA}
 		{55616C8C-DA1D-4FB3-B6D1-D1615B3B2EAB} = {B385FF4F-9C9E-4005-B030-4A1D0F3F55D8}

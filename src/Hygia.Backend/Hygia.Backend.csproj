@@ -35,6 +35,9 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AsyncCtpLibrary">
+      <HintPath>..\..\packages\AsyncCTP.0.3\lib\net40\AsyncCtpLibrary.dll</HintPath>
+    </Reference>
     <Reference Include="HtmlTags">
       <HintPath>..\..\packages\HtmlTags.1.0.0.55\lib\4.0\HtmlTags.dll</HintPath>
     </Reference>
@@ -54,18 +57,21 @@
     <Reference Include="NLog">
       <HintPath>..\..\packages\NLog.2.0.0.2000\lib\net40\NLog.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus, Version=3.2.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\NServiceBus-CI.3.2.2275\lib\net40\NServiceBus.dll</HintPath>
+    <Reference Include="NServiceBus, Version=3.3.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\NServiceBus.Interfaces.3.3.0\lib\net40\NServiceBus.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.Core, Version=3.2.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\NServiceBus-CI.3.2.2275\lib\net40\NServiceBus.Core.dll</HintPath>
+    <Reference Include="NServiceBus.Core, Version=3.3.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\NServiceBus.3.3.0\lib\net40\NServiceBus.Core.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.Host, Version=3.2.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <ExecutableExtension>.exe</ExecutableExtension>
-      <HintPath>..\..\packages\NServiceBus.Host-CI.3.2.2275\lib\net40\NServiceBus.Host.exe</HintPath>
+    <Reference Include="NServiceBus.Host, Version=3.3.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\NServiceBus.Host.3.3.0\lib\net40\NServiceBus.Host.exe</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.ObjectBuilder.StructureMap, Version=3.2.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\NServiceBus.StructureMap-CI.3.2.2275\lib\net40\NServiceBus.ObjectBuilder.StructureMap.dll</HintPath>
+    <Reference Include="NServiceBus.ObjectBuilder.StructureMap, Version=3.3.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\NServiceBus.Structuremap.3.3.0\lib\net40\NServiceBus.ObjectBuilder.StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="Raven.Abstractions">
       <HintPath>..\..\packages\RavenDB.Client.1.2.2018-Unstable\lib\net40\Raven.Abstractions.dll</HintPath>
@@ -77,8 +83,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\RazorEngine.dll</HintPath>
     </Reference>
-    <Reference Include="StructureMap">
-      <HintPath>..\..\packages\structuremap.2.6.3\lib\StructureMap.dll</HintPath>
+    <Reference Include="StructureMap, Version=2.6.4.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\structuremap.2.6.4.1\lib\net40\StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
@@ -139,13 +146,17 @@
       <Project>{ACD5D3D1-675A-49EF-8CF4-7E27528CFAC1}</Project>
       <Name>Hygia.LogicalMonitoring</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Hygia.Operations.AuditUploads\Hygia.Operations.AuditUploads.csproj">
-      <Project>{0913F8B5-DA27-4B5C-9E13-682A8555BCE3}</Project>
-      <Name>Hygia.Operations.AuditUploads</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Hygia.Notifications\Hygia.Notifications.csproj">
       <Project>{EF6577D8-FDF8-478E-9C5A-621CD4504ECE}</Project>
       <Name>Hygia.Notifications</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hygia.Operations.AuditUploads.Messages\Hygia.Operations.AuditUploads.Messages.csproj">
+      <Project>{e62bcff0-b9a6-4e53-be25-ce9706490b29}</Project>
+      <Name>Hygia.Operations.AuditUploads.Messages</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hygia.Operations.AuditUploads\Hygia.Operations.AuditUploads.csproj">
+      <Project>{0913f8b5-da27-4b5c-9e13-682a8555bce3}</Project>
+      <Name>Hygia.Operations.AuditUploads</Name>
     </ProjectReference>
     <ProjectReference Include="..\Hygia.Operations.Communication.Domain\Hygia.Operations.Communication.Domain.csproj">
       <Project>{BD2F02FB-8605-42CF-B974-1907CE54C8CE}</Project>
@@ -207,4 +218,8 @@
   </PropertyGroup>
   <!--<Import Project="$(SolutionDir)\.octopack\OctoPack.targets" />-->
   <Import Project="..\..\packages\OctoPack.1.0.109\targets\OctoPack.targets" />
+  <PropertyGroup>
+    <StartAction>Program</StartAction>
+    <StartProgram>$(ProjectDir)$(OutputPath)NServiceBus.Host.exe</StartProgram>
+  </PropertyGroup>
 </Project>

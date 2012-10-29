@@ -1,6 +1,7 @@
 using System.Linq;
 using Hygia.Operations.Events;
 using NServiceBus;
+using NServiceBus.Unicast;
 
 namespace Hygia.Operations.Email
 {

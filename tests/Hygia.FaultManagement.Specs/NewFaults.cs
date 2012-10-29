@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 namespace Hygia.FaultManagement.Specs
 {
+    using System.Collections.Generic;
     using Core;
     using Domain;
     using Hygia.Specs;
