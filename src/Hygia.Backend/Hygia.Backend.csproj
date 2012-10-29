@@ -205,5 +205,6 @@
     <PostBuildEvent>
     </PostBuildEvent>
   </PropertyGroup>
-  <Import Project="$(SolutionDir)\.octopack\OctoPack.targets" />
+  <!--<Import Project="$(SolutionDir)\.octopack\OctoPack.targets" />-->
+  <Import Project="..\..\packages\OctoPack.1.0.109\targets\OctoPack.targets" />
 </Project>
