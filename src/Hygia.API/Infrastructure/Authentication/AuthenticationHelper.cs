@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http.Headers;
-using Hygia.API.App_Start;
 using Microsoft.IdentityModel.Claims;
 using Raven.Client;
 using StructureMap;
@@ -23,7 +21,15 @@ namespace Hygia.API.Infrastructure.Authentication
 
         public static ClaimsIdentity GetApiKeyIdentity(string key)
         {
-            if (key == Constants.ApiKey)
+            Guid keyAsGuid;
+            if(!Guid.TryParse(key, out keyAsGuid))
+                return null;
+
+            var session = ObjectFactory.GetInstance<IDocumentStore>().OpenSession();
+
+            var environment = session.Query<Operations.Accounts.Domain.Environment>().SingleOrDefault(x => x.ApiKey == keyAsGuid);
+
+            if (environment != null)
                 return IdentityFactory.Create(AuthenticationTypes.Signature,
                                               new Claim(ClaimTypes.Name, "ApiKey"),
                                               AuthenticationInstantClaim.Now, 
