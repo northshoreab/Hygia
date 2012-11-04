@@ -45,6 +45,15 @@
 
             toggleActivity = function (show) {
                 $('#busyindicator').activity(show);
+                
+                if(show) {
+                    $('#maincontainer').css("display", "none");
+                    $('#envselected').css("display", "none");
+                }
+                else {
+                    $('#maincontainer').css("display", "block");
+                    $('#envselected').css("display", "block");
+                }
             },
 
             transitionTo = function ($view, route, group) {

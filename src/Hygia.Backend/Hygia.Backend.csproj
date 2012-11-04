@@ -119,7 +119,9 @@
     <None Include="Hygia.Backend.nuspec">
       <SubType>Designer</SubType>
     </None>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Hygia.Core.Providers\Hygia.Core.Providers.csproj">

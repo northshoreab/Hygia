@@ -2,12 +2,6 @@
     ['jquery', 'underscore', 'ko', 'model', 'model.mapper', 'dataservice', 'config', 'utils'],
     function ($, _, ko, model, modelmapper, dataservice, config, utils) {
         var logger = config.logger,
-            getCurrentEnvironmentId = function () {
-                return config.selectedEnvironment().id();
-            },
-        //            getCurrentUserId = function() {
-        //                return config.currentUser().id();
-        //            },
             itemsToArray = function (items, observableArray, filter, sortFunction) {
                 // Maps the memo to an observableArray, 
                 // then returns the observableArray
@@ -199,7 +193,7 @@
                             }
                             def.reject(response);
                         }
-                    });
+                    }, config.selectedEnvironment().id());
 
                 }).promise();
             },

@@ -22,8 +22,17 @@
             getFaults = function (completeCallback) {
                 var callback = completeCallback || function () { };
 
-                $.when(datacontext.faults.getData({ results: faults, param: config.selectedEnvironment().id() }))
-                    .always(utils.invokeFunctionIfExists(callback));
+                datacontext.faults.getFaults({
+                    success: function (u) {
+                        user(u);
+                        config.user(u);
+                        callback();
+                    },
+                    error: function () { callback(); }
+                });
+                
+                //$.when(datacontext.faults.getData({ results: faults, param: config.selectedEnvironment().id() }))
+                //    .always(utils.invokeFunctionIfExists(callback));
             },
             activate = function(routeData, callback) {
                 messenger.publish.viewModelActivated({ canleaveCallback: canLeave });

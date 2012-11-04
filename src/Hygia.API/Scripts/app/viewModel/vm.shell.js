@@ -1,6 +1,6 @@
 ﻿define('vm.shell',
-    ['ko', 'config'],
-    function (ko, config) {
+    ['ko', 'config', 'presenter'],
+    function (ko, config, presenter) {
         var menuHashes = config.hashes,
             isLoggedIn = ko.computed(function () {
                 return config.isLoggedIn();
@@ -14,7 +14,6 @@
             activate = function (routeData) {
                 
             },
-            
             selectedEnvironmentName = ko.computed(function () {
                 if (config.selectedEnvironment())
                     return config.selectedEnvironment().name();

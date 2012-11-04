@@ -30,9 +30,10 @@
         <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
     <![endif]-->
 
+    <div id="busyindicator"></div>
+
     <!-- Add your site or application content here -->
     <div class="container">
-        <div id="busyindicator"></div>
         <header>
             <div id="shellTop-view">
                 <div class="navbar navbar-inverse">
@@ -54,7 +55,7 @@
                         </div>
                     </div>                    
                 </div>
-                <div data-bind="if: environmentSelected">
+                <div id="envselected" style="display: none" data-bind="if: environmentSelected">
                     <ul class="breadcrumb">
                         <li class="active"><a href="#" data-bind="text: selectedEnvironmentName"></a></li>
                         <!--<span class="divider">/</span>-->
@@ -82,7 +83,7 @@
         </header>
         
     </div>
-    <div class="container">
+    <div class="container" id="maincontainer" style="display: none">
         <section class="main">
             @RenderPage("Views/faults.cshtml")
             @RenderPage("Views/fault.cshtml")
