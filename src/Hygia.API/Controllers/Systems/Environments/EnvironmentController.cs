@@ -1,15 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition.Hosting;
 using System.Linq;
 using System.Web.Http;
 using AttributeRouting;
 using AttributeRouting.Web.Http;
+using Hygia.API.Controllers.FaultManagement.Statistics;
 using Hygia.API.Infrastructure;
 using Hygia.API.Infrastructure.Authentication;
 using Hygia.Operations.Accounts.Commands;
 using Microsoft.IdentityModel.Claims;
 using Raven.Client;
 using Raven.Client.Extensions;
+using Raven.Client.Indexes;
 using StructureMap;
 using Environment = Hygia.Operations.Accounts.Domain.Environment;
 
@@ -53,6 +56,9 @@ namespace Hygia.API.Controllers.Systems.Environments
 
             store.DatabaseCommands.EnsureDatabaseExists(environment.Id.ToString());
 
+            var catalog = new CompositionContainer(new AssemblyCatalog(typeof(NumberOfFaultsPerDay).Assembly));
+            IndexCreation.CreateIndexes(catalog, store.DatabaseCommands.ForDatabase(environment.Id.ToString()), store.Conventions);
+            
             Bus.Send(new EnvironmentCreated
                          {
                              EnvironmentId = environment.Id

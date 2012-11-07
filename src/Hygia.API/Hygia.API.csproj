@@ -286,6 +286,7 @@
     <Content Include="Scripts\app\bootstrapper.js" />
     <Content Include="Scripts\app\config.js" />
     <Content Include="Scripts\app\infrastructure\binder.js" />
+    <Content Include="Scripts\app\infrastructure\dataservice.faultStatistics.js" />
     <Content Include="Scripts\app\infrastructure\dataservice.environment.js" />
     <Content Include="Scripts\app\infrastructure\datacontext.js" />
     <Content Include="Scripts\app\infrastructure\dataprimer.js" />

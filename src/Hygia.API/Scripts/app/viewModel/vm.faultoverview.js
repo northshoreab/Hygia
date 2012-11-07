@@ -1,6 +1,6 @@
 ﻿define('vm.faultoverview',
-    ['jquery','ko', 'datacontext', 'config', 'router', 'messenger', 'utils', 'underscore'],
-    function ($, ko, datacontext, config, router, messenger, utils, _) {
+    ['jquery', 'ko', 'datacontext', 'config', 'router', 'messenger', 'utils', 'underscore', 'dataservice.faultStatistics', 'moment'],
+    function ($, ko, datacontext, config, router, messenger, utils, _, dsFaultStatistics, moment) {
         var faultSummaryTemplate = 'faultsummary.view',
             faults = ko.observableArray(),
             faultsHasItems = ko.computed(function () {
@@ -23,9 +23,8 @@
                 var callback = completeCallback || function () { };
 
                 datacontext.faults.getFaults({
-                    success: function (u) {
-                        user(u);
-                        config.user(u);
+                    success: function (items) {
+                        faults(items);
                         callback();
                     },
                     error: function () { callback(); }
@@ -37,8 +36,35 @@
             activate = function(routeData, callback) {
                 messenger.publish.viewModelActivated({ canleaveCallback: canLeave });
                 getFaults(callback);
+                getLastWeekData();
             },
             stacked = ko.observable(true),
+            faultsLastWeek = ko.observableArray(),
+            getLastWeekData = function () {
+                var chartData = {
+                    label: 'Faults last week',
+                    legendEntry: true,
+                    data: {
+                        x: [],
+                        y: []
+                    }
+                };
+
+                dsFaultStatistics.getFaultStatistics({
+                        success: function(dto) {
+                            for (var i in dto.results) {
+                                chartData.data.x.push(moment(dto.results[i].from).format("L"));
+                                chartData.data.y.push(dto.results[i].numberOfFaults);
+                            }
+                            
+                            faultsLastWeek.push(chartData);
+                        },
+                        error: function(response) {
+                        }
+                    },
+                    config.selectedEnvironment().id());
+                        
+            },
             seriesList = ko.observableArray([{
                 label: 'Fault messages',
                 legendEntry: true,
@@ -60,6 +86,7 @@
             
         });
         return {
+            faultsLastWeek: faultsLastWeek,
             stacked: stacked,
             seriesList: seriesList,
             activate: activate,

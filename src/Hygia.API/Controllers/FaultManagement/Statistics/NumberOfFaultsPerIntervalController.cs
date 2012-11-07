@@ -62,6 +62,18 @@ namespace Hygia.API.Controllers.FaultManagement.Statistics
     [Authorize]
     public class NumberOfFaultsPerIntervalController : EnvironmentController
     {
+        [HttpGet]
+        [GET("lastweek")]
+        public IQueryable<FaultsPerInterval> LastWeek()
+        {
+            return Get(new IntervalInputModel
+                           {
+                               From = DateTime.Now.AddDays(-6).Date,
+                               To = DateTime.Now,
+                               Interval = Interval.Day
+                           });
+        }
+
         public IQueryable<FaultsPerInterval> Get(IntervalInputModel model)
         {
             IList<DateTime> starts = new List<DateTime>();
@@ -92,7 +104,7 @@ namespace Hygia.API.Controllers.FaultManagement.Statistics
                 counter ++;
             }
 
-            IQueryable<FaultsPerInterval> faultsPerIntervals;
+            IList<FaultsPerInterval> faultsPerIntervals;
 
             if (model.Interval == Interval.Hour)
                 faultsPerIntervals = Session.Query<FaultsPerInterval, NumberOfFaultsPerHour>()
@@ -105,7 +117,7 @@ namespace Hygia.API.Controllers.FaultManagement.Statistics
                                          To = GetToDateTime(x.Key, model.Interval),
                                          NumberOfFaults = x.Count()
                                      })
-                    .AsQueryable();
+                    .ToList();
             else
                 faultsPerIntervals = Session.Query<FaultsPerInterval, NumberOfFaultsPerDay>()
                     .Where(x => x.From >= model.From && x.From <= starts.Max())
@@ -117,9 +129,20 @@ namespace Hygia.API.Controllers.FaultManagement.Statistics
                                          To = GetToDateTime(x.Key, model.Interval),
                                          NumberOfFaults = x.Count()
                                      })
-                    .AsQueryable();
+                    .ToList();
 
-            return faultsPerIntervals;
+            foreach (var start in starts)
+            {
+                if (faultsPerIntervals.All(x => x.From != start))
+                    faultsPerIntervals.Add(new FaultsPerInterval
+                                               {
+                                                   From = start,
+                                                   NumberOfFaults = 0,
+                                                   To = GetToDateTime(start, model.Interval)
+                                               });
+            }
+
+            return faultsPerIntervals.OrderBy(x => x.From).AsQueryable();
         }
 
         private DateTime GetToDateTime(DateTime start, Interval interval)

@@ -29,9 +29,8 @@
                 var callback = completeCallback || function () { };
 
                 datacontext.faults.getFaults({
-                    success: function (u) {
-                        user(u);
-                        config.user(u);
+                    success: function (items) {
+                        faults(items);
                         callback();
                     },
                     error: function () { callback(); }

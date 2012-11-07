@@ -2,11 +2,11 @@
     <div class="row">
         <div class="span2" data-bind="template: {name: faultSummaryTemplate}"></div>
         <div class="span5">
-            <div id="wijbarchart" data-bind="wijbarchart: {stacked: stacked, seriesList: seriesList}" style="height: 300px"></div>
+            <div id="wijbarchart" data-bind="wijbarchart: {seriesList: faultsLastWeek}" style="height: 300px"></div>
             
         </div>
         <div class="span5">
-            <div id="wijlinechart" data-bind="wijlinechart: {seriesList: seriesList}" style="height: 300px;"></div>            
+            <div id="wijlinechart" data-bind="wijlinechart: {seriesList: faultsLastWeek}" style="height: 300px;"></div>            
         </div>
     </div>
     <div class="row">
